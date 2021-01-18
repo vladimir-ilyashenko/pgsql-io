@@ -28,10 +28,10 @@ _atrk_opts = { atrk_acct:"D/nDv1DlQy20Y8", domain:"pgsql.io",dynamic: true};
   string = \
 """\
 PGSQL is the PostgreSQL Community Distribution that is developer friendly and cross-platform.
-We fully embrace core PostgreSQL and it's rich community based eco-system of over
-50 enterprise-class extensions, applications & connectors.
+We fully embrace core PostgreSQL and it's rich community based eco-system of
+enterprise-class extensions & applications.
 We support Linux (both AMD64 & ARM64), and Windows 10 Subsystem for Linux.
-Our Linux support includes Centos, Ubuntu, Debian, and openSUSE.  You can also run our ARM binaries on Android and Google Chrome.
+Our Linux support is well tested on both Ubuntu & CentOS.
 \
 """
   print("  <tr><td colspan=2><h2>Introduction</h2></td></tr>")
@@ -55,13 +55,13 @@ Our Linux support includes Centos, Ubuntu, Debian, and openSUSE.  You can also r
 
 <tr><td colspan=2>
 From PostgreSQL 12 and on we are verified & tested, on x86_64 & arm64, with Python 3; 
-CentOS/RHEL 8; Ubuntu 20.04; Debian 10; and Windows 10 Subsytem for Linux.
+CentOS/RHEL 8; Ubuntu 20.04; and Windows 10 Subsytem for Linux.
 We run in a sandboxed environment that is perfect for running
 in a container, on bare metal, or in the multi-cloud environment
 of your choice.
 
 <br>&nbsp;</td></tr>
-<tr><td width=240 align=right><b>Install Sandbox as a non-root user  from command line:</b></td>
+<tr><td width=240 align=right><b>Install as non-root user:</b></td>
   <td><input type='text' size=90 value =
 'cd $HOME; python3 -c "$(curl -fsSL https://pgsql-io-download.s3.amazonaws.com/REPO/install.py)"' readonly='readonly' />
   </td>
@@ -69,14 +69,6 @@ of your choice.
 \
 """
   print(string)
-
-#<tr><td>&nbsp;</td>
-#<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>or</b></td></tr>
-#<tr><td width=240 align=right><b>Install to Autostart as postgres user from command line:</b></td>
-#  <td><input type='text' size=90 value =
-#'cd /opt; sudo python3 -c "$(curl -fsSL https://pgsql-io-download.s3.amazonaws.com/REPO/install.py)"' readonly='readonly' />
-#  </td>
-#</tr>
 
   string = \
 """\
@@ -95,6 +87,6 @@ of your choice.
 
 def print_footer():
   print('<center><table><tr> \n' + \
-        '   <td width=550>&copy; 2021 PGSQL.IO, All rights reserved.</td> \n' + \
+        '   <td width=550>&copy; 2021 PGSQL.IO</td> \n' + \
         '   <td width=550 align=right><a href="https://lussier.io">denis@lussier.io</a></td> \n' + \
         '</tr></table></center>')
