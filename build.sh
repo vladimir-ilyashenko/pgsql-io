@@ -29,26 +29,23 @@ printUsageMessage () {
   echo "# -p $P13  $P12  $P11  $P10"
   echo "# -b hub-$hubV"
   echo "#    anon-$anonV  ddlx-$ddlxV  hypopg-$hypoV  http-$httpV"
-  echo "#    pglogical-$logicalV  plprofiler-$profV  pgtsql-$tsqlV"
-  echo "#    partman-$partmanV  bulkload-$bulkloadV  pljava-$pljavaV"
+  echo "#    pglogical-$logicalV  plprofiler-$profV"
+  echo "#    partman-$partmanV  pljava-$pljavaV"
   echo "#    orafce-$orafceV  fixeddecimal-$fdV"
-  echo "#    citus-$citusV  cron-$cronV  timescale-$timescaleV"
-  echo "#    audit-$audit13V  pldebugger-$debuggerV  agent-$agentV"
-  echo "#    badger-$badgerV  ora2pg-$ora2pgV  docker-$dockerV  pgadmin-$pgadminV"
-  echo "#    bouncer-$bouncerV  backrest-$backrestV  pgtop-$pgtopV  proctab-$proctabV"
-  echo "#    postgis-$postgis30V  repack-$repackV  psqlodbc-$odbcV"
-  echo "#    cstarfdw-$cstarfdwV  cstar-$cstarV  openstack-$openstackV  kvm-$kvmV"
-  echo "#    cloud-$cloudV  ansible-$ansibleV  helm-$helmV  minikube-$minikubeV"
-  echo "#    hivemeta-$hiveV  hivefdw-$hivefdwV  prestosql-$prestosqlV  hadoop-$hadoopV"
-  echo "#    mysqlfdw-$mysqlfdwV  mariadb-$mariadbV  sqlsvr-$sqlsvrV  tdsfdw-$tdsfdwV"
-  echo "#    mongofdw-$mongofdwV  mongodb-$mongodbV  oracle_xe-$oracle_xeV  oraclefdw-$oraclefdwV"
-  echo "#    elasticsearch-$esV  esfdw-$esfdwV  multicorn-$multicornV"
-  echo "#    kafka-$kafkaV   zookeeper-$zookV  debezium-$debezV"
+  echo "#    cron-$cronV  timescale-$timescaleV"
+  echo "#    audit-$audit13V  pldebugger-$debuggerV"
+  echo "#    badger-$badgerV  ora2pg-$ora2pgV"
+  echo "#    bouncer-$bouncerV  backrest-$backrestV"
+  echo "#    postgis-$postgis30V  psqlodbc-$odbcV"
+  echo "#    hivefdw-$hivefdwV  prestosql-$prestosqlV"
+  echo "#    mysqlfdw-$mysqlfdwV  tdsfdw-$tdsfdwV"
+  echo "#    mongofdw-$mongofdwV  oraclefdw-$oraclefdwV"
+  echo "#    esfdw-$esfdwV  multicorn-$multicornV"
   echo "#--------------------------------------------------------------------------#"
-  echo "# ./build.sh -X l64 -c $bundle -N $P10 -p 10 -b"
-  echo "# ./build.sh -X l64 -c $bundle -N $P11 -p 11 -b"
-  echo "# ./build.sh -X l64 -c $bundle -N $P12 -p 12 -b"
-  echo "# ./build.sh -X l64 -c $bundle -N $P13 -p 13 -b"
+  echo "# ./build.sh -X l64 -c $bundle -N $P10 -p 10"
+  echo "# ./build.sh -X l64 -c $bundle -N $P11 -p 11"
+  echo "# ./build.sh -X l64 -c $bundle -N $P12 -p 12"
+  echo "# ./build.sh -X l64 -c $bundle -N $P13 -p 13"
   echo "#--------------------------------------------------------------------------#"
 }
 
@@ -439,67 +436,54 @@ initPG () {
 
   initC "pgbadger" "pgbadger" "$badgerV" "" "postgres/badger" "" "" "nil"
   initC "ora2pg" "ora2pg" "$ora2pgV" "" "postgres/ora2pg" "" "" "nil"
-  initC "gcc" "gcc" "$gccV" "" "gcc" "" "" "Y"
+  #initC "gcc" "gcc" "$gccV" "" "gcc" "" "" "Y"
 
-  initC "docker" "docker" "$dockerV" "" "docker" "" "" "Y"
-  initC "compose" "compose" "$composeV" "" "docker/compose" "" "" "Y"
+  #initC "docker" "docker" "$dockerV" "" "docker" "" "" "Y"
+  #initC "compose" "compose" "$composeV" "" "docker/compose" "" "" "Y"
 
-  initC "pgadmin" "pgadmin" "$pgadminV" "" "postgres/pgadmin" "" "" "nil"
-  initC "prestosql" "prestosql" "$prestosqlV" "" "prestosql" "" "" "Y"
-  initC "hivemeta" "hivemeta" "$hiveV"   "" "hivemeta" "" "" "nil"
+  #initC "pgadmin" "pgadmin" "$pgadminV" "" "postgres/pgadmin" "" "" "nil"
+  #initC "prestosql" "prestosql" "$prestosqlV" "" "prestosql" "" "" "Y"
+  #initC "hivemeta" "hivemeta" "$hiveV"   "" "hivemeta" "" "" "nil"
   # initC "hadoop" "hadoop" "$hadoopV" "" "apache" "" "" "nil"
   # initC "oracle_xe" "oracle_xe" "$oracle_xeV" "amd" "oracle" "" "" "nil"
-  initC "sqlsvr"  "sqlsvr" "$sqlsvrV" "amd" "sqlsvr" "" "" "nil"
-  initC "mariadb" "mariadb" "$mariadbV" "" "mariadb" "" "" "Y"
-  initC "mongodb" "mongodb" "$mongodbV" "" "mongodb" "" "" "Y"
+  #initC "sqlsvr"  "sqlsvr" "$sqlsvrV" "amd" "sqlsvr" "" "" "nil"
+  #initC "mariadb" "mariadb" "$mariadbV" "" "mariadb" "" "" "Y"
+  #initC "mongodb" "mongodb" "$mongodbV" "" "mongodb" "" "" "Y"
 
-  initC "zookeeper" "zookeeper" "$zookV" "" "zookeeper" "" "" "Y"
-  initC "kafka" "kafka" "$kafkaV" "" "kafka" "" "" "Y"
-  initC "debezium" "debezium" "$debezV" "" "debezium" "" "" "Y"
-  initC "rabbitmq" "rabbitmq" "$rabbitV"  "" "rabbitmq" "" "" "Y"
+  #initC "zookeeper" "zookeeper" "$zookV" "" "zookeeper" "" "" "Y"
+  #initC "kafka" "kafka" "$kafkaV" "" "kafka" "" "" "Y"
+  #initC "debezium" "debezium" "$debezV" "" "debezium" "" "" "Y"
+  #initC "rabbitmq" "rabbitmq" "$rabbitV"  "" "rabbitmq" "" "" "Y"
 
-  initC "openstack" "openstack" "$openstackV" "" "openstack" "" "" "nil"
-  initC "kvm" "kvm" "$kvmV" "" "kvm" "" "" "nil"
+  #initC "openstack" "openstack" "$openstackV" "" "openstack" "" "" "nil"
+  #initC "kvm" "kvm" "$kvmV" "" "kvm" "" "" "nil"
 
   initC "bouncer" "bouncer" "$bouncerV" "$outPlat" "postgres/bouncer" "" "" "nil"
   initC "backrest" "backrest" "$backrestV" "$outPlat" "postgres/backrest" "" "" "nil"
   initC "psqlodbc" "psqlodbc" "$odbcV" "$outPlat" "postgres/psqlodbc" "" "" "nil"
 
-  initC "cloud" "cloud" "$cloudV" "" "cloud" "" "" "Y"
-  initC "ansible" "ansible" "$ansibleV" "" "ansible" "" "" "Y"
-  initC "helm" "helm" "$helmV" "" "helm" "" "" "Y"
-  initC "minikube" "minikube" "$minikubeV" "" "minikube" "" "" "Y"
+  #initC "cloud" "cloud" "$cloudV" "" "cloud" "" "" "Y"
+  #initC "ansible" "ansible" "$ansibleV" "" "ansible" "" "" "Y"
+  #initC "helm" "helm" "$helmV" "" "helm" "" "" "Y"
+  #initC "minikube" "minikube" "$minikubeV" "" "minikube" "" "" "Y"
 
-  initC "elasticsearch" "elasticsearch" "$esV" "" "elk/elasticsearch" "" "" "Y"
-  initC "kibana" "kibana" "$esV" "" "elk/kibana" "" "" "Y"
-  initC "logstash" "logstash" "$esV" "" "elk/logstash" "" "" "Y"
+  #initC "elasticsearch" "elasticsearch" "$esV" "" "elk/elasticsearch" "" "" "Y"
+  #initC "kibana" "kibana" "$esV" "" "elk/kibana" "" "" "Y"
+  #initC "logstash" "logstash" "$esV" "" "elk/logstash" "" "" "Y"
 
-  initC "patroni" "patroni" "$patroniV" "" "postgres/patroni" "" "" ""
-  initC "haproxy" "haproxy" "$haproxyV" "" "haproxy" "" "" "Y"
-  initC "etcd" "etcd" "$etcdV" "" "etcd" "" "" "Y"
+  #initC "patroni" "patroni" "$patroniV" "" "postgres/patroni" "" "" ""
+  #initC "haproxy" "haproxy" "$haproxyV" "" "haproxy" "" "" "Y"
+  #initC "etcd" "etcd" "$etcdV" "" "etcd" "" "" "Y"
 
-
-  #if [ "$pgM" == "11" ]; then 
-  #  initC "pgtsql-pg$pgM" "pgtsql" "$tsqlV" "$outPlat" "postgres/tsql" "" "" "nil"
-  #fi
-
-  #if [ "$pgM" == "12" ]; then 
-  #  initC "audit-pg$pgM" "audit" "$audit12V" "$outPlat" "postgres/audit" "" "" "nil"
-  #fi
 
   if [ "$pgM" == "13" ]; then 
     if [ "$outPlat" == "amd" ]; then
       initC "pljava-pg$pgM" "pljava" "$pljavaV" "$outPlat" "postgres/pljava" "" "" "nil"
-    fi
-    initC "audit-pg$pgM" "audit" "$audit13V" "$outPlat" "postgres/audit" "" "" "nil"
-  fi
-
-  if [ "$pgM" == "12" ] || [ "$pgM" == "13" ]; then 
-    if [ "$outPlat" == "amd" ]; then
       initC "oraclefdw-pg$pgM" "oraclefdw" "$oraclefdwV" "$outPlat" "postgres/oraclefdw" "" "" "nil"
       initC "tdsfdw-pg$pgM" "tdsfdw" "$tdsfdwV" "$outPlat" "postgres/tdsfdw" "" "" "nil"
       initC "esfdw-pg$pgM" "esfdw" "$esfdwV" "$outPlat" "postgres/esfdw" "" "" "nil"
     fi
+    initC "audit-pg$pgM" "audit" "$audit13V" "$outPlat" "postgres/audit" "" "" "nil"
     initC "mysqlfdw-pg$pgM" "mysqlfdw" "$mysqlfdwV" "$outPlat" "postgres/mysqlfdw" "" "" "nil"
     initC "mongofdw-pg$pgM" "mongofdw" "$mongofdwV" "$outPlat" "postgres/mongofdw" "" "" "nil"
     initC "hivefdw-pg$pgM" "hivefdw" "$hivefdwV" "$outPlat" "postgres/hivefdw" "" "" "nil"
@@ -510,7 +494,7 @@ initPG () {
     initC "plprofiler-pg$pgM" "plprofiler" "$profV" "$outPlat" "postgres/profiler" "" "" "nil"
     initC "cron-pg$pgM" "cron" "$cronV" "$outPlat" "postgres/cron" "" "" "nil"
     initC "postgis-pg$pgM" "postgis" "$postgis30V" "$outPlat" "postgres/postgis" "" "" "nil"
-    initC "citus-pg$pgM" "citus" "$citusV" "$outPlat" "postgres/citus" "" "" "nil"
+    ##initC "citus-pg$pgM" "citus" "$citusV" "$outPlat" "postgres/citus" "" "" "nil"
     initC "fixeddecimal-pg$pgM" "fixeddecimal" "$fdV" "$outPlat" "postgres/fixeddecimal" "" "" "nil"
     initC "partman-pg$pgM" "partman" "$partmanV" "$outPlat" "postgres/partman" "" "" "nil"
     initC "orafce-pg$pgM" "orafce" "$orafceV" "$outPlat" "postgres/orafce" "" "" "nil"
@@ -521,20 +505,20 @@ initPG () {
     initC "pldebugger-pg$pgM" "pldebugger" "$debuggerV" "$outPlat" "postgres/pldebugger" "" "" "nil"
 
     if [ "$outPlat" == "amd" ]; then
-      initC "cassandrafdw-pg$pgM" "cassandrafdw" "$cstarfdwV" "$outPlat" "postgres/cassandrafdw" "" "" "nil"
+      #initC "cassandrafdw-pg$pgM" "cassandrafdw" "$cstarfdwV" "$outPlat" "postgres/cassandrafdw" "" "" "nil"
 
-      initC "pgtop-pg$pgM" "pgtop" "$pgtopV" "$outPlat" "postgres/pgtop" "" "" "nil"
-      initC "proctab-pg$pgM" "proctab" "$proctabV" "$outPlat" "postgres/proctab" "" "" "nil"
+      #initC "pgtop-pg$pgM" "pgtop" "$pgtopV" "$outPlat" "postgres/pgtop" "" "" "nil"
+      #initC "proctab-pg$pgM" "proctab" "$proctabV" "$outPlat" "postgres/proctab" "" "" "nil"
       initC "ddlx-pg$pgM" "ddlx" "$ddlxV" "$outPlat" "postgres/ddlx" "" "" "nil"
       initC "multicorn-pg$pgM" "multicorn" "$multicornV" "$outPlat" "postgres/multicorn" "" "" "nil"
     fi
 
-    initC "cassandra" "cassandra" "$cstarV" "" "cassandra" "" "" "nil"
-    initC "bulkload-pg$pgM" "bulkload" "$bulkloadV" "$outPlat" "postgres/bulkload" "" "" "nil"
+    #initC "cassandra" "cassandra" "$cstarV" "" "cassandra" "" "" "nil"
+    #initC "bulkload-pg$pgM" "bulkload" "$bulkloadV" "$outPlat" "postgres/bulkload" "" "" "nil"
 
     initC "timescaledb-pg$pgM" "timescaledb" "$timescaleV"  "$outPlat" "postgres/timescale" "" "" "nil"
 
-    initC "http-pg$pgM" "http" "$httpV" "$outPlat" "postgres/http" "" "" "nil"
+    #initC "http-pg$pgM" "http" "$httpV" "$outPlat" "postgres/http" "" "" "nil"
   fi
 }
 
@@ -562,7 +546,7 @@ verSQL="versions.sql"
 
 
 ## process command line paramaters #######
-while getopts "c:X:N:Ep:RBbh" opt
+while getopts "c:X:N:Ep:Rh" opt
 do
     case "$opt" in
       X)  if [ "$OPTARG" == "l64" ] || [ "$OPTARG" == "posix" ] ||
@@ -589,10 +573,6 @@ do
           if [ "$plat" == "posix" ]; then
             checkCmd "cp $CLI/install.py $OUT/."
           fi;;
-
-      B) initC "salt" "saltstack" "$saltV" "$plat" "salt" "" "" "nil" 
-         initC "pip"  "pip"       "$pipV"  "$plat" "pip"  "" "" "nil" 
-         ;;
 
       R)  writeSettRow "GLOBAL" "REPO" "$repo" "-v";;
 

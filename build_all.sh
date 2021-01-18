@@ -59,7 +59,7 @@ buildONE () {
   if [ "$4" == "false" ]; then
     return
   fi
-  parms="-X $vPlat -c $bundle -N $vFull -p $vBig -b"
+  parms="-X $vPlat -c $bundle -N $vFull -p $vBig"
   echo ""
   echo "### BUILD_ONE $parms ###"
   ./build.sh $parms
