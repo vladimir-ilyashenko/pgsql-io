@@ -54,7 +54,7 @@ We support Ubuntu & CentOS on both AMD64 & ARM64 (including on Windows 10 Subsys
 
 <tr><td colspan=2>
 From PostgreSQL 12 and on we are verified & tested, on x86_64 & arm64, with Python 3; 
-CentOS/RHEL 8; Ubuntu 20.04; and Windows 10 Subsytem for Linux.
+CentOS 8-stream; Ubuntu 20.04 LTS; and Windows 10 Subsytem for Linux.
 We run in a sandboxed environment that is perfect for running
 in a container, on bare metal, or in the multi-cloud environment
 of your choice.
