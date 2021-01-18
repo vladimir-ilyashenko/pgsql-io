@@ -1,0 +1,22 @@
+
+FROM centos:7
+
+ARG PGV
+ARG INSTALL_PY=https://pgsql-io-download.s3.amazonaws.com/REPO/install.py
+ENV pgv=$PGV
+
+RUN useradd -mc /bin/bash postgres
+RUN yum update -y && yum install -y epel-release && yum install -y python3
+
+USER postgres
+RUN cd ~; python3 -c "$(curl -fsSL $INSTALL_PY)"
+
+RUN cd ~/pgsql; ./io info; ./io install pg12; ./io start pg12 -y; ./io tune pg12; ./io install pglogical-pg12; ./io status
+
+EXPOSE 5432
+
+# Add VOLUMEs to allow backup of data & logs
+VOLUME  /home/postgres/pgsql/data/pg12 /home/postgres/pgsql/logs/pg12
+
+# Set the default command to run when starting the container
+CMD /home/postgres/pgsql/pg12/bin/postgres -D /home/postgres/pgsql/data/pg12

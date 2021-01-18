@@ -1,0 +1,12 @@
+#!/bin/bash
+cd "$(dirname "$0")"
+
+echo " "
+echo "## INSTALL POWERDNS ############################################"
+source getPKMG.sh
+if [ "$PKMG" == "yum" ]; then
+  sudo yum install -y epel-release
+  sudo yum install -y pdns pdns-backend-postgresql dnsdist
+else
+  sudo apt install -y pdns-server pdns-backend-pgsql dnsdist
+fi

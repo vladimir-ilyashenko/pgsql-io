@@ -1,0 +1,8 @@
+set -x
+
+sudo systemctl stop kafka
+
+sudo rm -rf /etc/systemd/system/kafka.service
+
+sudo rm -rf /usr/local/kafka
+

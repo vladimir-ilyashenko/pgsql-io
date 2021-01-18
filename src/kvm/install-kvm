@@ -1,0 +1,6 @@
+
+sudo yum install -y libvirt libvirt-devel libvirt-client
+python3 -m pip install --user libvirt-python
+
+exit 0
+

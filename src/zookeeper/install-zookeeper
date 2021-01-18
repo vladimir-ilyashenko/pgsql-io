@@ -1,0 +1,34 @@
+#!/bin/bash
+cd "$(dirname "$0")"
+
+zookeeperV=$1
+
+id -u zk
+rc=$?
+if [ "$rc" == "1" ]; then
+  sudo useradd zk -m
+fi
+sudo usermod -a -G wheel zk
+sudo usermod --shell /bin/bash zk
+
+zookeeperD=apache-zookeeper-$zookeeperV-bin
+zookeeperF=$zookeeperD.tar.gz
+URL=http://mirror.cc.columbia.edu/pub/software/apache/zookeeper
+rm -rf $zookeeperF
+wget $URL/zookeeper-$zookeeperV/$zookeeperF
+tar xzf $zookeeperF
+
+zkDir=/opt/zookeeper
+sudo rm -rf $zkDir
+sudo mv $zookeeperD $zkDir
+sudo cp example.config $zkDir/conf/zoo.cfg
+sudo cp example-log4j.properties $zkDir/conf/log4j.properties
+sudo chown zk:zk -R $zkDir
+
+sudo cp example.service  /etc/systemd/system/zookeeper.service
+rm -f $zookeeperF
+
+sudo systemctl daemon-reload
+sudo mkdir -p /var/zookeeper
+sudo chown zk:zk -R /var/zookeeper
+

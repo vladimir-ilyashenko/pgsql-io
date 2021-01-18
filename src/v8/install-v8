@@ -1,0 +1,4 @@
+set -x
+sudo yum -y install epel-release 
+sudo yum -y module enable nodejs:13
+sudo yum -y install v8-devel

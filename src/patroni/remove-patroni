@@ -1,0 +1,3 @@
+set -x
+
+pip3 uninstall -y python-etcd haproxyadmin

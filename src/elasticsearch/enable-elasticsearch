@@ -1,0 +1,3 @@
+set -x
+sudo systemctl daemon-reload
+sudo systemctl enable elasticsearch

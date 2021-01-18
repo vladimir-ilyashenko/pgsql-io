@@ -1,0 +1,47 @@
+#!/bin/bash
+cd "$(dirname "$0")"
+
+dbzV=$1.Final
+
+echo ""
+echo "# Installing Debezium $dbzV ###############"
+
+repo=https://repo1.maven.org/maven2/io/debezium
+connectD=/usr/local/kafka/connect
+sudo mkdir -p $connectD
+
+
+
+
+getConn () {
+  pDB=$1
+
+
+  dbzB=debezium-connector-$pDB
+  dbzF=$dbzB-$dbzV-plugin.tar.gz
+  echo "## installing $dbzF"
+
+  rm -rf $dbzB
+  rm -f  $dbzF*
+
+  connector=debezium-connector-$pDB/$dbzV/$dbzF
+  
+  wget -q $repo/$connector
+
+  tar -xf $dbzF
+  rm  $dbzF*
+
+  sudo cp -r $dbzB $connectD/.
+  rm -rf $dbzB
+
+  return
+}
+
+getConn postgres
+getConn oracle
+getConn sqlserver
+getConn mysql
+getConn mongodb
+getConn db2
+getConn cassandra
+

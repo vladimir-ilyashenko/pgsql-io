@@ -1,0 +1,9 @@
+#!/bin/bash
+cd "$(dirname "$0")"
+
+etces=/etc/elasticsearch
+sudo cp -p $etces/elasticsearch.yml elasticsearch.yml.backup
+sudo cp elasticsearch.yml $etces/.
+sudo cp -p $etces/jvm.options jvm.options.backup
+sudo cp jvm.options $etces/.
+

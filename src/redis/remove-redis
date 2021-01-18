@@ -1,0 +1,4 @@
+sudo yum install -y redis
+sudo systemctl stop  redis
+sudo systemctl disable redis
+sudo yum uninstall -y redis

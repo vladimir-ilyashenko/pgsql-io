@@ -1,0 +1,3 @@
+sudo yum remove -y elasticsearch
+sudo rm -rf /var/lib/elasticsearch
+sudo rm -rf /var/log/elasticsearch

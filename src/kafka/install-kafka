@@ -1,0 +1,21 @@
+#!/bin/bash
+cd "$(dirname "$0")"
+set -x
+
+kafkaV=$1
+kafkaD=kafka_2.13-$kafkaV
+kafkaF=$kafkaD.tgz
+URL=http://mirror.cc.columbia.edu/pub/software/apache/kafka
+
+rm -rf $kafkaF
+wget $URL/$kafkaV/$kafkaF
+tar xzf $kafkaF
+
+sudo rm -rf /usr/local/kafka
+sudo mv $kafkaD /usr/local/kafka
+
+sudo cp kafka.service     /etc/systemd/system/.
+rm -rf $kafkaF
+
+sudo systemctl daemon-reload
+

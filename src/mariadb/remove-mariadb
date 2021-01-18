@@ -1,0 +1,5 @@
+
+set -x
+
+sudo yum remove -y MariaDB-server
+
