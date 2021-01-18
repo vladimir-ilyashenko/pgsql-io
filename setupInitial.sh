@@ -6,6 +6,7 @@ git config --global user.email "$EMAIL"
 git config --global user.name "$NAME"
 git config --global push.default simple
 git config --global credential.helper store
+git config --global pull.rebase false
 
 
 if [ `uname` == 'Linux' ]; then
