@@ -227,8 +227,8 @@ def list(cloud_name):
   return
 
 
-def list_sizes(cloud):
-  driver = cloud.get_cloud_driver(cloud)
+def list_sizes(cloud_name):
+  driver = cloud.get_cloud_driver(cloud_name)
   if driver == None:
     return
 
