@@ -2,7 +2,7 @@
 #  Copyright 2020-2021  PGSQL.  AGPLV3.  All rights reserved. #
 ###############################################################
 
-import util, meta, api
+import util, meta, api, cloud
 
 import sys, json, os, configparser
 
@@ -12,26 +12,26 @@ from libcloud.compute.types import Provider
 from libcloud.compute.providers import get_driver
 
 
-def import_from_file(cloud, name, pub_key_file):
+def import_from_file(cloud_name, name, pub_key_file):
   try:
-    driver = util.get_cloud_driver(cloud)                                          
+    driver = cloud.get_cloud_driver(cloud_name)                                          
     driver.import_key_pair_from_file(name, pub_key_file)                                                    
   except Exception as e:                                                           
     util.fatal_error(str(e))
 
 
-def destroy(cloud, name):
+def destroy(cloud_name, name):
   try:
-    driver = util.get_cloud_driver(cloud)                                          
+    driver = cloud.get_cloud_driver(cloud_name)                                          
     key = driver.get_key_pair(name)
     driver.delete_key_pair(key)                                                    
   except Exception as e:                                                           
     util.fatal_error(str(e))
 
 
-def list(cloud):                                                  
+def list(cloud_name):                                                  
   try:
-    driver = util.get_cloud_driver(cloud)                                          
+    driver = cloud.get_cloud_driver(cloud_name)                                          
     kk = driver.list_key_pairs()                                                    
   except Exception as e:                                                           
     util.fatal_error(str(e))

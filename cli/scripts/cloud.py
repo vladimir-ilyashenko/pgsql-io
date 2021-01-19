@@ -12,6 +12,17 @@ import sys, json, os, configparser
 from pprint import pprint
 
 
+def get_provider(cloud_name):
+  data = read(cloud_name, True)
+  if data == None:
+    util.message("not found", "error")
+    return None
+
+  provider = str(data[0])
+
+  return(provider)
+
+
 def get_cloud_driver(cloud_name):
 
   data = read(cloud_name, True)
