@@ -11,10 +11,10 @@ from libcloud.compute.types import Provider
 from libcloud.compute.providers import get_driver
 
 
-def action(cloud, machine_id, action):
+def action(cloud_name, machine_id, action):
 
   try:
-    driver = cloud.get_cloud_driver(cloud)
+    driver = cloud.get_cloud_driver(cloud_name)
     if driver == None:
       return
 
@@ -59,11 +59,11 @@ def reboot(cloud, machine_id):
   return(action(cloud, machine_id, "reboot"))
 
 
-def launch(cloud, name, size, key, location=None, security_group=None, \
+def launch(cloud_name, name, size, key, location=None, security_group=None, \
            network=None, wal_gb=None, data_gb=None):
 
   try:                                                                             
-    driver = cloud.get_cloud_driver(cloud)
+    driver = cloud.get_cloud_driver(cloud_name)
     if driver == None:
       return
 
@@ -134,7 +134,10 @@ def describe_openstack(id):
 
   for s in conn.list_servers():
     if s.id == id:
-      volume = s.volumes[0].id
+      try:
+        volume = s.volumes[0].id
+      except:
+        volume = ""
       return (s.name, s.flavor.original_name, s.vm_state, s.region, \
         s.private_v4, s.public_v4, s.key_name, s.flavor.vcpus, volume)
   
