@@ -69,8 +69,8 @@ DROP TABLE IF EXISTS machines;
 CREATE TABLE machines (
   id             TEXT     NOT NULL PRIMARY KEY,
   name           TEXT     NOT NULL,
-  cloud_id       TEXT     NOT NULL REFERENCES cloud(id),
-  key_id         TEXT     REFERENCES key(id),
+  cloud          TEXT     NOT NULL REFERENCES cloud(name),
+  key_name       TEXT     REFERENCES key(name),
   describe       TEXT,
   tags           TEXT,
   created_utc    DATETIME NOT NULL,
@@ -95,7 +95,7 @@ CREATE TABLE keys (
   name           TEXT     NOT NULL UNIQUE,
   username       TEXT     NOT NULL,
   pub_key_path   TEXT     NOT NULL,
-  priv_key_path  TEXT,
+  priv_key_path  TEXT     NOT NULL,
   created_utc    DATETIME NOT NULL,
   updated_utc    DATETIME NOT NULL
 );

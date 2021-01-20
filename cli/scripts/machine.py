@@ -1,6 +1,6 @@
-#################################################################
-#  Copyright 2020-2021  PGSQL.IO  AGPLV3.  All rights reserved. #
-#################################################################
+#########################################################
+#  Copyright 2020-2021  PGSQL.IO   All rights reserved. #
+#########################################################
 
 import util, meta, api, cloud
 import sys, json, os, configparser, jmespath, munch
@@ -60,7 +60,7 @@ def reboot(cloud, machine_id):
 
 
 def launch(cloud_name, name, size, key, location=None, security_group=None, \
-           network=None, wal_gb=None, data_gb=None):
+           network=None, data_gb=None):
 
   try:                                                                             
     driver = cloud.get_cloud_driver(cloud_name)
@@ -159,7 +159,7 @@ def describe(cloud_name, id):
     util.message('Invalid Cloud type', 'error')
     return
     
-  if name == '' and flavor == '':
+  if name == '' and size == '':
     return
 
   headers = ['Name', 'Size',   'State', 'Location', 'PrivateIp', \
@@ -285,12 +285,22 @@ def list_sizes(cloud_name):
   return
 
 
-def create(name, cloud_id, key_id, describe, tags):
+def create(cloud_name, machine_name, size, key_name, location=None, security_group=None, \
+           network=None, data_gb=None):
+
   now = util.sysdate()
-  machine_id = util.get_uuid()
-  sql = "INSERT INTO machines (id, name, cloud_id, key_id, describe, tags, created_utc, updated_utc) \n" + \
+  machine_id = launch(cloud_name, machine_name, size, key_name, location=None, security_group=None, \
+           network=None, data_gb=None)
+  if machine_id == None:
+    return
+ 
+  describe_info = describe(cloud_name, machine_id)
+
+
+  sql = "INSERT INTO machines \n" + \
+        "  (id, name, cloud, key_name, describe, tags, created_utc, updated_utc) \n" + \
         " VALUES (?,?,?,?,?,?,?,?)"
-  meta.exec_sql(sql, [machine_id, name, cloud_id, key_id, describe, tags  ,now, now])
+  meta.exec_sql(sql, [machine_id, machine_name, cloud_name, key_name, describe, None, now, now])
   return(machine_id)
 
 
@@ -301,7 +311,7 @@ def read(machine_id=None, cloud_id=None):
   if cloud_id:
     where = where + " AND cloud_id = '" + str(cloud_id) + "'"
 
-  sql = "SELECT id, name, cloud_id, key_id, describe, tags, \n" + \
+  sql = "SELECT id, name, cloud, key_name, describe, tags, \n" + \
         "       created_utc, updated_utc \n" + \
         "  FROM machines WHERE " + where + " ORDER BY 3, 2"
 
@@ -311,9 +321,9 @@ def read(machine_id=None, cloud_id=None):
 
 
 def update(name, cloud_id, key_id, describe, tags):
-  sql = "UPDATE machines SET name = ?, cloud_id = ?, key_id = ?, \n" + \
+  sql = "UPDATE machines SET name = ?, cloud = ?, key_name = ?, \n" + \
         "  describe = ?, tags = ?, update_utc = ?"
-  meta.exec_sql(sql, [name, cloud_id, key_id, describe, tags, util.sysdate()])
+  meta.exec_sql(sql, [name, cloud, key_name, describe, tags, util.sysdate()])
   return
 
 
