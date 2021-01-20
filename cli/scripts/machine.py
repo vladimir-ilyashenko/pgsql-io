@@ -65,7 +65,8 @@ def launch(cloud_name, name, size, key, location=None, security_group=None, \
   try:                                                                             
     driver = cloud.get_cloud_driver(cloud_name)
     if driver == None:
-      return
+      util.message("not found in machine.launch() cloud.get_cloud_driver()", "error")
+      return(None)
 
     sizes = driver.list_sizes()
     for s in sizes:
@@ -83,17 +84,20 @@ def launch(cloud_name, name, size, key, location=None, security_group=None, \
         break
     else:
       util.message("Cannot Locate 'Centos-8' image to use", "error")
-      return
+      return(None)
 
-    driver.create_node (name=name, size=sz, image=im, ex_keyname=key, \
+    node = driver.create_node (name=name, size=sz, image=im, ex_keyname=key, \
        ex_config_drive=True, \
        ex_security_groups=driver.ex_list_security_groups(), \
        networks=driver.ex_list_networks())                                                    
+    ##print("DEBUG: node  = " + str(node))
   except Exception as e:                                                           
     util.message(str(e), "error")
-    return
+    return(None)
 
-  return
+  machine_id = node.id
+  ##print("DEBUG: machine_id = " + str(machine_id))
+  return(machine_id)
 
 
 # retrieve an aws-ec2 node using default credentials
@@ -141,7 +145,7 @@ def describe_openstack(id):
       return (s.name, s.flavor.original_name, s.vm_state, s.region, \
         s.private_v4, s.public_v4, s.key_name, s.flavor.vcpus, volume)
   
-  util.message("not found", "error")
+  util.message("not found in describe_openstack() for " + str(id), "error")
   return ('','','','','','','','','')
 
 
@@ -162,14 +166,13 @@ def describe(cloud_name, id):
   if name == '' and size == '':
     return
 
-  headers = ['Name', 'Size',   'State', 'Location', 'PrivateIp', \
-             'PublicIp', 'KeyName', 'vCpu', 'Volume']
-  keys = ['name', 'size', 'state', 'location', 'private_ip', \
-          'public_ip', 'key_name', 'vcpus', 'volumes']
+  headers = ['Name', 'Size',   'State', 'Location', 'PublicIp', 'Id']
+  keys = ['name', 'size', 'state', 'location', 'public_ip', 'id']
 
   jsonList = []
   dict = {}
   dict['name'] = name
+  dict['id'] = id
   dict['size'] = size
   dict['state'] = state
   dict['location'] = location
@@ -289,19 +292,27 @@ def create(cloud_name, machine_name, size, key_name, location=None, security_gro
            network=None, data_gb=None):
 
   now = util.sysdate()
-  machine_id = launch(cloud_name, machine_name, size, key_name, location=None, security_group=None, \
-           network=None, data_gb=None)
+  machine_id = launch(cloud_name, machine_name, size, key_name, \
+    location=None, security_group=None, network=None, data_gb=None)
   if machine_id == None:
     return
- 
-  describe_info = describe(cloud_name, machine_id)
 
+  ##print("DEBUG: before create() describe()")
+  describe_info = describe(cloud_name, machine_id)
+  ##print("DEBUG: after  create() describe() = " + str(describe_info))
 
   sql = "INSERT INTO machines \n" + \
         "  (id, name, cloud, key_name, describe, tags, created_utc, updated_utc) \n" + \
         " VALUES (?,?,?,?,?,?,?,?)"
-  meta.exec_sql(sql, [machine_id, machine_name, cloud_name, key_name, describe, None, now, now])
-  return(machine_id)
+  meta.exec_sql(sql, [machine_id, machine_name, cloud_name, key_name, describe_info, None, now, now])
+
+  ##jsonList = []
+  ##jsonDict = {}
+  ##jsonDict['machine_id'] = machine_id
+  ##jsonList.append(jsonDict)
+  ##print(json.dumps(jsonList, sort_keys=True, indent=2))                          
+
+  return
 
 
 def read(machine_id=None, cloud_id=None):
