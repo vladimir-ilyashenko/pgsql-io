@@ -1,0 +1,6 @@
+apache-libcloud
+fire
+boto3
+python-openstackclient
+parallel-ssh
+flask
