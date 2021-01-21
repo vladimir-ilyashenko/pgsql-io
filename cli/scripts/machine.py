@@ -11,16 +11,18 @@ from libcloud.compute.types import Provider
 from libcloud.compute.providers import get_driver
 
 
-def action(cloud_name, machine_id, action):
+def action(cloud_name, machine_ids, action):
 
   try:
     driver = cloud.get_cloud_driver(cloud_name)
     if driver == None:
       return
 
+    kount = 0
     nodes = driver.list_nodes()
     for n in nodes:
-      if n.id == machine_id:
+      if n.id in machine_ids:
+        kount = kount + 1
         if action == "destroy":
           ret = n.destroy()
         elif action == "start":
@@ -32,31 +34,31 @@ def action(cloud_name, machine_id, action):
         else:
           util.message("Invalid action (" + str(action) + ") for NODE", "error")
 
-        return(ret)
-
-    util.message("Node not found", "error")
+    if kount == 0:
+      util.message("Node not found", "error")
+      return(False)
 
   except Exception as e:
     util.message(str(e), "error")
-    return
+    return(False)
 
-  return
-
-
-def destroy(cloud, machine_id):
-  return(action(cloud, machine_id, "destroy"))
+  return(True)
 
 
-def start(cloud, machine_id):
-  return(action(cloud, machine_id, "start"))
+def destroy(cloud, machine_ids):
+  return(action(cloud, machine_ids, "destroy"))
 
 
-def stop(cloud, machine_id):
-  return(action(cloud, machine_id, "stop"))
+def start(cloud, machine_ids):
+  return(action(cloud, machine_ids, "start"))
 
 
-def reboot(cloud, machine_id):
-  return(action(cloud, machine_id, "reboot"))
+def stop(cloud, machine_ids):
+  return(action(cloud, machine_ids, "stop"))
+
+
+def reboot(cloud, machine_ids):
+  return(action(cloud, machine_ids, "reboot"))
 
 
 def launch(cloud_name, name, size, key, location=None, security_group=None, \
