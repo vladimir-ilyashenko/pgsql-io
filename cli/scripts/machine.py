@@ -149,7 +149,7 @@ def describe_openstack(id):
   return ('','','','','','','','','')
 
 
-def describe(cloud_name, id):
+def describe(cloud_name, id, print_list=True):
   provider = cloud.get_provider(cloud_name)
   if provider == 'aws':
     name, size, state, location, private_ip, \
@@ -183,9 +183,11 @@ def describe(cloud_name, id):
   dict['volumes'] = volumes
   jsonList.append(dict)
 
-  util.print_list(headers, keys, jsonList)
+  if print_list:
+    util.print_list(headers, keys, jsonList)
+    return
 
-  return
+  return(str(jsonList))
 
 
 def list(cloud_name):
@@ -291,36 +293,29 @@ def list_sizes(cloud_name):
 def create(cloud_name, machine_name, size, key_name, location=None, security_group=None, \
            network=None, data_gb=None):
 
-  now = util.sysdate()
+  now1 = util.sysdate()
   machine_id = launch(cloud_name, machine_name, size, key_name, \
     location=None, security_group=None, network=None, data_gb=None)
   if machine_id == None:
     return
 
-  ##print("DEBUG: before create() describe()")
-  describe_info = describe(cloud_name, machine_id)
-  ##print("DEBUG: after  create() describe() = " + str(describe_info))
+  describe_info = describe(cloud_name, machine_id, False)
 
   sql = "INSERT INTO machines \n" + \
         "  (id, name, cloud, key_name, describe, tags, created_utc, updated_utc) \n" + \
         " VALUES (?,?,?,?,?,?,?,?)"
-  meta.exec_sql(sql, [machine_id, machine_name, cloud_name, key_name, describe_info, None, now, now])
-
-  ##jsonList = []
-  ##jsonDict = {}
-  ##jsonDict['machine_id'] = machine_id
-  ##jsonList.append(jsonDict)
-  ##print(json.dumps(jsonList, sort_keys=True, indent=2))                          
+  meta.exec_sql(sql, [machine_id, machine_name, cloud_name, key_name, \
+    describe_info, None, now1, util.sysdate()])
 
   return
 
 
-def read(machine_id=None, cloud_id=None):
+def read(machine_id=None, cloud_name=None):
   where = "1 = 1"
   if machine_id:
     where = where + " AND id = '" + str(machine_id) + "'"
-  if cloud_id:
-    where = where + " AND cloud_id = '" + str(cloud_id) + "'"
+  if cloud_name:
+    where = where + " AND cloud = '" + str(cloud_name) + "'"
 
   sql = "SELECT id, name, cloud, key_name, describe, tags, \n" + \
         "       created_utc, updated_utc \n" + \
