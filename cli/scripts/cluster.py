@@ -101,47 +101,40 @@ def list_locations(cloud_name):
     print(json.dumps(jsonList, sort_keys=True, indent=2))
   else:
     print(api.format_data_to_table(jsonList, keys, headers))
-
   
   return
 
 
 def create(name, service):
   sql = "INSERT INTO clusters \n" + \
-        "  (id, name, service, created_utc, updated_utc) \n" + \
-        "VALUES (?, ?, ?, ?, ?)"
+        "  (name, service, created_utc, updated_utc) \n" + \
+        "VALUES (?, ?, ?, ?)"
   now = util.sysdate()
-  cluster_id = util.get_uuid()
-  rc = meta.exec_sql(sql, [cluster_id, name, service, now, now])
-  util.message(cluster_id, "info")
-
-  return
+  rc = meta.exec_sql(sql, [name, service, now, now])
+  return(rc)
 
 
-def read(cluster_id=None):
+def read(name=None):
   where = "1 = 1"
-  if cluster_id:
-    where = "id = '" + str(cluster_id) + "'"
+  if name:
+    where = "name = '" + str(name) + "'"
   
-  sql = "SELECT id, name, service, created_utc, updated_utc \n" + \
-        "  FROM clusters WHERE " + where
+  sql = "SELECT name, service, created_utc, updated_utc \n" + \
+        "  FROM clusters WHERE " + where + " ORDER BY 2, 1"
 
   data = meta.exec_sql_list(sql)
   return data
 
 
-def update(cluster_id, name, service):
-  sql = "UPDATE clusters \n" + \
-        "   SET name = ?, service = ?, updated_utc = ? " + \
-        " WHERE id = ?"
-  now = util.sysdate()
-  meta.exec_sql(sql, [name, service, now, cluster_id])
+def update(name):
+  sql = "UPDATE clusters SET updated_utc = ? WHERE name = ?"
+  meta.exec_sql(sql, [util.sysdate(), name])
   return
 
 
-def delete (cluster_id):
-  sql = "DELETE FROM clusters WHERE id = ?"
-  meta.exec_sql(sql, [cluster_id])
+def delete (name):
+  sql = "DELETE FROM clusters WHERE name = ?"
+  meta.exec_sql(sql, [name])
   return
 
 

@@ -54,9 +54,7 @@ CREATE TABLE volumes (
 DROP TABLE IF EXISTS nodes;
 CREATE TABLE nodes (
   id             TEXT     NOT NULL PRIMARY KEY,
-  name           TEXT     NOT NULL,
-  machine_id     TEXT     NOT NULL REFERENCES machines(id),
-  cluster_id     TEXT     NOT NULL REFERENCES clusters(id),
+  cluster_name   TEXT     NOT NULL REFERENCES clusters(name),
   current_role   TEXT,
   components     TEXT,
   info           TEXT,
@@ -103,8 +101,7 @@ CREATE TABLE keys (
 
 DROP TABLE IF EXISTS clusters;
 CREATE TABLE clusters (
-  id             TEXT     NOT NULL PRIMARY KEY,
-  name           TEXT     NOT NULL UNIQUE,
+  name           TEXT     NOT NULL PRIMARY KEY,
   service        TEXT     NOT NULL REFERENCES services(service),
   created_utc    DATETIME NOT NULL,
   updated_utc    DATETIME NOT NULL
