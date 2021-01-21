@@ -44,15 +44,31 @@ def launch(cloud, name, size, key, location="", security_group="",
 
 
 def get_host_ips(machine_ids):
-  sql = "SELECT public_ip FROM machines WHERE id = "
+  sql = "SELECT describe FROM machines WHERE id = "
   host_ips = []
-  for machine in machine_ids:
-    data = meta.exec_sql_list(sql + "'" + machine + "'")
-    if data == None:
+  ##print("DEBUG: machine_ids = " + str(machine_ids))
+  machine_list = machine_ids.split(",")
+  ##print("DEBUG: machine_list = " + str(machine_list))
+  for machine in machine_list:
+    sql1 = sql + "'" + machine + "'"
+    ##print("DEBUG: sql1 = " + sql1)
+    data = meta.exec_sql_list(sql1)
+    ##print("DEBUG: data = " + str(data))
+    if data == None or data == []:
       util.message("not found", "error")
       return(None)
-    host.ips.append(str(data[0]))
+    for d in data:
+      describe_info = d[0]
+    describe_info = describe_info.replace("[", "")
+    describe_info = describe_info.replace("]", "")
+    describe_info = describe_info.replace("'", '"')
+    ##print("DEBUG: describe_info = " + str(describe_info))
+    dict = json.loads(describe_info)
+    public_ip = dict["public_ip"]
+    ##print("DEBUG: public_ip = " + str(public_ip))
+    host_ips.append(public_ip)
 
+  ##print("DEBUG: host_ips = " + str(host_ips))
   return(host_ips)
 
 
@@ -74,11 +90,14 @@ def shell_cmd(machine_ids, cmd):
 
 def install_io(machine_ids):
   util.message("installing pre-req's", "info")
-  shell_cmd(machine_ids, "sudo yum install python3 python3-devel wget curl")
+  shell_cmd(machine_ids, "sudo yum install -y python3 python3-devel wget curl")
 
-  repo = util.get_env("GLOBAL", "REPO")
-  util.message("installing IO from " + repo, "info")
+  #repo = util.get_value("GLOBAL", "REPO")
+  repo = "https://pgsql-io-download.s3.amazonaws.com/REPO"
+
   cmd = 'python3 -c "$(curl -fsSL ' + repo + '/install.py)"'
+  util.message("installing IO with " + str(cmd) , "info")
+
   shell_cmd(machine_ids, cmd)
 
   return
@@ -86,10 +105,8 @@ def install_io(machine_ids):
 
 def io_cmd(machine_ids, cmd):
   full_io_cmd = "pgsql/io " + cmd + " --json"
-  util.message("running:  '" + full_io_cmd + "'\n   on machines " + str(machine_ids))
-
+  ##util.message("running:  '" + full_io_cmd + "'\n   on machines " + str(machine_ids))
   result_json = shell_cmd(machine_ids, full_io_cmd)
-
   return(result_json)
 
 
@@ -147,7 +164,10 @@ nodeAPIs = {
   'create': create,
   'read': read,
   'update': update,
-  'delete': delete
+  'delete': delete,
+  'install-io': install_io,
+  'shell-cmd': shell_cmd,
+  'io-cmd': io_cmd
 }
 
 if __name__ == '__main__':
