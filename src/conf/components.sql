@@ -53,7 +53,7 @@ CREATE TABLE volumes (
 
 DROP TABLE IF EXISTS nodes;
 CREATE TABLE nodes (
-  id             TEXT     NOT NULL PRIMARY KEY,
+  machine_id     TEXT     NOT NULL PRIMARY KEY,
   cluster_name   TEXT     NOT NULL REFERENCES clusters(name),
   current_role   TEXT,
   components     TEXT,

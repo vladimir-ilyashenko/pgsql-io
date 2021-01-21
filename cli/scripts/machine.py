@@ -152,16 +152,16 @@ def describe_openstack(id):
   return ('','','','','','','','','')
 
 
-def describe(cloud_name, id, print_list=True):
+def describe(cloud_name, machine_id, print_list=True):
   provider = cloud.get_provider(cloud_name)
   if provider == 'aws':
     name, size, state, location, private_ip, \
     public_ip, key_name, vcpus, volumes \
-      = describe_aws(id)
+      = describe_aws(machine_id)
   elif provider in ('pgsql', 'openstack')  :
     name, size, state, location, private_ip, \
     public_ip, key_name, vcpus, volumes \
-      = describe_openstack(id)
+      = describe_openstack(machine_id)
   else:
     util.message('Invalid Cloud type', 'error')
     return
@@ -175,7 +175,7 @@ def describe(cloud_name, id, print_list=True):
   jsonList = []
   dict = {}
   dict['name'] = name
-  dict['id'] = id
+  dict['id'] = machine_id
   dict['size'] = size
   dict['state'] = state
   dict['location'] = location
@@ -298,19 +298,28 @@ def list_sizes(cloud_name):
 def create(cloud_name, machine_name, size, key_name, location=None, security_group=None, \
            network=None, data_gb=None):
 
-  now1 = util.sysdate()
   machine_id = launch(cloud_name, machine_name, size, key_name, \
     location=None, security_group=None, network=None, data_gb=None)
   if machine_id == None:
     return
 
+  insert(cloud_name, machine_id, machine_name, key_name)
+
+  return
+
+
+def insert(cloud_name, machine_id, machine_name, key_name):
+  ##print("DEBUG: before describe()")
   describe_info = describe(cloud_name, machine_id, False)
+  ##print("DEBUG: after  describe()")
+  now1 = util.sysdate()
 
   sql = "INSERT INTO machines \n" + \
         "  (id, name, cloud, key_name, describe, tags, created_utc, updated_utc) \n" + \
         " VALUES (?,?,?,?,?,?,?,?)"
+  ##print("DEBUG: machine.insert " + machine_id + ", " + machine_name + ", " + cloud_name + ", " + key_name + ", " + describe_info)
   meta.exec_sql(sql, [machine_id, machine_name, cloud_name, key_name, \
-    describe_info, None, now1, util.sysdate()])
+    describe_info, None, now1, now1])
 
   return
 
@@ -332,9 +341,10 @@ def read(cloud_name=None, machine_id=None):
 
 
 def update(cloud_name, machine_id, describe_info):
+  ##print("DEBUG: machine.update " + cloud_name + ", " + machine_id + ", " + str(describe_info))
   sql = "UPDATE machines SET describe = ?, updated_utc = ? \n" + \
         " WHERE cloud = ? AND id = ?"
-  meta.exec_sql(sql, [describe_info, util.sysdate(), cloud_name, machine_id])
+  meta.exec_sql(sql, [str(describe_info), util.sysdate(), cloud_name, machine_id])
   return
 
 
@@ -354,6 +364,7 @@ machineAPIs = {
   'start': start,
   'reboot': reboot,
   'create': create,
+  'insert': insert,
   'read': read,
   'update': update,
   'delete': delete
