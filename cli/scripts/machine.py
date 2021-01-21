@@ -25,6 +25,7 @@ def action(cloud_name, machine_ids, action):
         kount = kount + 1
         if action == "destroy":
           ret = n.destroy()
+          delete(n.id)
         elif action == "start":
           ret = driver.ex_start_node(n)
         elif action == "stop":
@@ -185,6 +186,8 @@ def describe(cloud_name, id, print_list=True):
   dict['volumes'] = volumes
   jsonList.append(dict)
 
+  update(cloud_name, machine_id, jsonList)
+
   if print_list:
     util.print_list(headers, keys, jsonList)
     return
@@ -312,7 +315,7 @@ def create(cloud_name, machine_name, size, key_name, location=None, security_gro
   return
 
 
-def read(machine_id=None, cloud_name=None):
+def read(cloud_name=None, machine_id=None):
   where = "1 = 1"
   if machine_id:
     where = where + " AND id = '" + str(machine_id) + "'"
@@ -328,10 +331,10 @@ def read(machine_id=None, cloud_name=None):
   return(data)
 
 
-def update(name, cloud_id, key_id, describe, tags):
-  sql = "UPDATE machines SET name = ?, cloud = ?, key_name = ?, \n" + \
-        "  describe = ?, tags = ?, update_utc = ?"
-  meta.exec_sql(sql, [name, cloud, key_name, describe, tags, util.sysdate()])
+def update(cloud_name, machine_id, describe_info):
+  sql = "UPDATE machines SET describe = ?, updated_utc = ? \n" + \
+        " WHERE cloud = ? AND id = ?"
+  meta.exec_sql(sql, [describe_info, util.sysdate(), cloud_name, machine_id])
   return
 
 
