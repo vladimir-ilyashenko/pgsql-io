@@ -486,7 +486,8 @@ INSERT INTO versions VALUES ('rabbitmq', '3.8.9', '',  0, '20200924', '', 'EL8',
 INSERT INTO projects VALUES ('esfdw', 5, 0, 'multicorn', 1, 'https://github.com/matthewfranglen/postgres-elasticsearch-fdw/releases',
   'esfdw', 1, 'esfdw.png', 'Elastic Search from PG', 'https://github.com/matthewfranglen/postgres-elasticsearch-fdw#postgresql-elastic-search-foreign-data-wrapper');
 INSERT INTO releases VALUES ('esfdw-pg13', 99, 'esfdw', 'ElasticSearchFDW', '', 'test', '', 1, 'MIT', '', '');
-INSERT INTO versions VALUES ('esfdw-pg13', '0.10.0', 'amd',  1, '20201018', 'pg13', 'PYTHON3', '');
+INSERT INTO versions VALUES ('esfdw-pg13', '0.10.2', 'amd',  1, '20201027', 'pg13', 'PYTHON3', '');
+INSERT INTO versions VALUES ('esfdw-pg13', '0.10.0', 'amd',  0, '20201018', 'pg13', 'PYTHON3', '');
 
 INSERT INTO projects VALUES ('ora2pg', 5, 0, 'hub', 0, 'https://github.com/darold/ora2pg/releases',
   'ora2pg', 0, 'ora2pg.png', 'Migrate from Oracle to PG', 'https://ora2pg.darold.net');
@@ -821,9 +822,9 @@ INSERT INTO versions VALUES ('http-pg12', '1.3.1-1', 'arm, amd', 1, '20191225', 
 
 INSERT INTO projects VALUES ('ddlx',      7, 0, 'hub', 0, 'https://github.com/lacanoid/pgddl/releases', 'ddlx',  1, 'ddlx.png', 'DDL Extractor', 'https://github.com/lacanoid/pgddl#ddl-extractor-functions--for-postgresql');
 INSERT INTO releases VALUES ('ddlx-pg13', 2, 'ddlx', 'DDLeXtact', '', 'prod','',  0, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('ddlx-pg13', '0.17-1', 'arm, amd', 0, '20200911', 'pg13', '', '');
+INSERT INTO versions VALUES ('ddlx-pg13', '0.17-1', 'arm, amd', 1, '20200911', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('multicorn', 7, 0, 'hub', 0, 'https://github.com/Segfault-Inc/Multicorn/releases',
   'multicorn', 1, 'multicorn.png', 'Python FDW Library', 'http://multicorn.org');
 INSERT INTO releases VALUES ('multicorn-pg12', 1, 'multicorn', 'Multicorn', '', 'prod','',  1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('multicorn-pg12', '1.4.0-1', 'amd', 0, '20200318', 'pg12', '', '');
+INSERT INTO versions VALUES ('multicorn-pg12', '1.4.0-1', 'amd', 1, '20200318', 'pg12', '', '');

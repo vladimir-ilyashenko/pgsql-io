@@ -29,7 +29,7 @@ patroniV=2.0.1
 haproxyV=1.8.23
 etcdV=3.4.14
 
-esfdwV=0.10.0
+esfdwV=0.10.2
 esV=7.10.1
 
 odbcV=13.00-1
