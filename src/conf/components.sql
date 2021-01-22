@@ -89,11 +89,9 @@ CREATE TABLE clouds (
 
 DROP TABLE IF EXISTS keys;
 CREATE TABLE keys (
-  id             TEXT     NOT NULL PRIMARY KEY,
-  name           TEXT     NOT NULL UNIQUE,
+  name           TEXT     NOT NULL PRIMARY KEY,
   username       TEXT     NOT NULL,
-  pub_key_path   TEXT     NOT NULL,
-  priv_key_path  TEXT     NOT NULL,
+  pem_file       TEXT     NOT NULL,
   created_utc    DATETIME NOT NULL,
   updated_utc    DATETIME NOT NULL
 );

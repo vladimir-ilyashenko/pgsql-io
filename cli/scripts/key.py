@@ -1,6 +1,6 @@
-###############################################################
-#  Copyright 2020-2021  PGSQL.  AGPLV3.  All rights reserved. #
-###############################################################
+########################################################
+#  Copyright 2020-2021  PGSQL.IO  All rights reserved. #
+########################################################
 
 import util, meta, api, cloud
 
@@ -55,50 +55,58 @@ def list(cloud_name):
   return
 
 
-def create(name, username, pub_key_path, priv_key_path):
+def insert(name, username, pem_file):
   now = util.sysdate()
-  key_id = util.get_uuid()
-  sql = "INSERT INTO keys (id, name, username, pub_key_path, priv_key_path, \n" + \
-        "  created_utc, updated_utc) VALUES (?,?,?,?,?,?,?)"
-  meta.exec_sql(sql, [key_id, name, username, pub_key_path, priv_key_path, now, now])
-  return(key_id)
+
+  if not os.path.isfile(pem_file):
+    util.message("WARNING: pem_file not found", "info")
+
+  sql = "INSERT INTO keys (name, username, pem_file, \n" + \
+        "  created_utc, updated_utc) VALUES (?,?,?,?,?)"
+
+  rc = meta.exec_sql(sql, [name, username, pem_file, now, now])
+
+  return(rc)
 
 
-def read(key_id=None):
+def read(name=None):
 
-  if key_id == None:
+  if name  == None:
     where = "1 = 1"
   else:
-    where = "id = '" + str(key_id) + "'"
+    where = "name = '" + str(name) + "'"
 
-  sql = "SELECT id, name, username, pub_key_path, priv_key_path, \n" + \
+  sql = "SELECT name, username, pem_file, \n" + \
         "       created_utc, updated_utc \n" + \
-        "  FROM keys WHERE " + where + " ORDER BY 2, 3"
+        "  FROM keys WHERE " + where + " ORDER BY 1"
 
   data = meta.exec_sql_list(sql)
   return(data)
 
 
-def update(key_id, name, username, pub_key_path, priv_key_path):
-  sql = "UPDATE keys SET name = ?, username = ?, pub_key_path = ?, \n" + \
-        "       priv_key_path = ?, updated_utc = ? \n" + \
-        " WHERE id = ?"
-  meta.exec_sql(sql, \
-    [name, username, pub_key_path, priv_key_path, util.sysdate(), key_id])
-  return
+def update(name, username, pem_file):
+  if not os.path.isfile(pem_file):
+    util.message("WARNING: pem_file not found", "info")
+
+  sql = "UPDATE keys SET username = ?, pem_file = ?, updated_utc = ? \n" + \
+        " WHERE name = ?"
+
+  rc =  meta.exec_sql(sql, [username, pem_file, util.sysdate(), name])
+  return(rc)
 
 
-def delete(key_id):
-  sql = "DELETE FROM keys WHERE id = ?"
-  meta.exec_sql(sql, [key_id])
-  return
+def delete(name):
+  sql = "DELETE FROM keys WHERE name = ?"
+
+  rc = meta.exec_sql(sql, [name])
+  return(rc)
 
 
 keyAPIs = {
   'list': list,
   'import-from-file': import_from_file,
   'destroy': destroy,
-  'create': create,
+  'insert': insert,
   'read': read,
   'update': update,
   'delete': delete

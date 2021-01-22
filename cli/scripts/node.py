@@ -1,6 +1,6 @@
-#################################################################
-#  Copyright 2020-2021  PGSQL.IO  AGPLV3.  All rights reserved. #
-#################################################################
+########################################################
+#  Copyright 2020-2021  PGSQL.IO  All rights reserved. #
+########################################################
 
 import util, meta, api, cloud, machine
 import sys, json, os, configparser, jmespath, munch
