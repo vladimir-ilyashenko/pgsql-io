@@ -24,6 +24,7 @@ cd $outp
 #./api.sh 
 ./$api cloud create pgsql
 ./$api cloud create aws
+./$api key insert denisl-pubkey centos ~/keys/denisl-pubkey.pem
 
 ./$api set GLOBAL REPO http://localhost:8000
 ./$api info
