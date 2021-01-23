@@ -62,6 +62,38 @@ def reboot(cloud, machine_ids):
   return(action(cloud, machine_ids, "reboot"))
 
 
+def get_region(cloud_name):
+  sql = "SELECT region FROM clouds WHERE cloud = ?"
+  data = meta.exec_sql(sql,[cloud_name])
+  if data == None or data == []:
+    util.message("cannot find cloud's region", "error")
+    return(None)
+  region = str(data[0])
+  return(region)
+
+
+def get_image(image_type, cloud_name, platform='amd'):
+  region = get_region(cloud_name)
+  if region == None:
+    return(None)
+
+  sql = "SELECT image_id FROM images \n" + \
+        " WHERE image_type = ? and cloud = ? AND region = ? AND platform = ?"
+  data = meta.exec_sql(sql,[image_type, cloud_name, region, platform])
+  if data == None or data == []:
+    util.message("Image not known for (" + str(image_type) + ", " + str(cloud_name) + \
+      ", " + str(region) + ", " + str(platform) + ")", "error")
+    return(None)
+    
+  image_id = data[0]
+  images = driver.list_images(ex_image_id = image_id)
+  for i in images:
+    return(i)
+
+  util.message("Cannot Locate image '" + str(image_id) + "'", "error")
+  return(None)
+
+
 def launch(cloud_name, name, size, key, location=None, security_group=None, \
            network=None, data_gb=None):
 
@@ -80,13 +112,8 @@ def launch(cloud_name, name, size, key, location=None, security_group=None, \
       util.message("Invalid Size (" + str(size) + ")", "error")
       return
     
-    images = driver.list_images()
-    for i in images:
-      if i.name == 'CentOS-8':
-        im = i
-        break
-    else:
-      util.message("Cannot Locate 'Centos-8' image to use", "error")
+    im = get_image("ubu20", cloud_name)
+    if im == None:
       return(None)
 
     node = driver.create_node (name=name, size=sz, image=im, ex_keyname=key, \

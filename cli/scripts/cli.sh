@@ -51,6 +51,6 @@ else
   fi
 fi
 
-export LIBCLOUD_DEBUG=/dev/stderr 
-export LIBCLOUD_DEBUG_PRETTY_PRINT_RESPONSE=1
+#export LIBCLOUD_DEBUG=/dev/stderr 
+#export LIBCLOUD_DEBUG_PRETTY_PRINT_RESPONSE=1
 $PYTHON -u "$MY_HOME/hub/scripts/cli.py" "$@"

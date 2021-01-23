@@ -193,12 +193,9 @@ CREATE TABLE images (
   region             TEXT  NOT NULL,
   platform           TEXT  NOT NULL,
   image_name         TEXT  NOT NULL,
-  PRIMARY KEY (image_type, cloud, region)
+  PRIMARY KEY (image_type, cloud, region, platform)
 );
-INSERT INTO images VALUES ('cos8',  'aws',   'us-east-1', 'amd', 'ami-056b03dba13a2c9dd');
-INSERT INTO images VALUES ('cos8',  'aws',   'us-east-2', 'amd', 'ami-0ac6967966621d983' );
-INSERT INTO images VALUES ('cos8',  'aws',   'us-west-1', 'amd', 'ami-04adf3fcbc8a45c54');
-INSERT INTO images VALUES ('cos8',  'aws',   'us-west-2', 'amd', 'ami-0155c31ea13d4abd2');
+INSERT INTO images VALUES ('ubu20', 'aws',   'us-east-2', 'amd', 'ami-0b287e7832eb862f8' );
 INSERT INTO images VALUES ('cos8',  'pgsql', 'us-nnj',    'amd', 'dbc325a0-cab8-4674-b8c2-d23711c26337');
 INSERT INTO images VALUES ('ubu20', 'pgsql', 'us-nnj',    'amd', '????????-????');
 
