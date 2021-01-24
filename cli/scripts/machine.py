@@ -63,71 +63,116 @@ def reboot(cloud, machine_ids):
 
 
 def get_region(cloud_name):
+  util.message("getting region", "info")
   sql = "SELECT region FROM clouds WHERE cloud = ?"
+
   data = meta.exec_sql(sql,[cloud_name])
   if data == None or data == []:
     util.message("cannot find cloud's region", "error")
     return(None)
+
   region = str(data[0])
   return(region)
 
 
-def get_image(image_type, cloud_name, platform='amd'):
+def get_image(cloud_name, platform='amd'):
+  util.message("getting image", "info")
   region = get_region(cloud_name)
   if region == None:
     return(None)
 
-  sql = "SELECT image_id FROM images \n" + \
-        " WHERE image_type = ? and cloud = ? AND region = ? AND platform = ?"
-  data = meta.exec_sql(sql,[image_type, cloud_name, region, platform])
+  sql = "SELECT image_id, image_type FROM images \n" + \
+        " WHERE cloud = ? AND region = ? AND platform = ? AND is_default = 1"
+  data = meta.exec_sql(sql,[cloud_name, region, platform])
   if data == None or data == []:
     util.message("Image not known for (" + str(image_type) + ", " + str(cloud_name) + \
       ", " + str(region) + ", " + str(platform) + ")", "error")
-    return(None)
+    return(None, None)
     
   image_id = data[0]
+  image_type = data[1]
   images = driver.list_images(ex_image_id = image_id)
   for i in images:
-    return(i)
+    util.message("Using image " + image_type + " : " + image_id, "info")
+    return(i, image_type)
 
   util.message("Cannot Locate image '" + str(image_id) + "'", "error")
-  return(None)
+  return(None, None)
 
 
 def launch(cloud_name, name, size, key, location=None, security_group=None, \
-           network=None, data_gb=None):
+           network=None, data_gb=None, wait_for=True):
 
+  util.message("launching", "info")
   try:                                                                             
+    util.message("  retrieving cloud driver", "info")
     driver = cloud.get_cloud_driver(cloud_name)
     if driver == None:
-      util.message("not found in machine.launch() cloud.get_cloud_driver()", "error")
+      util.message("cloud driver not found", "error")
       return(None)
 
+    util.message("  validating size", "info")
     sizes = driver.list_sizes()
     for s in sizes:
       if s.name == size:
         sz = s
         break
     else:
-      util.message("Invalid Size (" + str(size) + ")", "error")
-      return
+      util.message("Invalid Size - " + str(size), "error")
+      return(None)
     
-    im = get_image("ubu20", cloud_name)
+    im = get_image(cloud_name)
     if im == None:
       return(None)
 
+    util.message("  creating machine...", "info")
     node = driver.create_node (name=name, size=sz, image=im, ex_keyname=key, \
-       ex_config_drive=True, \
-       ex_security_groups=driver.ex_list_security_groups(), \
+       ex_config_drive=True, ex_security_groups=driver.ex_list_security_groups(), \
        networks=driver.ex_list_networks())                                                    
-    ##print("DEBUG: node  = " + str(node))
+    
   except Exception as e:                                                           
     util.message(str(e), "error")
     return(None)
 
   machine_id = node.id
-  ##print("DEBUG: machine_id = " + str(machine_id))
+  util.message("machine_id - " + str(machine_id), "info")
+
+  if wait_for == True:
+    waitfor(cloud, machine_id, "running")
+
   return(machine_id)
+
+
+def waitfor(cloud_name, machine_id, new_state, interval=3, max_tries=10):
+  driver = cloud.get_cloud_driver(cloud_name)
+  if driver == None:
+    return
+
+  kount = 0
+  node_state = None
+  while kount < max_tries:
+    kount = kount + 1
+    try:                                                                             
+      nodes = driver.list_nodes(ex_node_id=machine_id)
+    except Exception as e:
+      util.message(str(e), 'error')
+      return(None)
+                                                                                   
+    for node in nodes:
+      node_state = str(node.state)
+
+      if node_state == new_state:
+        util.message(node_state, "info")
+        return(node_state)
+
+      if node_state == "error":
+        util.message("error provisioning machine", "error")
+        return(node_state)
+
+    time.sleep(interval)
+
+  util.message("max tries exceeded", "error")
+  return(node_state)
 
 
 # retrieve an aws-ec2 node using default credentials

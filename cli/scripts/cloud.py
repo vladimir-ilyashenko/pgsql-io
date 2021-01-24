@@ -45,7 +45,8 @@ def get_cloud_driver(cloud_name):
       driver = cls(lkey[0], lkey[1], region = lkey[2])
 
     elif libcloud_provider == Provider.OPENSTACK:
-      driver = cls(lkey[0], lkey[1], ex_force_auth_url = lkey[2], ex_tenant_name = lkey[3], ex_force_auth_version='3.x_password')
+      driver = cls(lkey[0], lkey[1], ex_force_auth_url = lkey[2],
+        ex_tenant_name = lkey[3], ex_force_auth_version='3.x_password')
 
     else:
       util.message("driver not found", "error")
@@ -76,15 +77,13 @@ def delete(cloud_id):
   return
                                                                                    
                                                                                    
-def update(provider, name, cloud_id, keys):
-  sql = "UPDATE clouds SET name = ?, provider = ?, keys = ?, updated_utc = ? WHERE id = ?"
-  meta.exec_sql(sql, [name, provider, keys, util.sysdate(), cloud_id])
+def update(provider, name, region, cloud_id, keys):
+  sql = "UPDATE clouds SET name = ?, provider = ?, region = ?, keys = ?, updated_utc = ? WHERE id = ?"
+  meta.exec_sql(sql, [name, provider, region, keys, util.sysdate(), cloud_id])
   return
                                                                                    
                                                                                    
-def create(provider, name=None, region=None, keys=None):
-  if name == None:
-    name = provider
+def create(provider, name, region, keys=None):
 
   lc_provider = get_provider_constant(provider)
   if lc_provider == None:
@@ -102,11 +101,7 @@ def create(provider, name=None, region=None, keys=None):
 
       key1 = config['default']['aws_access_key_id']
       key2 = config['default']['aws_secret_access_key']
-
-      if region:
-        key3 = region
-      else:
-        key3 = config['default']['region']
+      key3 = region
 
       keys = key1 + " " + key2 + " " + key3
 
@@ -124,11 +119,11 @@ def create(provider, name=None, region=None, keys=None):
 
       keys = key1 + " " + key2 + " "+  key3 + " " + key4
 
-    sql = "INSERT INTO clouds (id, name, provider, keys, created_utc, updated_utc) \n" + \
-          "  VALUES (?, ?, ?, ?, ?, ?)"
+    sql = "INSERT INTO clouds (id, name, provider, region, keys, created_utc, updated_utc) \n" + \
+          "  VALUES (?, ?, ?, ?, ?, ?, ?)"
     now = util.sysdate()
     cloud_id = util.get_uuid()
-    meta.exec_sql(sql, [cloud_id, name, provider, keys, now, now])
+    meta.exec_sql(sql, [cloud_id, name, provider, region, keys, now, now])
 
     util.message(cloud_id, "info")
     return 
@@ -137,20 +132,20 @@ def create(provider, name=None, region=None, keys=None):
 
                                                                                    
 def read(cloud_name=None, data_only=False):
-  headers = ['Provider', 'Name', 'ID']
-  keys = ['provider', 'name', 'id']
+  headers = ['Provider', 'Name', 'Region', 'ID']
+  keys = ['provider', 'name', 'region', 'id']
 
   where = ""
   if cloud_name:
     where = "WHERE name =  '" + cloud_name + "'"
 
-  sql = "SELECT provider, name, id, keys \n" + \
+  sql = "SELECT provider, name, region, id, keys \n" + \
         "  FROM clouds " + where + " ORDER BY 1, 2"
   data = meta.exec_sql_list(sql)
 
   if data_only:
     for d in data:
-      return str(d[0]), str(d[1]), str(d[2]), str(d[3])
+      return str(d[0]), str(d[1]), str(d[2]), str(d[3], str(d[4]))
     return None
 
   jsonList = []
@@ -158,8 +153,9 @@ def read(cloud_name=None, data_only=False):
     dict = {}
     dict['provider'] = str(d[0])
     dict['name'] = str(d[1])
-    dict['id' ] = str(d[2])
-    dict['keys'] = str(d[3])
+    dict['region'] = str(d[2])
+    dict['id'] = str(d[3])
+    dict['keys'] = str(d[4])
     jsonList.append(dict)
 
   util.print_list(headers, keys, jsonList)

@@ -81,6 +81,7 @@ CREATE TABLE clouds (
   id             TEXT     NOT NULL PRIMARY KEY,
   name           TEXT     NOT NULL UNIQUE,
   provider       TEXT     NOT NULL,
+  region         TEXT     NOT NULL,
   keys           TEXT     NOT NULL,
   created_utc    DATETIME NOT NULL,
   updated_utc    DATETIME NOT NULL

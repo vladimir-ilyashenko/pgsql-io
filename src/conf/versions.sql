@@ -197,7 +197,6 @@ CREATE TABLE images (
 );
 INSERT INTO images VALUES ('ubu20', 'aws',   'us-east-2', 'amd', 'ami-0b287e7832eb862f8' );
 INSERT INTO images VALUES ('cos8',  'pgsql', 'us-nnj',    'amd', 'dbc325a0-cab8-4674-b8c2-d23711c26337');
-INSERT INTO images VALUES ('ubu20', 'pgsql', 'us-nnj',    'amd', '????????-????');
 
 
 CREATE VIEW v_images AS
