@@ -19,4 +19,5 @@ fi
 
 PIP3IN="pip3 install --user"
 
-$PIP3IN apache-libcloud fire boto3 python-openstackclient parallel-ssh flask
+$PIP3IN apache-libcloud fire boto3 python-openstackclient parallel-ssh \
+        mkdocs flask
