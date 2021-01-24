@@ -192,11 +192,12 @@ CREATE TABLE images (
   cloud              TEXT  NOT NULL,
   region             TEXT  NOT NULL,
   platform           TEXT  NOT NULL,
+  is_default         SMALLINT NOT NULL,
   image_name         TEXT  NOT NULL,
   PRIMARY KEY (image_type, cloud, region, platform)
 );
-INSERT INTO images VALUES ('ubu20', 'aws',   'us-east-2', 'amd', 'ami-0b287e7832eb862f8' );
-INSERT INTO images VALUES ('cos8',  'pgsql', 'us-nnj',    'amd', 'dbc325a0-cab8-4674-b8c2-d23711c26337');
+INSERT INTO images VALUES ('ubu20', 'aws',   'us-east-2', 'amd', 1, 'ami-0b287e7832eb862f8' );
+INSERT INTO images VALUES ('cos8',  'pgsql', 'us-nnj',    'amd', 1, 'dbc325a0-cab8-4674-b8c2-d23711c26337');
 
 
 CREATE VIEW v_images AS
