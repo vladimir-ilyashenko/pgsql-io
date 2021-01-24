@@ -144,6 +144,7 @@ def launch(cloud_name, name, size, key, location=None, security_group=None, \
 
 
 def waitfor(cloud_name, machine_id, new_state, interval=3, max_tries=10):
+  util.message("waitfor up to " + str(interval * max_tries) + "seconds", "info")
   driver = cloud.get_cloud_driver(cloud_name)
   if driver == None:
     return
@@ -151,6 +152,7 @@ def waitfor(cloud_name, machine_id, new_state, interval=3, max_tries=10):
   kount = 0
   node_state = None
   while kount < max_tries:
+    util.message("checking driver.list_nodes() " + str(kount * interval), "info")
     kount = kount + 1
     try:                                                                             
       nodes = driver.list_nodes(ex_node_id=machine_id)
@@ -176,21 +178,22 @@ def waitfor(cloud_name, machine_id, new_state, interval=3, max_tries=10):
 
 
 # retrieve an aws-ec2 node using default credentials
-def describe_aws(id):
+def describe_aws(machine_id, region, l_cloud_keys):
+  util.message("ec2.describe_instances()", "info")
   import boto3
 
   try:
     ec2 = boto3.client('ec2')
-    response = ec2.describe_instances(InstanceIds=[id])
+    response = ec2.describe_instances(InstanceIds=[machine_id])
   except Exception as e:                                                           
     return ('','','','','','','','','','')
 
+  util.message("jmespath.search()", "info")
   s = jmespath.search("Reservations[].Instances[].[InstanceId, InstanceType, State.Name, \
     Placement.AvailabilityZone, PrivateIpAddress, PublicIpAddress, KeyName, \
     [Tags[?Key=='Name'].Value] [0][0], CpuOptions.CoreCount, \
     BlockDeviceMappings[].Ebs[].VolumeId[] ] | [0]", response)
 
-  id = s[0]
   flavor = s[1]
   state = s[2]
   loct = s[3]
@@ -204,15 +207,15 @@ def describe_aws(id):
   return (name, flavor, state, loct, priv_ip, pub_ip, key_nm, vcpus, volumes)
 
 
-def describe_openstack(id):
+def describe_openstack(machine_id, region, l_cloud_keys):
+  util.message("openstack.connect()", "info")
   import openstack
-
   openstack.enable_logging(debug=False)
-
   conn = openstack.connect(load_envvars=True)
 
+  util.message("openstack.list_servers()", "info")
   for s in conn.list_servers():
-    if s.id == id:
+    if s.id == machine_id:
       try:
         volume = s.volumes[0].id
       except:
@@ -220,24 +223,25 @@ def describe_openstack(id):
       return (s.name, s.flavor.original_name, s.vm_state, s.region, \
         s.private_v4, s.public_v4, s.key_name, s.flavor.vcpus, volume)
   
-  util.message("not found in describe_openstack() for " + str(id), "error")
+  util.message("not found in describe_openstack() for " + str(machine_id), "error")
   return ('','','','','','','','','')
 
 
 def describe(cloud_name, machine_id, print_list=True):
-  provider = cloud.get_provider(cloud_name)
+  provider, xxx, region, yyy, cloud_keys = cloud.read(cloud_name, True)
   if provider == 'aws':
     name, size, state, location, private_ip, \
     public_ip, key_name, vcpus, volumes \
-      = describe_aws(machine_id)
+      = describe_aws(machine_id, region, cloud_keys)
   elif provider in ('pgsql', 'openstack')  :
     name, size, state, location, private_ip, \
     public_ip, key_name, vcpus, volumes \
-      = describe_openstack(machine_id)
+      = describe_openstack(machine_id, region, cloud_keys)
   else:
     util.message('Invalid Cloud type', 'error')
     return
-    
+
+  util.message("name & size - " + str(name) + "  " + str(size), "info")
   if name == '' and size == '':
     return
 

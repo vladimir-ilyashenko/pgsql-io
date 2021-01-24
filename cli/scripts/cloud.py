@@ -83,7 +83,9 @@ def update(provider, name, region, cloud_id, keys):
   return
                                                                                    
                                                                                    
-def create(provider, name, region, keys=None):
+def create(provider, name=None, region=None, keys=None):
+  if name == None:
+    name = provider
 
   lc_provider = get_provider_constant(provider)
   if lc_provider == None:
@@ -93,14 +95,16 @@ def create(provider, name, region, keys=None):
   if keys == None:
     if lc_provider == Provider.EC2:
       conf_f = os.getenv('HOME') + os.sep + ".aws" + os.sep + "config"
-      msg = "Using [default] AWS credentials from file '" + conf_f + "'"
-      util.message(msg)
+      util.message("Using [default] AWS credentials from file " + conf_f, "info")
 
       config = configparser.ConfigParser()
       config.read(conf_f)
 
       key1 = config['default']['aws_access_key_id']
       key2 = config['default']['aws_secret_access_key']
+
+      if region == None:
+        region = config['default']['region']
       key3 = region
 
       keys = key1 + " " + key2 + " " + key3
@@ -119,13 +123,15 @@ def create(provider, name, region, keys=None):
 
       keys = key1 + " " + key2 + " "+  key3 + " " + key4
 
+      if region == None:
+        region = os.getenv('OS_REGION_NAME', "")
+
     sql = "INSERT INTO clouds (id, name, provider, region, keys, created_utc, updated_utc) \n" + \
           "  VALUES (?, ?, ?, ?, ?, ?, ?)"
     now = util.sysdate()
     cloud_id = util.get_uuid()
     meta.exec_sql(sql, [cloud_id, name, provider, region, keys, now, now])
 
-    util.message(cloud_id, "info")
     return 
 
   return
@@ -145,7 +151,7 @@ def read(cloud_name=None, data_only=False):
 
   if data_only:
     for d in data:
-      return str(d[0]), str(d[1]), str(d[2]), str(d[3], str(d[4]))
+      return str(d[0]), str(d[1]), str(d[2]), str(d[3]), str(d[4])
     return None
 
   jsonList = []
