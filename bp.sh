@@ -23,7 +23,8 @@ cd $outp
 
 #./api.sh 
 ./$api cloud create pgsql
-./$api cloud create aws
+./$api cloud create aws west2 us-west-2
+./$api cloud create aws east2 us-east-2
 ./$api key insert denisl-pubkey centos ~/keys/denisl-pubkey.pem
 
 ./$api set GLOBAL REPO http://localhost:8000

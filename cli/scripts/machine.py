@@ -67,9 +67,9 @@ def get_image(driver, cloud_name, platform='amd'):
 
   provider, xxx, region, yyy, cloud_keys = cloud.read(cloud_name, True)
 
-  sql = "SELECT image_name as image_id, image_type FROM images \n" + \
-        " WHERE cloud = ? AND region = ? AND platform = ? AND is_default = 1"
-  data = meta.exec_sql(sql,[cloud_name, region, platform])
+  sql = "SELECT image_id, image_type FROM images \n" + \
+        " WHERE provider = ? AND region = ? AND platform = ? AND is_default = 1"
+  data = meta.exec_sql(sql,[provider, region, platform])
   if data == None or data == []:
     util.message("Image not known for " + str(cloud_name) + \
       ", " + str(region) + ", " + str(platform) + ")", "error")
@@ -79,7 +79,7 @@ def get_image(driver, cloud_name, platform='amd'):
   image_type = str(data[1])
   util.message("calling driver.list_images() with '" + str(image_id) + "'")
   if provider == 'aws':
-    images = driver.list_images(ex_image_ids=image_id)
+    images = driver.list_images(ex_image_ids=image_id.split())
   else:
     images = driver.list_images()
 

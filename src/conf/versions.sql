@@ -189,12 +189,12 @@ INSERT INTO image_types VALUES ('ubu20', 'Ubuntu 20.04 LTS', 'linux');
 
 CREATE TABLE images (
   image_type         TEXT  NOT NULL,
-  cloud              TEXT  NOT NULL,
+  provider           TEXT  NOT NULL,
   region             TEXT  NOT NULL,
   platform           TEXT  NOT NULL,
   is_default         SMALLINT NOT NULL,
-  image_name         TEXT  NOT NULL,
-  PRIMARY KEY (image_type, cloud, region, platform)
+  image_id           TEXT  NOT NULL,
+  PRIMARY KEY (image_type, provider, region, platform)
 );
 INSERT INTO images VALUES ('ubu20', 'aws',   'us-east-2', 'amd', 1, 'ami-0b287e7832eb862f8' );
 #INSERT INTO images VALUES ('cos8',  'pgsql', 'us-nnj',    'amd', 1, 'dbc325a0-cab8-4674-b8c2-d23711c26337');
@@ -202,7 +202,8 @@ INSERT INTO images VALUES ('cos8',  'pgsql', 'RegionOne', 'amd', 1, 'dbc325a0-ca
 
 
 CREATE VIEW v_images AS
-  SELECT t.os, t.image_type, t.disp_name, i.cloud, i.region, i.platform, i.image_name
+  SELECT t.os, t.image_type, t.disp_name, i.provider, i.region, 
+         i.platform, i.is_default, i.image_id  
     FROM image_types t, images i
    WHERE i.image_type = t.image_type
   ORDER BY 1, 2, 3, 4, 5, 6;
