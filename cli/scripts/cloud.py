@@ -32,7 +32,7 @@ def get_cloud_driver(cloud_name):
 
   provider = data[0]
 
-  keys = data[3]
+  keys = data[4]
   lkey = keys.split()
 
   libcloud_provider = get_provider_constant(provider)
