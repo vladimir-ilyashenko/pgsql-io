@@ -3,7 +3,7 @@
 ########################################################
 
 import util, meta, api, cloud
-import sys, json, os, configparser, jmespath, munch
+import sys, json, os, configparser, jmespath, munch, time
 from pprint import pprint
 
 import libcloud, fire
@@ -62,39 +62,31 @@ def reboot(cloud, machine_ids):
   return(action(cloud, machine_ids, "reboot"))
 
 
-def get_region(cloud_name):
-  util.message("getting region", "info")
-  sql = "SELECT region FROM clouds WHERE cloud = ?"
-
-  data = meta.exec_sql(sql,[cloud_name])
-  if data == None or data == []:
-    util.message("cannot find cloud's region", "error")
-    return(None)
-
-  region = str(data[0])
-  return(region)
-
-
-def get_image(cloud_name, platform='amd'):
+def get_image(driver, cloud_name, platform='amd'):
   util.message("getting image", "info")
-  region = get_region(cloud_name)
-  if region == None:
-    return(None)
 
-  sql = "SELECT image_id, image_type FROM images \n" + \
+  provider, xxx, region, yyy, cloud_keys = cloud.read(cloud_name, True)
+
+  sql = "SELECT image_name as image_id, image_type FROM images \n" + \
         " WHERE cloud = ? AND region = ? AND platform = ? AND is_default = 1"
   data = meta.exec_sql(sql,[cloud_name, region, platform])
   if data == None or data == []:
-    util.message("Image not known for (" + str(image_type) + ", " + str(cloud_name) + \
+    util.message("Image not known for " + str(cloud_name) + \
       ", " + str(region) + ", " + str(platform) + ")", "error")
     return(None, None)
     
-  image_id = data[0]
-  image_type = data[1]
-  images = driver.list_images(ex_image_id = image_id)
+  image_id = str(data[0])
+  image_type = str(data[1])
+  util.message("calling driver.list_images() with '" + str(image_id) + "'")
+  if provider == 'aws':
+    images = driver.list_images(ex_image_ids=image_id)
+  else:
+    images = driver.list_images()
+
   for i in images:
-    util.message("Using image " + image_type + " : " + image_id, "info")
-    return(i, image_type)
+    if i.id == image_id:
+      util.message("Using image " + image_type + " : " + image_id, "info")
+      return(i, image_type)
 
   util.message("Cannot Locate image '" + str(image_id) + "'", "error")
   return(None, None)
@@ -105,13 +97,13 @@ def launch(cloud_name, name, size, key, location=None, security_group=None, \
 
   util.message("launching", "info")
   try:                                                                             
-    util.message("  retrieving cloud driver", "info")
+    util.message("retrieving cloud driver", "info")
     driver = cloud.get_cloud_driver(cloud_name)
     if driver == None:
       util.message("cloud driver not found", "error")
       return(None)
 
-    util.message("  validating size", "info")
+    util.message("validating size", "info")
     sizes = driver.list_sizes()
     for s in sizes:
       if s.name == size:
@@ -121,11 +113,11 @@ def launch(cloud_name, name, size, key, location=None, security_group=None, \
       util.message("Invalid Size - " + str(size), "error")
       return(None)
     
-    im = get_image(cloud_name)
+    im, typ = get_image(driver, cloud_name)
     if im == None:
       return(None)
 
-    util.message("  creating machine...", "info")
+    util.message("creating machine...", "info")
     node = driver.create_node (name=name, size=sz, image=im, ex_keyname=key, \
        ex_config_drive=True, ex_security_groups=driver.ex_list_security_groups(), \
        networks=driver.ex_list_networks())                                                    
@@ -138,48 +130,44 @@ def launch(cloud_name, name, size, key, location=None, security_group=None, \
   util.message("machine_id - " + str(machine_id), "info")
 
   if wait_for == True:
-    waitfor(cloud, machine_id, "running")
+    waitfor(cloud_name, machine_id, "running")
 
   return(machine_id)
 
 
-def waitfor(cloud_name, machine_id, new_state, interval=3, max_tries=10):
-  util.message("waitfor up to " + str(interval * max_tries) + "seconds", "info")
+def waitfor(cloud_name, machine_id, new_state, interval=5, max_tries=12):
+  util.message("waitfor up to " + str(interval * max_tries) + " seconds", "info")
   driver = cloud.get_cloud_driver(cloud_name)
   if driver == None:
     return
 
+  provider, xxx, region, yyy, cloud_keys = cloud.read(cloud_name, True)
+
   kount = 0
-  node_state = None
   while kount < max_tries:
-    util.message("checking driver.list_nodes() " + str(kount * interval), "info")
+    name, size, state, location, private_ip, \
+    public_ip, key_name, vcpus, volumes \
+      = get_describe_data(provider, machine_id, region, cloud_keys)
+
+    if (state == new_state) or (state == "active"):
+      util.message(new_state, "info")
+      return(new_state)
+
+    if state == "error":
+      util.message(state, "error")
+      return("error")
+
+    util.message(state, "info")
     kount = kount + 1
-    try:                                                                             
-      nodes = driver.list_nodes(ex_node_id=machine_id)
-    except Exception as e:
-      util.message(str(e), 'error')
-      return(None)
-                                                                                   
-    for node in nodes:
-      node_state = str(node.state)
-
-      if node_state == new_state:
-        util.message(node_state, "info")
-        return(node_state)
-
-      if node_state == "error":
-        util.message("error provisioning machine", "error")
-        return(node_state)
-
     time.sleep(interval)
 
   util.message("max tries exceeded", "error")
-  return(node_state)
+  return("error")
 
 
 # retrieve an aws-ec2 node using default credentials
 def describe_aws(machine_id, region, l_cloud_keys):
-  util.message("ec2.describe_instances()", "info")
+  ##util.message("ec2.describe_instances()", "info")
   import boto3
 
   try:
@@ -208,12 +196,12 @@ def describe_aws(machine_id, region, l_cloud_keys):
 
 
 def describe_openstack(machine_id, region, l_cloud_keys):
-  util.message("openstack.connect()", "info")
+  ##util.message("openstack.connect()", "info")
   import openstack
   openstack.enable_logging(debug=False)
   conn = openstack.connect(load_envvars=True)
 
-  util.message("openstack.list_servers()", "info")
+  ##util.message("openstack.list_servers()", "info")
   for s in conn.list_servers():
     if s.id == machine_id:
       try:
@@ -227,19 +215,19 @@ def describe_openstack(machine_id, region, l_cloud_keys):
   return ('','','','','','','','','')
 
 
+def get_describe_data(provider, machine_id, region, cloud_keys):
+  if provider == 'aws':
+    return (describe_aws(machine_id, region, cloud_keys))
+  else:
+    return (describe_openstack(machine_id, region, cloud_keys))
+
+
 def describe(cloud_name, machine_id, print_list=True):
   provider, xxx, region, yyy, cloud_keys = cloud.read(cloud_name, True)
-  if provider == 'aws':
-    name, size, state, location, private_ip, \
-    public_ip, key_name, vcpus, volumes \
-      = describe_aws(machine_id, region, cloud_keys)
-  elif provider in ('pgsql', 'openstack')  :
-    name, size, state, location, private_ip, \
-    public_ip, key_name, vcpus, volumes \
-      = describe_openstack(machine_id, region, cloud_keys)
-  else:
-    util.message('Invalid Cloud type', 'error')
-    return
+
+  name, size, state, location, private_ip, \
+  public_ip, key_name, vcpus, volumes \
+    = get_describe_data(provider, machine_id, region, cloud_keys)
 
   util.message("name & size - " + str(name) + "  " + str(size), "info")
   if name == '' and size == '':
