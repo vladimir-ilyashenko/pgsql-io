@@ -2,7 +2,7 @@
 #  Copyright 2020-2021  PGSQL.IO  All rights reserved. #
 ########################################################
 
-import util, meta, api, cloud, machine
+import util, meta, api, cloud, machine, key
 import sys, json, os, configparser, jmespath, munch, time
 
 import libcloud, fire
@@ -80,9 +80,12 @@ def shell_cmd(machine_ids, cmd):
   if hosts == None:
     return(None)
 
-  username="ubuntu"
-  pkey="~/keys/denisl-pubkey.pem"
-  util.message("on hosts " + str(hosts) + ", user=" + username + ", pkey=" + str(pkey))
+  xxx, username, pkey = key.read("denisl-pubkey")
+  if username == None:
+    util.message("key file not found", "error")
+  else:
+    util.message("on hosts " + str(hosts) + ", user=" + username + \
+                 ", pkey=" + str(pkey), "info")
 
   client = ParallelSSHClient(hosts, user=username, pkey=pkey)
 
@@ -94,11 +97,6 @@ def shell_cmd(machine_ids, cmd):
     except:
       time.sleep(3)
       continue
-
-  #client.join(output)
-  #for host_out in output:
-  #  for line in host_out.stdout:
-  #    print(line)
 
   return
 
