@@ -55,7 +55,7 @@ def get_host_ips(machine_ids):
     data = meta.exec_sql_list(sql1)
     #print("DEBUG: data = " + str(data))
     if data == None or data == []:
-      util.message("not found", "error")
+      util.message("host ip's not found", "error")
       return(None)
     for d in data:
       describe_info = d[0]
@@ -75,9 +75,16 @@ def get_host_ips(machine_ids):
 def shell_cmd(machine_ids, cmd):
   from pssh.clients import ParallelSSHClient
 
+  util.message("# " + str(cmd))
   hosts = get_host_ips(machine_ids)
+  if hosts == None:
+    return(None)
 
-  client = ParallelSSHClient(hosts, user="centos", pkey="~/keys/denisl-pubkey.pem")
+  username="ubuntu"
+  pkey="~/keys/denisl-pubkey.pem"
+  util.message("on hosts " + str(hosts) + ", user=" + username + ", pkey=" + str(pkey))
+
+  client = ParallelSSHClient(hosts, user=username, pkey=pkey)
 
   output = client.run_command(cmd, use_pty=True, read_timeout=30)
   for host_out in output:
@@ -97,14 +104,11 @@ def shell_cmd(machine_ids, cmd):
 
 
 def install_io(machine_ids):
-  ##util.message("installing pre-req's", "info")
-  ##shell_cmd(machine_ids, "sudo yum install -y python3 python3-devel wget curl")
 
   #repo = util.get_value("GLOBAL", "REPO")
   repo = "https://pgsql-io-download.s3.amazonaws.com/REPO"
 
   cmd = 'python3 -c "$(curl -fsSL ' + repo + '/install.py)"'
-  util.message("installing IO with " + str(cmd) , "info")
 
   shell_cmd(machine_ids, cmd)
 
@@ -118,7 +122,7 @@ def io_cmd(machine_ids, cmd):
   return(result_json)
 
 
-def create(machine_id, cluster_name, current_role=None, components=None, info=None):
+def create(cluster_name, machine_id, current_role=None, components=None, info=None):
 
   rc = install_io(machine_id)
 
