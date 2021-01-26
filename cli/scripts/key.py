@@ -69,19 +69,14 @@ def insert(name, username, pem_file):
   return(rc)
 
 
-def read(name=None):
+def read(key_name):
 
-  if name  == None:
-    where = "1 = 1"
-  else:
-    where = "name = '" + str(name) + "'"
-
-  sql = "SELECT name, username, pem_file, \n" + \
+  sql = "SELECT username, pem_file, \n" + \
         "       created_utc, updated_utc \n" + \
-        "  FROM keys WHERE " + where + " ORDER BY 1"
+        "  FROM keys WHERE name = ?"
 
-  data = meta.exec_sql_list(sql)
-  return(data)
+  data = meta.exec_sql(sql, [key_name])
+  return(str(data[0]), str(data[1]))
 
 
 def update(name, username, pem_file):

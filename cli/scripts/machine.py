@@ -25,6 +25,7 @@ def action(cloud_name, machine_ids, action):
         kount = kount + 1
         if action == "destroy":
           ret = n.destroy()
+          node.delete(n.id)
           delete(n.id)
         elif action == "start":
           ret = driver.ex_start_node(n)
@@ -219,7 +220,15 @@ def describe_openstack(machine_id, region, l_cloud_keys):
         volume = s.volumes[0].id
       except:
         volume = ""
-      return (s.name, s.flavor.original_name, s.vm_state, s.region, \
+
+      if s.vm_state == "active":
+        vm_state = "running"
+      elif s.vm_state == "building":
+        vm_state = "pending"
+      else:
+        vm_state = s.vm_state
+
+      return (s.name, s.flavor.original_name, vm_state, s.region, \
         s.private_v4, s.public_v4, s.key_name, s.flavor.vcpus, volume)
   
   util.message("not found in describe_openstack() for " + str(machine_id), "error")
@@ -240,8 +249,7 @@ def describe(cloud_name, machine_id, print_list=True):
   public_ip, key_name, vcpus, volumes \
     = get_describe_data(provider, machine_id, region, cloud_keys)
 
-  ##util.message("name & size - " + str(name) + "  " + str(size), "info")
-  if name == '' and size == '':
+  if state == '' or state == None:
     return
 
   headers = ['Name', 'Size',   'State', 'Location', 'PublicIp', 'Id']
@@ -249,25 +257,25 @@ def describe(cloud_name, machine_id, print_list=True):
 
   jsonList = []
   dict = {}
-  dict['name'] = name
-  dict['id'] = machine_id
-  dict['size'] = size
-  dict['state'] = state
-  dict['location'] = location
-  dict['private_ip'] = private_ip
-  dict['public_ip'] = public_ip
-  dict['key_name'] = key_name
-  dict['vcpus'] = str(vcpus)
-  dict['volumes'] = volumes
+  dict["name"] = name
+  dict["id"] = machine_id
+  dict["size"] = size
+  dict["state"] = state
+  dict["location"] = location
+  dict["private_ip"] = private_ip
+  dict["public_ip"] = public_ip
+  dict["key_name"] = key_name
+  dict["vcpus"] = str(vcpus)
+  dict["volumes"] = volumes
   jsonList.append(dict)
 
-  update(cloud_name, machine_id, jsonList)
+  update(cloud_name, machine_id, str(dict))
 
   if print_list:
     util.print_list(headers, keys, jsonList)
     return
 
-  return(str(jsonList))
+  return(dict)
 
 
 def list(cloud_name):
@@ -388,15 +396,14 @@ def create(cloud_name, machine_name, size, key_name, location=None, security_gro
 def insert(cloud_name, machine_id, machine_name, key_name):
   ##print("DEBUG: before describe()")
   describe_info = describe(cloud_name, machine_id, False)
-  ##print("DEBUG: after  describe()")
   now1 = util.sysdate()
 
   sql = "INSERT INTO machines \n" + \
         "  (id, name, cloud, key_name, describe, tags, created_utc, updated_utc) \n" + \
         " VALUES (?,?,?,?,?,?,?,?)"
-  ##print("DEBUG: machine.insert " + machine_id + ", " + machine_name + ", " + cloud_name + ", " + key_name + ", " + describe_info)
+  ##print("DEBUG: machine.insert " + machine_id + ", " + machine_name + ", " + cloud_name + ", " + key_name + ", " + str(describe_info))
   meta.exec_sql(sql, [machine_id, machine_name, cloud_name, key_name, \
-    describe_info, None, now1, now1])
+    str(describe_info), None, now1, now1])
 
   return
 
@@ -418,10 +425,9 @@ def read(cloud_name=None, machine_id=None):
 
 
 def update(cloud_name, machine_id, describe_info):
-  ##print("DEBUG: machine.update " + cloud_name + ", " + machine_id + ", " + str(describe_info))
   sql = "UPDATE machines SET describe = ?, updated_utc = ? \n" + \
         " WHERE cloud = ? AND id = ?"
-  meta.exec_sql(sql, [str(describe_info), util.sysdate(), cloud_name, machine_id])
+  meta.exec_sql(sql, [str(describe_info), util.sysdate(), str(cloud_name), str(machine_id)])
   return
 
 

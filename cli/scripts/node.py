@@ -46,33 +46,25 @@ def launch(cloud, name, size, key, location="", security_group="",
 def get_host_ips(machine_ids):
   sql = "SELECT describe FROM machines WHERE id = "
   host_ips = []
-  #print("DEBUG: machine_ids = " + str(machine_ids))
   machine_list = machine_ids.split(",")
-  #print("DEBUG: machine_list = " + str(machine_list))
+
   for machine in machine_list:
     sql1 = sql + "'" + machine + "'"
-    #print("DEBUG: sql1 = " + sql1)
     data = meta.exec_sql_list(sql1)
-    #print("DEBUG: data = " + str(data))
     if data == None or data == []:
       util.message("host ip's not found", "error")
       return(None)
     for d in data:
       describe_info = d[0]
-    describe_info = describe_info.replace("[", "")
-    describe_info = describe_info.replace("]", "")
-    describe_info = describe_info.replace("'", '"')
-    ##print("DEBUG: describe_info = " + str(describe_info))
-    dict = json.loads(describe_info)
+
+    dict = eval(str(describe_info))
     public_ip = dict["public_ip"]
-    ##print("DEBUG: public_ip = " + str(public_ip))
     host_ips.append(public_ip)
 
-  ##print("DEBUG: host_ips = " + str(host_ips))
   return(host_ips)
 
 
-def shell_cmd(machine_ids, cmd):
+def shell_cmd(cloud_name, machine_ids, cmd):
   from pssh.clients import ParallelSSHClient
 
   util.message("# " + str(cmd))
@@ -80,7 +72,11 @@ def shell_cmd(machine_ids, cmd):
   if hosts == None:
     return(None)
 
-  xxx, username, pkey = key.read("denisl-pubkey")
+  describe_info = machine.describe(cloud_name, machine_ids, False)
+  dict = eval(str(describe_info))
+  key_name = dict['key_name']
+
+  username, pkey = key.read(key_name)
   if username == None:
     util.message("key file not found", "error")
   else:
@@ -101,28 +97,28 @@ def shell_cmd(machine_ids, cmd):
   return
 
 
-def install_io(machine_ids):
+def install_io(cloud_name, machine_ids):
 
   #repo = util.get_value("GLOBAL", "REPO")
   repo = "https://pgsql-io-download.s3.amazonaws.com/REPO"
 
   cmd = 'python3 -c "$(curl -fsSL ' + repo + '/install.py)"'
 
-  shell_cmd(machine_ids, cmd)
+  shell_cmd(cloud_name, machine_ids, cmd)
 
   return
 
 
-def io_cmd(machine_ids, cmd):
+def io_cmd(cloud_name, machine_ids, cmd):
   full_io_cmd = "pgsql/io " + cmd + " --json"
   ##util.message("running:  '" + full_io_cmd + "'\n   on machines " + str(machine_ids))
-  result_json = shell_cmd(machine_ids, full_io_cmd)
+  result_json = shell_cmd(cloud_name, machine_ids, full_io_cmd)
   return(result_json)
 
 
-def create(cluster_name, machine_id, current_role=None, components=None, info=None):
+def create(cloud_name, cluster_name, machine_id, current_role=None, components=None, info=None):
 
-  rc = install_io(machine_id)
+  rc = install_io(cloud_name, machine_id)
 
   now = util.sysdate()
   sql = "INSERT INTO nodes (machine_id, cluster_name, current_role, \n" + \
