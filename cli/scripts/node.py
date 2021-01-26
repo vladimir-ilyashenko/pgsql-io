@@ -3,7 +3,7 @@
 ########################################################
 
 import util, meta, api, cloud, machine
-import sys, json, os, configparser, jmespath, munch
+import sys, json, os, configparser, jmespath, munch, time
 
 import libcloud, fire
 from libcloud.compute.types import Provider
@@ -46,14 +46,14 @@ def launch(cloud, name, size, key, location="", security_group="",
 def get_host_ips(machine_ids):
   sql = "SELECT describe FROM machines WHERE id = "
   host_ips = []
-  ##print("DEBUG: machine_ids = " + str(machine_ids))
+  #print("DEBUG: machine_ids = " + str(machine_ids))
   machine_list = machine_ids.split(",")
-  ##print("DEBUG: machine_list = " + str(machine_list))
+  #print("DEBUG: machine_list = " + str(machine_list))
   for machine in machine_list:
     sql1 = sql + "'" + machine + "'"
-    ##print("DEBUG: sql1 = " + sql1)
+    #print("DEBUG: sql1 = " + sql1)
     data = meta.exec_sql_list(sql1)
-    ##print("DEBUG: data = " + str(data))
+    #print("DEBUG: data = " + str(data))
     if data == None or data == []:
       util.message("not found", "error")
       return(None)
@@ -79,18 +79,26 @@ def shell_cmd(machine_ids, cmd):
 
   client = ParallelSSHClient(hosts, user="centos", pkey="~/keys/denisl-pubkey.pem")
 
-  output = client.run_command(cmd)
-  client.join(output)
+  output = client.run_command(cmd, use_pty=True, read_timeout=30)
   for host_out in output:
-    for line in host_out.stdout:
-      print(line)
+    try:
+      for line in host_out.stdout:
+        print(line)
+    except:
+      time.sleep(3)
+      continue
+
+  #client.join(output)
+  #for host_out in output:
+  #  for line in host_out.stdout:
+  #    print(line)
 
   return
 
 
 def install_io(machine_ids):
-  util.message("installing pre-req's", "info")
-  shell_cmd(machine_ids, "sudo yum install -y python3 python3-devel wget curl")
+  ##util.message("installing pre-req's", "info")
+  ##shell_cmd(machine_ids, "sudo yum install -y python3 python3-devel wget curl")
 
   #repo = util.get_value("GLOBAL", "REPO")
   repo = "https://pgsql-io-download.s3.amazonaws.com/REPO"
@@ -120,7 +128,7 @@ def create(machine_id, cluster_name, current_role=None, components=None, info=No
         "VAlUES (?,?,?,?,?,?,?)"
 
   meta.exec_sql(sql, [machine_id, cluster_name, current_role, components, info, now, now])
-  return(node_id)
+  return(machine_id)
 
 
 def read(node_id=None, cluster_id=None, machine_id=None):

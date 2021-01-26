@@ -95,6 +95,8 @@ def get_image(driver, cloud_name, platform='amd'):
 def launch(cloud_name, name, size, key, location=None, security_group=None, \
            network=None, data_gb=None, wait_for=True):
 
+  provider, xxx, region, yyy, cloud_keys = cloud.read(cloud_name, True)
+
   util.message("launching", "info")
   try:                                                                             
     util.message("retrieving cloud driver", "info")
@@ -118,9 +120,12 @@ def launch(cloud_name, name, size, key, location=None, security_group=None, \
       return(None)
 
     util.message("creating machine...", "info")
-    node = driver.create_node (name=name, size=sz, image=im, ex_keyname=key, \
-       ex_config_drive=True, ex_security_groups=driver.ex_list_security_groups(), \
-       networks=driver.ex_list_networks())                                                    
+    if provider == 'aws':
+      node = driver.create_node (name=name, size=sz, image=im, ex_keyname=key)
+    else:
+      node = driver.create_node (name=name, size=sz, image=im, ex_keyname=key, \
+        ex_config_drive=True, ex_security_groups=driver.ex_list_security_groups(), \
+        networks=driver.ex_list_networks())                                                    
     
   except Exception as e:                                                           
     util.message(str(e), "error")
@@ -166,17 +171,23 @@ def waitfor(cloud_name, machine_id, new_state, interval=5, max_tries=12):
 
 
 # retrieve an aws-ec2 node using default credentials
-def describe_aws(machine_id, region, l_cloud_keys):
+def describe_aws(machine_id, region, cloud_keys):
   ##util.message("ec2.describe_instances()", "info")
   import boto3
 
-  try:
-    ec2 = boto3.client('ec2')
-    response = ec2.describe_instances(InstanceIds=[machine_id])
-  except Exception as e:                                                           
-    return ('','','','','','','','','','')
+  l_cloud_keys = cloud_keys.split()
 
-  util.message("jmespath.search()", "info")
+  try:
+    ec2 = boto3.client('ec2', 
+            aws_access_key_id=l_cloud_keys[0],
+            aws_secret_access_key=l_cloud_keys[1],
+            region_name=region)
+    response = ec2.describe_instances(InstanceIds=machine_id.split())
+  except Exception as e:                                                           
+    util.message("not found in describe_aws() for " + str(machine_id), "error")
+    return ('','','','','','','','','')
+
+  ##util.message("jmespath.search()", "info")
   s = jmespath.search("Reservations[].Instances[].[InstanceId, InstanceType, State.Name, \
     Placement.AvailabilityZone, PrivateIpAddress, PublicIpAddress, KeyName, \
     [Tags[?Key=='Name'].Value] [0][0], CpuOptions.CoreCount, \
@@ -229,7 +240,7 @@ def describe(cloud_name, machine_id, print_list=True):
   public_ip, key_name, vcpus, volumes \
     = get_describe_data(provider, machine_id, region, cloud_keys)
 
-  util.message("name & size - " + str(name) + "  " + str(size), "info")
+  ##util.message("name & size - " + str(name) + "  " + str(size), "info")
   if name == '' and size == '':
     return
 
