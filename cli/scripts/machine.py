@@ -63,7 +63,7 @@ def reboot(cloud, machine_ids):
 
 
 def get_image(driver, cloud_name, platform='amd'):
-  util.message("getting image", "info")
+  util.message("getting default image", "info")
 
   provider, xxx, region, yyy, cloud_keys = cloud.read(cloud_name, True)
 
@@ -77,7 +77,7 @@ def get_image(driver, cloud_name, platform='amd'):
     
   image_id = str(data[0])
   image_type = str(data[1])
-  util.message("calling driver.list_images() with '" + str(image_id) + "'")
+
   if provider == 'aws':
     images = driver.list_images(ex_image_ids=image_id.split())
   else:
@@ -85,7 +85,7 @@ def get_image(driver, cloud_name, platform='amd'):
 
   for i in images:
     if i.id == image_id:
-      util.message("Using image " + image_type + " : " + image_id, "info")
+      util.message("image_id - " + image_type + " : " + image_id, "info")
       return(i, image_type)
 
   util.message("Cannot Locate image '" + str(image_id) + "'", "error")
@@ -97,15 +97,15 @@ def launch(cloud_name, name, size, key, location=None, security_group=None, \
 
   provider, xxx, region, yyy, cloud_keys = cloud.read(cloud_name, True)
 
-  util.message("launching", "info")
+  util.message("launching - " + str(cloud_name) + ", " + str(name) + ", " + \
+    str(size) + ", " + str(key))
   try:                                                                             
-    util.message("retrieving cloud driver", "info")
     driver = cloud.get_cloud_driver(cloud_name)
     if driver == None:
       util.message("cloud driver not found", "error")
       return(None)
 
-    util.message("validating size", "info")
+    util.message("validating size - " + str(size), "info")
     sizes = driver.list_sizes()
     for s in sizes:
       if s.name == size:
@@ -119,7 +119,7 @@ def launch(cloud_name, name, size, key, location=None, security_group=None, \
     if im == None:
       return(None)
 
-    util.message("creating machine...", "info")
+    util.message("creating machine on " + str(provider), "info")
     if provider == 'aws':
       node = driver.create_node (name=name, size=sz, image=im, ex_keyname=key)
     else:
@@ -379,6 +379,8 @@ def create(cloud_name, machine_name, size, key_name, location=None, security_gro
     return
 
   insert(cloud_name, machine_id, machine_name, key_name)
+
+  describe(cloud_name, machine_id)
 
   return
 
