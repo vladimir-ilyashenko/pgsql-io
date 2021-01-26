@@ -2,7 +2,7 @@
 #  Copyright 2020-2021  PGSQL.IO  All rights reserved. #
 ########################################################
 
-import util, meta, api, cloud
+import util, meta, api, cloud, node
 import sys, json, os, configparser, jmespath, munch, time
 from pprint import pprint
 
@@ -122,7 +122,8 @@ def launch(cloud_name, name, size, key, location=None, security_group=None, \
 
     util.message("creating machine on " + str(provider), "info")
     if provider == 'aws':
-      node = driver.create_node (name=name, size=sz, image=im, ex_keyname=key)
+      node = driver.create_node (name=name, size=sz, image=im, ex_keyname=key, \
+        ex_security_groups=["default"])
     else:
       node = driver.create_node (name=name, size=sz, image=im, ex_keyname=key, \
         ex_config_drive=True, ex_security_groups=driver.ex_list_security_groups(), \
@@ -378,8 +379,8 @@ def list_sizes(cloud_name):
   return
 
 
-def create(cloud_name, machine_name, size, key_name, location=None, security_group=None, \
-           network=None, data_gb=None):
+def create(cloud_name, machine_name, size, key_name, cluster_name=None,\
+           location=None, security_group=None, network=None, data_gb=None):
 
   machine_id = launch(cloud_name, machine_name, size, key_name, \
     location=None, security_group=None, network=None, data_gb=None)
@@ -387,8 +388,12 @@ def create(cloud_name, machine_name, size, key_name, location=None, security_gro
     return
 
   insert(cloud_name, machine_id, machine_name, key_name)
-
   describe(cloud_name, machine_id)
+
+  if cluster_name == None:
+    pass
+  else:
+    node.create(cloud_name, cluster_name, machine_id)
 
   return
 

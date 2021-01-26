@@ -80,7 +80,7 @@ def shell_cmd(cloud_name, machine_ids, cmd):
   if username == None:
     util.message("key file not found", "error")
   else:
-    util.message("on hosts " + str(hosts) + ", user=" + username + \
+    util.message("host=" + str(hosts) + ", user=" + username + \
                  ", pkey=" + str(pkey), "info")
 
   client = ParallelSSHClient(hosts, user=username, pkey=pkey)
