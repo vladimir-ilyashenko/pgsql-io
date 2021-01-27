@@ -145,7 +145,7 @@ def set_jvm_link(p_pg_ver, p_display=True):
 
 def remove_symlinks(p_link_dir, p_target_dir):
   cmd = 'ls  -l ' + p_link_dir + ' | grep "\->" | grep ' + p_target_dir + ' | cut -c50- | cut -d" " -f1'
-  links = subprocess.check_output(cmd, shell=True)
+  links = check_output(cmd, shell=True)
 
   for link in links.splitlines():
     cmd = 'sudo rm ' + p_link_dir + '/' + str(link, "UTF-8").strip()
@@ -156,7 +156,7 @@ def remove_symlinks(p_link_dir, p_target_dir):
 
 
 def create_symlinks(p_link_dir, p_target_dir):
-  cmd = 'sudo ln -vfst ' + p_link_dir  + ' ' + p_target_dir + '/*'
+  cmd = 'sudo ln -fst ' + p_link_dir  + ' ' + p_target_dir + '/*'
   print(cmd) 
   os.system(cmd)
 

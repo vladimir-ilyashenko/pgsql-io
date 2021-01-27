@@ -78,7 +78,6 @@ else:
     os.mkdir(pg_log)
   util.set_column("logdir", pgver, pg_log)
 
-
 if args.svcname > '':
   util.set_column("svcname", pgver, args.svcname)
 
@@ -99,8 +98,8 @@ else:
   cmd_status = pg_ctl + ' status -D ' + pgdata
   cmd_log = '-l ' + pgdata + '/pgstartup.log'
   svcuser = util.get_column('svcuser', pgver)
-  startup.config_linux(pgver, systemsvc, start_lvl, kill_lvl, svcuser,
-                         cmd_start, cmd_log, cmd_stop, cmd_reload, cmd_status)
+  startup.config_linux(pgver, systemsvc, svcuser, cmd_start, cmd_log, 
+    cmd_stop, cmd_reload, cmd_status)
   util.set_column('svcname', pgver, systemsvc)
 
 util.set_column('autostart', pgver, args.autostart)

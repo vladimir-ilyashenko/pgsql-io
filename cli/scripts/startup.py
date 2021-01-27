@@ -37,7 +37,7 @@ def useradd_linux(p_user):
   return(0)
 
 
-def config_linux(p_comp, p_systemsvc, p_S, p_K, p_svc_user, p_start, p_start_log,
+def config_linux(p_comp, p_systemsvc, p_svc_user, p_start, p_start_log,
                    p_stop, p_reload, p_status="", is_pg=True, p_env=None):
 
   my_home = os.getenv("MY_HOME")
