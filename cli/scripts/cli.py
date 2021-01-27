@@ -254,7 +254,6 @@ def get_comp_num(p_app):
   return "000"
 
 
-# get percentage of unpack progress in json format
 class ProgressTarExtract(io.FileIO):
   component_name = ""
   file_name = ""
@@ -267,14 +266,14 @@ class ProgressTarExtract(io.FileIO):
     if not os.path.isfile(pid_file):
       raise KeyboardInterrupt("No lock file exists.")
     percentage = self.tell()*100/self._total_size
-    if isJSON:
-      json_dict = {}
-      json_dict['state'] = "unpack"
-      json_dict['status'] = "wip"
-      json_dict['pct'] = int(percentage)
-      json_dict['file'] = self.file_name
-      json_dict['component'] = self.component_name
-      print(json.dumps([json_dict]))
+    ##if isJSON:
+    ##  json_dict = {}
+    ##  json_dict['state'] = "unpack"
+    ##  json_dict['status'] = "wip"
+    ##  json_dict['pct'] = int(percentage)
+    ##  json_dict['file'] = self.file_name
+    ##  json_dict['component'] = self.component_name
+    ##  print(json.dumps([json_dict]))
     return io.FileIO.read(self, size)
 
 
@@ -342,12 +341,16 @@ def install_comp(p_app, p_ver=0, p_rver=None, p_re_install=False):
       json_dict['status'] = "start"
       json_dict['msg'] = msg
       msg = json.dumps([json_dict])
+
     if not isSILENT:
       print(msg)
+
     tarFileObj = ProgressTarExtract("conf" + os.sep + "cache" + os.sep + file)
     tarFileObj.component_name = p_app
     tarFileObj.file_name = file
+
     tar = tarfile.open(fileobj=tarFileObj, mode="r:bz2")
+
     try:
       tar.extractall(path=".")
     except KeyboardInterrupt as e:
