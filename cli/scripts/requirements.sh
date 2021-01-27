@@ -2,7 +2,14 @@
 cd "$(dirname "$0")"
 
 parms=`echo $@`
-echo "# pre-req's: $parms"
+
+echoX () {
+  if [ "$isJson" == "True" ]; then
+    echo "{\"msg\": \"$1\"}"
+  else
+    echo $1
+  fi
+}
 
 
 compatLIBC () {
@@ -16,9 +23,9 @@ compatLIBC () {
   fi
 
   if [[ "$compat_libc" < "$sys_libc" || "$compat_libc" == "$sys_libc" ]]; then
-    echo "#    LIBC - OK ($sys_libc)"
+    echoX "#    LIBC - OK ($sys_libc)"
   else
-    echo "ERROR: Incompatible LIBC library ($sys_libc).  [Linux version is too old]"
+    echoX "ERROR: Incompatible LIBC library ($sys_libc).  [Linux version is too old]"
     exit 1
   fi
 
@@ -33,7 +40,7 @@ isEL () {
   grep "VERSION_ID=\"$1\"" /etc/os-release > /dev/null 2>&1
   rc=$?
   if [ "$rc" == "0" ]; then
-    echo "#       $ELx - OK"
+    echoX "#       $ELx - OK"
 
     ## also make sure wget is installed
     wget --version > /dev/null 2>&1
@@ -45,13 +52,13 @@ isEL () {
     return
   fi
 
-  echo "ERROR: must be $ELx"
+  echoX "ERROR: must be $ELx"
   exit 1
 }
 
 installPERL () {
   sudo yum install -y perl perl-devel perl-DBI
-  echo "#    PERL - OK"
+  echoX "#    PERL - OK"
   return
 }
 
@@ -73,14 +80,14 @@ installOPENJDK () {
    return
   fi
 
-  echo "# $OPENJDKx - OK"
+  echoX "# $OPENJDKx - OK"
   return
 }
 
 
 installGCC () {
   sudo yum groupinstall -y 'Development Tools'
-  echo "#     GCC - OK"
+  echoX "#     GCC - OK"
   return
 }
 
@@ -96,21 +103,27 @@ installPYTHON () {
     pip3 install --quiet --user --upgrade pip
   fi
 
-  echo "#   $PYTHONx - OK"
+  echoX "#   $PYTHONx - OK"
   return
 }
 
 
 isAMD64 () {
   if [ `arch` == 'x86_64' ]; then
-    echo '#     AMD64 - OK'
+    echoX '#     AMD64 - OK'
     return
   fi
 
-  echo 'ERROR: only supported on AMD64' 
+  echoX 'ERROR: only supported on AMD64' 
   exit 1
 }
 
+
+########################################
+#              MAINLINE                #
+########################################
+
+echoX "# pre-req's: $parms"
 
 for req in "$@"
 do
@@ -133,7 +146,7 @@ do
     ver=${req:5:4}
     compatLIBC $ver
   else
-    echo "ERROR: invalid pre-req ($req)"
+    echoX "ERROR: invalid pre-req ($req)"
     exit 1
   fi
 done

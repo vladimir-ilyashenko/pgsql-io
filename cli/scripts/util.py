@@ -2199,7 +2199,7 @@ def http_get_file(p_json, p_file_name, p_url, p_out_dir, p_display_status, p_msg
     file_exists = False
     return(False)
   finally:
-    if file_size_dl_mb >=  1:
+    if file_size_dl_mb >=  1 and not p_json:
       print_status_msg(file_size_dl_mb, 100)
     if file_exists and not f.closed:
       f.close()
