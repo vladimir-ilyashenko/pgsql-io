@@ -2,7 +2,8 @@ import sqlite3, sys, pgsql
 
 NUM_COLS = 4
 
-ALL_PLATFORMS = "arm, amd"
+#ALL_PLATFORMS = "arm, amd"
+ALL_PLATFORMS = "amd"
 isSHOW_COMP_PLAT = "Y"
 isEXTRA_SPACING = "N"
 isSHOW_DESCRIPTION = "Y"
