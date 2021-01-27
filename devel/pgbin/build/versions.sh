@@ -7,10 +7,10 @@ pg12V="12.5"
 pg12BuildV=2
 
 pg11V="11.10"
-pg11BuildV=2
+pg11BuildV=1
 
 pg10V="10.15"
-pg10BuildV=2
+pg10BuildV=1
 
 odbcFullV=13.00
 odbcShortV=
