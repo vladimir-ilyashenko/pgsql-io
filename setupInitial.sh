@@ -32,7 +32,7 @@ if [ `uname` == 'Linux' ]; then
         openssl-devel libxslt-devel libevent-devel c-ares-devel \
         perl-ExtUtils-Embed sqlite-devel tcl-devel \
         pam-devel openldap-devel boost-devel unixODBC-devel \
-	mongo-c-driver-devel geos-devel proj-devel 
+	mongo-c-driver-devel proj-devel jasper-devel
       sudo $yum curl-devel chrpath clang-devel llvm-devel \
         cmake libxml2-devel mysql-devel freetds-devel
       sudo $yum readline-devel libuuid-devel uuid-devel
@@ -46,11 +46,9 @@ if [ `uname` == 'Linux' ]; then
       sudo yum -y groupinstall 'development tools'
       sudo yum -y install bison-devel libedit-devel zlib-devel bzip2-devel \
         openssl-devel libmxl2-devel libxslt-devel libevent-devel c-ares-devel \
-        perl-ExtUtils-Embed sqlite-devel wget tcl-devel java-11-openjdk-devel \
-        openjade pam-devel openldap-devel boost-devel unixODBC-devel \
-        gdal-devel geos-devel json-c-devel proj-devel mysql-devel freetds-devel \
-        uuid-devel curl-devel chrpath docbook-dtds \
-        docbook-style-dsssl docbook-style-xsl mkdocs highlight
+        perl-ExtUtils-Embed sqlite-devel wget java-11-openjdk-devel \
+        pam-devel openldap-devel unixODBC-devel \
+        uuid-devel curl-devel chrpath 
       sudo yum -y install clang llvm5.0 centos-release-scl-rh
       sudo yum -y install llvm-toolset-7-llvm devtoolset-7 llvm-toolset-7-clang
       sudo yum -y install python3 python3-devel

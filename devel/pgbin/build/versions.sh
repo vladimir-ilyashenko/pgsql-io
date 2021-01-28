@@ -52,7 +52,7 @@ hypopgFullV=1.1.4
 hypopgShortV=
 hypopgBuildV=1
 
-postgisFull31V=3.1.0
+postgisFullV=3.1.0
 postgisShortV=
 postgisBuildV=1
 

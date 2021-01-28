@@ -57,7 +57,7 @@ partmanV=4.4.1-1
 repackV=1.4.6-1
 
 audit13V=1.5.0-1
-postgis30V=3.0.3-1
+postgisV=3.1.0-1
 
 tsqlV=3.0-1
 pljavaV=1.6.2-1

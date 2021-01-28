@@ -747,7 +747,7 @@ if [[ $buildMySQLFDW == "true" ]]; then
 fi
 
 if [[ $buildPostGIS ==  "true" ]]; then
-	buildComp postgis "$postgisShortV" "$postgisFull31V" "$postgisBuildV" "$Source"
+	buildComp postgis "$postgisShortV" "$postgisFullV" "$postgisBuildV" "$Source"
 fi
 if [[ $buildAudit == "true" ]]; then
 	buildComp audit "$auditShortV" "$auditFull13V" "$auditBuildV" "$Source"

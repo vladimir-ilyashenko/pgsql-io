@@ -101,7 +101,7 @@ if [ "$1" == "bulkload" ] || [ "$1" == "all" ]; then
 fi
 
 if [ "$1" == "postgis" ] || [ "$1" == "all" ]; then
-  build postgis $postgisFull31V $2 postgis  
+  build postgis $postgisFullV $2 postgis  
 fi
 
 if [ "$1" == "audit" ] || [ "$1" == "all" ]; then
