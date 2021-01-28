@@ -10,39 +10,6 @@ from libcloud.compute.types import Provider
 from libcloud.compute.providers import get_driver
 
 
-def get_machine_id(node_id):
-  sql = "SELECT machine_id FROM machines \n" + \
-        " WHERE node_id = " + str(node_id) + "'"
-
-  data = meta.exec_sql_list(sql)
-  for d in data:
-    machine_id = str(d[0])
-    return(machine_id)
-
-  return(None)
-
-
-def destroy(cloud, node_id):
-  return(machine.action(cloud, get_machine_id(node_id), "destroy"))
-
-
-def start(cloud, node_id):
-  return(machine.action(cloud, get_machine_id(node_id), "start"))
-
-
-def stop(cloud, node_id):
-  return(machine.action(cloud, get_machine_id(node_id), "stop"))
-
-
-def reboot(cloud, node_id):
-  return(machine.action(cloud, get_machine_id(node_id), "reboot"))
-
-
-def launch(cloud, name, size, key, location="", security_group="", 
-           network="", wal_gb="", data_gb=""):
-  return
-
-
 def get_host_ips(machine_ids):
   sql = "SELECT describe FROM machines WHERE id = "
   host_ips = []
@@ -55,10 +22,9 @@ def get_host_ips(machine_ids):
       util.message("host ip's not found", "error")
       return(None)
     for d in data:
-      describe_info = d[0]
+      di = eval(d[0])
 
-    dict = eval(str(describe_info))
-    public_ip = dict["public_ip"]
+    public_ip = di["public_ip"]
     host_ips.append(public_ip)
 
   return(host_ips)
@@ -129,44 +95,37 @@ def create(cloud_name, cluster_name, machine_id, current_role=None, components=N
   return(machine_id)
 
 
-def read(node_id=None, cluster_id=None, machine_id=None):
+def read(cluster_name=None, machine_id=None):
   where = "1 = 1"
-  if node_id:
-    where = where + " AND id = '" + str(node_id) + "'"
-  if cluster_id:
-    where = where + " AND cluster_id = '" + str(cluster_id) + "'"
+  if cluster_name:
+    where = where + " AND cluster_name = '" + str(cluster_name) + "'"
   if machine_id:
     where = where + " AND machine_id = '" + str(machine_id) + "'"
 
-  sql = "SELECT id, name, machine_id, cluster_id, current_role, \n" + \
+  sql = "SELECT cluster_name, machine_id, current_role, \n" + \
         "       components, info, created_utc, updated_utc \n" + \
-        "  FROM nodes WHERE " + where + " ORDER BY cluster_id, name"
+        "  FROM nodes WHERE " + where + " ORDER BY 1, 2"
 
   data =  meta.exec_sql_list(sql)
   return(data)
 
 
-def update(node_id, name, machine_id, cluster_id, current_role, components, info):
-  sql = "UPDATE nodes SET name = ?, machine_id = ?, cluster_id = ?, current_role = ?, \n" + \
+def update(machine_id, cluster_name, current_role, components, info):
+  sql = "UPDATE nodes cluster_name = ?, current_role = ?, \n" + \
         "       components = ?, info = ?, updated_utc= ? \n" + \
-        " WHERE id = ?"
-  meta.exec_sql(sql,[name, machine_id, cluster_id, current_role, components, info, 
-                    util.sysdate(), node_id])
+        " WHERE machine_id = ?"
+  meta.exec_sql(sql,[name, cluster_name, current_role, components, info, 
+                    util.sysdate(), machine_id])
   return
 
 
-def delete(node_id):
-  sql = "DELETE FROM nodes WHERE id = ?"
+def delete(machine_id):
+  sql = "DELETE FROM nodes WHERE machine_id = ?"
   meta.exec_sql(sql, [node_id])
   return
 
 
 nodeAPIs = {
-  'launch': launch,
-  'destroy': destroy,
-  'stop': stop,
-  'start': start,
-  'reboot': reboot,
   'create': create,
   'read': read,
   'update': update,

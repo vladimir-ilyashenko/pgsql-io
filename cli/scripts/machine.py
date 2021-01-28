@@ -3,7 +3,8 @@
 ########################################################
 
 import util, meta, api, cloud, node
-import sys, json, os, configparser, jmespath, munch, time
+import sys, json, os, configparser, jmespath
+import munch, time
 from pprint import pprint
 
 import libcloud, fire
@@ -186,7 +187,7 @@ def describe_aws(machine_id, region, cloud_keys):
             region_name=region)
     response = ec2.describe_instances(InstanceIds=machine_id.split())
   except Exception as e:                                                           
-    util.message("not found in describe_aws() for " + str(machine_id), "error")
+    util.message("not found in aws for " + str(machine_id), "error")
     return ('','','','','','','','','')
 
   ##util.message("jmespath.search()", "info")
@@ -232,7 +233,7 @@ def describe_openstack(machine_id, region, l_cloud_keys):
       return (s.name, s.flavor.original_name, vm_state, s.region, \
         s.private_v4, s.public_v4, s.key_name, s.flavor.vcpus, volume)
   
-  util.message("not found in describe_openstack() for " + str(machine_id), "error")
+  util.message("not found in openstack for " + str(machine_id), "error")
   return ('','','','','','','','','')
 
 
@@ -251,7 +252,7 @@ def describe(cloud_name, machine_id, print_list=True):
     = get_describe_data(provider, machine_id, region, cloud_keys)
 
   if state == '' or state == None:
-    return
+    return(None)
 
   headers = ['Name', 'Size',   'State', 'Location', 'PublicIp', 'Id']
   keys = ['name', 'size', 'state', 'location', 'public_ip', 'id']
@@ -398,17 +399,22 @@ def create(cloud_name, machine_name, size, key_name, cluster_name=None,\
   return
 
 
-def insert(cloud_name, machine_id, machine_name, key_name):
-  ##print("DEBUG: before describe()")
-  describe_info = describe(cloud_name, machine_id, False)
+def insert(cloud_name, machine_id, key_name=None):
+  di = describe(cloud_name, machine_id, False)
+  if di == None:
+    util.message("invalid machine_id", "error")
+    return
+
   now1 = util.sysdate()
+  machine_name = di['name']
 
   sql = "INSERT INTO machines \n" + \
         "  (id, name, cloud, key_name, describe, tags, created_utc, updated_utc) \n" + \
         " VALUES (?,?,?,?,?,?,?,?)"
+
   ##print("DEBUG: machine.insert " + machine_id + ", " + machine_name + ", " + cloud_name + ", " + key_name + ", " + str(describe_info))
   meta.exec_sql(sql, [machine_id, machine_name, cloud_name, key_name, \
-    str(describe_info), None, now1, now1])
+    str(di), None, now1, now1])
 
   return
 
