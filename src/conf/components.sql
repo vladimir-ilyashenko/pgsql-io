@@ -57,7 +57,6 @@ CREATE TABLE nodes (
   cloud          TEXT     NOT NULL REFERENCES clouds(name),
   cluster_name   TEXT     REFERENCES clusters(name),
   describe       TEXT,
-  info           TEXT,
   created_utc    DATETIME NOT NULL,
   updated_utc    DATETIME NOT NULL
 );
