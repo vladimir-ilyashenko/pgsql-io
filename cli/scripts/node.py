@@ -41,22 +41,23 @@ def shell_cmd(cloud_name, machine_id, cmd):
   return
 
 
-def install_io(cloud_name, machine_ids):
+def install_io(cloud_name, machine_id):
 
   #repo = util.get_value("GLOBAL", "REPO")
   repo = "https://pgsql-io-download.s3.amazonaws.com/REPO"
 
   cmd = 'python3 -c "$(curl -fsSL ' + repo + '/install.py)"'
 
-  shell_cmd(cloud_name, machine_ids, cmd)
+  #shell_cmd(cloud_name, machine_id, "sudo useradd pgsql; cd /opt; sudo " + cmd + "; sudo chown pgsql:pgsql /opt/pgsql -R")
+  shell_cmd(cloud_name, machine_id, cmd)
 
   return
 
 
-def io_cmd(cloud_name, machine_ids, cmd):
-  full_io_cmd = "pgsql/io " + cmd + " --json"
-  ##util.message("running:  '" + full_io_cmd + "'\n   on machines " + str(machine_ids))
-  result_json = shell_cmd(cloud_name, machine_ids, full_io_cmd)
+def io_cmd(cloud_name, machine_id, cmd):
+  full_io_cmd = "pgsql/io " + cmd
+  ##util.message("running:  '" + full_io_cmd + "'\n   on machine " + str(machine_id))
+  result_json = shell_cmd(cloud_name, machine_id, full_io_cmd)
   return(result_json)
 
 
