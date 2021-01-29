@@ -213,12 +213,12 @@ def describe_aws(machine_id, region, cloud_keys):
 
 
 def describe_openstack(machine_id, region, l_cloud_keys):
-  util.message("openstack.connect()", "info")
+  ##util.message("openstack.connect()", "info")
   import openstack
   openstack.enable_logging(debug=False)
   conn = openstack.connect(load_envvars=True)
 
-  util.message("openstack.list_servers()", "info")
+  ##util.message("openstack.list_servers()", "info")
   for s in conn.list_servers():
     if s.id == machine_id:
       try:

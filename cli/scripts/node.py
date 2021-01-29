@@ -15,7 +15,7 @@ def shell_cmd(cloud_name, machine_id, cmd):
 
   util.message("# " + str(cmd))
 
-  aa, bb, cc, describe, ee, ff, gg = read(cloud_name, machine_id)
+  aa, bb, cc, describe, ff, gg = read(cloud_name, machine_id)
   key_name = describe['key_name']
   host = describe['public_ip']
   hosts = host.split()
@@ -62,16 +62,15 @@ def io_cmd(cloud_name, machine_ids, cmd):
 
 def create(cloud_name, machine_id, cluster_name=None):
 
-  describe = machine.describe(cloud_name, machine_id)
-  print ("DEBUG: describe = " + str(describe))
+  describe = machine.describe(cloud_name, machine_id, False)
   if describe == None:
     util.message("machine not found", "error")
     return(False)
 
-  info = install_io(cloud_name, machine_id)
-  print ("DEBUG: info = " + str(info))
+  #info = install_io(cloud_name, machine_id)
+  #print ("DEBUG: info = " + str(info))
 
-  upsert(cloud_name, machine_id, cluster_name, describe, info)
+  upsert(cloud_name, machine_id, cluster_name, describe)
 
   return(True)
 
@@ -86,27 +85,23 @@ def read(cloud_name, machine_id, cluster_name=None):
       where = where + " AND machine_id = '" + str(machine_id) + "'"
 
   sql = "SELECT cloud, machine_id, cluster_name, \n" + \
-          "     describe, info, created_utc, updated_utc \n" + \
+          "     describe, created_utc, updated_utc \n" + \
           "  FROM nodes WHERE " + where + " ORDER BY 1, 2"
   
   data =  meta.exec_sql_list(sql)
   if data == [] or data == None:
     util.message("node not found", "error")
-    return(None, None, None, None, None, None, None)
+    return(None, None, None, None, None, None)
 
-  describe = data[3]
-  if describe:
-    describe = eval(describe)
+  for d in data:
+    describe = eval(str(d[3]))
 
-  info = data[4]
-  if info:
-    info = eval(info)
+    return(str(d[0]), str(d[1]), str(d[2]), describe, str(d[4]), str(d[5]))
 
-
-  return(str(data[0]), str(data[1]), str(data[2]), describe, info, str(data[5]), str(data[6]))
+  return
 
 
-def upsert(cloud_name, machine_id, cluster_name=None, describe=None, info=None):
+def upsert(cloud_name, machine_id, cluster_name, describe):
 
   sql = "SELECT count(*) FROM nodes WHERE machine_id = ?"
   data = meta.exec_sql(sql, [machine_id])
@@ -115,14 +110,14 @@ def upsert(cloud_name, machine_id, cluster_name=None, describe=None, info=None):
   now = util.sysdate()
   if kount == 0:
     sql = "INSERT INTO nodes (cloud, machine_id, cluster_name, \n" + \
-          "  describe, info, created_utc, updated_utc) \n" + \
+          "  describe, created_utc, updated_utc) \n" + \
           "VAlUES (?,?,?,?,?,?,?)"
     meta.exec_sql(sql, [cloud_name, machine_id, cluster_name, 
-                  str(describe), str(info), now, now])
+                  str(describe), now, now])
   else:
     sql = "UPDATE nodes SET cloud = ?, cluster_name = ?, describe = ?, \n" + \
-          " info = ?, updated_utc = ? WHERE machine_id = ?"
-    meta.exec_sql(sql, [cloud_name, cluster_name, describe, info, now, machine_id])
+          " updated_utc = ? WHERE machine_id = ?"
+    meta.exec_sql(sql, [cloud_name, cluster_name, str(describe), now, machine_id])
 
   return
 
