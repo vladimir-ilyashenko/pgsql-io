@@ -111,7 +111,7 @@ def upsert(cloud_name, machine_id, cluster_name, describe):
   if kount == 0:
     sql = "INSERT INTO nodes (cloud, machine_id, cluster_name, \n" + \
           "  describe, created_utc, updated_utc) \n" + \
-          "VAlUES (?,?,?,?,?,?,?)"
+          "VAlUES (?,?,?,?,?,?)"
     meta.exec_sql(sql, [cloud_name, machine_id, cluster_name, 
                   str(describe), now, now])
   else:

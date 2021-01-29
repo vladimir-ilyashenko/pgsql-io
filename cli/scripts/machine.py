@@ -381,7 +381,7 @@ def list_sizes(cloud_name):
   return
 
 
-def create(cloud_name, machine_name, size, key_name, cluster_name=None,\
+def create(cloud_name, machine_name, size, key_name=None, cluster_name=None,\
            location=None, security_group=None, network=None, data_gb=None):
 
   machine_id = launch(cloud_name, machine_name, size, key_name, \
