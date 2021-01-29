@@ -71,19 +71,19 @@ def get_provider_constant(p_provider):
     return(None)
 
                                                                                    
-def delete(cloud_id):
-  sql = "DELETE FROM clouds WHERE id = ?"
-  meta.exec_sql(sql, [cloud_id])
+def delete(cloud_name):
+  sql = "DELETE FROM clouds WHERE name = ?"
+  meta.exec_sql(sql, [cloud_name])
   return
                                                                                    
                                                                                    
-def update(provider, name, region, cloud_id, keys):
-  sql = "UPDATE clouds SET name = ?, provider = ?, region = ?, keys = ?, updated_utc = ? WHERE id = ?"
-  meta.exec_sql(sql, [name, provider, region, keys, util.sysdate(), cloud_id])
+def update(cloud_name, provider, region, keys):
+  sql = "UPDATE clouds SET provider = ?, region = ?, keys = ?, updated_utc = ? WHERE name = ?"
+  meta.exec_sql(sql, [provider, region, keys, util.sysdate(), cloud_name])
   return
                                                                                    
                                                                                    
-def create(provider, name=None, region=None, keys=None):
+def create(provider, name=None, region=None, keys=None, default_ssh_key=None):
   if name == None:
     name = provider
 
@@ -126,11 +126,11 @@ def create(provider, name=None, region=None, keys=None):
       if region == None:
         region = os.getenv('OS_REGION_NAME', "")
 
-    sql = "INSERT INTO clouds (id, name, provider, region, keys, created_utc, updated_utc) \n" + \
-          "  VALUES (?, ?, ?, ?, ?, ?, ?)"
+    sql = "INSERT INTO clouds (name, provider, region, keys, default_ssh_key, " + \
+          "  created_utc, updated_utc) \n" + \
+          "VALUES (?, ?, ?, ?, ?, ?, ?)"
     now = util.sysdate()
-    cloud_id = util.get_uuid()
-    meta.exec_sql(sql, [cloud_id, name, provider, region, keys, now, now])
+    meta.exec_sql(sql, [name, provider, region, keys, default_ssh_key, now, now])
 
     return 
 
@@ -138,29 +138,38 @@ def create(provider, name=None, region=None, keys=None):
 
                                                                                    
 def read(cloud_name=None, data_only=False):
-  headers = ['Provider', 'Name', 'Region', 'ID']
-  keys = ['provider', 'name', 'region', 'id']
+  headers = ['Provider', 'Name', 'Region', 'Default SSH Key']
+  keys = ['provider', 'name', 'region', 'default_ssh_key']
 
   where = ""
   if cloud_name:
     where = "WHERE name =  '" + cloud_name + "'"
 
-  sql = "SELECT provider, name, region, id, keys \n" + \
+  sql = "SELECT provider, name, region, default_ssh_key, keys \n" + \
         "  FROM clouds " + where + " ORDER BY 1, 2"
   data = meta.exec_sql_list(sql)
 
   if data_only:
     for d in data:
-      return str(d[0]), str(d[1]), str(d[2]), str(d[3]), str(d[4])
+      if d[3] == None:
+        default_ssh_key = ""
+      else:
+        default_ssh_key = str(d[3])
+      return str(d[0]), str(d[1]), str(d[2]), default_ssh_key, str(d[4])
     return None
 
   jsonList = []
   for d in data:
+    if d[3] == None:
+      default_ssh_key = ""
+    else:
+      default_ssh_key = str(d[3])
+
     dict = {}
     dict['provider'] = str(d[0])
     dict['name'] = str(d[1])
     dict['region'] = str(d[2])
-    dict['id'] = str(d[3])
+    dict['default_ssh_key'] = default_ssh_key
     dict['keys'] = str(d[4])
     jsonList.append(dict)
 

@@ -67,7 +67,7 @@ def reboot(cloud, machine_ids):
 def get_image(driver, cloud_name, platform='amd'):
   util.message("getting default image", "info")
 
-  provider, xxx, region, yyy, cloud_keys = cloud.read(cloud_name, True)
+  provider, xxx, region, default_ssh_key, cloud_keys = cloud.read(cloud_name, True)
 
   sql = "SELECT image_id, image_type FROM images \n" + \
         " WHERE provider = ? AND region = ? AND platform = ? AND is_default = 1"
@@ -94,10 +94,13 @@ def get_image(driver, cloud_name, platform='amd'):
   return(None, None)
 
 
-def launch(cloud_name, name, size, key, location=None, security_group=None, \
+def launch(cloud_name, name, size, key=None, location=None, security_group=None, \
            network=None, data_gb=None, wait_for=True):
 
-  provider, xxx, region, yyy, cloud_keys = cloud.read(cloud_name, True)
+  provider, xxx, region, default_ssh_key, cloud_keys = cloud.read(cloud_name, True)
+
+  if key == None:
+    key = default_ssh_key
 
   util.message("launching - " + str(cloud_name) + ", " + str(name) + ", " + \
     str(size) + ", " + str(key))
@@ -144,12 +147,12 @@ def launch(cloud_name, name, size, key, location=None, security_group=None, \
 
 
 def waitfor(cloud_name, machine_id, new_state, interval=5, max_tries=12):
-  util.message("waitfor up to " + str(interval * max_tries) + " seconds", "info")
+  util.message("waitfor '" + str(new_state) + "' up to " + str(interval * max_tries) + "s", "info")
   driver = cloud.get_cloud_driver(cloud_name)
   if driver == None:
     return
 
-  provider, xxx, region, yyy, cloud_keys = cloud.read(cloud_name, True)
+  provider, xxx, region, default_ssh_key, cloud_keys = cloud.read(cloud_name, True)
 
   kount = 0
   while kount < max_tries:
@@ -245,7 +248,7 @@ def get_describe_data(provider, machine_id, region, cloud_keys):
 
 
 def describe(cloud_name, machine_id, print_list=True):
-  provider, xxx, region, yyy, cloud_keys = cloud.read(cloud_name, True)
+  provider, xxx, region, default_ssh_key, cloud_keys = cloud.read(cloud_name, True)
 
   name, size, state, location, private_ip, \
   public_ip, key_name, vcpus, volumes \

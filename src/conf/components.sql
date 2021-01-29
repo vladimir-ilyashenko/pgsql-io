@@ -78,13 +78,13 @@ CREATE TABLE machines (
 
 DROP TABLE IF EXISTS clouds;
 CREATE TABLE clouds (
-  id             TEXT     NOT NULL PRIMARY KEY,
-  name           TEXT     NOT NULL UNIQUE,
-  provider       TEXT     NOT NULL,
-  region         TEXT     NOT NULL,
-  keys           TEXT     NOT NULL,
-  created_utc    DATETIME NOT NULL,
-  updated_utc    DATETIME NOT NULL
+  name            TEXT     NOT NULL PRIMARY KEY,
+  provider        TEXT     NOT NULL,
+  region          TEXT     NOT NULL,
+  default_ssh_key TEXT     REFERENCES keys(name),
+  keys            TEXT     NOT NULL,
+  created_utc     DATETIME NOT NULL,
+  updated_utc     DATETIME NOT NULL
 );
 
 
