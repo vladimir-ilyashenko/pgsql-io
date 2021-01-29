@@ -10,37 +10,15 @@ from libcloud.compute.types import Provider
 from libcloud.compute.providers import get_driver
 
 
-def get_host_ips(machine_ids):
-  sql = "SELECT describe FROM machines WHERE id = "
-  host_ips = []
-  machine_list = machine_ids.split(",")
-
-  for machine in machine_list:
-    sql1 = sql + "'" + machine + "'"
-    data = meta.exec_sql_list(sql1)
-    if data == None or data == []:
-      util.message("host ip's not found", "error")
-      return(None)
-    for d in data:
-      di = eval(d[0])
-
-    public_ip = di["public_ip"]
-    host_ips.append(public_ip)
-
-  return(host_ips)
-
-
-def shell_cmd(cloud_name, machine_ids, cmd):
+def shell_cmd(cloud_name, machine_id, cmd):
   from pssh.clients import ParallelSSHClient
 
   util.message("# " + str(cmd))
-  hosts = get_host_ips(machine_ids)
-  if hosts == None:
-    return(None)
 
-  describe_info = machine.describe(cloud_name, machine_ids, False)
-  dict = eval(str(describe_info))
-  key_name = dict['key_name']
+  aa, bb, cc, describe, ee, ff, gg = read(cloud_name, machine_id)
+  key_name = describe['key_name']
+  host = describe['public_ip']
+  hosts = host.split()
 
   username, pkey = key.read(key_name)
   if username == None:
@@ -82,40 +60,70 @@ def io_cmd(cloud_name, machine_ids, cmd):
   return(result_json)
 
 
-def create(cloud_name, cluster_name, machine_id, current_role=None, components=None, info=None):
+def create(cloud_name, machine_id, cluster_name=None):
 
-  rc = install_io(cloud_name, machine_id)
+  describe = machine.describe(cloud_name, machine_id)
+  print ("DEBUG: describe = " + str(describe))
+  if describe == None:
+    util.message("machine not found", "error")
+    return(False)
+
+  info = install_io(cloud_name, machine_id)
+  print ("DEBUG: info = " + str(info))
+
+  upsert(cloud_name, machine_id, cluster_name, describe, info)
+
+  return(True)
+
+
+def read(cloud_name, machine_id, cluster_name=None):
+  where = "1 = 1"
+  if cloud_name:
+      where = where + " AND cloud = '" + str(cloud_name) + "'"
+  if cluster_name:
+      where = where + " AND cluster_name = '" + str(cluster_name) + "'"
+  if machine_id:
+      where = where + " AND machine_id = '" + str(machine_id) + "'"
+
+  sql = "SELECT cloud, machine_id, cluster_name, \n" + \
+          "     describe, info, created_utc, updated_utc \n" + \
+          "  FROM nodes WHERE " + where + " ORDER BY 1, 2"
+  
+  data =  meta.exec_sql_list(sql)
+  if data == [] or data == None:
+    util.message("node not found", "error")
+    return(None, None, None, None, None, None, None)
+
+  describe = data[3]
+  if describe:
+    describe = eval(describe)
+
+  info = data[4]
+  if info:
+    info = eval(info)
+
+
+  return(str(data[0]), str(data[1]), str(data[2]), describe, info, str(data[5]), str(data[6]))
+
+
+def upsert(cloud_name, machine_id, cluster_name=None, describe=None, info=None):
+
+  sql = "SELECT count(*) FROM nodes WHERE machine_id = ?"
+  data = meta.exec_sql(sql, [machine_id])
+  kount = data[0]
 
   now = util.sysdate()
-  sql = "INSERT INTO nodes (machine_id, cluster_name, current_role, \n" + \
-        "  components, info, created_utc, updated_utc) \n" + \
-        "VAlUES (?,?,?,?,?,?,?)"
+  if kount == 0:
+    sql = "INSERT INTO nodes (cloud, machine_id, cluster_name, \n" + \
+          "  describe, info, created_utc, updated_utc) \n" + \
+          "VAlUES (?,?,?,?,?,?,?)"
+    meta.exec_sql(sql, [cloud_name, machine_id, cluster_name, 
+                  str(describe), str(info), now, now])
+  else:
+    sql = "UPDATE nodes SET cloud = ?, cluster_name = ?, describe = ?, \n" + \
+          " info = ?, updated_utc = ? WHERE machine_id = ?"
+    meta.exec_sql(sql, [cloud_name, cluster_name, describe, info, now, machine_id])
 
-  meta.exec_sql(sql, [machine_id, cluster_name, current_role, components, info, now, now])
-  return(machine_id)
-
-
-def read(cluster_name=None, machine_id=None):
-  where = "1 = 1"
-  if cluster_name:
-    where = where + " AND cluster_name = '" + str(cluster_name) + "'"
-  if machine_id:
-    where = where + " AND machine_id = '" + str(machine_id) + "'"
-
-  sql = "SELECT cluster_name, machine_id, current_role, \n" + \
-        "       components, info, created_utc, updated_utc \n" + \
-        "  FROM nodes WHERE " + where + " ORDER BY 1, 2"
-
-  data =  meta.exec_sql_list(sql)
-  return(data)
-
-
-def update(machine_id, cluster_name, current_role, components, info):
-  sql = "UPDATE nodes cluster_name = ?, current_role = ?, \n" + \
-        "       components = ?, info = ?, updated_utc= ? \n" + \
-        " WHERE machine_id = ?"
-  meta.exec_sql(sql,[name, cluster_name, current_role, components, info, 
-                    util.sysdate(), machine_id])
   return
 
 
@@ -128,7 +136,7 @@ def delete(machine_id):
 nodeAPIs = {
   'create': create,
   'read': read,
-  'update': update,
+  'upsert': upsert,
   'delete': delete,
   'install-io': install_io,
   'shell-cmd': shell_cmd,

@@ -213,12 +213,12 @@ def describe_aws(machine_id, region, cloud_keys):
 
 
 def describe_openstack(machine_id, region, l_cloud_keys):
-  ##util.message("openstack.connect()", "info")
+  util.message("openstack.connect()", "info")
   import openstack
   openstack.enable_logging(debug=False)
   conn = openstack.connect(load_envvars=True)
 
-  ##util.message("openstack.list_servers()", "info")
+  util.message("openstack.list_servers()", "info")
   for s in conn.list_servers():
     if s.id == machine_id:
       try:
@@ -274,11 +274,9 @@ def describe(cloud_name, machine_id, print_list=True):
   dict["volumes"] = volumes
   jsonList.append(dict)
 
-  update(cloud_name, machine_id, str(dict))
-
   if print_list:
     util.print_list(headers, keys, jsonList)
-    return
+    return(dict)
 
   return(dict)
 
@@ -391,7 +389,6 @@ def create(cloud_name, machine_name, size, key_name, cluster_name=None,\
   if machine_id == None:
     return
 
-  insert(cloud_name, machine_id, machine_name, key_name)
   describe(cloud_name, machine_id)
 
   if cluster_name == None:
@@ -438,19 +435,6 @@ def read(cloud_name=None, machine_id=None):
   return(data)
 
 
-def update(cloud_name, machine_id, describe_info):
-  sql = "UPDATE machines SET describe = ?, updated_utc = ? \n" + \
-        " WHERE cloud = ? AND id = ?"
-  meta.exec_sql(sql, [str(describe_info), util.sysdate(), str(cloud_name), str(machine_id)])
-  return
-
-
-def delete(machine_id):
-  sql = "DELETE FROM machines WHERE id = ?"
-  meta.exec_sql(sql, [machine_id])
-  return
-
-
 machineAPIs = {
   'list-sizes': list_sizes,
   'launch': launch,
@@ -460,11 +444,7 @@ machineAPIs = {
   'stop': stop,
   'start': start,
   'reboot': reboot,
-  'create': create,
-  'insert': insert,
-  'read': read,
-  'update': update,
-  'delete': delete
+  'create': create
 }
 
 if __name__ == '__main__':

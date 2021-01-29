@@ -54,23 +54,10 @@ CREATE TABLE volumes (
 DROP TABLE IF EXISTS nodes;
 CREATE TABLE nodes (
   machine_id     TEXT     NOT NULL PRIMARY KEY,
-  cluster_name   TEXT     NOT NULL REFERENCES clusters(name),
-  current_role   TEXT,
-  components     TEXT,
-  info           TEXT,
-  created_utc    DATETIME NOT NULL,
-  updated_utc    DATETIME NOT NULL
-);
-
-
-DROP TABLE IF EXISTS machines;
-CREATE TABLE machines (
-  id             TEXT     NOT NULL PRIMARY KEY,
-  name           TEXT     NOT NULL,
-  cloud          TEXT     NOT NULL REFERENCES cloud(name),
-  key_name       TEXT     REFERENCES key(name),
+  cloud          TEXT     NOT NULL REFERENCES clouds(name),
+  cluster_name   TEXT     REFERENCES clusters(name),
   describe       TEXT,
-  tags           TEXT,
+  info           TEXT,
   created_utc    DATETIME NOT NULL,
   updated_utc    DATETIME NOT NULL
 );
