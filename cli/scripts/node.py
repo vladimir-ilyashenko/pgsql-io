@@ -48,7 +48,6 @@ def install_io(cloud_name, machine_id):
 
   cmd = 'python3 -c "$(curl -fsSL ' + repo + '/install.py)"'
 
-  #shell_cmd(cloud_name, machine_id, "sudo useradd pgsql; cd /opt; sudo " + cmd + "; sudo chown pgsql:pgsql /opt/pgsql -R")
   shell_cmd(cloud_name, machine_id, cmd)
 
   return
@@ -66,14 +65,13 @@ def create(cloud_name, machine_id, cluster_name=None):
   describe = machine.describe(cloud_name, machine_id, False)
   if describe == None:
     util.message("machine not found", "error")
-    return(False)
+    return
 
-  #info = install_io(cloud_name, machine_id)
-  #print ("DEBUG: info = " + str(info))
+  info = install_io(cloud_name, machine_id)
 
   upsert(cloud_name, machine_id, cluster_name, describe)
 
-  return(True)
+  return
 
 
 def read(cloud_name, machine_id, cluster_name=None):
@@ -125,7 +123,7 @@ def upsert(cloud_name, machine_id, cluster_name, describe):
 
 def delete(machine_id):
   sql = "DELETE FROM nodes WHERE machine_id = ?"
-  meta.exec_sql(sql, [node_id])
+  meta.exec_sql(sql, [machine_id])
   return
 
 

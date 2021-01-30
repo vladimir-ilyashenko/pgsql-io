@@ -27,7 +27,6 @@ def action(cloud_name, machine_ids, action):
         if action == "destroy":
           ret = n.destroy()
           node.delete(n.id)
-          delete(n.id)
         elif action == "start":
           ret = driver.ex_start_node(n)
         elif action == "stop":
@@ -39,13 +38,13 @@ def action(cloud_name, machine_ids, action):
 
     if kount == 0:
       util.message("Node not found", "error")
-      return(False)
+      return
 
   except Exception as e:
     util.message(str(e), "error")
-    return(False)
+    return
 
-  return(True)
+  return
 
 
 def destroy(cloud, machine_ids):
