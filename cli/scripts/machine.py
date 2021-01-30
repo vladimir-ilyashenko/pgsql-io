@@ -160,14 +160,14 @@ def waitfor(cloud_name, machine_id, new_state, interval=5, max_tries=12):
       = get_describe_data(provider, machine_id, region, cloud_keys)
 
     if (state == new_state) or (state == "active"):
-      util.message(new_state, "info")
+      util.message("  " + new_state, "info")
       return(new_state)
 
     if state == "error":
       util.message(state, "error")
       return("error")
 
-    util.message(state, "info")
+    util.message("  " + state, "info")
     kount = kount + 1
     time.sleep(interval)
 
@@ -388,12 +388,7 @@ def create(cloud_name, machine_name, size, key_name=None, cluster_name=None,\
   if machine_id == None:
     return
 
-  describe(cloud_name, machine_id)
-
-  if cluster_name == None:
-    pass
-  else:
-    node.create(cloud_name, cluster_name, machine_id)
+  node.create(cloud_name, machine_id, cluster_name)
 
   return
 

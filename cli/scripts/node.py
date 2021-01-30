@@ -66,13 +66,16 @@ def io_cmd(cloud_name, machine_id, cmd):
 
 def create(cloud_name, machine_id, cluster_name=None):
 
+  util.message("creating node for " + str(machine_id), "info")
   describe = machine.describe(cloud_name, machine_id, False)
   if describe == None:
     util.message("machine not found", "error")
     return
 
+  util.message("update node metadata", "info")
   upsert(cloud_name, machine_id, cluster_name, describe)
 
+  util.message("installing io...", "info")
   info = install_io(cloud_name, machine_id)
 
   return
