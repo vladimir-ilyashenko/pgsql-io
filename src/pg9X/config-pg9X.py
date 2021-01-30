@@ -1,7 +1,7 @@
 from __future__ import print_function, division
  
 ####################################################################
-######          Copyright (c)  2015-2020 PGSQL.IO         ##########
+######          Copyright (c)  2020-2021 PGSQL.IO         ##########
 ####################################################################
 
 import argparse, sys, os, tempfile, json, subprocess, getpass

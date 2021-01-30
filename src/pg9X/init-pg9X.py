@@ -1,7 +1,7 @@
 from __future__ import print_function, division
  
 ####################################################################
-######          Copyright (c)  2015-2020 PGSQL.IO         ##########
+######          Copyright (c)  2020-2021 PGSQL.IO         ##########
 ####################################################################
 
 import argparse, util, os, sys, shutil, subprocess, getpass, json
@@ -77,7 +77,6 @@ else:
 if not os.path.isdir(pg_data):
   os.mkdir(pg_data)
 
-
 ## SVCUSER ###########################################
 svcuser = ""
 curr_user = ""
@@ -86,11 +85,6 @@ svcuser = args.svcuser
 if util.is_admin() :
   if svcuser == "":
     svcuser="postgres"
-else:
-  if svcuser > "":
-    fatal_error("ERROR: --svcuser cannot be specified if not root")
-  svcuser = util.get_user()
-  curr_user = svcuser
 
 ## PASSWD #############################################
 is_password=False
@@ -190,8 +184,6 @@ util.write_pgenv_file(pg_home, pgver, pg_data, 'postgres', 'postgres', str(i_por
 if is_password:
   src_dir = pg_home + os.sep + "init" + os.sep
   shutil.copy(src_dir + "pg_hba.conf", pg_data)
-
-if is_password:
   os.remove(pgpass_file)
 
 if isJson:
@@ -204,15 +196,13 @@ if update_install_date:
 
 if util.is_admin():
   systemsvc = 'postgresql' + pgver[2:4]
-  start_lvl = '85'
-  kill_lvl  = '15'
   pg_ctl = os.path.join(MY_HOME, pgver, 'bin', 'pg_ctl')
   cmd_start  = pg_ctl + ' start  -D ' + pg_data + ' -s -w -t 300'
   cmd_stop   = pg_ctl + ' stop   -D ' + pg_data + ' -s -m fast'
   cmd_reload = pg_ctl + ' reload -D ' + pg_data + ' -s'
   cmd_status = pg_ctl + ' status -D ' + pg_data
   cmd_log = '-l ' + pg_data + '/pgstartup.log'
-  startup.config_linux(pgver, systemsvc, start_lvl, kill_lvl, svcuser,
-                         cmd_start, cmd_log, cmd_stop, cmd_reload, cmd_status)
+  startup.config_linux(pgver, systemsvc, svcuser,
+    cmd_start, cmd_log, cmd_stop, cmd_reload, cmd_status)
   util.set_column('svcname', pgver, systemsvc)
   util.set_column('autostart', pgver, 'on')
