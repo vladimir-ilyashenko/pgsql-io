@@ -13,9 +13,13 @@ from libcloud.compute.providers import get_driver
 def shell_cmd(cloud_name, machine_id, cmd):
   from pssh.clients import ParallelSSHClient
 
-  util.message("# " + str(cmd))
+  ##util.message("# " + str(cmd), "info")
 
   aa, bb, cc, describe, ff, gg = read(cloud_name, machine_id)
+  if describe == None:
+    util.message("Node " + str(machine_id) + " not found", "error")
+    return
+
   key_name = describe['key_name']
   host = describe['public_ip']
   hosts = host.split()
@@ -67,9 +71,9 @@ def create(cloud_name, machine_id, cluster_name=None):
     util.message("machine not found", "error")
     return
 
-  info = install_io(cloud_name, machine_id)
-
   upsert(cloud_name, machine_id, cluster_name, describe)
+
+  info = install_io(cloud_name, machine_id)
 
   return
 
@@ -89,7 +93,6 @@ def read(cloud_name, machine_id, cluster_name=None):
   
   data =  meta.exec_sql_list(sql)
   if data == [] or data == None:
-    util.message("node not found", "error")
     return(None, None, None, None, None, None)
 
   for d in data:
