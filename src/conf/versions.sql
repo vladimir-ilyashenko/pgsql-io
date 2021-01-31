@@ -359,9 +359,9 @@ INSERT INTO versions VALUES ('cassandrafdw-pg12', '3.1.5-1', 'amd', 0, '20191230
 
 INSERT INTO projects VALUES ('mongodb', 10, 27017, 'hub', 0, 'https://github.com/mongodb/mongo/releases', 
   'mongodb', 0, 'mongodb.png', 'Distributed Document Database', 'https://mongodb.org');
-INSERT INTO releases VALUES ('mongodb', 4, 'mongodb', 'MongoDB', '', 'soon', '', 1, 'AGPLv3',
+INSERT INTO releases VALUES ('mongodb', 4, 'mongodb', 'MongoDB', '', 'prod', '', 1, 'AGPLv3',
   'mongod --version', 'mongod --version | head -1 | awk ''{print $3}'' | sed s/v//g');
-INSERT INTO versions VALUES ('mongodb', '4.4.3', '', 0, '20201221', '', 'EL8 AMD64', '');
+INSERT INTO versions VALUES ('mongodb', '4.4.3', '', 2, '20201221', '', 'EL8 AMD64', '');
 INSERT INTO versions VALUES ('mongodb', '4.4.2', '', 0, '20201116', '', 'EL8 AMD64', '');
 INSERT INTO versions VALUES ('mongodb', '4.4.1', '', 0, '20200909', '', 'EL8 AMD64', '');
 
@@ -393,7 +393,7 @@ INSERT INTO versions VALUES ('hivefdw-pg13', '4.0-1', 'amd', 1, '20200927', 'pg1
 INSERT INTO projects VALUES ('mariadb', 10, 3306, 'hub', 0, 'https://mariadb.org/downloads', 
   'mariadb', 0, 'mariadb.png', 'The MySQL Succesor', 'https://mariadb.org');
 INSERT INTO releases VALUES ('mariadb', 1, 'mariadb', 'MySQL (MariaDB)', '', 'prod',  '', 1, 'GPLv2', '', '');
-INSERT INTO versions VALUES ('mariadb', '10.5.8', '', 0, '20201111', '', 'EL8 AMD64', '');
+INSERT INTO versions VALUES ('mariadb', '10.5.8', '', 2, '20201111', '', 'EL8 AMD64', '');
 
 INSERT INTO projects VALUES ('mysqlfdw', 5, 0, 'hub', 0, 'https://github.com/EnterpriseDB/mysql_fdw/releases', 
   'mysqlfdw', 1, 'mysql.png', 'Access MySQL, Percona & MariaDB', 'https://github.com/EnterpriseDb/mysql_fdw');
@@ -403,12 +403,12 @@ INSERT INTO versions VALUES ('mysqlfdw-pg13', '2.5.4-1', 'amd', 0, '20200802', '
 
 INSERT INTO projects VALUES ('sqlsvr', 10, 1433, 'hub', 0, 'https://www.microsoft.com/en-us/sql-server/sql-server-2019',
   'sqlsvr', 0, 'sqlsvr.png', 'SQL Server 2019 for Linux', 'https://www.microsoft.com/en-us/sql-server/sql-server-2019');
-INSERT INTO releases VALUES ('sqlsvr', 3, 'sqlsvr', 'SQL Server for Linux', '', 'proprietary',  '', 0, 'MICROSOFT', '', '');
-INSERT INTO versions VALUES ('sqlsvr', '2019-1', 'amd', 0, '20200801', '', 'EL8 AMD64', '');
+INSERT INTO releases VALUES ('sqlsvr', 3, 'sqlsvr', 'SQL Server for Linux', '', 'prod',  '', 0, 'MICROSOFT', '', '');
+INSERT INTO versions VALUES ('sqlsvr', '2019-1', 'amd', 2, '20200801', '', 'EL8 AMD64', '');
 
 INSERT INTO projects VALUES ('sybase', 11, 0, 'hub', 0, 'https://sap.com/products/sybase-ase.html', 
   'sybase', 0, 'sybase.png', 'Sybase ASE', 'https://sap.com/products/sybase-ase.html');
-INSERT INTO releases VALUES ('sybase', 21, 'sybase', 'SAP Sybase ASE', '', 'soon',  '', 0, 'SAP', '', '');
+INSERT INTO releases VALUES ('sybase', 21, 'sybase', 'SAP Sybase ASE', '', 'prod',  '', 0, 'SAP', '', '');
 INSERT INTO versions VALUES ('sybase', '2019', 'amd', 0, '20191010', '', '', '');
 
 INSERT INTO projects VALUES ('tdsfdw', 5, 0, 'hub', 0, 'https://github.com/tds-fdw/tds_fdw/releases',
@@ -440,18 +440,18 @@ INSERT INTO versions VALUES ('zookeeper', '3.6.2', '',  0, '20200909', '', 'OPEN
 
 INSERT INTO projects VALUES ('prestosql', 10, 1515, 'hub', 1, 'https://github.com/prestosql/presto/releases',
   'prestosql', 0, 'presto.png', 'Distributed SQL Query Engine', 'https://github.com/prestosql/presto');
-INSERT INTO releases VALUES ('prestosql', 13, 'prestosql', 'PrestoSQL (Trino)', '', 'soon', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('prestosql', '351', '',  0, '20210103', '', 'OPENJDK11', '');
+INSERT INTO releases VALUES ('prestosql', 13, 'prestosql', 'PrestoSQL (Trino)', '', 'prod', '', 1, 'Apache', '', '');
+INSERT INTO versions VALUES ('prestosql', '351', '',  2, '20210103', '', 'OPENJDK11', '');
 INSERT INTO versions VALUES ('prestosql', '350', '',  0, '20201229', '', 'OPENJDK11', '');
 INSERT INTO versions VALUES ('prestosql', '347', '',  0, '20201126', '', 'EL7 OPENJDK11', '');
 INSERT INTO versions VALUES ('prestosql', '346', '',  0, '20201110', '', 'EL7 OPENJDK11', '');
 
 INSERT INTO projects VALUES ('elasticsearch', 10, 9200, 'hub', 1, 'https://www.elastic.co/downloads/elasticsearch',
   'elasticsearch', 0, 'elastic-search.png', 'ElasticSearch', 'https://github.com/elastic/elasticsearch#elasticsearch');
-INSERT INTO releases VALUES ('elasticsearch', 5, 'elasticsearch', 'ElasticSearch', '', 'soon', '', 1, 'Apache', 
+INSERT INTO releases VALUES ('elasticsearch', 5, 'elasticsearch', 'ElasticSearch', '', 'prod', '', 1, 'Apache', 
   'curl -sXGET ''http://127.0.0.1:9200/?pretty'' | grep number',
   'curl -sXGET ''http://127.0.0.1:9200/?pretty'' | grep number | awk ''{print $3}'' | sed s/\"//g | sed s/,//g');
-INSERT INTO versions VALUES ('elasticsearch', '7.10.1', '',  0, '20201209', '', 'EL8 OPENJDK11', '');
+INSERT INTO versions VALUES ('elasticsearch', '7.10.1', '',  2, '20201209', '', 'EL8 OPENJDK11', '');
 INSERT INTO versions VALUES ('elasticsearch', '7.10.0', '',  0, '20201111', '', 'EL8 OPENJDK11', '');
 
 INSERT INTO projects VALUES ('kibana', 9, 5601, 'elasticsearch', 1, 'https://www.elastic.co/downloads/kibana',
@@ -507,8 +507,8 @@ INSERT INTO versions VALUES ('oraclefdw-pg13','2.3.0-1', 'amd', 1, '20200924', '
 
 INSERT INTO projects VALUES ('oracle', 10, 1521, 'hub', 0, 'https://www.oracle.com/downloads/licenses/database-11g-express-license.html', 
   'oracle', 0, 'oracle.png', 'Oracle 19c', 'https://www.oracle.com/downloads/licenses/database-11g-express-license.html');
-INSERT INTO releases VALUES ('oracle', 2, 'oracle', 'Oracle', '', 'proprietary','', 0, 'ORACLE', '', '');
-INSERT INTO versions VALUES ('oracle', '19c', 'amd', 0, '20200801', '', '', '');
+INSERT INTO releases VALUES ('oracle', 2, 'oracle', 'Oracle', '', 'prod','', 0, 'ORACLE', '', '');
+INSERT INTO versions VALUES ('oracle', '19c', 'amd', 2, '20200801', '', '', '');
 
 -- ##
 INSERT INTO projects VALUES ('orafce', 5, 0, 'hub', 0, 'https://github.com/orafce/orafce/releases',

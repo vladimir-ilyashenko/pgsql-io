@@ -1,6 +1,6 @@
 import sqlite3, sys, openrds
 
-NUM_COLS = 4
+NUM_COLS = 3
 
 #ALL_PLATFORMS = "arm, amd"
 ALL_PLATFORMS = "amd"
@@ -10,7 +10,7 @@ isSHOW_DESCRIPTION = "Y"
 HEADING_SIZE = "+1"
 
 BR = "<br>"
-WIDTH = 1200
+WIDTH = 900
 COL_SIZE = 600
 FONT_SIZE = 3
 IMG_SIZE = 35
@@ -195,7 +195,8 @@ sql = "SELECT cat, cat_desc, image_file, component, project, release_name, \n" +
       "       stage, proj_desc, rel_desc, pre_reqs, license, cat_sort, \n" + \
       "       rel_sort, release_notes \n" + \
       "  FROM v_versions v, services s \n" + \
-      " WHERE v.project = s.service AND cat > 0 \n" + \
+      " WHERE v.project = s.service \n" + \
+      "   AND is_current >= 1 AND component NOT IN ('pg10') \n" + \
       "ORDER BY 17, 18"
 
 c.execute(sql)
