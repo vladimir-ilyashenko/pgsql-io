@@ -38,27 +38,28 @@ INSERT INTO service_types VALUES ('int',         'int', 'Integration',      5);
 
 
 CREATE TABLE services (
-  service        TEXT NOT NULL PRIMARY KEY,
+  service        TEXT NOT NULL PRIMARY KEY REFERENCES projects(projects),
   svc_type       TEXT NOT NULL REFERENCES service_types(svc_type),
-  status         TEXT NOT NULL,
-  disp_name      TEXT NOT NULL,
   sort_order     SMALLINT NOT NULL
 );
-INSERT INTO services VALUES ('postgres',  'sql',   'prod', 'PostgreSQL',         1);
-INSERT INTO services VALUES ('mysql',     'sql',   'test', 'MySQL (Mariadb)',    2);
-INSERT INTO services VALUES ('sqlsvr',    'sql',   'test', 'MS SQL Server',      3);
-INSERT INTO services VALUES ('oracle',    'sql',   'test', 'Oracle Database',    4);
-INSERT INTO services VALUES ('mongo',     'nosql', 'plan', 'MongoDB',            8);
-INSERT INTO services VALUES ('es',        'big',   'plan', 'Elastic Search',    12);
-INSERT INTO services VALUES ('presto',    'big',   'plan', 'PrestoSQL (Trino)', 13);
+INSERT INTO services VALUES ('pg',            'sql',   1);
+INSERT INTO services VALUES ('mariadb',       'sql',   2);
+INSERT INTO services VALUES ('sqlsvr',        'sql',   3);
+INSERT INTO services VALUES ('oracle',        'sql',   4);
+INSERT INTO services VALUES ('mongodb',       'sql',   5);
+INSERT INTO services VALUES ('elasticsearch', 'big',   6);
+INSERT INTO services VALUES ('prestosql',     'big',   7);
 
 CREATE VIEW v_services AS
-  SELECT t.sort_order as sort1, s.sort_order as sort2, t.svc_group, t.svc_type, 
-         t.disp_name as svc_type_name, s.service, s.disp_name as svc_disp_name,
-         s.status
-    FROM service_types t, services s
-  WHERE t.svc_type = s.svc_type
+  SELECT t.sort_order as sort1, s.sort_order as sort2, t.svc_group, 
+         t.svc_type, t.disp_name as svc_type_name,
+         s.service, s.svc_type, s.sort_order, p.sources_url, p.short_name,
+         p.image_file, p.description, p.project_url 
+    FROM service_types t, services s, projects p 
+   WHERE t.svc_type = s.svc_type
+     AND s.service = p.project
 ORDER BY 1, 2;
+
 
 CREATE TABLE provider_types (
   provider_type  TEXT NOT NULL PRIMARY KEY,
