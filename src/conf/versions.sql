@@ -402,7 +402,7 @@ INSERT INTO versions VALUES ('mysqlfdw-pg13', '2.5.5-1', 'amd', 1, '20201021', '
 INSERT INTO versions VALUES ('mysqlfdw-pg13', '2.5.4-1', 'amd', 0, '20200802', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('sqlsvr', 10, 1433, 'hub', 0, 'https://www.microsoft.com/en-us/sql-server/sql-server-2019',
-  'sqlsvr', 0, 'sqlsvr.png', 'SQL Server 2019 for Linux', 'https://www.microsoft.com/en-us/sql-server/sql-server-2019');
+  'sqlsvr', 0, 'sqlsvr.png', 'SQL Server for Linux', 'https://www.microsoft.com/en-us/sql-server/sql-server-2019');
 INSERT INTO releases VALUES ('sqlsvr', 3, 'sqlsvr', 'SQL Server for Linux', '', 'prod',  '', 0, 'MICROSOFT', '', '');
 INSERT INTO versions VALUES ('sqlsvr', '2019-1', 'amd', 2, '20200801', '', 'EL8 AMD64', '');
 
@@ -506,7 +506,7 @@ INSERT INTO releases VALUES ('oraclefdw-pg13', 2, 'oraclefdw', 'Oracle FDW', '',
 INSERT INTO versions VALUES ('oraclefdw-pg13','2.3.0-1', 'amd', 1, '20200924', 'pg13', '', 'https://github.com/laurenz/oracle_fdw/releases/tag/ORACLE_FDW_2_3_0');
 
 INSERT INTO projects VALUES ('oracle', 10, 1521, 'hub', 0, 'https://www.oracle.com/downloads/licenses/database-11g-express-license.html', 
-  'oracle', 0, 'oracle.png', 'Oracle 19c', 'https://www.oracle.com/downloads/licenses/database-11g-express-license.html');
+  'oracle', 0, 'oracle.png', 'Oracle Database', 'https://www.oracle.com/downloads/licenses/database-11g-express-license.html');
 INSERT INTO releases VALUES ('oracle', 2, 'oracle', 'Oracle', '', 'prod','', 0, 'ORACLE', '', '');
 INSERT INTO versions VALUES ('oracle', '19c', 'amd', 2, '20200801', '', '', '');
 
