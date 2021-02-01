@@ -1,18 +1,129 @@
+<!DOCTYPE html>
+<html>
 
-<form action="/my-handling-form-page" method="post">
- <ul>
-  <li>
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="user_name">
-  </li>
-  <li>
-    <label for="mail">E-mail:</label>
-    <input type="email" id="mail" name="user_email">
-  </li>
-  <li>
-    <label for="msg">Message:</label>
-    <textarea id="msg" name="user_message"></textarea>
-  </li>
- </ul>
+<head>
+    <meta charset="utf-8">
+    <title>OpenRDS: Robust Data Services</title>
+    <link href="payment-form.css" rel="stylesheet">
+<style>
+form {
+  /* Center the form on the page */
+  margin: 0 auto;
+  width: 500px;
+  /* Form outline */
+  padding: 1em;
+  border: 1px solid #CCC;
+  border-radius: 1em;
+}
+
+input:focus,
+textarea:focus {
+  /* Additional highlight for focused elements */
+  border-color: #000;
+}
+
+
+button {
+  /* This extra margin represent roughly the same space as the space
+     between the labels and their text fields */
+  margin-left: .5em;
+}
+</style>
+</head>
+
+<h1>OpenRDS: Robust Data Services</h1>
+
+<h2>Register for your free 60 day trial</h2>
+
+<body>
+<form method="post">
+<section>
+
+  <fieldset>
+    <legend>RDBMS <font size=-1>(your core enterprise data)</font></legend><p>
+       <table width=500><tr>
+         <td><label for="ds1"><input type="radio" id="ds1" name="title" value="postgres">Postgres</label></td>
+         <td><label for="ds2"> <input type="radio" id="ds2" name="title" value="mysql">MySQL</label></td>
+         <td><label for="ds3"> <input type="radio" id="ds3" name="title" value="oracle">Oracle</label></td>
+         <td><label for="ds4"> <input type="radio" id="ds4" name="title" value="sql server">SQL Svr</label></td>
+       </tr></table>
+       <p>
+  </fieldset>
+
+  <p>
+  <fieldset>
+  <legend>SIZE <font size=-1> (easy to change whenever needed) </font></legend>
+   <table width=500><tr>
+    <td><label for="ds1"><input type="radio" id="ds1" name="sz" value="m">M</label></td>
+    <td><label for="ds1"><input type="radio" id="ds1" name="sz" value="l">L</label></td>
+    <td><label for="ds1"><input type="radio" id="ds1" name="sz" value="xl">XL</label></td>
+    <td><label for="ds1"><input type="radio" id="ds1" name="sz" value="2xl">2XL</label></td>
+    <td><label for="ds1"><input type="radio" id="ds1" name="sz" value="4xl">4XL</label></td>
+    <td><label for="ds1"><input type="radio" id="ds1" name="sz" value="8xl">8XL</label></td>
+    <td><label for="ds1"><input type="radio" id="ds1" name="sz" value="12xl">12XL</label></td>
+    <td><label for="ds1"><input type="radio" id="ds1" name="sz" value="16xl">16XL</label></td>
+   </tr></table>
+  </fieldset>
+
+  <p>
+  <fieldset>
+  <legend>DATA LOCATIONS <font size=-1> (always secure & available) </font></legend>
+    hello fields
+  </fieldset>
+
+  <p>
+  <fieldset>
+  <legend>CONTACT <font size=-1>(no spam or selling your info)</font></legend><p>
+
+              <label for="mail">
+                <span>E-mail: </span>
+                <strong><abbr title="required">*</abbr></strong>
+              </label>
+              <input type="email" id="mail" name="usermail">
+              <label for="pwd">
+                <span>Password: </span>
+                <strong><abbr title="required">*</abbr></strong>
+              </label>
+              <input type="password" id="pwd" name="password">
+            </p>
+  </fieldset>
+
+  <br>
+  <fieldset>
+  <legend>PAYMENT AUTHORIZATION <font size=-1>(you will never be charged unless you ask)</font></legend>
+    <table><tr>
+              <label for="card">
+                <span>Card:</span>
+              </label>
+              <select id="card" name="usercard">
+                <option value="visa">Visa</option>
+                <option value="mc">Mastercard</option>
+                <option value="amex">American Express</option>
+              </select>
+            &nbsp;&nbsp;
+              <label for="number">
+                <span>Num:</span>
+                <strong><abbr title="required">*</abbr></strong>
+              </label>
+                <input type="tel" id="number" name="cardnumber" size=15 maxlength=15>
+            &nbsp;&nbsp;
+              <label for="date">
+                <span>Exp:</span>
+                <strong><abbr title="required">*</abbr></strong>
+              </label>
+              <input type="date" id="date" name="expiration" size=5 maxlength=5>
+    </tr></table>
+  </fieldset>
+
+  <section>
+    <p>
+    <center><button type="submit"><b><font size=+1>Get Started Now!</font></b></button></center>
+  </section>
+
+</section>
 </form>
+
+</body>
+
+</html>
 
