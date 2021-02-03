@@ -47,7 +47,39 @@ def action(cloud_name, machine_ids, action):
   return
 
 
-def destroy(cloud, machine_ids):
+def get_machine_ids(cloud_name, machine_name):
+  util.message("getting machine id's for " + str(machine_name))
+
+  try:
+    driver = cloud.get_cloud_driver(cloud_name)
+    if driver == None:
+      return
+
+    machine_ids = ""
+    kount = 0
+    nds = driver.list_nodes()
+    for n in nds:
+      if n.name in machine_name:
+        if machine_ids == "":
+          machine_ids = str(n.id)
+        else:
+          machine_ids = machine_ids + ", " + str(n.id)
+  except:
+    util.message("error thrown in get_machine_ids()", "error")
+    return(None)
+  
+  util.message('machine_ids = "' + str(machine_ids) + '"', 'info')
+  return(machine_ids)
+
+
+def destroy(cloud, machine_ids=None, name=None):
+  if machine_ids == None and name == None:
+    util.message("machines_ids or name required", "error")
+    return
+
+  if machine_ids == None:
+    machine_ids = get_machine_ids(name)
+
   return(action(cloud, machine_ids, "destroy"))
 
 
