@@ -15,7 +15,7 @@ def shell_cmd(cloud_name, machine_id, cmd):
 
   ##util.message("# " + str(cmd), "info")
 
-  aa, bb, cc, describe, ff, gg = read(cloud_name, machine_id)
+  aa, bb, cc, dd, describe, ff, gg = read(cloud_name, machine_id)
   if describe == None:
     util.message("Node " + str(machine_id) + " not found", "error")
     return
