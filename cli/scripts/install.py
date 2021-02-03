@@ -33,7 +33,7 @@ my_file="pgsql-io-" + VER + ".tar.bz2"
 f = REPO + "/" + my_file
 
 if not os.path.exists(my_file):
-  print("\nDownloading CLI " + VER + " ...")
+  print("Downloading CLI " + VER + " ...")
   try:
     fu = urllib2.urlopen(f)
     local_file = open(my_file, "wb")
@@ -43,22 +43,20 @@ if not os.path.exists(my_file):
     print("ERROR: Unable to download " + f + "\n" + str(e))
     sys.exit(1)
 
-print("\nUnpacking ...")
+print("Unpacking ...")
 try:
   tar = tarfile.open(my_file)
   tar.extractall(path=".")
-  print("\nCleaning up")
   tar.close()
   os.remove(my_file)
 except Exception as e:
   print("ERROR: Unable to unpack \n" + str(e))
   sys.exit(1)
 
-print("\nSetting REPO to " + REPO)
 cmd = "pgsql" + os.sep + "io"
 os.system(cmd + " set GLOBAL REPO " + REPO)
 
-print("\nPGSQL installed.  Try '" + cmd + " help' to get started.\n")
+print("PGSQL installed.\n")
 
 sys.exit(0)
 
