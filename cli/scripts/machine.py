@@ -72,15 +72,15 @@ def get_machine_ids(cloud_name, machine_name):
   return(machine_ids)
 
 
-def destroy(cloud, machine_ids=None, name=None):
-  if machine_ids == None and name == None:
-    util.message("machines_ids or name required", "error")
+def destroy(cloud_name, machine_ids=None, machine_name=None):
+  if machine_ids == None and machine_name == None:
+    util.message("machines_ids or machine_name required", "error")
     return
 
   if machine_ids == None:
-    machine_ids = get_machine_ids(name)
+    machine_ids = get_machine_ids(cloud_name, machine_name)
 
-  return(action(cloud, machine_ids, "destroy"))
+  return(action(cloud_name, machine_ids, "destroy"))
 
 
 def start(cloud, machine_ids):
