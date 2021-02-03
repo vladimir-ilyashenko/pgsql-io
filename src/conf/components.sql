@@ -55,8 +55,11 @@ DROP TABLE IF EXISTS nodes;
 CREATE TABLE nodes (
   machine_id     TEXT     NOT NULL PRIMARY KEY,
   cloud          TEXT     NOT NULL REFERENCES clouds(name),
+  service        TEXT     REFERENCES services(service),
   cluster_name   TEXT     REFERENCES clusters(name),
   describe       TEXT,
+  os_info        TEXT,
+  components     TEXT,
   created_utc    DATETIME NOT NULL,
   updated_utc    DATETIME NOT NULL
 );

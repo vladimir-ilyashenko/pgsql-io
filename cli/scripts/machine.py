@@ -20,8 +20,8 @@ def action(cloud_name, machine_ids, action):
       return
 
     kount = 0
-    nodes = driver.list_nodes()
-    for n in nodes:
+    nds = driver.list_nodes()
+    for n in nds:
       if n.id in machine_ids:
         kount = kount + 1
         if action == "destroy":
@@ -93,7 +93,7 @@ def get_image(driver, cloud_name, platform='amd'):
   return(None, None)
 
 
-def launch(cloud_name, name, size, key=None, location=None, security_group=None, \
+def launch(cloud_name, size, name=None, key=None, location=None, security_group=None, \
            network=None, data_gb=None, wait_for=True):
 
   provider, xxx, region, default_ssh_key, cloud_keys = cloud.read(cloud_name, True)
@@ -101,7 +101,12 @@ def launch(cloud_name, name, size, key=None, location=None, security_group=None,
   if key == None:
     key = default_ssh_key
 
-  util.message("launching - " + str(cloud_name) + ", " + str(name) + ", " + \
+  if name == None:
+    machine_name = "?"
+  else:
+    machine_name = name 
+
+  util.message("launching - " + str(cloud_name) + ", " + \
     str(size) + ", " + str(key))
   try:                                                                             
     driver = cloud.get_cloud_driver(cloud_name)
@@ -125,10 +130,10 @@ def launch(cloud_name, name, size, key=None, location=None, security_group=None,
 
     util.message("creating machine on " + str(provider), "info")
     if provider == 'aws':
-      node = driver.create_node (name=name, size=sz, image=im, ex_keyname=key, \
+      nd = driver.create_node (name=machine_name, size=sz, image=im, ex_keyname=key, \
         ex_security_groups=["default"])
     else:
-      node = driver.create_node (name=name, size=sz, image=im, ex_keyname=key, \
+      nd = driver.create_node (name=machine_name, size=sz, image=im, ex_keyname=key, \
         ex_config_drive=True, ex_security_groups=driver.ex_list_security_groups(), \
         networks=driver.ex_list_networks())                                                    
     
@@ -136,7 +141,7 @@ def launch(cloud_name, name, size, key=None, location=None, security_group=None,
     util.message(str(e), "error")
     return(None)
 
-  machine_id = node.id
+  machine_id = nd.id
   util.message("machine_id - " + str(machine_id), "info")
 
   if wait_for == True:
@@ -286,7 +291,7 @@ def list(cloud_name):
     return
   
   try:                                                                             
-    nodes = driver.list_nodes()
+    nds = driver.list_nodes()
   except Exception as e:
     util.message(str(e), 'error')
     return
@@ -296,26 +301,26 @@ def list(cloud_name):
                                                                                    
   jsonList = []                                                                    
                                                                                    
-  for node in nodes:
-    nodeDict = {}
-    nodeDict['id'] = str(node.id)
-    nodeDict['name'] = str(node.name)
-    nodeDict['state'] = str(node.state)
+  for nd in nds:
+    ndDict = {}
+    ndDict['id'] = str(nd.id)
+    ndDict['name'] = str(nd.name)
+    ndDict['state'] = str(nd.state)
 
-    if len(node.public_ips) >= 1:
-      nodeDict['public_ip'] = str(node.public_ips[0])
+    if len(nd.public_ips) >= 1:
+      ndDict['public_ip'] = str(nd.public_ips[0])
     else:
-      nodeDict['public_ip'] = ""
+      ndDict['public_ip'] = ""
 
-    if len(node.private_ips) >= 1:
-      nodeDict['private_ip'] = str(node.private_ips[0])
+    if len(nd.private_ips) >= 1:
+      ndDict['private_ip'] = str(nd.private_ips[0])
     else:
-      if len(node.public_ips) >= 1:
-        nodeDict['private_ip'] = str(node.public_ips[0])
+      if len(nd.public_ips) >= 1:
+        ndDict['private_ip'] = str(nd.public_ips[0])
       else:
-        nodeDict['private_ip'] = ""
+        ndDict['private_ip'] = ""
 
-    jsonList.append(nodeDict)
+    jsonList.append(ndDict)
                                                                                    
   if os.getenv("isJson", None):                                                    
     print(json.dumps(jsonList, sort_keys=True, indent=2))                          
@@ -380,15 +385,15 @@ def list_sizes(cloud_name):
   return
 
 
-def create(cloud_name, machine_name, size, key_name=None, cluster_name=None,\
+def create(cloud_name, size, machine_name=None, key_name=None,\
            location=None, security_group=None, network=None, data_gb=None):
 
-  machine_id = launch(cloud_name, machine_name, size, key_name, \
+  machine_id = launch(cloud_name, size, machine_name, key_name, \
     location=None, security_group=None, network=None, data_gb=None)
   if machine_id == None:
     return
 
-  node.create(cloud_name, machine_id, cluster_name)
+  node.create(cloud_name, machine_id)
 
   return
 

@@ -64,7 +64,7 @@ def io_cmd(cloud_name, machine_id, cmd):
   return(result_json)
 
 
-def create(cloud_name, machine_id, cluster_name=None):
+def create(cloud_name, machine_id):
 
   util.message("creating node for " + str(machine_id), "info")
   describe = machine.describe(cloud_name, machine_id, False)
@@ -73,7 +73,7 @@ def create(cloud_name, machine_id, cluster_name=None):
     return
 
   util.message("update node metadata", "info")
-  upsert(cloud_name, machine_id, cluster_name, describe)
+  upsert(cloud_name, machine_id, describe)
 
   util.message("installing io...", "info")
   info = install_io(cloud_name, machine_id)
@@ -90,23 +90,22 @@ def read(cloud_name, machine_id, cluster_name=None):
   if machine_id:
       where = where + " AND machine_id = '" + str(machine_id) + "'"
 
-  sql = "SELECT cloud, machine_id, cluster_name, \n" + \
+  sql = "SELECT cloud, machine_id, service, cluster_name, \n" + \
           "     describe, created_utc, updated_utc \n" + \
           "  FROM nodes WHERE " + where + " ORDER BY 1, 2"
   
   data =  meta.exec_sql_list(sql)
   if data == [] or data == None:
-    return(None, None, None, None, None, None)
+    return(None, None, None, None, None, None, None)
 
   for d in data:
-    describe = eval(str(d[3]))
-
-    return(str(d[0]), str(d[1]), str(d[2]), describe, str(d[4]), str(d[5]))
+    describe = eval(str(d[4]))
+    return(str(d[0]), str(d[1]), str(d[2]), str(d[3]), describe, str(d[5]), str(d[6]))
 
   return
 
 
-def upsert(cloud_name, machine_id, cluster_name, describe):
+def upsert(cloud_name, machine_id, describe):
 
   sql = "SELECT count(*) FROM nodes WHERE machine_id = ?"
   data = meta.exec_sql(sql, [machine_id])
@@ -114,15 +113,15 @@ def upsert(cloud_name, machine_id, cluster_name, describe):
 
   now = util.sysdate()
   if kount == 0:
-    sql = "INSERT INTO nodes (cloud, machine_id, cluster_name, \n" + \
+    sql = "INSERT INTO nodes (cloud, machine_id, \n" + \
           "  describe, created_utc, updated_utc) \n" + \
-          "VAlUES (?,?,?,?,?,?)"
-    meta.exec_sql(sql, [cloud_name, machine_id, cluster_name, 
+          "VAlUES (?,?,?,?,?)"
+    meta.exec_sql(sql, [cloud_name, machine_id,
                   str(describe), now, now])
   else:
-    sql = "UPDATE nodes SET cloud = ?, cluster_name = ?, describe = ?, \n" + \
+    sql = "UPDATE nodes SET cloud = ?, describe = ?, \n" + \
           " updated_utc = ? WHERE machine_id = ?"
-    meta.exec_sql(sql, [cloud_name, cluster_name, str(describe), now, machine_id])
+    meta.exec_sql(sql, [cloud_name, str(describe), now, machine_id])
 
   return
 
