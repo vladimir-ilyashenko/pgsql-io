@@ -53,8 +53,8 @@ INSERT INTO services VALUES ('prestosql',     'big',   7);
 CREATE VIEW v_services AS
   SELECT t.sort_order as sort1, s.sort_order as sort2, t.svc_group, 
          t.svc_type, t.disp_name as svc_type_name,
-         s.service, s.svc_type, s.sort_order, p.sources_url, p.short_name,
-         p.image_file, p.description, p.project_url 
+         s.service, p.short_name, p.image_file, p.description,
+	 p.sources_url, p.project_url 
     FROM service_types t, services s, projects p 
    WHERE t.svc_type = s.svc_type
      AND s.service = p.project
