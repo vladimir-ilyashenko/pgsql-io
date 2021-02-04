@@ -4,8 +4,8 @@ from __future__ import print_function, division
 ######          Copyright (c)  2020-2021 PGSQL.IO         ##########
 ####################################################################
 
-import argparse, util, os, sys, shutil, subprocess, getpass, json
-import startup
+import util, startup 
+import argparse, os, sys, shutil, subprocess, getpass, json
 
 MY_HOME = os.getenv('MY_HOME', '')
 
