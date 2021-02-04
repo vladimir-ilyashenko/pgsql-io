@@ -178,7 +178,7 @@ def read(cloud_name=None, data_only=False):
   return
 
 
-def read_providers(status=None):
+def list_providers(status=None):
   headers = ['Type',          'Provider', 'Short Name', 'Display Name', 'Status']
   keys    = ['provider_type', 'provider', 'short_name', 'display_name', 'status']
 
@@ -209,7 +209,7 @@ def read_providers(status=None):
   return
 
 
-def read_locations(provider=None, country=None, metro=None):
+def list_locations(provider=None, country=None, metro=None):
   headers = ['Country', 'Area', 'Metro', 'Provider', 'Region', 'Location', 'Is Pref']
   keys  = ['country', 'area', 'metro', 'provider', 'region', 'location', 'is_preferred']
 
@@ -244,7 +244,7 @@ def read_locations(provider=None, country=None, metro=None):
   return
 
 
-def read_regions(provider=None, country=None, metro=None):
+def list_regions(provider=None, country=None, metro=None):
   headers = ['Country', 'Area', 'Metro Name', 'Metro', 'Provider', 'Region']
   keys  = ['country', 'area', 'metro_name', 'metro', 'provider', 'region']
 
@@ -277,11 +277,11 @@ def read_regions(provider=None, country=None, metro=None):
   return
 
 
-def read_images():
-  headers = ['OS', 'Image Type', 'Disp Name', 'Cloud', 'Region', 'Platform', 'Image Name']
-  keys = ['os', 'image_type', 'disp_name', 'cloud', 'region', 'platform', 'image_name']
+def list_images():
+  headers = ['OS', 'Image Type', 'DispName', 'Provider', 'Region', 'Platform', 'IsDefault', 'ImageID']
+  keys = ['os', 'image_type', 'disp_name', 'provider', 'region', 'platform', 'is_default', 'image_id']
 
-  sql = "SELECT os, image_type, disp_name, cloud, region, platform, image_name \n" + \
+  sql = "SELECT os, image_type, disp_name, provider, region, platform, is_default, image_id \n" + \
         "  FROM v_images"
 
   data = meta.exec_sql_list(sql)
@@ -292,10 +292,11 @@ def read_images():
     dict['os'] = str(d[0])
     dict['image_type'] = str(d[1])
     dict['disp_name'] = str(d[2])
-    dict['cloud'] = str(d[3])
+    dict['provider'] = str(d[3])
     dict['region'] = str(d[4])
     dict['platform'] = str(d[5])
-    dict['image_name'] = str(d[6])
+    dict['is_default'] = str(d[6])
+    dict['image_id'] = str(d[7])
     l_img.append(dict)
 
   util.print_list(headers, keys, l_img)
@@ -303,7 +304,7 @@ def read_images():
   return
 
 
-def read_flavors(provider=None, family=None, flavor=None, size=None):
+def list_flavors(provider=None, family=None, flavor=None, size=None):
   keys = ['provider', 'family', 'flavor', 'size', 'v_cpu', 'mem_gb', 'das_gb', 'price_hr']
   headers = ['Provider', 'Family', 'Flavor', 'Size', 'vCPU', 'Mem GB', 'DAS GB', 'Price/hr']
 
@@ -346,11 +347,11 @@ cloudAPIs = {
   'update': update,
   'delete': delete,
   'read': read,
-  'read-providers': read_providers,
-  'read-regions': read_regions,
-  'read-locations': read_locations,
-  'read-images': read_images,
-  'read-flavors': read_flavors
+  'list-providers': list_providers,
+  'list-regions': list_regions,
+  'list-locations': list_locations,
+  'list-images': list_images,
+  'list-flavors': list_flavors
 }
 
 if __name__ == '__main__':
