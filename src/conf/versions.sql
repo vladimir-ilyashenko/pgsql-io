@@ -314,7 +314,8 @@ INSERT INTO categories VALUES (9,  87, 'Management & Monitoring', 'Manage');
 -- ## HUB ################################
 INSERT INTO projects VALUES ('hub',0, 0, 'hub', 0, 'https://github.com/bigsql/pgsql-io','',0,'','','');
 INSERT INTO releases VALUES ('hub', 1, 'hub', '', '', 'hidden', '', 1, 'AGPLv3', '', '');
-INSERT INTO versions VALUES ('hub', '6.35', '',  1, '20210127', '', '', '');
+INSERT INTO versions VALUES ('hub', '6.36', '',  1, '20210204', '', '', '');
+INSERT INTO versions VALUES ('hub', '6.35', '',  0, '20210127', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.34', '',  0, '20210127', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.33', '',  0, '20201212', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.32', '',  0, '20201119', '', '', '');
@@ -330,15 +331,18 @@ INSERT INTO versions VALUES ('pg10', '10.14-1', 'amd', 0, '20200813', '', 'LIBC-
 INSERT INTO releases VALUES ('pg11', 3, 'pg', 'PostgreSQL', '', 'prod', 'works w/ python2, EL7+, Ubu18+', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pg11', '11.10-1', 'amd', 1, '20201112', '', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg11', '11.9-1',  'amd', 0, '20200813', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg11', '11.8-1',  'amd', 0, '20200512', '', 'LIBC-2.17', '');
 
 INSERT INTO releases VALUES ('pg12', 2, 'pg', 'PostgreSQL', '', 'prod', 'works w/ python3, EL8, Ubu20', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg12', '12.5-2', 'arm, amd', 1, '20201112', '', 'LIBC-2.28', '');
+INSERT INTO versions VALUES ('pg12', '12.5-3', 'arm, amd', 1, '20201112', '', 'LIBC-2.28', '');
+INSERT INTO versions VALUES ('pg12', '12.5-2', 'arm, amd', 0, '20201112', '', 'LIBC-2.28', '');
 INSERT INTO versions VALUES ('pg12', '12.5-1', 'arm, amd', 0, '20201112', '', 'LIBC-2.28', '');
 INSERT INTO versions VALUES ('pg12', '12.4-1', 'arm, amd', 0, '20200813', '', 'LIBC-2.28', '');
 INSERT INTO versions VALUES ('pg12', '12.3-1', 'arm, amd', 0, '20200514', '', 'LIBC-2.28', '');
 
 INSERT INTO releases VALUES ('pg13', 1, 'pg', 'PostgreSQL', '', 'prod', 'works w/ python3, EL8, Ubu20', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg13', '13.1-2',  'arm, amd', 1, '20201112','', 'LIBC-2.28', '');
+INSERT INTO versions VALUES ('pg13', '13.1-3',  'arm, amd', 1, '20201112','', 'LIBC-2.28', '');
+INSERT INTO versions VALUES ('pg13', '13.1-2',  'arm, amd', 0, '20201112','', 'LIBC-2.28', '');
 INSERT INTO versions VALUES ('pg13', '13.1-1',  'arm, amd', 0, '20201112','', 'LIBC-2.28', '');
 INSERT INTO versions VALUES ('pg13', '13.0-1',  'arm, amd', 0, '20200924','', 'LIBC-2.28', '');
 

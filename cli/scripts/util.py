@@ -4,7 +4,7 @@
 
 from __future__ import print_function, division
 
-MY_VERSION = "6.35"
+MY_VERSION = "6.36"
 
 from subprocess import Popen, PIPE, STDOUT
 from datetime import datetime, timedelta
@@ -145,11 +145,12 @@ def set_jvm_link(p_pg_ver, p_display=True):
 
 def remove_symlinks(p_link_dir, p_target_dir):
   cmd = 'ls  -l ' + p_link_dir + ' | grep "\->" | grep ' + p_target_dir + ' | cut -c50- | cut -d" " -f1'
-  links = check_output(cmd, shell=True)
+  links = getoutput(cmd)
 
   for link in links.splitlines():
-    cmd = 'sudo rm ' + p_link_dir + '/' + str(link, "UTF-8").strip()
-    print(cmd) 
+    lnk = str(link).strip()
+    cmd = 'sudo rm ' + str(p_link_dir) +  os.sep + str(lnk)
+    message(cmd, "info")
     os.system(cmd)
 
   return
@@ -157,7 +158,7 @@ def remove_symlinks(p_link_dir, p_target_dir):
 
 def create_symlinks(p_link_dir, p_target_dir):
   cmd = 'sudo ln -fst ' + p_link_dir  + ' ' + p_target_dir + '/*'
-  print(cmd) 
+  message(cmd, "info")
   os.system(cmd)
 
   return

@@ -1,10 +1,10 @@
 #!/bin/bash
 
 pg13V="13.1"
-pg13BuildV=2
+pg13BuildV=3
 
 pg12V="12.5"
-pg12BuildV=2
+pg12BuildV=3
 
 pg11V="11.10"
 pg11BuildV=1

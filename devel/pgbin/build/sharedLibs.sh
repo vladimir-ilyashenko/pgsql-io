@@ -66,8 +66,8 @@ cp -Pv $lib64/libreadline.so.*     $shared_lib/.
 cp -Pv $lib64/libprotobuf-c.so.*   $shared_lib/.
 cp -Pv $lib64/libproj.so.*         $shared_lib/.
 cp -Pv $lib64/libjson-c*           $shared_lib/.
-cp -Pv /usr/local/lib/libgeos*.so* $shared_lib/.
-cp -Pv /usr/local/lib/libgdal.so.28 $shared_lib/.
+#cp -Pv /usr/local/lib/libgeos*.so* $shared_lib/.
+#cp -Pv /usr/local/lib/libgdal*.so* $shared_lib/.
 
 #cp -Pv $lib64/mysql/libmysqlclient.* $shared_lib/.
 
