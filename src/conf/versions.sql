@@ -394,7 +394,7 @@ INSERT INTO versions VALUES ('hivefdw-pg13', '4.0-1', 'amd', 1, '20200927', 'pg1
 INSERT INTO projects VALUES ('mariadb', 10, 3306, 'hub', 0, 'https://mariadb.org/downloads', 
   'mariadb', 0, 'mariadb.png', 'The MySQL Succesor', 'https://mariadb.org');
 INSERT INTO releases VALUES ('mariadb', 1, 'mariadb', 'MySQL (MariaDB)', '', 'prod',  '', 1, 'GPLv2', '', '');
-INSERT INTO versions VALUES ('mariadb', '10.5.8', '', 2, '20201111', '', 'EL8 AMD64', '');
+INSERT INTO versions VALUES ('mariadb', '10.5-1', '', 2, '20210204', '', '', '');
 
 INSERT INTO projects VALUES ('mysqlfdw', 5, 0, 'hub', 0, 'https://github.com/EnterpriseDB/mysql_fdw/releases', 
   'mysqlfdw', 1, 'mysql.png', 'Access MySQL, Percona & MariaDB', 'https://github.com/EnterpriseDb/mysql_fdw');

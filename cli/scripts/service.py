@@ -13,25 +13,24 @@ from libcloud.compute.providers import get_driver
 
 
 def install(cloud_name, node_id, service, component=None):
-  if service in ("postgres", "pg", "postgresql"):
-    service = "pg"
-  else:
-    util.message("service not supported", "error")
-    return
-
   ##if not node.is_valid("running"):
   ##  return
 
-  return(install_pg(cloud_name, node_id, component))
+  if service in ("postgres", "pg", "postgresql"):
+    service = "pg"
+    if component == None:
+      component = "pg13"
+    cmd = "install " + str(component) + " --autostart"
+    return(node.io_cmd(cloud_name, node_id, cmd)
 
+  elif service in ("mariadb", "mysql"):
+    service = "mariadb"
+    return(node.io_cmd(cloud_name, node_id, "install mariadb"))
 
-def install_pg(cloud_name, node_id, component):
-  if component == None:
-    component = "pg13"
+  else:
+    util.message("service not supported", "error")
 
-  cmd = "install " + str(component)
-
-  return node.io_cmd(cloud_name, node_id, cmd)
+  return
 
 
 def list():
