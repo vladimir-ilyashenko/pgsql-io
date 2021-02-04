@@ -53,8 +53,8 @@ INSERT INTO services VALUES ('prestosql',     'big',   7);
 CREATE VIEW v_services AS
   SELECT t.sort_order as sort1, s.sort_order as sort2, t.svc_group, 
          t.svc_type, t.disp_name as svc_type_name,
-         s.service, p.short_name, p.image_file, p.description,
-	 p.sources_url, p.project_url 
+         s.service, p.image_file, p.project_url, 
+	 p.description
     FROM service_types t, services s, projects p 
    WHERE t.svc_type = s.svc_type
      AND s.service = p.project
@@ -502,8 +502,8 @@ INSERT INTO projects VALUES ('oraclefdw', 5, 0, 'hub', 0, 'https://github.com/la
 INSERT INTO releases VALUES ('oraclefdw-pg13', 2, 'oraclefdw', 'Oracle FDW', '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('oraclefdw-pg13','2.3.0-1', 'amd', 1, '20200924', 'pg13', '', 'https://github.com/laurenz/oracle_fdw/releases/tag/ORACLE_FDW_2_3_0');
 
-INSERT INTO projects VALUES ('oracle', 10, 1521, 'hub', 0, 'https://www.oracle.com/downloads/licenses/database-11g-express-license.html', 
-  'oracle', 0, 'oracle.png', 'Oracle Database', 'https://www.oracle.com/downloads/licenses/database-11g-express-license.html');
+INSERT INTO projects VALUES ('oracle', 10, 1521, 'hub', 0, 'https://www.oracle.com/database/technologies/oracle-database-software-downloads.html#19c', 
+  'oracle', 0, 'oracle.png', 'Oracle Database', 'https://www.oracle.com/database/technologies');
 INSERT INTO releases VALUES ('oracle', 2, 'oracle', 'Oracle', '', 'prod','', 0, 'ORACLE', '', '');
 INSERT INTO versions VALUES ('oracle', '19c', 'amd', 2, '20200801', '', '', '');
 

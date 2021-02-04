@@ -303,33 +303,6 @@ def read_images():
   return
 
 
-def read_services():
-  headers = ['Group', 'Type', 'Type Name', 'Service', 'Service Name', 'Status']
-  keys    = ['svc_group', 'svc_type', 'svc_type_name', 'service', 
-             'svc_disp_name', 'status']
-
-  sql = "SELECT svc_group, svc_type, svc_type_name, \n" + \
-        "       service, svc_disp_name, status \n" + \
-        "  FROM v_services"
-
-  data = meta.exec_sql_list(sql)
-
-  l_svc = []
-  for d in data:
-    dict = {}
-    dict['svc_group'] = str(d[0])
-    dict['svc_type'] = str(d[1])
-    dict['svc_type_name'] = str(d[2])
-    dict['service'] = str(d[3])
-    dict['svc_disp_name'] = str(d[4])
-    dict['status'] = str(d[5])
-    l_svc.append(dict)
-
-  util.print_list(headers, keys, l_svc)
-
-  return
-
-
 def read_flavors(provider=None, family=None, flavor=None, size=None):
   keys = ['provider', 'family', 'flavor', 'size', 'v_cpu', 'mem_gb', 'das_gb', 'price_hr']
   headers = ['Provider', 'Family', 'Flavor', 'Size', 'vCPU', 'Mem GB', 'DAS GB', 'Price/hr']
@@ -377,8 +350,7 @@ cloudAPIs = {
   'read-regions': read_regions,
   'read-locations': read_locations,
   'read-images': read_images,
-  'read-flavors': read_flavors,
-  'read-services': read_services
+  'read-flavors': read_flavors
 }
 
 if __name__ == '__main__':
