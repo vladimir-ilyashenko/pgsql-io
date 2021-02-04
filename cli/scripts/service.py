@@ -2,7 +2,7 @@
 #  Copyright 2020-2021  PGSQL.IO  All rights reserved. #
 ########################################################
 
-import util, meta, api, cloud
+import util, meta, api, cloud, node
 
 import sys, json, os, configparser
 
@@ -10,6 +10,28 @@ import libcloud
 import fire
 from libcloud.compute.types import Provider
 from libcloud.compute.providers import get_driver
+
+
+def install(cloud_name, node_id, service, component=None):
+  if service in ("postgres", "pg", "postgresql"):
+    service = "pg"
+  else:
+    util.message("service not supported", "error")
+    return
+
+  ##if not node.is_valid("running"):
+  ##  return
+
+  return(install_pg(cloud_name, node_id, component))
+
+
+def install_pg(cloud_name, node_id, component):
+  if component == None:
+    component = "pg13"
+
+  cmd = "install " + str(component)
+
+  return node.io_cmd(cloud_name, node_id, cmd)
 
 
 def list():
@@ -40,7 +62,8 @@ def list():
 
 
 svcAPIs = {
-  'list': list
+  'list': list,
+  'install': install
 }
 
 if __name__ == '__main__':
