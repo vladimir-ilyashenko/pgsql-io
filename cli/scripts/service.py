@@ -21,7 +21,7 @@ def install(cloud_name, node_id, service, component=None):
     if component == None:
       component = "pg13"
     cmd = "install " + str(component) + " --autostart"
-    return(node.io_cmd(cloud_name, node_id, cmd)
+    return(node.io_cmd(cloud_name, node_id, cmd))
 
   elif service in ("mariadb", "mysql"):
     service = "mariadb"
