@@ -197,7 +197,7 @@ CREATE TABLE images (
   image_id           TEXT  NOT NULL,
   PRIMARY KEY (image_type, provider, region, platform)
 );
-INSERT INTO images VALUES ('ubu20', 'aws',   'us-east-2', 'amd', 1, 'ami-0b287e7832eb862f8' );
+INSERT INTO images VALUES ('ubu20', 'aws',   'us-east-2', 'amd', 1, 'ami-0996d3051b72b5b2c' );
 INSERT INTO images VALUES ('cos8',  'pgsql', 'RegionOne', 'amd', 0, 'dbc325a0-cab8-4674-b8c2-d23711c26337');
 INSERT INTO images VALUES ('ubu20', 'pgsql', 'RegionOne', 'amd', 1, 'caa7edd2-5f07-4382-a235-fde652e9894e');
 
