@@ -27,13 +27,14 @@ def shell_cmd(cloud_name, machine_id, cmd):
   username, pkey = key.read(key_name)
   if username == None:
     util.message("key file not found", "error")
-  else:
-    util.message("host=" + str(hosts) + ", user=" + username + \
-                 ", pkey=" + str(pkey), "info")
+    return
+
+  ##util.message("host=" + str(hosts) + ", user=" + username + \
+  ##             ", pkey=" + str(pkey), "info")
 
   client = ParallelSSHClient(hosts, user=username, pkey=pkey)
 
-  output = client.run_command(cmd, use_pty=True, read_timeout=30)
+  output = client.run_command(cmd, use_pty=True, read_timeout=3600)
   for host_out in output:
     try:
       for line in host_out.stdout:
