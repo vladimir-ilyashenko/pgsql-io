@@ -59,7 +59,7 @@ def get_machine_ids(cloud_name, machine_name):
     kount = 0
     nds = driver.list_nodes()
     for n in nds:
-      if n.name in machine_name:
+      if n.name == machine_name:
         if machine_ids == "":
           machine_ids = str(n.id)
         else:
