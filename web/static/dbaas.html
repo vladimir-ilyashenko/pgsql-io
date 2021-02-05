@@ -42,21 +42,21 @@ button {
   <fieldset>
     <legend>RDBMS <font size=-1>(your core enterprise data)</font></legend><p>
 
-       <center><table border=0 cellpadding=25 width=700><tr>
+       <center><table border=0 cellpadding=10 width=800><tr>
 
          <td width=175><label for="ds1"><input type="radio" id="ds1" class=input-hidden name="db" value="postgres">
              &nbsp;&nbsp;&nbsp;&nbsp;<img src=html/img/postgresql.png width=65 height=65/></label>
              <font size=+0><br><center>The world's most advanced open source database</center></font></td>
 
-         <td><label for="ds2"><input type="radio" id="ds2" class=input-hidden name="db" value="mysql">&nbsp;
+         <td width=165><label for="ds2"><input type="radio" id="ds2" class=input-hidden name="db" value="mysql">&nbsp;
              <img src=html/img/mysql.png width=75 height=75/></label>
              <font size=+0><br><center>A very popular open source database</center></font></td>
 
-         <td><label for="ds3"><input type="radio" id="ds3" class=input-hidden name="db" value="oracle">
+         <td width=165><label for="ds3"><input type="radio" id="ds3" class=input-hidden name="db" value="oracle">
              &nbsp;&nbsp;&nbsp;&nbsp;<img src=html/img/oracle.png width=55 height=55/></label>
              <font size=+0><br><center>By far the world's most expensive database</center></font></td>
 
-         <td><label for="ds4"><input type="radio" id="ds4" class=input-hidden name="db" value="sqlsvr">
+         <td width=175><label for="ds4"><input type="radio" id="ds4" class=input-hidden name="db" value="sqlsvr">
              &nbsp;&nbsp;&nbsp;&nbsp;<img src=html/img/sqlsvr.png width=55 height=55/></label>
              <font size=+0><br><center>Microsoft's proprietary offering</center></font></td>
 
@@ -68,28 +68,37 @@ button {
   <fieldset>
   <legend>SIZE <font size=-1>(easy to change whenever needed)</font></legend>
    <table border=0 width=800><tr>
-    <td width=100><label for="ds1"><input type="radio" id="ds1" name="sz" value="m">
-       S<font size=-2><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 vCPU,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2 GB RAM</font>
-    <td width=100><label for="ds1"><input type="radio" id="ds1" name="sz" value="m">
-       M<font size=-2><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 vCPU,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4 GB RAM</font>
-    <td><label for="ds1"><input type="radio" id="ds1" name="sz" value="l">
-       L<font size=-2><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2 vCPU,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8 GB RAM</font>
-    </label></td>
-    <td><label for="ds1"><input type="radio" id="ds1" name="sz" value="xl">
-       XL<font size=-2><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4 vCPU,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16 GB RAM</font>
-    </label></td>
-    <td><label for="ds1"><input type="radio" id="ds1" name="sz" value="2xl">
-       2XL<font size=-2><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8 vCPU,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 32 GB RAM</font>
-    </label></td>
-    <td><label for="ds1"><input type="radio" id="ds1" name="sz" value="4xl">
-       4XL<font size=-2><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16 vCPU,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 64 GB RAM</font>
-    </label></td>
-    <td><label for="ds1"><input type="radio" id="ds1" name="sz" value="8xl">
-       8XL<font size=-2><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 32 vCPU,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 128 GB RAM</font>
-    </label></td>
-    <td><label for="ds1"><input type="radio" id="ds1" name="sz" value="16xl">
-       16XL<font size=-2><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 64 vCPU,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 256 GB RAM</font>
-    </label></td>
+    <td width=100><input type="radio" id="ds1" name="sz" value="m">
+       S<table border=0><tr><td width=10>&nbsp;</td><td><font size=-2>1 vCPU,<br>2 GB RAM<br><br></font></td></tr></table>
+    </td>
+
+    <td width=100><input type="radio" id="ds1" name="sz" value="m">
+       M<table border=0><tr><td width=10>&nbsp;</td><td><font size=-2>1 vCPU,<br>4 GB RAM<br><br></font></td></tr></table>
+    </td>
+
+    <td><input type="radio" id="ds1" name="sz" value="l">
+       L<table border=0><tr><td width=10>&nbsp;</td><td><font size=-2>2 vCPU,<br>8 GB RAM<br><br></font></td></tr></table>
+    </td>
+
+    <td><input type="radio" id="ds1" name="sz" value="xl">
+       XL<table border=0><tr><td width=10>&nbsp;</td><td><font size=-2>4 vCPU,<br>16 GB RAM<br><br></font></td></tr></table>
+    </td>
+
+    <td><input type="radio" id="ds1" name="sz" value="2xl">
+       2XL<table border=0><tr><td width=10>&nbsp;</td><td><font size=-2>8 vCPU,<br>32 GB RAM<br><br></font></td></tr></table>
+    </td>
+
+    <td><input type="radio" id="ds1" name="sz" value="4xl">
+       4XL<table border=0><tr><td width=10>&nbsp;</td><td><font size=-2>16 vCPU,<br>64 GB RAM<br><br></font></td></tr></table>
+    </td>
+
+    <td><input type="radio" id="ds1" name="sz" value="8xl">
+       8XL<table border=0><tr><td width=10>&nbsp;</td><td><font size=-2>32 vCPU,<br>128 GB RAM<br><br></font></td></tr></table>
+    </td>
+
+    <td><input type="radio" id="ds1" name="sz" value="16xl">
+       16XL<table border=0><tr><td width=10>&nbsp;</td><td><font size=-2>64 vCPU,<br>256 GB RAM<br><br></font></td></tr></table>
+    </td>
    </tr></table>
   </fieldset>
 
