@@ -2,7 +2,7 @@
 #  Copyright 2020-2021  PGSQL.IO  All rights reserved. #
 ########################################################
 
-import util, meta, api, cloud, node
+import util, meta, api, cloud, node, service
 import sys, json, os, configparser, jmespath
 import munch, time
 from pprint import pprint
@@ -433,7 +433,7 @@ def list_sizes(cloud_name):
   return
 
 
-def create(cloud_name, size, machine_name=None, key_name=None,\
+def create(cloud_name, size, machine_name=None, key_name=None, svc=None, \
            location=None, security_group=None, network=None, data_gb=None):
 
   machine_id = launch(cloud_name, size, machine_name, key_name, \
@@ -443,43 +443,17 @@ def create(cloud_name, size, machine_name=None, key_name=None,\
 
   node.create(cloud_name, machine_id)
 
-  return
-
-
-def insert(cloud_name, machine_id, key_name=None):
-  di = describe(cloud_name, machine_id, False)
-  if di == None:
-    util.message("invalid machine_id", "error")
+  if svc == None:
     return
 
-  now1 = util.sysdate()
-  machine_name = di['name']
+  component = None
+  if svc in ('pg11', 'pg12', 'pg13'):
+    component = svc
+    svc = 'postgres'
 
-  sql = "INSERT INTO machines \n" + \
-        "  (id, name, cloud, key_name, describe, tags, created_utc, updated_utc) \n" + \
-        " VALUES (?,?,?,?,?,?,?,?)"
-
-  ##print("DEBUG: machine.insert " + machine_id + ", " + machine_name + ", " + cloud_name + ", " + key_name + ", " + str(describe_info))
-  meta.exec_sql(sql, [machine_id, machine_name, cloud_name, key_name, \
-    str(di), None, now1, now1])
+  service.install(cloud_name, machine_id, svc, component)
 
   return
-
-
-def read(cloud_name=None, machine_id=None):
-  where = "1 = 1"
-  if machine_id:
-    where = where + " AND id = '" + str(machine_id) + "'"
-  if cloud_name:
-    where = where + " AND cloud = '" + str(cloud_name) + "'"
-
-  sql = "SELECT id, name, cloud, key_name, describe, tags, \n" + \
-        "       created_utc, updated_utc \n" + \
-        "  FROM machines WHERE " + where + " ORDER BY 3, 2"
-
-  data = meta.exec_sql_list(sql)
-
-  return(data)
 
 
 machineAPIs = {
