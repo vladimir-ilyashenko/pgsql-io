@@ -221,6 +221,7 @@ CREATE TABLE flavors (
   price_hr      DECIMAL(9,3) NOT NULL,
   PRIMARY KEY (provider, flavor)
 );
+INSERT INTO flavors VALUES ('pgsql', 'm1',  's',    'm1.small',      1,   2,    0, 0.020);
 INSERT INTO flavors VALUES ('pgsql', 'm5d', 'm',    'm5d.medium',    1,   4, 37.5, 0.032);
 INSERT INTO flavors VALUES ('pgsql', 'm5d', 'l',    'm5d.large',     2,   8,   75, 0.064);
 INSERT INTO flavors VALUES ('pgsql', 'm5d', 'xl',   'm5d.xlarge',    4,  16,  150, 0.128);
@@ -228,6 +229,7 @@ INSERT INTO flavors VALUES ('pgsql', 'm5d', '2xl',  'm5d.2xlarge',   8,  32,  30
 INSERT INTO flavors VALUES ('pgsql', 'm5d', '4xl',  'm5d.4xlarge',  16,  64,  600, 0.512);
 INSERT INTO flavors VALUES ('pgsql', 'm5d', '8xl',  'm5d.8xlarge',  32, 128, 1200, 1.025);
 INSERT INTO flavors VALUES ('pgsql', 'm5d', '16xl', 'm5d.16xlarge', 64, 256, 2400, 2.049);
+INSERT INTO flavors VALUES ('aws',   't3',  's',    't3.small',      1,   2,    0, 0.025);
 INSERT INTO flavors VALUES ('aws',   'm5d', 'l',    'm5d.large',     2,   8,   75, 0.096);
 INSERT INTO flavors VALUES ('aws',   'm5d', 'xl',   'm5d.xlarge',    4,  16,  150, 0.192);
 INSERT INTO flavors VALUES ('aws',   'm5d', '2xl',  'm5d.2xlarge',   8,  32,  300, 0.384);

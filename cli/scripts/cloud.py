@@ -319,7 +319,7 @@ def list_flavors(provider=None, family=None, flavor=None, size=None):
     where = where + " AND size = '" + size + "'"
 
   sql = "SELECT provider, family, flavor, size, v_cpu, mem_gb, das_gb, price_hr \n" + \
-        "  FROM flavors WHERE " + where + " ORDER BY provider, family, v_cpu"
+        "  FROM flavors WHERE " + where + " ORDER BY provider, v_cpu"
 
   data = meta.exec_sql_list(sql)
 

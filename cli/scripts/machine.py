@@ -47,6 +47,20 @@ def action(cloud_name, machine_ids, action):
   return
 
 
+def get_size(provider, flavor):
+  sql = "SELECT size FROM flavors WHERE provider = ? AND flavor = ?"
+  data = meta.exec_sql(sql, [provider, flavor])
+
+  size = flavor
+  if data == None or data == []:
+    pass
+  else:
+    size = str(data[0])
+    util.message("translating flavor " + str(flavor) + " to size " + str(size), "info")
+
+  return(size)
+
+
 def get_machine_ids(cloud_name, machine_name):
   util.message("getting machine id's for " + str(machine_name))
 
@@ -145,6 +159,8 @@ def launch(cloud_name, size, name=None, key=None, location=None, security_group=
     if driver == None:
       util.message("cloud driver not found", "error")
       return(None)
+
+    size = get_size(provider, size)
 
     util.message("validating size - " + str(size), "info")
     sizes = driver.list_sizes()
