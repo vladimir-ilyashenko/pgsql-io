@@ -243,7 +243,7 @@ def describe_aws(machine_id, region, cloud_keys):
     response = ec2.describe_instances(InstanceIds=machine_id.split())
   except Exception as e:                                                           
     util.message("not found in aws for " + str(machine_id), "error")
-    return ('','','','','','','','','')
+    return ('','','','','','','','','','')
 
   ##util.message("jmespath.search()", "info")
   s = jmespath.search("Reservations[].Instances[].[InstanceId, InstanceType, State.Name, \
@@ -261,7 +261,26 @@ def describe_aws(machine_id, region, cloud_keys):
   vcpus = s[8]
   volumes = s[9]
 
-  return (name, flavor, state, loct, priv_ip, pub_ip, key_nm, vcpus, volumes)
+  svr = {}
+  svr['name'] = s[7]
+  svr['state'] = s[2]
+  svr['region'] = "?"
+  svr['location'] = s[3]
+  svr['private_v4'] = s[4]
+  svr['public_v4'] = s[5]
+  svr['key_name'] = s[6]
+  svr['created_at'] = "?"
+  svr['launched_at'] = "?"
+  svr['locked'] = "?"
+  svr['size'] = "?"
+  svr['vcpus'] = s[8]
+  svr['ram'] = "0"
+  svr['disk'] = "0"
+  svr['volumes'] = s[9]
+
+  print("DEBUG: svr = " + str(svr))
+
+  return (svr, name, flavor, state, loct, priv_ip, pub_ip, key_nm, vcpus, volumes)
 
 
 def describe_openstack(machine_id, region, l_cloud_keys):
@@ -285,11 +304,30 @@ def describe_openstack(machine_id, region, l_cloud_keys):
       else:
         vm_state = s.vm_state
 
-      return (s.name, s.flavor.original_name, vm_state, s.region, \
+      svr = {}
+      svr['name'] = s.name
+      svr['state'] = vm_state
+      svr['region'] = s.region
+      svr['location'] = s.location.zone
+      svr['private_v4'] = s.private_v4
+      svr['public_v4'] = s.public_v4
+      svr['key_name'] = s.key_name
+      svr['created_at'] = s.created
+      svr['launched_at'] = s.launched_at
+      svr['locked'] = s.locked
+      svr['size'] = s.flavor.original_name
+      svr['vcpus'] = s.flavor.vcpus
+      svr['ram'] = s.flavor.ram
+      svr['disk'] = s.flavor.disk
+      svr['volumes'] = volume
+
+      print("DEBUG: svr = " + str(svr))
+
+      return (svr, s.name, s.flavor.original_name, vm_state, s.region, \
         s.private_v4, s.public_v4, s.key_name, s.flavor.vcpus, volume)
   
   util.message("not found in openstack for " + str(machine_id), "error")
-  return ('','','','','','','','','')
+  return ('', '','','','','','','','','')
 
 
 def get_describe_data(provider, machine_id, region, cloud_keys):
@@ -302,7 +340,7 @@ def get_describe_data(provider, machine_id, region, cloud_keys):
 def describe(cloud_name, machine_id, print_list=True):
   provider, xxx, region, default_ssh_key, cloud_keys = cloud.read(cloud_name, True)
 
-  name, size, state, location, private_ip, \
+  svr, name, size, state, location, private_ip, \
   public_ip, key_name, vcpus, volumes \
     = get_describe_data(provider, machine_id, region, cloud_keys)
 
