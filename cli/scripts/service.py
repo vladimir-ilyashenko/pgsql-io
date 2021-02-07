@@ -34,11 +34,11 @@ def install(cloud_name, node_id, service, component=None):
 
 
 def list():
-  headers = ['Group', 'Type', 'Type Name', 'Service', 'Image', 'Project URL', 'Description']
-  keys    = ['svc_group', 'svc_type', 'svc_type_name', 'service', 'image_file', 'project_url', 'description']
+  headers = ['Group', 'Type', 'Type Name', 'Service', 'Port', 'Image', 'Project URL', 'Description']
+  keys    = ['svc_group', 'svc_type', 'svc_type_name', 'service', 'port', 'image_file', 'project_url', 'description']
 
   sql = "SELECT svc_group, svc_type, svc_type_name, service, \n" + \
-        "       image_file, project_url, description \n" + \
+        "       port, image_file, project_url, description \n" + \
         "  FROM v_services"
 
   data = meta.exec_sql_list(sql)
@@ -50,9 +50,10 @@ def list():
     dict['svc_type'] = str(d[1])
     dict['svc_type_name'] = str(d[2])
     dict['service'] = str(d[3])
-    dict['image_file'] = str(d[4])
-    dict['project_url'] = str(d[5])
-    dict['description'] = str(d[6])
+    dict['port'] = str(d[4])
+    dict['image_file'] = str(d[5])
+    dict['project_url'] = str(d[6])
+    dict['description'] = str(d[7])
     l_svc.append(dict)
 
   util.print_list(headers, keys, l_svc)
