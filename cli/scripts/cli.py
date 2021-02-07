@@ -71,7 +71,7 @@ if not util.is_admin() and util.get_platform() == "Windows":
 
 ansi_escape = re.compile(r'\x1b[^m]*m')
 
-fire_list = ["cloud", "cluster", "node", "machine", "key", "service"] 
+fire_list = ["cloud", "cluster", "node", "machine", "key", "service", "security"] 
 
 dep9 = util.get_depend()
 
