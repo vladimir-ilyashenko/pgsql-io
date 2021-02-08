@@ -40,8 +40,83 @@ def list():
   return
 
 
-def group_list(cloud_name, group_id=None, group_name=None):
+def group_list(cloud_name, group_name=None):
+  provider, xxx, region, default_ssh_key, cloud_keys = cloud.read(cloud_name, True)
+
+  if provider == "aws":
+    gl = group_list_aws(region, cloud_keys, group_name)
+  else:
+    gl = group_list_openstack(region, cloud_keys, group_name)
+
+  headers = ['ID', 'Cidr', 'Port', 'Name']
+  keys = ['id', 'cidr', 'port', 'name']
+
+  util.print_list(headers, keys, gl)
+
   return
+
+
+def group_list_aws(region, cloud_keys, group_name=None):
+  import boto3
+
+  l_cloud_keys = cloud_keys.split()
+
+  try:
+    ec2 = boto3.client('ec2',
+            aws_access_key_id=l_cloud_keys[0],
+            aws_secret_access_key=l_cloud_keys[1],
+            region_name=region)
+    response = ec2.describe_security_groups()
+  except Exception as e:
+    util.message(str(e), "error")
+    return ([])
+
+  gl = []
+  for sg in response['SecurityGroups']:
+   try:
+    dict = {}
+    dict['name'] = sg['GroupName']
+    dict['id']  = sg['GroupId']
+    #print("DEBUG: sg.GroupName = " + str(sg['GroupName']))
+    for ipp in sg['IpPermissions']:
+      for r in ipp['IpRanges']:
+        dict['cidr'] = str(r['CidrIp'])
+        ##print(str(r['CidrIp']))
+        break
+      dict['port'] = str(ipp['FromPort']) + ":" + str(ipp['ToPort'])       
+      break
+    gl.append(dict)
+   except Exception as e:
+    continue
+
+  return(gl)
+
+
+def group_list_openstack(region, cloud_keys, group_name=None):
+ import openstack
+ openstack.enable_logging(debug=False)
+ conn = openstack.connect(load_envvars=True)
+
+ gl = []
+ for sg in conn.list_security_groups():
+  try:
+   dict = {}
+   dict['name'] = sg.name
+   dict['id'] = sg.id
+   rules = sg.security_group_rules
+   port = None
+   for rule in rules:
+     if rule['direction'] == "ingress" and rule['protocol'] == "tcp":
+       dict['cidr'] = str(rule['remote_ip_prefix'])
+       dict['port'] = str(rule['port_range_min']) + ":" + str(rule['port_range_min'])
+       break
+     else:
+       continue
+   gl.append(dict)
+  except Exception as e:
+   continue
+
+  return(gl)
 
 
 def group_create(cloud_name, group_name, port, cidr="0.0.0.0/0"):
