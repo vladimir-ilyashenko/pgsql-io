@@ -475,6 +475,9 @@ initPG () {
   #initC "haproxy" "haproxy" "$haproxyV" "" "haproxy" "" "" "Y"
   #initC "etcd" "etcd" "$etcdV" "" "etcd" "" "" "Y"
 
+  if [ "$outPlat" == "arm" ]; then
+    return
+  fi
 
   if [ "$pgM" == "13" ]; then 
     if [ "$outPlat" == "amd" ]; then
