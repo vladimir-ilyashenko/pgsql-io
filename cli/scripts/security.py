@@ -75,6 +75,12 @@ def group_list_aws(region, cloud_keys, group_name=None):
   for sg in response['SecurityGroups']:
    try:
     dict = {}
+    if group_name:
+      if sg['GroupName'] == group_name:
+        pass
+      else:
+        continue
+
     dict['name'] = sg['GroupName']
     dict['id']  = sg['GroupId']
     #print("DEBUG: sg.GroupName = " + str(sg['GroupName']))
@@ -101,6 +107,12 @@ def group_list_openstack(region, cloud_keys, group_name=None):
  for sg in conn.list_security_groups():
   try:
    dict = {}
+   if group_name:
+     if sg.name == group_name:
+       pass
+     else:
+       continue
+
    dict['name'] = sg.name
    dict['id'] = sg.id
    rules = sg.security_group_rules
@@ -116,7 +128,7 @@ def group_list_openstack(region, cloud_keys, group_name=None):
   except Exception as e:
    continue
 
-  return(gl)
+ return(gl)
 
 
 def group_create(cloud_name, group_name, port, cidr="0.0.0.0/0"):
