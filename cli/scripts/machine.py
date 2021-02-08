@@ -208,7 +208,7 @@ def waitfor(cloud_name, machine_id, new_state, interval=5, max_tries=12):
 
   kount = 0
   while kount < max_tries:
-    name, size, state, location, private_ip, \
+    svr, name, size, state, location, private_ip, \
     public_ip, key_name, vcpus, volumes \
       = get_describe_data(provider, machine_id, region, cloud_keys)
 
@@ -278,7 +278,7 @@ def describe_aws(machine_id, region, cloud_keys):
   svr['disk'] = "0"
   svr['volumes'] = s[9]
 
-  print("DEBUG: svr = " + str(svr))
+  ##print("DEBUG: svr = " + str(svr))
 
   return (svr, name, flavor, state, loct, priv_ip, pub_ip, key_nm, vcpus, volumes)
 
@@ -321,7 +321,7 @@ def describe_openstack(machine_id, region, l_cloud_keys):
       svr['disk'] = s.flavor.disk
       svr['volumes'] = volume
 
-      print("DEBUG: svr = " + str(svr))
+      ##print("DEBUG: svr = " + str(svr))
 
       return (svr, s.name, s.flavor.original_name, vm_state, s.region, \
         s.private_v4, s.public_v4, s.key_name, s.flavor.vcpus, volume)
