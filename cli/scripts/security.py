@@ -96,6 +96,40 @@ def group_list_aws(region, cloud_keys, group_name=None):
   return(gl)
 
 
+def rule_create_openstack(region, cloud_keys, group_nm, port, cidr):
+  conn = cloud.get_openstack_connection(region, cloud_keys)
+  if conn == None:
+    return([])
+
+  sg_rule = None
+  try:
+    import openstack
+    sg_rule = conn.create_security_group_rule(group_nm, port_range_min=port, 
+                port_range_max=port, protocol="tcp", remote_ip_prefix=cidr )
+  except Exception as e:
+    util.message(str(e), "error")
+    return(None)
+
+  return(sg_rule)
+
+
+def group_create_openstack(region, cloud_keys, gp_name, gp_description="_"):
+  conn = cloud.get_openstack_connection(region, cloud_keys)
+  if conn == None:
+    return([])
+
+  sg_id = None
+  try:
+    util.message("creating security group", "info")
+    import openstack
+    sg_id = conn.create_security_group(gp_name, gp_description)
+  except Exception as e:
+    util.message(str(e), "error")
+    return(None)
+
+  return(sg_id)
+
+
 def group_list_openstack(region, cloud_keys, group_name=None):
   conn = cloud.get_openstack_connection(region, cloud_keys)
   if conn == None:
@@ -136,16 +170,14 @@ def get_service_port(service):
 
 
 def get_unique_name(service, group_list):
-  wiz_prefix = "openrds-wizard-" + service + "-"
+  wiz_prefix = "openrds-sg-wizard-" + service + "-"
   len_prefix = len(wiz_prefix)
   wiz_max = 0
 
   for gp in group_list:
     name = str(gp['name'])
-    print("DEBUG: name = " + name)
     if name.startswith(wiz_prefix):
-      wiz_num = name.substring(len_prefix,)
-      print("DEBUG: num = " + str(wiz_num))
+      wiz_num = name[len_prefix:]
       try:
         wiz_num = int(wiz_num)
       except:
@@ -153,10 +185,9 @@ def get_unique_name(service, group_list):
         continue
       if wiz_num > wiz_max:
         wiz_max = wiz_num
-        print("DEBUG: new wiz_max = " + str(wiz_max))
 
   wiz_name = wiz_prefix + str(wiz_max + 1)
-  print("DEBUG:  wiz_name = " + str(wiz_name))
+  util.message("new security group name = " + str(wiz_name))
   return(wiz_name)
 
 
@@ -164,9 +195,15 @@ def rule_create(cloud_name, group_id, port, cidr="0.0.0.0/0"):
   provider, xxx, region, default_ssh_key, cloud_keys = cloud.read(cloud_name, True)
 
   if provider == "aws":
-    rule_id = rule_create_aws(region, cloud_keys, group_id)
+    rule_id = rule_create_aws(region, cloud_keys, group_id, port, cidr)
   else:
-    rule_id = rule_create_openstack(region, cloud_keys, group_id)
+    rule_id = rule_create_openstack(region, cloud_keys, group_id, port, cidr)
+
+  return(rule_id)
+
+
+def rule_delete(cloud_name, group_id, rule_id):
+  return(None)
 
 
 # create a new security group with a single rule in it
@@ -183,8 +220,11 @@ def group_create(cloud_name, service, port=None, cidr="0.0.0.0/0"):
   if group_id == None:
     return
 
+  ##util.message("group_id = " + str(group_id))
+
   if port == None:
     port = get_service_port(service)
+    util.message("port = "  + str(port), "info")
 
   rule_create(cloud_name, group_id, port, cidr="0.0.0.0/0")
 
