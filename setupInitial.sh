@@ -41,7 +41,7 @@ if [ `uname` == 'Linux' ]; then
       cd /usr/bin
       sudo ln -fs python2 python
     else
-      ## CentOS 7 (used for PG96 thru PG11)
+      ## CentOS 7 (used for stable & ...)  
       sudo yum -y install -y epel-release python-pip
       sudo yum -y groupinstall 'development tools'
       sudo yum -y install bison-devel libedit-devel zlib-devel bzip2-devel \
@@ -87,10 +87,6 @@ if [ ! "$rc" == "0" ]; then
   # vi config
   chmod 600 config
 fi
-
-pip3 install --user CLICK
-pip3 install --user apache-libcloud flask psutil fire
-pip3 install --user python-openstackclient twisted
 
 cd ~/dev/pgsql-io
 if [ -f ~/.bashrc ]; then
