@@ -40,13 +40,16 @@ def list():
   return
 
 
-def group_list(cloud_name, group_name=None):
+def group_list(cloud_name, group_name=None, data_only=False):
   provider, xxx, region, default_ssh_key, cloud_keys = cloud.read(cloud_name, True)
 
   if provider == "aws":
     gl = group_list_aws(region, cloud_keys, group_name)
   else:
     gl = group_list_openstack(region, cloud_keys, group_name)
+
+  if data_only == True:
+    return(gl)
 
   headers = ['ID', 'Cidr', 'Port', 'Name']
   keys = ['id', 'cidr', 'port', 'name']
@@ -128,8 +131,62 @@ def group_list_openstack(region, cloud_keys, group_name=None):
   return(gl)
 
 
-def group_create(cloud_name, group_name, port, cidr="0.0.0.0/0"):
-  group_id = None
+def get_service_port(service):
+  return(5432)
+
+
+def get_unique_name(service, group_list):
+  wiz_prefix = "openrds-wizard-" + service + "-"
+  len_prefix = len(wiz_prefix)
+  wiz_max = 0
+
+  for gp in group_list:
+    name = str(gp['name'])
+    print("DEBUG: name = " + name)
+    if name.startswith(wiz_prefix):
+      wiz_num = name.substring(len_prefix,)
+      print("DEBUG: num = " + str(wiz_num))
+      try:
+        wiz_num = int(wiz_num)
+      except:
+        # ignore names that dont fit the pattern
+        continue
+      if wiz_num > wiz_max:
+        wiz_max = wiz_num
+        print("DEBUG: new wiz_max = " + str(wiz_max))
+
+  wiz_name = wiz_prefix + str(wiz_max + 1)
+  print("DEBUG:  wiz_name = " + str(wiz_name))
+  return(wiz_name)
+
+
+def rule_create(cloud_name, group_id, port, cidr="0.0.0.0/0"):
+  provider, xxx, region, default_ssh_key, cloud_keys = cloud.read(cloud_name, True)
+
+  if provider == "aws":
+    rule_id = rule_create_aws(region, cloud_keys, group_id)
+  else:
+    rule_id = rule_create_openstack(region, cloud_keys, group_id)
+
+
+# create a new security group with a single rule in it
+def group_create(cloud_name, service, port=None, cidr="0.0.0.0/0"):
+  provider, xxx, region, default_ssh_key, cloud_keys = cloud.read(cloud_name, True)
+
+  group_name = get_unique_name(service, group_list(cloud_name, data_only=True))
+
+  if provider == "aws":
+    group_id = group_create_aws(region, cloud_keys, group_name)
+  else:
+    group_id = group_create_openstack(region, cloud_keys, group_name)
+
+  if group_id == None:
+    return
+
+  if port == None:
+    port = get_service_port(service)
+
+  rule_create(cloud_name, group_id, port, cidr="0.0.0.0/0")
 
   return(group_id)
 
@@ -146,7 +203,9 @@ def group_delete(cloud_name, group_name=None, group_id=None):
 secAPIs = {
   'group-list': group_list,
   'group-create': group_create,
-  'group-delete': group_delete
+  'group-delete': group_delete,
+  'rule-create': rule_create,
+  'rule-delete': rule_delete
 }
 
 if __name__ == '__main__':
