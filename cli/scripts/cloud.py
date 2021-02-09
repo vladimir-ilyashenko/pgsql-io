@@ -341,6 +341,31 @@ def list_flavors(provider=None, family=None, flavor=None, size=None):
   return
 
 
+def get_aws_connection(svc, region, cloud_keys):
+  import boto3
+
+  l_cloud_keys = cloud_keys.split()
+
+  try:
+    conn = boto3.client(svc,
+            aws_access_key_id=l_cloud_keys[0],
+            aws_secret_access_key=l_cloud_keys[1],
+            region_name=region)
+
+  except Exception as e:
+    util.message("error in cloud.get_aws_connection():\n " + str(e), "error")
+    conn = None
+
+  return(conn)
+
+
+def get_openstack_connection(region, cloud_keys):
+  import openstack
+  openstack.enable_logging(debug=False)
+  conn = openstack.connect(load_envvars=True)
+  return(conn)
+
+
 ## MAINLINE ##########################################
 cloudAPIs = {
   'create': create,

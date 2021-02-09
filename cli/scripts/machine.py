@@ -200,9 +200,6 @@ def launch(cloud_name, size, name=None, key=None, location=None, security_group=
 
 def waitfor(cloud_name, machine_id, new_state, interval=5, max_tries=12):
   util.message("waitfor '" + str(new_state) + "' up to " + str(interval * max_tries) + "s", "info")
-  driver = cloud.get_cloud_driver(cloud_name)
-  if driver == None:
-    return
 
   provider, xxx, region, default_ssh_key, cloud_keys = cloud.read(cloud_name, True)
 
@@ -228,21 +225,17 @@ def waitfor(cloud_name, machine_id, new_state, interval=5, max_tries=12):
   return("error")
 
 
-# retrieve an aws-ec2 node using default credentials
+# retrieve an aws-ec2 node
 def describe_aws(machine_id, region, cloud_keys):
-  ##util.message("ec2.describe_instances()", "info")
-  import boto3
-
-  l_cloud_keys = cloud_keys.split()
+  conn = cloud.get_aws_connection('ec2', region, cloud_keys)
+  if conn == None:
+    return ('','','','','','','','','','')
 
   try:
-    ec2 = boto3.client('ec2', 
-            aws_access_key_id=l_cloud_keys[0],
-            aws_secret_access_key=l_cloud_keys[1],
-            region_name=region)
-    response = ec2.describe_instances(InstanceIds=machine_id.split())
+    import boto3
+    response = conn.describe_instances(InstanceIds=machine_id.split())
   except Exception as e:                                                           
-    util.message("not found in aws for " + str(machine_id), "error")
+    util.message("not found in machine.describe_aws() for " + str(machine_id), "error")
     return ('','','','','','','','','','')
 
   ##util.message("jmespath.search()", "info")
@@ -278,18 +271,15 @@ def describe_aws(machine_id, region, cloud_keys):
   svr['disk'] = "0"
   svr['volumes'] = s[9]
 
-  ##print("DEBUG: svr = " + str(svr))
-
   return (svr, name, flavor, state, loct, priv_ip, pub_ip, key_nm, vcpus, volumes)
 
 
 def describe_openstack(machine_id, region, l_cloud_keys):
-  ##util.message("openstack.connect()", "info")
-  import openstack
-  openstack.enable_logging(debug=False)
-  conn = openstack.connect(load_envvars=True)
+  conn = cloud.get_openstack_connection(region, l_cloud_keys)
+  if conn == None:
+    return ('','','','','','','','','','')
 
-  ##util.message("openstack.list_servers()", "info")
+  import openstack
   for s in conn.list_servers():
     if s.id == machine_id:
       try:
@@ -321,13 +311,11 @@ def describe_openstack(machine_id, region, l_cloud_keys):
       svr['disk'] = s.flavor.disk
       svr['volumes'] = volume
 
-      ##print("DEBUG: svr = " + str(svr))
-
       return (svr, s.name, s.flavor.original_name, vm_state, s.region, \
         s.private_v4, s.public_v4, s.key_name, s.flavor.vcpus, volume)
   
-  util.message("not found in openstack for " + str(machine_id), "error")
-  return ('', '','','','','','','','','')
+  util.message("not found in machine.describe_openstack() for " + str(machine_id), "error")
+  return ('','','','','','','','','','')
 
 
 def get_describe_data(provider, machine_id, region, cloud_keys):
