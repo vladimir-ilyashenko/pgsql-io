@@ -39,59 +39,7 @@ CREATE TABLE components (
 
 
 DROP TABLE IF EXISTS volumes;
-CREATE TABLE volumes (
-  id             TEXT     NOT NULL PRIMARY KEY,
-  cloud_id       TEXT     NOT NULL REFERENCES cloud(id),
-  machine_id     TEXT     REFERENCES machine(id),
-  volume_types   TEXT     NOT NULL REFERENCES volume_types(volume_type),
-  size_gb        INTEGER  NOT NULL,
-  tested_iops    SMALLINT,
-  created_utc    DATETIME NOT NULL,
-  updated_utc    DATETIME NOT NULL
-);
-
-
 DROP TABLE IF EXISTS nodes;
-CREATE TABLE nodes (
-  machine_id     TEXT     NOT NULL PRIMARY KEY,
-  cloud          TEXT     NOT NULL REFERENCES clouds(name),
-  service        TEXT     REFERENCES services(service),
-  cluster_name   TEXT     REFERENCES clusters(name),
-  describe       TEXT,
-  os_info        TEXT,
-  components     TEXT,
-  created_utc    DATETIME NOT NULL,
-  updated_utc    DATETIME NOT NULL
-);
-
-
 DROP TABLE IF EXISTS clouds;
-CREATE TABLE clouds (
-  name            TEXT     NOT NULL PRIMARY KEY,
-  provider        TEXT     NOT NULL,
-  region          TEXT     NOT NULL,
-  default_ssh_key TEXT     REFERENCES keys(name),
-  keys            TEXT     NOT NULL,
-  created_utc     DATETIME NOT NULL,
-  updated_utc     DATETIME NOT NULL
-);
-
-
 DROP TABLE IF EXISTS keys;
-CREATE TABLE keys (
-  name           TEXT     NOT NULL PRIMARY KEY,
-  username       TEXT     NOT NULL,
-  pem_file       TEXT     NOT NULL,
-  created_utc    DATETIME NOT NULL,
-  updated_utc    DATETIME NOT NULL
-);
-
-
 DROP TABLE IF EXISTS clusters;
-CREATE TABLE clusters (
-  name           TEXT     NOT NULL PRIMARY KEY,
-  service        TEXT     NOT NULL REFERENCES services(service),
-  created_utc    DATETIME NOT NULL,
-  updated_utc    DATETIME NOT NULL
-);
-

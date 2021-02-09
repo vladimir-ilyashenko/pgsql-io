@@ -71,8 +71,6 @@ if not util.is_admin() and util.get_platform() == "Windows":
 
 ansi_escape = re.compile(r'\x1b[^m]*m')
 
-fire_list = ["cloud", "cluster", "node", "machine", "key", "service", "security"] 
-
 dep9 = util.get_depend()
 
 mode_list = ["start", "stop", "restart", "status", "list", "info", "update",
@@ -965,8 +963,6 @@ def get_help_text():
 
 
 def is_valid_mode(p_mode):
-  if p_mode in fire_list:
-    return True
 
   if p_mode in mode_list:
     return True
@@ -1208,40 +1204,37 @@ p_version=""
 requested_p_version=""
 info_arg=0
 try:
-  if p_mode in fire_list:
-    pass
-  else:
-    for i in range((arg + 1), len(args)):
-      if p_host > "":
-        break
-      if p_mode in ("update", "cancel"):
-        util.print_error("No additional parameters allowed.")
-        exit_cleanly(1)
-      comp1 = meta.wildcard_component(args[i])
-      if meta.is_component(comp1):
-        p_comp_list.append(comp1)
-        if( p_mode == "info" and args[i]== "all"):
-          info_arg=1
-          p_version = "all"
-      else:
-        if p_mode in ("config" , "init", "provision") and len(p_comp_list) == 1:
-          if str(args[i]) > '':
-            extra_args = extra_args + '"' + str(args[i]) + '" '
-        elif( p_mode in ("info", "download", "install", "update") and len(p_comp_list) == 1 and info_arg == 0 ):
-          if p_mode == "info":
-            p_version = args[i]
-          else:
-            ver1 = meta.wildcard_version(p_comp_list[0], args[i])
-            p_version = meta.get_platform_specific_version(p_comp_list[0], ver1)
-            if p_version == "-1":
-              util.print_error("Invalid component version parameter  (" + ver1 + ")")
-              exit_cleanly(1)
-            requested_p_version=ver1
-          info_arg = 1
-        elif p_mode in ignore_comp_list:
-          pass
+  for i in range((arg + 1), len(args)):
+    if p_host > "":
+      break
+    if p_mode in ("update", "cancel"):
+      util.print_error("No additional parameters allowed.")
+      exit_cleanly(1)
+    comp1 = meta.wildcard_component(args[i])
+    if meta.is_component(comp1):
+      p_comp_list.append(comp1)
+      if( p_mode == "info" and args[i]== "all"):
+        info_arg=1
+        p_version = "all"
+    else:
+      if p_mode in ("config" , "init", "provision") and len(p_comp_list) == 1:
+        if str(args[i]) > '':
+          extra_args = extra_args + '"' + str(args[i]) + '" '
+      elif( p_mode in ("info", "download", "install", "update") and len(p_comp_list) == 1 and info_arg == 0 ):
+        if p_mode == "info":
+          p_version = args[i]
         else:
-          util.exit_message("Invalid component parameter (" + args[i] + ")", 1, isJSON)
+          ver1 = meta.wildcard_version(p_comp_list[0], args[i])
+          p_version = meta.get_platform_specific_version(p_comp_list[0], ver1)
+          if p_version == "-1":
+            util.print_error("Invalid component version parameter  (" + ver1 + ")")
+            exit_cleanly(1)
+          requested_p_version=ver1
+        info_arg = 1
+      elif p_mode in ignore_comp_list:
+        pass
+      else:
+        util.exit_message("Invalid component parameter (" + args[i] + ")", 1, isJSON)
 
   if len(p_comp_list) == 0:
     if p_mode == "download":
@@ -1955,16 +1948,6 @@ try:
           msg = "Nothing to upgrade."
           print(msg)
           my_logger.info(msg)
-
-
-  ## FIRE_LIST ###############################################
-  # These are the Cloud API's that use Google's FIRE framework
-  if p_mode in fire_list:
-    if sys.version_info < (3,):
-      util.fatal_error("Requires Python 3")
-
-    fire_api(p_mode)
-    exit_cleanly(0)
 
 
   ## VERIFY #############################################
