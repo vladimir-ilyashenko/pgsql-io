@@ -30,7 +30,7 @@ _atrk_opts = { atrk_acct:"D/nDv1DlQy20Y8", domain:"pgsql.io",dynamic: true};
 PGSQL is the PostgreSQL Community Distribution that is developer friendly and cross-platform.
 We fully embrace core PostgreSQL and it's rich community based eco-system of
 enterprise-class extensions & applications.
-We support Ubuntu & CentOS on both ARM & Intel (including on Windows 10 Subsystem for Linux)
+We support Redhat, CentOS, Ubuntu & Debian on both ARM & Intel (including on Windows 10 Subsystem for Linux)
 \
 """
   print("  <tr><td colspan=2><h2>Introduction</h2></td></tr>")
@@ -60,7 +60,7 @@ of your choice.
 <br>&nbsp;</td></tr>
 <tr><td width=240 align=right><b>Install as non-root user:</b></td>
   <td><input type='text' size=90 value =
-'cd $HOME; python3 -c "$(curl -fsSL https://pgsql-io-download.s3.amazonaws.com/REPO/install.py)"' readonly='readonly' />
+'python3 -c "$(curl -fsSL https://pgsql-io-download.s3.amazonaws.com/REPO/install.py)"' readonly='readonly' />
   </td>
 </tr>
 \
@@ -73,7 +73,7 @@ of your choice.
 <tr><td align=right><p><b>Usage sample:</b></td>
     <td>
       <input type='text' size=90 value =
-'cd pgsql; ./io install pg12; ./io start pg12; ./io install timescale' readonly='readonly' />
+'cd pgsql; ./io install pg12; ./io start pg12' readonly='readonly' />
     </td>
 </tr>
 </table>
