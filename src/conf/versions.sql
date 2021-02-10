@@ -328,26 +328,16 @@ INSERT INTO projects VALUES ('pg', 1, 5432, 'hub', 1, 'https://postgresql.org/do
  'postgres', 0, 'postgresql.png', 'Best RDBMS', 'https://postgresql.org');
 
 INSERT INTO releases VALUES ('pg10', 4, 'pg', 'PostgreSQL', '', 'prod', 'works w/ python2, EL7+, Ubu18+', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg10', '10.15-1', 'amd', 1, '20201112', '', 'LIBC-2.17', '');
-INSERT INTO versions VALUES ('pg10', '10.14-1', 'amd', 0, '20200813', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg10', '10.16-1', 'amd', 1, '20210211', '', 'LIBC-2.17', '');
 
 INSERT INTO releases VALUES ('pg11', 3, 'pg', 'PostgreSQL', '', 'prod', 'works w/ python2, EL7+, Ubu18+', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg11', '11.10-1', 'amd', 1, '20201112', '', 'LIBC-2.17', '');
-INSERT INTO versions VALUES ('pg11', '11.9-1',  'amd', 0, '20200813', '', 'LIBC-2.17', '');
-INSERT INTO versions VALUES ('pg11', '11.8-1',  'amd', 0, '20200512', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg11', '11.11-1', 'amd', 1, '20210211', '', 'LIBC-2.17', '');
 
 INSERT INTO releases VALUES ('pg12', 2, 'pg', 'PostgreSQL', '', 'prod', 'works w/ python3, EL8, Ubu20', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg12', '12.5-3', 'arm, amd', 1, '20201112', '', 'LIBC-2.28', '');
-INSERT INTO versions VALUES ('pg12', '12.5-2', 'arm, amd', 0, '20201112', '', 'LIBC-2.28', '');
-INSERT INTO versions VALUES ('pg12', '12.5-1', 'arm, amd', 0, '20201112', '', 'LIBC-2.28', '');
-INSERT INTO versions VALUES ('pg12', '12.4-1', 'arm, amd', 0, '20200813', '', 'LIBC-2.28', '');
-INSERT INTO versions VALUES ('pg12', '12.3-1', 'arm, amd', 0, '20200514', '', 'LIBC-2.28', '');
+INSERT INTO versions VALUES ('pg12', '12.6-1', 'arm, amd', 1, '20210211', '', 'LIBC-2.28', '');
 
 INSERT INTO releases VALUES ('pg13', 1, 'pg', 'PostgreSQL', '', 'prod', 'works w/ python3, EL8, Ubu20', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg13', '13.1-3',  'arm, amd', 1, '20201112','', 'LIBC-2.28', '');
-INSERT INTO versions VALUES ('pg13', '13.1-2',  'arm, amd', 0, '20201112','', 'LIBC-2.28', '');
-INSERT INTO versions VALUES ('pg13', '13.1-1',  'arm, amd', 0, '20201112','', 'LIBC-2.28', '');
-INSERT INTO versions VALUES ('pg13', '13.0-1',  'arm, amd', 0, '20200924','', 'LIBC-2.28', '');
+INSERT INTO versions VALUES ('pg13', '13.2-1',  'arm, amd', 1, '20210211','', 'LIBC-2.28', '');
 
 -- ##
 INSERT INTO projects VALUES ('cassandra', 10, 9042, 'hub', 0, 'https://cassandra.apache.org/download', 

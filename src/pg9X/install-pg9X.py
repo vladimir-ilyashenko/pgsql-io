@@ -5,7 +5,6 @@ import os, sys
 pgver="pg9X"
 
 isAutoStart = str(os.getenv("isAutoStart", "False"))
-print("isAutoStart = " + str(isAutoStart))
 
 if isAutoStart != "True":
   sys.exit(0)
