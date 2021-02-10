@@ -102,7 +102,7 @@ INSERT INTO categories VALUES (9,  87, 'Management & Monitoring', 'Manage');
 -- ## HUB ################################
 INSERT INTO projects VALUES ('hub',0, 0, 'hub', 0, 'https://github.com/pgsql-io/pgsql-io','',0,'','','');
 INSERT INTO releases VALUES ('hub', 1, 'hub', '', '', 'hidden', '', 1, '', '', '');
-INSERT INTO versions VALUES ('hub', '6.37', '',  1, '20210211', '', '', '');
+INSERT INTO versions VALUES ('hub', '6.37', '',  1, '20210210', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.36', '',  0, '20210204', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.35', '',  0, '20210127', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.34', '',  0, '20210127', '', '', '');
@@ -114,16 +114,19 @@ INSERT INTO projects VALUES ('pg', 1, 5432, 'hub', 1, 'https://postgresql.org/do
  'postgres', 0, 'postgresql.png', 'Best RDBMS', 'https://postgresql.org');
 
 INSERT INTO releases VALUES ('pg10', 4, 'pg', 'PostgreSQL', '', 'prod', 'works w/ python2, EL7+, Ubu18+', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg10', '10.15-1', 'amd', 1, '20201112', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg10', '10.15-4', 'amd', 1, '20201112', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg10', '10.15-1', 'amd', 0, '20201112', '', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg10', '10.14-1', 'amd', 0, '20200813', '', 'LIBC-2.17', '');
 
 INSERT INTO releases VALUES ('pg11', 3, 'pg', 'PostgreSQL', '', 'prod', 'works w/ python2, EL7+, Ubu18+', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg11', '11.10-1', 'amd', 1, '20201112', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg11', '11.10-4', 'amd', 1, '20201112', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg11', '11.10-1', 'amd', 0, '20201112', '', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg11', '11.9-1',  'amd', 0, '20200813', '', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg11', '11.8-1',  'amd', 0, '20200512', '', 'LIBC-2.17', '');
 
-INSERT INTO releases VALUES ('pg12', 2, 'pg', 'PostgreSQL', '', 'prod', 'works w/ python3, EL8, Ubu20', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg12', '12.5-3', 'arm, amd', 1, '20201112', '', 'LIBC-2.28', '');
+INSERT INTO releases VALUES ('pg12', 2, 'pg', 'PostgreSQL', '', 'prod', 'works w/ python2, EL7+, Ubu18+', 1, 'POSTGRES', '', '');
+INSERT INTO versions VALUES ('pg12', '12.5-4', 'arm, amd', 1, '20201112', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg12', '12.5-3', 'arm, amd', 0, '20201112', '', 'LIBC-2.28', '');
 INSERT INTO versions VALUES ('pg12', '12.5-2', 'arm, amd', 0, '20201112', '', 'LIBC-2.28', '');
 INSERT INTO versions VALUES ('pg12', '12.5-1', 'arm, amd', 0, '20201112', '', 'LIBC-2.28', '');
 INSERT INTO versions VALUES ('pg12', '12.4-1', 'arm, amd', 0, '20200813', '', 'LIBC-2.28', '');
@@ -339,7 +342,7 @@ INSERT INTO versions VALUES ('pljava-pg13', '1.6.2-1',  'amd',  1, '20201127', '
 INSERT INTO projects VALUES ('pldebugger', 3, 0, 'hub', 0, 'https://github.com/bigsql/pldebugger2/releases',
   'pldebugger', 1, 'debugger.png', 'Procedural Language Debugger', 'https://github.com/bigsql/pldebugger2#pldebugger2');
 INSERT INTO releases VALUES ('pldebugger-pg12', 4, 'pldebugger', 'PL/Debugger', '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pldebugger-pg12', '2.0-1',  'amd',  1, '20200224', 'pg12', '', '');
+INSERT INTO versions VALUES ('pldebugger-pg12', '2.0-1',  'amd',  0, '20200224', 'pg12', '', '');
 
 INSERT INTO projects VALUES ('plpgsql', 3, 0, 'hub', 0, 'https://www.postgresql.org/docs/13/plpgsql-overview.html',
   'plpgsql', 0, 'jan.png', 'Postgres Procedural Language', 'https://www.postgresql.org/docs/13/plpgsql-overview.html');
@@ -394,7 +397,7 @@ INSERT INTO versions VALUES ('cron-pg13', '1.3.0-1', 'amd', 1, '20201006', 'pg13
 INSERT INTO projects VALUES ('timescaledb', 2, 0, 'hub', 1, 'https://github.com/timescale/timescaledb/releases',
    'timescaledb', 1, 'timescaledb.png', 'Time Series Data', 'https://github.com/timescale/timescaledb/#timescaledb');
 INSERT INTO releases VALUES ('timescaledb-pg12',  1, 'timescaledb', 'TimescaleDB', '', 'prod', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('timescaledb-pg12', '2.0.0-1',  'amd', 1, '20201221', 'pg12', '',
+INSERT INTO versions VALUES ('timescaledb-pg12', '2.0.0-1',  'amd', 0, '20201221', 'pg12', '',
   'https://github.com/timescale/timescaledb/releases/tag/2.0.0');
 INSERT INTO versions VALUES ('timescaledb-pg12', '1.7.4-1',  'amd', 0, '20200907', 'pg12', '',
   'https://github.com/timescale/timescaledb/releases/tag/1.7.4');
@@ -611,7 +614,7 @@ INSERT INTO versions VALUES ('psqlodbc', '13.00-1', 'amd', 1, '20201119', '', ''
 
 INSERT INTO projects VALUES ('http', 3, 0, 'hub', 6, 'https://github.com/pramsey/pgsql-http/releases', 'http',  1, 'http.png', 'Invoke Web Services', 'https://github.com/pramsey/pgsql-http');
 INSERT INTO releases VALUES ('http-pg12', 13, 'http', 'HTTP Client', '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('http-pg12', '1.3.1-1', 'amd', 1, '20191225', 'pg12', '', '');
+INSERT INTO versions VALUES ('http-pg12', '1.3.1-1', 'amd', 0, '20191225', 'pg12', '', '');
 
 INSERT INTO projects VALUES ('ddlx',      7, 0, 'hub', 0, 'https://github.com/lacanoid/pgddl/releases', 'ddlx',  1, 'ddlx.png', 'DDL Extractor', 'https://github.com/lacanoid/pgddl#ddl-extractor-functions--for-postgresql');
 INSERT INTO releases VALUES ('ddlx-pg13', 2, 'ddlx', 'DDLeXtact', '', 'prod','',  0, 'POSTGRES', '', '');
@@ -620,4 +623,4 @@ INSERT INTO versions VALUES ('ddlx-pg13', '0.17-1', 'amd', 1, '20200911', 'pg13'
 INSERT INTO projects VALUES ('multicorn', 7, 0, 'hub', 0, 'https://github.com/Segfault-Inc/Multicorn/releases',
   'multicorn', 1, 'multicorn.png', 'Python FDW Library', 'http://multicorn.org');
 INSERT INTO releases VALUES ('multicorn-pg12', 1, 'multicorn', 'Multicorn', '', 'prod','',  1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('multicorn-pg12', '1.4.0-1', 'amd', 1, '20200318', 'pg12', '', '');
+INSERT INTO versions VALUES ('multicorn-pg12', '1.4.0-1', 'amd', 0, '20200318', 'pg12', '', '');
