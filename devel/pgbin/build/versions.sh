@@ -1,16 +1,16 @@
 #!/bin/bash
 
 pg13V="13.1"
-pg13BuildV=3
+pg13BuildV=4
 
 pg12V="12.5"
-pg12BuildV=3
+pg12BuildV=4
 
 pg11V="11.10"
-pg11BuildV=1
+pg11BuildV=4
 
 pg10V="10.15"
-pg10BuildV=1
+pg10BuildV=4
 
 odbcFullV=13.00
 odbcShortV=

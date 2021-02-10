@@ -180,7 +180,7 @@ function buildPostgres {
 		conf="$conf --disable-rpath $pgLLVM"
 		conf="$conf --with-python PYTHON=/usr/bin/python3 --with-perl"
 		conf="$conf --with-uuid=ossp --with-gssapi --with-ldap"
-		conf="$conf --with-tcl --with-pam"
+		conf="$conf --with-pam"
 	fi
 
         gcc_ver=`gcc --version | head -1 | awk '{print $3}'`

@@ -16,7 +16,7 @@ cd $dir
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 
 ./configure
-make
+make -j 4
 sudo make install
 cd ..
 

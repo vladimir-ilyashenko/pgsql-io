@@ -28,7 +28,9 @@ rm -f $shared_lib/*
 cp -Pv $lib64/libbz2.so.*     $shared_lib/.
 cp -Pv $lib64/libz.so.*       $shared_lib/.
 cp -Pv $lib64/libssl*         $shared_lib/.
+
 cp -Pv $lib64/libcrypt*.so*   $shared_lib/.
+cp -Pv /lib64/libcrypt*.so*   $shared_lib/.
 cp -Pv $lib64/libkrb5*        $shared_lib/.
 cp -Pv $lib64/libgssapi*      $shared_lib/.
 cp -Pv $lib64/libldap*        $shared_lib/.
