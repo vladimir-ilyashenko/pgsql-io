@@ -67,7 +67,7 @@ if [ "$majorV" == "all" ]; then
   runPgBin "$binBld" "$pgSrc-$pg10V.tar.gz" "$pg10BuildV"
   runPgBin "$binBld" "$pgSrc-$pg11V.tar.gz" "$pg11BuildV"
   runPgBin "$binBld" "$pgSrc-$pg12V.tar.gz" "$pg12BuildV"
-  runPgBin "$binBld" "$pgSrc-$pg13V.tar.gz" "$pg13BuildV"
+  # runPgBin "$binBld" "$pgSrc-$pg13V.tar.gz" "$pg13BuildV"
 else
   runPgBin "$binBld" "$pgSrc-$pgV.tar.gz" "$pgBuildV"
 fi

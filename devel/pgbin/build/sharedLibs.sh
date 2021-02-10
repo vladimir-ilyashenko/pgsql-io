@@ -19,7 +19,7 @@ rc=$?
 if [ "$rc" == "0" ]; then
   isEL8=yes
 fi
-echo isEL8=$isEL8
+#echo isEL8=$isEL8
 
 shared_lib=/opt/pgbin-build/pgbin/shared/lib/
 mkdir -p $shared_lib
@@ -28,9 +28,7 @@ rm -f $shared_lib/*
 cp -Pv $lib64/libbz2.so.*     $shared_lib/.
 cp -Pv $lib64/libz.so.*       $shared_lib/.
 cp -Pv $lib64/libssl*         $shared_lib/.
-
 cp -Pv $lib64/libcrypt*.so*   $shared_lib/.
-cp -Pv /lib64/libcrypt*.so*   $shared_lib/.
 cp -Pv $lib64/libkrb5*        $shared_lib/.
 cp -Pv $lib64/libgssapi*      $shared_lib/.
 cp -Pv $lib64/libldap*        $shared_lib/.
@@ -51,7 +49,7 @@ cp -Pv $lib64/libsmime*            $shared_lib/.
 cp -Pv $lib64/libplds4*            $shared_lib/.
 cp -Pv $lib64/libplc4*             $shared_lib/.
 cp -Pv $lib64/libpcre.so.*         $shared_lib/.
-cp -Pv $lib64/libpcre2-8*          $shared_lib/.
+#cp -Pv $lib64/libpcre2-8*          $shared_lib/.
 cp -Pv $lib64/libfreebl3.so        $shared_lib/.
 cp -Pv $lib64/libcap*              $shared_lib/.
 cp -Pv $lib64/libaudit*            $shared_lib/.
@@ -65,19 +63,19 @@ cp -Pv $lib64/libreadline.so.*     $shared_lib/.
 
 # postgis
 #cp -Pv $lib64/libgeos*.so*         $shared_lib/.
-cp -Pv $lib64/libprotobuf-c.so.*   $shared_lib/.
-cp -Pv $lib64/libproj.so.*         $shared_lib/.
+#cp -Pv $lib64/libprotobuf-c.so.*   $shared_lib/.
+#cp -Pv $lib64/libproj.so.*         $shared_lib/.
 cp -Pv $lib64/libjson-c*           $shared_lib/.
 #cp -Pv /usr/local/lib/libgeos*.so* $shared_lib/.
 #cp -Pv /usr/local/lib/libgdal*.so* $shared_lib/.
 
 #cp -Pv $lib64/mysql/libmysqlclient.* $shared_lib/.
 
-if [ "$isEL8" == "no" ]; then
-  cp -Pv /usr/local/lib/* $shared_lib/.
-  # pg_agent
-  cp -Pv $lib64/libicu*so.*          $shared_lib/.
-fi
+#if [ "$isEL8" == "no" ]; then
+#  cp -Pv /usr/local/lib/* $shared_lib/.
+#  # pg_agent
+#  cp -Pv $lib64/libicu*so.*          $shared_lib/.
+#fi
 
 # oracle_fdw
 #oraclient=/opt/oracleinstantclient/instantclient_19_8
@@ -101,11 +99,8 @@ fi
 #cp -Pv $lib64/libtasn1.so.*           $shared_lib/.
 #cp -Pv $lib64/libffi.so.*             $shared_lib/.
 
-cp="cp -Pv $lib64"
-sl="$shared_lib/."
-rm -f $sl/*.a
-
 # cassandra_fdw
+#cp="cp -Pv $lib64"
 #$cp/libcassandra.so.* $sl
 #$cp/libuv.so.*        $sl
 #$cp/libnsl.so.*       $sl
@@ -113,5 +108,14 @@ rm -f $sl/*.a
 # fixup for oraclefdw
 #cd $sl
 #ln -s libnsl.so.2 libnsl.so.1
+
+## cleanups at the end #################
+cd $shared_lib
+ln -fs libcrypt-2.17.so libcrypt.so
+
+#sl="$shared_lib/."
+#rm -f $sl/*.a
+#rm -f $sl/*.la
+#rm -f $sl/*libboost*test*
 
 
