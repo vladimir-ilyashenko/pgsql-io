@@ -1,30 +1,54 @@
+#!/bin/bash
 cd "$(dirname "$(readlink -f "$0")")"
 
-# set -x
+yumInstall () {
+  repo=rhel/8
+  repo_d=/etc/yum.repos.d
+  install="sudo yum install -y"
 
-if [ `arch` == 'aarch64' ]; then
-  echo 'ERROR: SQL Server for Linux on runs on AMD64 Architecture'
-  exit 1
+  $install python2 curl
+  $install compat-openssl10
+  sudo alternatives --config python
+
+  sudo curl -o $repo_d/$sqlsvr.repo $url/config/$repo/$sqlsvr-2019.repo
+  $install $sqlsvr
+
+  sudo curl -o $repo_d/msprod.repo $url/config/$repo/prod.repo
+  sudo yum remove -y unixODBC-utf16 unixODBC-utf16-devel
+  $install mssql-tools unixODBC-devel
+  echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
+  source ~/.bashrc
+}
+
+
+aptInstall () {
+  repo=18.04
+  install="sudo apt install -y"
+
+  $install wget
+  sudo wget -qO- $url/keys/microsoft.asc | sudo apt-key add -
+
+  sudo add-apt-repository "$(wget -qO- $url/config/ubuntu/$repo/$sqlsvr-2019.list)"
+
+  $install $sqlsvr
+}
+
+
+##################### MAINLINE #####################################
+
+source getPKMG.sh
+echo "## INSTALLING MS SQL-SERVER w/ $PKMG #########################"
+
+export url=https://packages.microsoft.com
+export  sqlsvr=mssql-server
+
+if [ "$PKMG" == "yum" ]; then
+  yumInstall
+else
+  aptInstall
 fi
-
-sudo yum install python2
-sudo yum install compat-openssl10
-echo 
-echo Configure python2 as the default interpreter 
-sudo alternatives --config python
-
-sudo curl -o /etc/yum.repos.d/mssql-server.repo https://packages.microsoft.com/config/rhel/8/mssql-server-2019.repo
-sudo yum install -y mssql-server
-
-sudo curl -o /etc/yum.repos.d/msprod.repo https://packages.microsoft.com/config/rhel/8/prod.repo
-sudo yum remove unixODBC-utf16 unixODBC-utf16-devel
-sudo yum install -y mssql-tools unixODBC-devel
-echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
-source ~/.bashrc
 
 echo ""
 echo "# now run:   ./io config sqlsvr"
-
 exit 0
-
 
