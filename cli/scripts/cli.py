@@ -60,7 +60,7 @@ fire_list = ["cloud", "cluster", "node", "machine", "key", "service", "security"
 dep9 = util.get_depend()
 
 mode_list = ["start", "stop", "restart", "status", "list", "info", "update",
-             "upgrade", "downgrade", "enable", "disable", "install", "groupinstall", "tune",
+             "upgrade", "downgrade", "enable", "disable", "install", "tune",
              "remove", "reload", "activity", "help", "get", "set", "unset",
              "pgdglist", "pgdg-pkgs", "discover",
              "register", "top", "bench", "--autostart", "--relnotes", "--start",
@@ -71,14 +71,14 @@ mode_list = ["start", "stop", "restart", "status", "list", "info", "update",
 mode_list_advanced = ['kill', 'config', 'deplist', 'download', 'cancel',
                       'verify', 'init', 'clean', 'useradd', 'provision']
 
-ignore_comp_list = [ "get", "set", "unset", "register", "pgdglist", "groupinstall", "bench",
+ignore_comp_list = [ "get", "set", "unset", "register", "pgdglist",  "bench",
                      "pgdg-pkgs", "discover", "useradd", "cloud", "cluster", "node", "machine",
                      "key", "service"]
 
 no_log_commands = ['status', 'info', 'list', 'activity', 'top', 'register',
                    'cancel', 'get']
 
-lock_commands = ["install", "groupinstall", "remove", "update", "upgrade", "downgrade", "cloud", "bench"]
+lock_commands = ["install", "remove", "update", "upgrade", "downgrade", "cloud", "bench"]
 
 my_depend = []
 installed_comp_list = []
@@ -1655,18 +1655,6 @@ try:
       if isJSON:
         msg = '[{"status":"complete","msg":"' + comment + '","component":"' + c + '"}]'
         print(msg)
-
-    exit_cleanly(0)
-
-
-  ## GROUPINSTALL ###########################################
-  if (p_mode == 'groupinstall'):
-    rg = meta.wildcard_releasegroup(sys.argv) 
-
-    if meta.is_releasegroup(rg):
-      print("DEBUG: unique - " + rg)
-    else:
-      print("DEBUG: not unique - " + rg)
 
     exit_cleanly(0)
 

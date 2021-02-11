@@ -45,6 +45,8 @@ io command [component] [options]
   node      - Virtual machines, containers or bare-metal
   cluster   - A set of nodes to perform an HA task
   security  - Manage Security Groups and Rules
+  pgdg      - Work with PGDG PostgreSQl Community packages
+  awsrds    - AWS RDS Interactions
   volume    - Block Stores for attachment to nodes or containers
   backrest  - Backup & Restore  API
   dns       - DNS API
@@ -53,6 +55,9 @@ io command [component] [options]
 
 ## Advanced Commands ##
 ```
+  tune       - Tune a database
+  downgrade  - Perform an upgrade of a component
+  backup     - save your metadata and installation to a Bucket
   top        - Cross platform version of the "top" command 
   get        - Retrieve a setting
   set        - Populate a setting
