@@ -148,6 +148,8 @@ def group_list_openstack(region, cloud_keys, group_name=None):
 
       dict['name'] = sg.name
       dict['id'] = sg.id
+      dict['cidr'] = ""
+      dict['port'] = ""
       rules = sg.security_group_rules
       port = None
       for rule in rules:
