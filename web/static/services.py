@@ -194,7 +194,7 @@ def print_header(pWidth):
 
 def print_footer():
   print('<table><tr> \n' + \
-        '   <td width=550>&copy; 2021 PGSQL.IO, LLC</td> \n' + \
+        '   <td width=550>&copy; 2021 OpenRDS, LLC</td> \n' + \
         '   <td width=550 align=right><a href=""></a></td> \n' + \
         '</tr></table>')
 
