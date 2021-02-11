@@ -1,4 +1,4 @@
-# PGSQL-IO
+# OPENRDS 
 
 EMAIL="denis@lussier.io"
 NAME="denis lussier"
@@ -22,7 +22,7 @@ if [ `uname` == 'Linux' ]; then
     cat /etc/os-release | grep el8
     rc=$?
     if [ "$rc" == "0" ]; then
-      echo ## CentOS 8 Stream (used for PG12+)
+      echo ## CentOS 8 (uck!! )
       yum="dnf -y install --nobest"
       sudo $yum epel-release
       sudo $yum wget python3 python3-devel
@@ -41,7 +41,7 @@ if [ `uname` == 'Linux' ]; then
       cd /usr/bin
       sudo ln -fs python2 python
     else
-      ## CentOS 7 (used for PG96 thru PG11)
+      ## CentOS 7 (used for PG10 thru PG13)
       sudo yum -y install -y epel-release python-pip
       sudo yum -y groupinstall 'development tools'
       sudo yum -y install bison-devel libedit-devel zlib-devel bzip2-devel \
@@ -92,7 +92,7 @@ pip3 install --user CLICK
 pip3 install --user apache-libcloud flask psutil fire
 pip3 install --user python-openstackclient twisted
 
-cd ~/dev/pgsql-io
+cd ~/dev/openrds
 if [ -f ~/.bashrc ]; then
   bf=~/.bashrc
 else

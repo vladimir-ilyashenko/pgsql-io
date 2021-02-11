@@ -1,5 +1,5 @@
 ########################################################
-#  Copyright 2020-2021  PGSQL.IO  All rights reserved. #
+#  Copyright 2020-2021  OpenRDS   All rights reserved. #
 ########################################################
 
 from __future__ import print_function, division
@@ -398,7 +398,7 @@ def info(p_json, p_home, p_repo, print_flag=True):
   print(style_start + "#           Machine: " + style_end + mem + ", " + cores + " vCPU, " + cpu)
   print(style_start + "# Programming Langs: " + style_end + langs)
 
-  default_repo = "https://pgsql-io-download.s3.amazonaws.com/REPO"
+  default_repo = "https://openrds-download.s3.amazonaws.com/REPO"
   if p_repo != default_repo:
     print(style_start + "#          Repo URL: " + style_end + p_repo)
 

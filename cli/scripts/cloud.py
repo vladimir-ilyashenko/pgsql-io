@@ -1,5 +1,5 @@
 ########################################################
-#  Copyright 2020-2021  PGSQL.IO  All rights reserved. #
+#  Copyright 2020-2021  OpenRDS  All rights reserved. #
 ########################################################
 
 import libcloud
@@ -64,7 +64,7 @@ def get_provider_constant(p_provider):
   
   if pp in ('AWS', 'EC2'):
     return(Provider.EC2)
-  elif pp in ('PGSQL', 'OPENSTACK'):
+  elif pp in ('OPENRDS', 'OPENSTACK'):
     return(Provider.OPENSTACK)
   else:
     util.message("provider not supported", "error")

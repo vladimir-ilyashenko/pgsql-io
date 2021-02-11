@@ -1,5 +1,5 @@
 ########################################################
-#  Copyright 2020-2021  PGSQL.IO  All rights reserved. #
+#  Copyright 2020-2021  OpenRDS   All rights reserved. #
 ########################################################
 
 from __future__ import print_function, division
@@ -2079,7 +2079,7 @@ def http_get_file(p_json, p_file_name, p_url, p_out_dir, p_display_status, p_msg
     while True:
       if not p_file_name.endswith(".txt") \
               and not p_file_name.startswith("install.py") \
-              and not p_file_name.startswith("pgsql-io") \
+              and not p_file_name.startswith("openrds-") \
               and not os.path.isfile(pid_file):
         raise KeyboardInterrupt("No lock file exists.")
       buffer = u.read(block_sz)

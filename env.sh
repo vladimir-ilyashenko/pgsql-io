@@ -1,5 +1,5 @@
 
-bundle=pgsql
+bundle=openrds
 api=io
 hubV=7.00
 

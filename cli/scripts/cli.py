@@ -1,5 +1,5 @@
 ########################################################
-#  Copyright 2020-2021  PGSQL.IO  All rights reserved. #
+#  Copyright 2020-2021  OpenRDS   All rights reserved. #
 ########################################################
 
 from __future__ import print_function, division
@@ -14,24 +14,10 @@ if not IS_64BITS:
   print("This is a 32bit machine and we are 64bit.")
   sys.exit(1)
 
-import os
-import socket
-import subprocess
-import time
-import datetime
-import hashlib
-import platform
-import tarfile
-import sqlite3
-import time
-import json
-import glob
+import os, socket, subprocess, time, datetime, hashlib, platform
+import tarfile, sqlite3, time, json, glob
 from shutil import copy2, copytree
-import re
-import io
-import errno
-import traceback
-import argparse
+import re, io, errno, traceback, argparse
 
 MY_HOME = os.getenv('MY_HOME')
 MY_CMD =  os.getenv('MY_CMD')
@@ -45,11 +31,9 @@ if os.path.exists(platform_lib_path):
   if platform_lib_path not in sys.path:
     sys.path.append(platform_lib_path)
 
-import util, api, update_hub, startup, meta, repo, component
-import logging
-import logging.handlers
+import util, api, update_hub, startup, meta, pgdg, component
+import logging, logging.handlers, mistune
 from semantic_version import Version
-import mistune
 
 if not util.is_writable(os.path.join(os.getenv('MY_HOME'), 'conf')):
   print("You must run as administrator/root.")
@@ -78,7 +62,7 @@ dep9 = util.get_depend()
 mode_list = ["start", "stop", "restart", "status", "list", "info", "update",
              "upgrade", "downgrade", "enable", "disable", "install", "groupinstall", "tune",
              "remove", "reload", "activity", "help", "get", "set", "unset",
-             "repolist", "repo-pkgs", "discover",
+             "pgdglist", "pgdg-pkgs", "discover",
              "register", "top", "bench", "--autostart", "--relnotes", "--start",
              "--help", "--json", "--test", "--extra", "--extensions",
              "--list", "--old", "--showduplicates", "-y", "-t", "-d"  ,
@@ -87,8 +71,8 @@ mode_list = ["start", "stop", "restart", "status", "list", "info", "update",
 mode_list_advanced = ['kill', 'config', 'deplist', 'download', 'cancel',
                       'verify', 'init', 'clean', 'useradd', 'provision']
 
-ignore_comp_list = [ "get", "set", "unset", "register", "repolist", "groupinstall", "bench",
-                     "repo-pkgs", "discover", "useradd", "cloud", "cluster", "node", "machine",
+ignore_comp_list = [ "get", "set", "unset", "register", "pgdglist", "groupinstall", "bench",
+                     "pgdg-pkgs", "discover", "useradd", "cloud", "cluster", "node", "machine",
                      "key", "service"]
 
 no_log_commands = ['status', 'info', 'list', 'activity', 'top', 'register',
@@ -1269,7 +1253,7 @@ try:
         isSILENT=True
         if isVERBOSE:
           isSILENT=False
-      rc = repo.discover(v, isSILENT, isJSON, isYES)
+      rc = pgdg.discover(v, isSILENT, isJSON, isYES)
       comp = "pgdg" + v.replace(".", "")
       if rc in (0,4):
         pgdg_comps.append({'version': v, 'comp': comp})
@@ -1293,22 +1277,22 @@ try:
     exit_cleanly(0)
 
 
-  ## REPO-PKGS ####################################################################
-  if p_mode == "repo-pkgs":
-    repo.validate_os(isJSON)
+  ## PGDG-PKGS ####################################################################
+  if p_mode == "pgdg-pkgs":
+    pgdg.validate_os(isJSON)
     if len(args) == 4:
       if args[3] == "list":
-        exit_cleanly(repo.list_packages(args[2], isSHOWDUPS, isJSON, isTEST))
+        exit_cleanly(pgdg.list_packages(args[2], isSHOWDUPS, isJSON, isTEST))
 
     if len(args) >= 5:
       if args[3] == "install":
-        exit_cleanly(repo.install_packages(args[2], args[4:], isJSON))
+        exit_cleanly(pgdg.install_packages(args[2], args[4:], isJSON))
 
       if args[3] == "remove":
-        exit_cleanly(repo.remove_packages(args[2], args[4:], isJSON))
+        exit_cleanly(pgdg.remove_packages(args[2], args[4:], isJSON))
 
-    error_msg = "try: ./" + MY_CMD + " repo-pkgs <repo-id> list\n" + \
-                "            ./" + MY_CMD + " repo-pkgs <repo-id> [install | remove] <pkg-list>"
+    error_msg = "try: ./" + MY_CMD + " pgdg-pkgs <repo-id> list\n" + \
+                "            ./" + MY_CMD + " pgdg-pkgs <repo-id> [install | remove] <pkg-list>"
     util.exit_message(error_msg, 1, isJSON)
 
 
@@ -1320,13 +1304,13 @@ try:
       util.exit_message("DIRLIST takes one argument", 1, isJSON)
 
 
-  ## REPOLIST ####################################################################
-  if p_mode == "repolist":
+  ## PGDGLIST ####################################################################
+  if p_mode == "pgdglist":
     if len(args) == 2:
-      repo.list(isJSON)
+      pgdg.list(isJSON)
       exit_cleanly(0)
     else:
-      util.exit_message("REPOLIST takes no arguments", 1, isJSON)
+      util.exit_message("PGDGLIST takes no arguments", 1, isJSON)
 
 
   ## REGISTER ###################################################################

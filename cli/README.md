@@ -1,6 +1,6 @@
 # README for IO #
 
-IO is the API & CLI for PGSQL.IO
+IO is the API & CLI for OPENRDS 
 
 ## Usage ##
 ```
@@ -27,22 +27,6 @@ io command [component] [options]
   init      - Initialize a component
 ```
 
-## Hybrid & Multi-Cloud Commands ##
-```
-  provider  - Supported cloud providers
-  region    - Supported provider regions (geographic areas)
-  location  - A data center (Avaialbility Zone)
-  key       - Manage SSH Keys
-  cloud     - Credentialed connections to a provider/region
-  bucket    - BLOB or Object storage
-  node      - Virtual machines, containers or bare-metal
-  volume    - Block Stores for attachment to nodes or containers
-  cluster   - A set of nodes to perform an HA task
-  dns       - DNS API
-  balance   - Load Balancer API
-  backup    - Backup API
-```
-
 
 ## Software Install & Update Commands ##
 ```
@@ -51,6 +35,20 @@ io command [component] [options]
   install   - Install (or re-install) a component  
   remove    - Un-install component   
   clean     - Delete downloaded component files
+```
+
+
+## Hybrid & Multi-Cloud Commands ##
+```
+  key       - Manage SSH Keys
+  cloud     - Credentialed connections to a provider/region
+  node      - Virtual machines, containers or bare-metal
+  cluster   - A set of nodes to perform an HA task
+  security  - Manage Security Groups and Rules
+  volume    - Block Stores for attachment to nodes or containers
+  backrest  - Backup & Restore  API
+  dns       - DNS API
+  balance   - Load Balancer API
 ```
 
 ## Advanced Commands ##

@@ -1,5 +1,5 @@
 ########################################################
-#  Copyright 2020-2021  PGSQL.IO  All rights reserved. #
+#  Copyright 2020-2021  OpenRDS   All rights reserved. #
 ########################################################
 
 import util, meta, api, cloud, node

@@ -20,8 +20,8 @@ def sys_cli(p_cmd):
 
 @app.route('/', methods=['GET'])
 def home():
-    return '''<h1>PGSQL-IO Development API</h1>
-<p>A development API over "io" commands</p>'''
+    return '''<h1>OpenRDS Development API</h1>
+<p>A REST API for "io" commands</p>'''
 
 
 @app.route('/info', methods=['GET'])

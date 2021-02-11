@@ -1,5 +1,5 @@
 ########################################################
-#  Copyright 2020-2021  PGSQL.IO  All rights reserved. #
+#  Copyright 2020-2021  OpenRDS   All rights reserved. #
 ########################################################
 
 from __future__ import print_function, division
@@ -7,12 +7,7 @@ from __future__ import print_function, division
 import os, sys, re, json, datetime, logging
 import util, meta, api
 
-try:
-    # For Python 3.0 and later
-    from urllib import request as urllib2
-except ImportError:
-    # Fall back to Python 2's urllib2
-    import urllib2
+from urllib import request as urllib2
 
 PGDG_REPO_LIST="json-pgdg-repo-list"
 

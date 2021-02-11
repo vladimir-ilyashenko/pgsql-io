@@ -1,5 +1,5 @@
 ########################################################
-#  Copyright 2020-2021  PGSQL.IO  All rights reserved. #
+#  Copyright 2020-2021  OpenRDS   All rights reserved. #
 ########################################################
 
 import util, meta, api, cloud, machine, key
@@ -46,10 +46,10 @@ def shell_cmd(cloud_name, machine_id, cmd):
   return
 
 
-def install_io(cloud_name, machine_id):
+def install_cli(cloud_name, machine_id):
 
   #repo = util.get_value("GLOBAL", "REPO")
-  repo = "https://pgsql-io-download.s3.amazonaws.com/REPO"
+  repo = "https://openrds-download.s3.amazonaws.com/REPO"
 
   cmd = 'python3 -c "$(curl -fsSL ' + repo + '/install.py)"'
 
@@ -58,10 +58,10 @@ def install_io(cloud_name, machine_id):
   return
 
 
-def io_cmd(cloud_name, machine_id, cmd):
-  full_io_cmd = "pgsql/io " + cmd
-  ##util.message("running:  '" + full_io_cmd + "'\n   on machine " + str(machine_id))
-  result_json = shell_cmd(cloud_name, machine_id, full_io_cmd)
+def cli_cmd(cloud_name, machine_id, cmd):
+  full_cli_cmd = "openrds/io " + cmd
+  ##util.message("running:  '" + full_cli_cmd + "'\n   on machine " + str(machine_id))
+  result_json = shell_cmd(cloud_name, machine_id, full_cli_cmd)
   return(result_json)
 
 
