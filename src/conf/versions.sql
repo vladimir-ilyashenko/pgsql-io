@@ -306,7 +306,7 @@ CREATE VIEW v_versions AS
 INSERT INTO categories VALUES (0,   0, 'Hidden', 'NotShown');
 INSERT INTO categories VALUES (1,  10, 'Strategic & Rock-Solid Postgres', 'PostgreSQL');
 INSERT INTO categories VALUES (4, 100, 'Hybrid & Multi-Cloud', 'Multi-Cloud');
-INSERT INTO categories VALUES (10, 96, 'Foreign Datastores', 'ForeignData');
+INSERT INTO categories VALUES (10, 96, 'DataServices', 'OpenRDS');
 INSERT INTO categories VALUES (2,  60, 'Advanced Applications', 'Applications');
 INSERT INTO categories VALUES (5,  70, 'Data Integration', 'Integration');
 INSERT INTO categories VALUES (3,  80, 'Procedural Programming', 'Procedural');
