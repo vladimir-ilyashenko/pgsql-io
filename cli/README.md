@@ -35,12 +35,3 @@ io command [component] [options]
   remove    - Un-install component   
   clean     - Delete downloaded component files
 ```
-
-## Advanced Commands ##
-```
-  top        - Cross platform version of the "top" command 
-  get        - Retrieve a setting
-  set        - Populate a setting
-  unset      - Remove a setting 
-  bench      - run pgBench on a database
-```

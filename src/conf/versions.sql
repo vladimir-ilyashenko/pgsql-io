@@ -282,7 +282,7 @@ INSERT INTO versions VALUES ('esfdw-pg13', '0.10.0', 'amd',  0, '20201018', 'pg1
 INSERT INTO projects VALUES ('ora2pg', 5, 0, 'hub', 0, 'https://github.com/darold/ora2pg/releases',
   'ora2pg', 0, 'ora2pg.png', 'Migrate from Oracle to PG', 'https://ora2pg.darold.net');
 INSERT INTO releases VALUES ('ora2pg', 2, 'ora2pg', 'Oracle to PG', '', 'prod', '', 1, 'GPLv2', '', '');
-INSERT INTO versions VALUES ('ora2pg', '21.0', '', 1, '20201012', '', 'GCC PERL',
+INSERT INTO versions VALUES ('ora2pg', '21.0', '', 2, '20201012', '', 'GCC PERL',
   'https://github.com/darold/ora2pg/releases/tag/v21.0');
 INSERT INTO versions VALUES ('ora2pg', '20.0', '', 0, '20200829', '', 'GCC PERL',
   'https://github.com/darold/ora2pg/releases/tag/v20.0');
@@ -356,7 +356,7 @@ INSERT INTO versions VALUES ('plprofiler-pg13', '4.1-1', 'amd', 1, '20190823', '
 INSERT INTO projects VALUES ('backrest', 2, 0, 'hub', 0, 'https://pgbackrest.org/release.html',
   'backrest', 0, 'backrest.png', 'Backup & Restore', 'https://pgbackrest.org');
 INSERT INTO releases VALUES ('backrest', 9, 'backrest', 'pgBackRest', '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('backrest', '2.31-1', 'amd', 1, '20201208', '', '', '');
+INSERT INTO versions VALUES ('backrest', '2.31-1', 'amd', 2, '20201208', '', '', '');
 INSERT INTO versions VALUES ('backrest', '2.30-1', 'amd', 0, '20201005', '', '', '');
 INSERT INTO versions VALUES ('backrest', '2.29-1', 'amd', 0, '20200821', '', '', '');
 
@@ -439,14 +439,14 @@ INSERT INTO versions VALUES ('hypopg-pg13', '1.1.4-1',  'amd', 1, '20200711', 'p
 INSERT INTO projects VALUES ('pgbadger', 2, 0, 'hub', 6, 'https://github.com/darold/pgbadger/releases',
   'badger', 0, 'badger.png', 'Performance Reporting', 'https://pgbadger.darold.net');
 INSERT INTO releases VALUES ('pgbadger', 8, 'pgbadger','pgBadger','', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pgbadger', '11.4', '', 1, '20201125', '', '', '');
+INSERT INTO versions VALUES ('pgbadger', '11.4', '', 2, '20201125', '', '', '');
 INSERT INTO versions VALUES ('pgbadger', '11.3', '', 0, '20200726', '', '', '');
 INSERT INTO versions VALUES ('pgbadger', '11.2', '', 0, '20200311', '', '', '');
 
 INSERT INTO projects VALUES ('bouncer',  2, 0, 'hub', 3, 'http://pgbouncer.org',
   'bouncer',  0, 'bouncer.png', 'Lightweight Connection Pooler', 'http://pgbouncer.org');
 INSERT INTO releases VALUES ('bouncer', 2, 'bouncer',  'pgBouncer', '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('bouncer', '1.15.0-1', 'amd', 1, '20201119', '', '', '');
+INSERT INTO versions VALUES ('bouncer', '1.15.0-1', 'amd', 2, '20201119', '', '', '');
 INSERT INTO versions VALUES ('bouncer', '1.14.0-1', 'amd', 0, '20200611', '', '', '');
 INSERT INTO versions VALUES ('bouncer', '1.13.0-1', 'amd', 0, '20200427', '', '', '');
 
