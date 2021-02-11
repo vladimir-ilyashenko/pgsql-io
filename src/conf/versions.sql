@@ -46,9 +46,10 @@ INSERT INTO services VALUES ('pg',            'sql',   1);
 INSERT INTO services VALUES ('mariadb',       'sql',   2);
 INSERT INTO services VALUES ('sqlsvr',        'sql',   3);
 INSERT INTO services VALUES ('oracle',        'sql',   4);
-INSERT INTO services VALUES ('mongodb',       'sql',   5);
-INSERT INTO services VALUES ('elasticsearch', 'big',   6);
-INSERT INTO services VALUES ('prestosql',     'big',   7);
+INSERT INTO services VALUES ('sybase',        'sql',   5);
+INSERT INTO services VALUES ('mongodb',       'nosql', 6);
+INSERT INTO services VALUES ('elasticsearch', 'big',   7);
+INSERT INTO services VALUES ('prestosql',     'big',   8);
 
 CREATE VIEW v_services AS
   SELECT t.sort_order as sort1, s.sort_order as sort2, t.svc_group, 
@@ -397,7 +398,7 @@ INSERT INTO versions VALUES ('sqlsvr', '2019-1', 'amd', 1, '20200801', '', 'AMD6
 INSERT INTO projects VALUES ('sybase', 11, 0, 'hub', 0, 'https://sap.com/products/sybase-ase.html', 
   'sybase', 0, 'sybase.png', 'Sybase ASE', 'https://sap.com/products/sybase-ase.html');
 INSERT INTO releases VALUES ('sybase', 21, 'sybase', 'SAP Sybase ASE', '', 'prod',  '', 0, 'SAP', '', '');
-INSERT INTO versions VALUES ('sybase', '2019', 'amd', 0, '20191010', '', '', '');
+INSERT INTO versions VALUES ('sybase', '2019', 'amd', 1, '20191010', '', '', '');
 
 INSERT INTO projects VALUES ('tdsfdw', 5, 0, 'hub', 0, 'https://github.com/tds-fdw/tds_fdw/releases',
   'tdsfdw', 1, 'tds.png', 'SQL Server & Sybase from PG', 'https://github.com/tds-fdw/tds_fdw/#tds-foreign-data-wrapper');
