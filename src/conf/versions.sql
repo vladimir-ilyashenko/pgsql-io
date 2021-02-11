@@ -309,18 +309,13 @@ INSERT INTO categories VALUES (4, 100, 'Hybrid & Multi-Cloud', 'Multi-Cloud');
 INSERT INTO categories VALUES (10, 96, 'DataServices', 'OpenRDS');
 INSERT INTO categories VALUES (2,  60, 'Advanced Applications', 'Applications');
 INSERT INTO categories VALUES (5,  70, 'Data Integration', 'Integration');
-INSERT INTO categories VALUES (3,  80, 'Procedural Programming', 'Procedural');
+INSERT INTO categories VALUES (3,  80, 'Database Developers', 'DB-Devs');
 INSERT INTO categories VALUES (9,  87, 'Management & Monitoring', 'Manage');
 
 -- ## HUB ################################
-INSERT INTO projects VALUES ('hub',0, 0, 'hub', 0, 'https://github.com/bigsql/pgsql-io','',0,'','','');
-INSERT INTO releases VALUES ('hub', 1, 'hub', '', '', 'hidden', '', 1, 'AGPLv3', '', '');
-INSERT INTO versions VALUES ('hub', '7.00', '',  1, '20210301', '', '', '');
-INSERT INTO versions VALUES ('hub', '6.36', '',  0, '20210204', '', '', '');
-INSERT INTO versions VALUES ('hub', '6.35', '',  0, '20210127', '', '', '');
-INSERT INTO versions VALUES ('hub', '6.34', '',  0, '20210127', '', '', '');
-INSERT INTO versions VALUES ('hub', '6.33', '',  0, '20201212', '', '', '');
-INSERT INTO versions VALUES ('hub', '6.32', '',  0, '20201119', '', '', '');
+INSERT INTO projects VALUES ('hub',0, 0, 'hub', 0, 'https://github.com/pgsql-io/pgsql-io','',0,'','','');
+INSERT INTO releases VALUES ('hub', 1, 'hub', '', '', 'hidden', '', 1, '', '', '');
+INSERT INTO versions VALUES ('hub', '7.00', '',  1, '20210212', '', '', '');
 
 -- ##
 INSERT INTO projects VALUES ('pg', 1, 5432, 'hub', 1, 'https://postgresql.org/download',
@@ -625,7 +620,7 @@ INSERT INTO versions VALUES ('pgadmin', '4', '', 0, '20201210', '', '', '');
 INSERT INTO projects VALUES ('bulkload', 9, 0, 'hub', 5, 'https://github.com/ossc-db/pg_bulkload/releases',
   'bulkload', 1, 'bulkload.png', 'High Speed Data Loading', 'https://github.com/ossc-db/pg_bulkload');
 INSERT INTO releases VALUES ('bulkload-pg12', 6, 'bulkload', 'pgBulkLoad',  '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('bulkload-pg12', '3.1.16-1', 'amd', 0, '20200121', 'pg12', '', '');
+INSERT INTO versions VALUES ('bulkload-pg12', '3.1.16-1', 'amd', 1, '20200121', 'pg12', '', '');
 
 INSERT INTO projects VALUES ('repack', 2, 0, 'hub', 5, 'https://github.com/reorg/pg_repack/releases',
   'repack', 1, 'repack.png', 'Remove Table/Index Bloat' , 'https://github.com/reorg/pg_repack');
