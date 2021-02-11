@@ -96,7 +96,7 @@ INSERT INTO categories VALUES (4, 100, 'Hybrid & Multi-Cloud', 'Multi-Cloud');
 INSERT INTO categories VALUES (10, 96, 'Foreign Datastores', 'ForeignData');
 INSERT INTO categories VALUES (2,  60, 'Advanced Applications', 'Applications');
 INSERT INTO categories VALUES (5,  70, 'Data Integration', 'Integration');
-INSERT INTO categories VALUES (3,  80, 'Procedural Programming', 'Procedural');
+INSERT INTO categories VALUES (3,  80, 'Database Developers', 'DB-Devs');
 INSERT INTO categories VALUES (9,  87, 'Management & Monitoring', 'Manage');
 
 -- ## HUB ################################
@@ -391,7 +391,7 @@ INSERT INTO versions VALUES ('cron-pg13', '1.3.0-1', 'amd', 1, '20201006', 'pg13
 INSERT INTO projects VALUES ('timescaledb', 2, 0, 'hub', 1, 'https://github.com/timescale/timescaledb/releases',
    'timescaledb', 1, 'timescaledb.png', 'Time Series Data', 'https://github.com/timescale/timescaledb/#timescaledb');
 INSERT INTO releases VALUES ('timescaledb-pg12',  1, 'timescaledb', 'TimescaleDB', '', 'prod', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('timescaledb-pg12', '2.0.0-1',  'amd', 0, '20201221', 'pg12', '',
+INSERT INTO versions VALUES ('timescaledb-pg12', '2.0.0-1',  'amd', 1, '20201221', 'pg12', '',
   'https://github.com/timescale/timescaledb/releases/tag/2.0.0');
 INSERT INTO versions VALUES ('timescaledb-pg12', '1.7.4-1',  'amd', 0, '20200907', 'pg12', '',
   'https://github.com/timescale/timescaledb/releases/tag/1.7.4');
@@ -419,7 +419,7 @@ INSERT INTO versions VALUES ('pgadmin', '4', '', 0, '20201210', '', '', '');
 INSERT INTO projects VALUES ('bulkload', 9, 0, 'hub', 5, 'https://github.com/ossc-db/pg_bulkload/releases',
   'bulkload', 1, 'bulkload.png', 'High Speed Data Loading', 'https://github.com/ossc-db/pg_bulkload');
 INSERT INTO releases VALUES ('bulkload-pg12', 6, 'bulkload', 'pgBulkLoad',  '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('bulkload-pg12', '3.1.16-1', 'amd', 0, '20200121', 'pg12', '', '');
+INSERT INTO versions VALUES ('bulkload-pg12', '3.1.16-1', 'amd', 1, '20200121', 'pg12', '', '');
 
 INSERT INTO projects VALUES ('repack', 2, 0, 'hub', 5, 'https://github.com/reorg/pg_repack/releases',
   'repack', 1, 'repack.png', 'Remove Table/Index Bloat' , 'https://github.com/reorg/pg_repack');
