@@ -397,7 +397,7 @@ INSERT INTO versions VALUES ('mysqlfdw-pg13', '2.5.4-1', 'amd', 0, '20200802', '
 INSERT INTO projects VALUES ('sqlsvr', 10, 1433, 'hub', 0, 'https://www.microsoft.com/en-us/sql-server/sql-server-2019',
   'sqlsvr', 0, 'sqlsvr.png', 'SQL Server for Linux', 'https://www.microsoft.com/en-us/sql-server/sql-server-2019');
 INSERT INTO releases VALUES ('sqlsvr', 3, 'sqlsvr', 'SQL Server for Linux', '', 'prod',  '', 0, 'MICROSOFT', '', '');
-INSERT INTO versions VALUES ('sqlsvr', '2019-1', 'amd', 1, '20200801', '', 'EL8 AMD64', '');
+INSERT INTO versions VALUES ('sqlsvr', '2019-1', 'amd', 1, '20200801', '', 'AMD64', '');
 
 INSERT INTO projects VALUES ('sybase', 11, 0, 'hub', 0, 'https://sap.com/products/sybase-ase.html', 
   'sybase', 0, 'sybase.png', 'Sybase ASE', 'https://sap.com/products/sybase-ase.html');
