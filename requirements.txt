@@ -1,0 +1,10 @@
+apache-libcloud
+python-openstackclient
+boto3
+fire
+parallel-ssh
+jmespath 
+munch
+CLICK
+mkdocs
+flask
