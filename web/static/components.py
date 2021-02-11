@@ -1,4 +1,4 @@
-import sqlite3, sys, pgsql
+import sqlite3, sys, openrds
 
 NUM_COLS = 4
 
@@ -35,14 +35,14 @@ if NUM_COLS == 2:
 
 
 def print_top():
-  pgsql.print_header(WIDTH)
+  openrds.print_header(WIDTH)
   print("\n<p>")
   print('<table width=' + str(WIDTH) + ' border=' + str(BORDER) + ' bgcolor=whitesmoke cellpadding=1>')
 
  
 def print_bottom():
   print('\n</td></tr></table></center><br>\n')
-  pgsql.print_footer()
+  openrds.print_footer()
 
 
 def get_columns(d):

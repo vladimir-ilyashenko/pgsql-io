@@ -1,18 +1,6 @@
 
 def print_header(pWidth):
-  print("<title>PGSQL: PostgreSQL Community Distribution </title>")
-
-  print( \
-""" \n \
-<!-- Start Alexa Certify Javascript -->
-<script type="text/javascript">
-_atrk_opts = { atrk_acct:"D/nDv1DlQy20Y8", domain:"pgsql.io",dynamic: true};
-(function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://certify-js.alexametrics.com/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();
-</script>
-<noscript><img src="https://certify.alexametrics.com/atrk.gif?account=D/nDv1DlQy20Y8" style="display:none" height="1" width="1" alt="" /></noscript>
-<!-- End Alexa Certify Javascript -->  
-\
-""")
+  print("<title>OpenRDS: Robust Data Services in the Hybrib and Multi-Cloud</title>")
 
   print("<center>")
 
@@ -27,10 +15,7 @@ _atrk_opts = { atrk_acct:"D/nDv1DlQy20Y8", domain:"pgsql.io",dynamic: true};
 
   string = \
 """\
-PGSQL is the PostgreSQL Community Distribution that is developer friendly and cross-platform.
-We fully embrace core PostgreSQL and it's rich community based eco-system of
-enterprise-class extensions & applications.
-We support Ubuntu & CentOS on both ARM & Intel (including on Windows 10 Subsystem for Linux)
+Open Robust Data Services
 \
 """
   print("  <tr><td colspan=2><h2>Introduction</h2></td></tr>")
@@ -60,7 +45,7 @@ of your choice.
 <br>&nbsp;</td></tr>
 <tr><td width=240 align=right><b>Install as non-root user:</b></td>
   <td><input type='text' size=90 value =
-'cd $HOME; python3 -c "$(curl -fsSL https://pgsql-io-download.s3.amazonaws.com/REPO/install.py)"' readonly='readonly' />
+'python3 -c "$(curl -fsSL https://openrds-download.s3.amazonaws.com/REPO/install.py)"' readonly='readonly' />
   </td>
 </tr>
 \
@@ -73,7 +58,7 @@ of your choice.
 <tr><td align=right><p><b>Usage sample:</b></td>
     <td>
       <input type='text' size=90 value =
-'cd pgsql; ./io install pg12; ./io start pg12; ./io install timescale' readonly='readonly' />
+'cd openrds; ./io install pg12 --autostart' readonly='readonly' />
     </td>
 </tr>
 </table>
