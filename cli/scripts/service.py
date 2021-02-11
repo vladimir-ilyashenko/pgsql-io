@@ -34,8 +34,8 @@ def install(cloud_name, node_id, service, component=None):
 
 
 def list():
-  headers = ['Group', 'Type', 'Type Name', 'Service', 'Port', 'Image', 'Project URL', 'Description']
-  keys    = ['svc_group', 'svc_type', 'svc_type_name', 'service', 'port', 'image_file', 'project_url', 'description']
+  headers = ['Group', 'Type', 'Type Name', 'Service', 'Port', 'Description']
+  keys    = ['svc_group', 'svc_type', 'svc_type_name', 'service', 'port', 'description']
 
   sql = "SELECT svc_group, svc_type, svc_type_name, service, \n" + \
         "       port, image_file, project_url, description \n" + \

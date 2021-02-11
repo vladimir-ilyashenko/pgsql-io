@@ -2,11 +2,11 @@
 cd "$(dirname "$0")"
 
 secureInstallation() {
-  mysql -e "UPDATE mysql.user SET Password=PASSWORD(‘{input_password_here}’) WHERE User=’root’;"
-  mysql -e "DELETE FROM mysql.user WHERE User=’root’ AND Host NOT IN (‘localhost’, ‘127.0.0.1’, ‘::1’);"
-  mysql -e "DELETE FROM mysql.user WHERE User=”;"
-  mysql -e "DROP DATABASE test;"
-  mysql -e "FLUSH PRIVILEGES;"
+  sudo mysql -e "UPDATE mysql.user SET Password=(‘password’) WHERE User=’root’;"
+  sudo mysql -e "DELETE FROM mysql.user WHERE User=’root’ AND Host NOT IN (‘localhost’, ‘127.0.0.1’, ‘::1’);"
+  sudo mysql -e "DELETE FROM mysql.user WHERE User=”;"
+  sudo mysql -e "DROP DATABASE test;"
+  sudo mysql -e "FLUSH PRIVILEGES;"
 }
 
 echo " "
@@ -15,8 +15,8 @@ source getPKMG.sh
 if [ "$PKMG" == "yum" ]; then
   sudo cp MariaDB.repo /etc/yum.repos.d/.
   sudo yum install -y MariaDB-server
-  secureInstallation
-  return
+  ##secureInstallation
+  exit
 fi
 
 
@@ -27,6 +27,4 @@ sudo apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.a
 sudo add-apt-repository 'deb [arch=amd64] http://mariadb.mirror.globo.tech/repo/10.5/ubuntu focal main'
 sudo apt update -y
 sudo apt install -y mariadb-server mariadb-client
-secureInstallation
-
-return
+##secureInstallation

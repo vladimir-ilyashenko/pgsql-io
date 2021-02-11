@@ -136,6 +136,11 @@ def create(provider, name=None, region=None, keys=None, default_ssh_key=None):
 
   return
 
+
+def list():
+  read(None, False)
+  return
+
                                                                                    
 def read(cloud_name=None, data_only=False):
   headers = ['Provider', 'Name', 'Region', 'Default SSH Key']
@@ -371,7 +376,7 @@ cloudAPIs = {
   'create': create,
   'update': update,
   'delete': delete,
-  'read': read,
+  'list': list,
   'list-providers': list_providers,
   'list-regions': list_regions,
   'list-locations': list_locations,

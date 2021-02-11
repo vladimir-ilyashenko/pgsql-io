@@ -91,8 +91,7 @@ INSERT INTO providers VALUES ('equinix',      'public',     7, 'test', 'Equinix'
 INSERT INTO providers VALUES ('linode',       'public',     8, 'plan', 'Linode',      'Linode',                'linode.png');
 INSERT INTO providers VALUES ('rackspace',    'public',     9, 'plan', 'Rackspace',   'Rackspace',             'rackspace');
 INSERT INTO providers VALUES ('vultr',        'public',    10, 'plan', 'Vultr',       'Vultr',                 'vultr.png');
-INSERT INTO providers VALUES ('pgsql',        'public',    11, 'prod', 'PGSQL',       'PGSQL.IO',              'postgresql.png');
-INSERT INTO providers VALUES ('openstack',    'private',    1, 'test', 'OpenStack',   'OpenStack',             'open_stack.png');
+INSERT INTO providers VALUES ('openstack',    'private',    1, 'prod', 'OpenStack',   'OpenStack',             'open_stack.png');
 INSERT INTO providers VALUES ('vsphere',      'private',    2, 'plan', 'vSphere',     'VMware vSphere',        'vsphere.png');
 INSERT INTO providers VALUES ('docker',       'container',  1, 'test', 'Docker',      'Docker Engine',         'docker.png');
 INSERT INTO providers VALUES ('lxd',          'container',  3, 'plan', 'LXD',         'LXD Containers',        'lxd.png');
@@ -133,8 +132,8 @@ INSERT INTO regions VALUES ('aws',   'us-east-1', 'north-va');
 INSERT INTO regions VALUES ('aws',   'us-east-2', 'ohio');
 INSERT INTO regions VALUES ('aws',   'us-west-1', 'north-ca');
 INSERT INTO regions VALUES ('aws',   'us-west-2', 'oregon');
-INSERT INTO regions VALUES ('pgsql', 'nnj',       'north-nj');
-INSERT INTO regions VALUES ('pgsql', 'col',       'ohio');
+INSERT INTO regions VALUES ('openstack', 'nnj',   'north-nj');
+INSERT INTO regions VALUES ('openstack', 'col',   'ohio');
 
 
 CREATE VIEW v_regions AS
@@ -162,9 +161,9 @@ INSERT INTO locations VALUES ('aws',   'us-east-2', 'us-east-2a', 0);
 INSERT INTO locations VALUES ('aws',   'us-east-2', 'us-east-2b', 0);
 INSERT INTO locations VALUES ('aws',   'us-east-2', 'us-east-2c', 1);
 INSERT INTO locations VALUES ('aws',   'us-east-2', 'us-east-2d', 1);
-INSERT INTO locations VALUES ('pgsql', 'nnj',       'nnj2',       1);
-INSERT INTO locations VALUES ('pgsql', 'nnj',       'nnj3',       1);
-INSERT INTO locations VALUES ('pgsql', 'col',       'col1',       1);
+INSERT INTO locations VALUES ('openstack', 'nnj',   'nnj2',       1);
+INSERT INTO locations VALUES ('openstack', 'nnj',   'nnj3',       1);
+INSERT INTO locations VALUES ('openstack', 'col',   'col1',       1);
 
 
 CREATE VIEW v_locations AS
@@ -198,8 +197,8 @@ CREATE TABLE images (
   PRIMARY KEY (image_type, provider, region, platform)
 );
 INSERT INTO images VALUES ('ubu20', 'aws',   'us-east-2', 'amd', 1, 'ami-0996d3051b72b5b2c' );
-INSERT INTO images VALUES ('cos8',  'pgsql', 'RegionOne', 'amd', 0, 'dbc325a0-cab8-4674-b8c2-d23711c26337');
-INSERT INTO images VALUES ('ubu20', 'pgsql', 'RegionOne', 'amd', 1, 'caa7edd2-5f07-4382-a235-fde652e9894e');
+INSERT INTO images VALUES ('cos8',  'openstack', 'RegionOne', 'amd', 0, 'dbc325a0-cab8-4674-b8c2-d23711c26337');
+INSERT INTO images VALUES ('ubu20', 'openstack', 'RegionOne', 'amd', 1, 'caa7edd2-5f07-4382-a235-fde652e9894e');
 
 
 CREATE VIEW v_images AS
@@ -221,14 +220,14 @@ CREATE TABLE flavors (
   price_hr      DECIMAL(9,3) NOT NULL,
   PRIMARY KEY (provider, flavor)
 );
-INSERT INTO flavors VALUES ('pgsql', 'm1',  's',    'm1.small',      1,   2,    0, 0.020);
-INSERT INTO flavors VALUES ('pgsql', 'm5d', 'm',    'm5d.medium',    1,   4, 37.5, 0.032);
-INSERT INTO flavors VALUES ('pgsql', 'm5d', 'l',    'm5d.large',     2,   8,   75, 0.064);
-INSERT INTO flavors VALUES ('pgsql', 'm5d', 'xl',   'm5d.xlarge',    4,  16,  150, 0.128);
-INSERT INTO flavors VALUES ('pgsql', 'm5d', '2xl',  'm5d.2xlarge',   8,  32,  300, 0.256);
-INSERT INTO flavors VALUES ('pgsql', 'm5d', '4xl',  'm5d.4xlarge',  16,  64,  600, 0.512);
-INSERT INTO flavors VALUES ('pgsql', 'm5d', '8xl',  'm5d.8xlarge',  32, 128, 1200, 1.025);
-INSERT INTO flavors VALUES ('pgsql', 'm5d', '16xl', 'm5d.16xlarge', 64, 256, 2400, 2.049);
+INSERT INTO flavors VALUES ('openstack', 'm1',  's',    'm1.small',      1,   2,    0, 0.020);
+INSERT INTO flavors VALUES ('openstack', 'm5d', 'm',    'm5d.medium',    1,   4, 37.5, 0.032);
+INSERT INTO flavors VALUES ('openstack', 'm5d', 'l',    'm5d.large',     2,   8,   75, 0.064);
+INSERT INTO flavors VALUES ('openstack', 'm5d', 'xl',   'm5d.xlarge',    4,  16,  150, 0.128);
+INSERT INTO flavors VALUES ('openstack', 'm5d', '2xl',  'm5d.2xlarge',   8,  32,  300, 0.256);
+INSERT INTO flavors VALUES ('openstack', 'm5d', '4xl',  'm5d.4xlarge',  16,  64,  600, 0.512);
+INSERT INTO flavors VALUES ('openstack', 'm5d', '8xl',  'm5d.8xlarge',  32, 128, 1200, 1.025);
+INSERT INTO flavors VALUES ('openstack', 'm5d', '16xl', 'm5d.16xlarge', 64, 256, 2400, 2.049);
 INSERT INTO flavors VALUES ('aws',   't3',  's',    't3.small',      1,   2,    0, 0.025);
 INSERT INTO flavors VALUES ('aws',   'm5d', 'l',    'm5d.large',     2,   8,   75, 0.096);
 INSERT INTO flavors VALUES ('aws',   'm5d', 'xl',   'm5d.xlarge',    4,  16,  150, 0.192);
@@ -355,7 +354,7 @@ INSERT INTO projects VALUES ('mongodb', 10, 27017, 'hub', 0, 'https://github.com
   'mongodb', 0, 'mongodb.png', 'Distributed Document Database', 'https://mongodb.org');
 INSERT INTO releases VALUES ('mongodb', 4, 'mongodb', 'MongoDB', '', 'prod', '', 1, 'AGPLv3',
   'mongod --version', 'mongod --version | head -1 | awk ''{print $3}'' | sed s/v//g');
-INSERT INTO versions VALUES ('mongodb', '4.4.3', '', 2, '20201221', '', 'EL8 AMD64', '');
+INSERT INTO versions VALUES ('mongodb', '4.4.3', '', 1, '20201221', '', 'EL8 AMD64', '');
 INSERT INTO versions VALUES ('mongodb', '4.4.2', '', 0, '20201116', '', 'EL8 AMD64', '');
 INSERT INTO versions VALUES ('mongodb', '4.4.1', '', 0, '20200909', '', 'EL8 AMD64', '');
 
@@ -387,7 +386,7 @@ INSERT INTO versions VALUES ('hivefdw-pg13', '4.0-1', 'amd', 1, '20200927', 'pg1
 INSERT INTO projects VALUES ('mariadb', 10, 3306, 'hub', 0, 'https://mariadb.org/downloads', 
   'mariadb', 0, 'mariadb.png', 'The MySQL Succesor', 'https://mariadb.org');
 INSERT INTO releases VALUES ('mariadb', 1, 'mariadb', 'MySQL (MariaDB)', '', 'prod',  '', 1, 'GPLv2', '', '');
-INSERT INTO versions VALUES ('mariadb', '10.5-1', '', 2, '20210204', '', '', '');
+INSERT INTO versions VALUES ('mariadb', '10.5-1', '', 1, '20210204', '', '', '');
 
 INSERT INTO projects VALUES ('mysqlfdw', 5, 0, 'hub', 0, 'https://github.com/EnterpriseDB/mysql_fdw/releases', 
   'mysqlfdw', 1, 'mysql.png', 'Access MySQL, Percona & MariaDB', 'https://github.com/EnterpriseDb/mysql_fdw');
@@ -398,7 +397,7 @@ INSERT INTO versions VALUES ('mysqlfdw-pg13', '2.5.4-1', 'amd', 0, '20200802', '
 INSERT INTO projects VALUES ('sqlsvr', 10, 1433, 'hub', 0, 'https://www.microsoft.com/en-us/sql-server/sql-server-2019',
   'sqlsvr', 0, 'sqlsvr.png', 'SQL Server for Linux', 'https://www.microsoft.com/en-us/sql-server/sql-server-2019');
 INSERT INTO releases VALUES ('sqlsvr', 3, 'sqlsvr', 'SQL Server for Linux', '', 'prod',  '', 0, 'MICROSOFT', '', '');
-INSERT INTO versions VALUES ('sqlsvr', '2019-1', 'amd', 2, '20200801', '', 'EL8 AMD64', '');
+INSERT INTO versions VALUES ('sqlsvr', '2019-1', 'amd', 1, '20200801', '', 'EL8 AMD64', '');
 
 INSERT INTO projects VALUES ('sybase', 11, 0, 'hub', 0, 'https://sap.com/products/sybase-ase.html', 
   'sybase', 0, 'sybase.png', 'Sybase ASE', 'https://sap.com/products/sybase-ase.html');

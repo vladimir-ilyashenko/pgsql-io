@@ -392,7 +392,7 @@ def info(p_json, p_home, p_repo, print_flag=True):
   util.validate_distutils_click(False)
 
   print(style_start + ("#" * 70) + style_end)
-  print(style_start + "#          PGSQL-IO: " + style_end + "v" + ver + "  " + p_home)
+  print(style_start + "#                IO: " + style_end + "v" + ver + "  " + p_home)
   print(style_start + "#       User & Host: " + style_end + p_user + admin_display + "  " + host_display)
   print(style_start + "#  Operating System: " + style_end + os.rstrip() + " - " + str(plat))
   print(style_start + "#           Machine: " + style_end + mem + ", " + cores + " vCPU, " + cpu)
