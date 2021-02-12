@@ -362,7 +362,6 @@ def get_openstack_connection(region, cloud_keys):
   from dotenv import load_dotenv
 
   try:
-    print("debug: cloud_keys= " + str(cloud_keys))
     load_dotenv(dotenv_path=cloud_keys)
     openstack.enable_logging(debug=False)
     conn = openstack.connect(load_envvars=True)
