@@ -46,7 +46,7 @@ def shell_cmd(cloud_name, machine_id, cmd):
   return
 
 
-def install_cli(cloud_name, machine_id):
+def install_io(cloud_name, machine_id):
 
   #repo = util.get_value("GLOBAL", "REPO")
   repo = "https://openrds-download.s3.amazonaws.com/REPO"
@@ -58,7 +58,7 @@ def install_cli(cloud_name, machine_id):
   return
 
 
-def cli_cmd(cloud_name, machine_id, cmd):
+def io_cmd(cloud_name, machine_id, cmd):
   full_cli_cmd = "openrds/io " + cmd
   ##util.message("running:  '" + full_cli_cmd + "'\n   on machine " + str(machine_id))
   result_json = shell_cmd(cloud_name, machine_id, full_cli_cmd)
