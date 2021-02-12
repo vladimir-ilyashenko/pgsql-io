@@ -50,6 +50,8 @@ INSERT INTO services VALUES ('sybase',        'sql',   5);
 INSERT INTO services VALUES ('mongodb',       'nosql', 6);
 INSERT INTO services VALUES ('elasticsearch', 'big',   7);
 INSERT INTO services VALUES ('prestosql',     'big',   8);
+INSERT INTO services VALUES ('cassandra',     'nosql', 9);
+INSERT INTO services VALUES ('debezium',      'int',   10);
 
 CREATE VIEW v_services AS
   SELECT t.sort_order as sort1, s.sort_order as sort2, t.svc_group, 
