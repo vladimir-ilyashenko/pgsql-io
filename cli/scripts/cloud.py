@@ -92,47 +92,40 @@ def create(provider, name=None, region=None, keys=None, default_ssh_key=None):
     util.message("invalid provider", "error")
     return
 
-  if keys == None:
-    if lc_provider == Provider.EC2:
-      conf_f = os.getenv('HOME') + os.sep + ".aws" + os.sep + "config"
-      util.message("Using [default] AWS credentials from file " + conf_f, "info")
+  if lc_provider == Provider.OPENSTACK:
+    if region == None:
+      util.message("region must be specied", "error")
+      return
 
-      config = configparser.ConfigParser()
-      config.read(conf_f)
+    if keys == None:
+      util.message("env file must be specified as key", "error")
+      return
 
-      key1 = config['default']['aws_access_key_id']
-      key2 = config['default']['aws_secret_access_key']
+    if not os.path.isfile(keys):
+      util.message("invalid env file specified as key", "error")
+      return
 
-      if region == None:
-        region = config['default']['region']
-      key3 = region
+  if keys == None and lc_provider == Provider.EC2:
+    conf_f = os.getenv('HOME') + os.sep + ".aws" + os.sep + "config"
+    util.message("Using [default] AWS credentials from file " + conf_f, "info")
 
-      keys = key1 + " " + key2 + " " + key3
+    config = configparser.ConfigParser()
+    config.read(conf_f)
 
-    elif lc_provider == Provider.OPENSTACK:
-      util.message("Using OpenStack environment variables:")
+    key1 = config['default']['aws_access_key_id']
+    key2 = config['default']['aws_secret_access_key']
 
-      key1 = os.getenv('OS_USERNAME', "x")
-      if key1 == "x":
-         util.message("OS_USERNAME not found.", "error")
-         return
+    if region == None:
+      region = config['default']['region']
+    key3 = region
 
-      key2 = os.getenv('OS_PASSWORD', "x")
-      key3 = os.getenv('OS_AUTH_URL', "x")
-      key4 = os.getenv('OS_TENANT_NAME', "x")
+    keys = key1 + " " + key2 + " " + key3
 
-      keys = key1 + " " + key2 + " "+  key3 + " " + key4
-
-      if region == None:
-        region = os.getenv('OS_REGION_NAME', "")
-
-    sql = "INSERT INTO clouds (name, provider, region, keys, default_ssh_key, " + \
-          "  created_utc, updated_utc) \n" + \
-          "VALUES (?, ?, ?, ?, ?, ?, ?)"
-    now = util.sysdate()
-    meta.exec_sql(sql, [name, provider, region, keys, default_ssh_key, now, now])
-
-    return 
+  sql = "INSERT INTO clouds (name, provider, region, keys, default_ssh_key, " + \
+        "  created_utc, updated_utc) \n" + \
+        "VALUES (?, ?, ?, ?, ?, ?, ?)"
+  now = util.sysdate()
+  meta.exec_sql(sql, [name, provider, region, keys, default_ssh_key, now, now])
 
   return
 
@@ -366,8 +359,18 @@ def get_aws_connection(svc, region, cloud_keys):
 
 def get_openstack_connection(region, cloud_keys):
   import openstack
-  openstack.enable_logging(debug=False)
-  conn = openstack.connect(load_envvars=True)
+  from dotenv import load_dotenv
+
+  try:
+    print("debug: cloud_keys= " + str(cloud_keys))
+    load_dotenv(dotenv_path=cloud_keys)
+    openstack.enable_logging(debug=False)
+    conn = openstack.connect(load_envvars=True)
+
+  except Exception as e:
+    util.message(str(e), "error")
+    return(None)
+
   return(conn)
 
 

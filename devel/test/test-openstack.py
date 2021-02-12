@@ -1,8 +1,29 @@
 import os, sys, openstack
+from dotenv import load_dotenv
 
-openstack.enable_logging(debug=False)
+import libcloud.security
 
-conn = openstack.connect(load_envvars=True)
+# This assumes you don't have SSL set up.
+# Note: Code like this poses a security risk (MITM attack) and
+# that's the reason why you should never use it for anything else
+# besides testing. You have been warned.
+libcloud.security.VERIFY_SSL_CERT = False
+
+openstack.enable_logging(debug=False) 
+
+try:
+  load_dotenv(dotenv_path='/home/denisl/.openstack/nnj3.env')
+  conn = openstack.connect(load_envvars=True)
+  #conn = openstack.connect(user_id='pgsql-io-dev-user', password='AULSdhVpm3q4NIeTDeFOmB',
+  #        ex_force_auth_url='http://66.246.108.222:5000')
+  #print(str(conn))
+except Exception as e:
+  print(str(e))
+  sys.exit()
+
+if conn == None:
+  print("Goodbye")
+  sys.exit()
 
 for sg in conn.list_security_groups():
  try:
