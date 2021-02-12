@@ -6,6 +6,8 @@ import libcloud
 import fire
 from libcloud.compute.types import Provider
 from libcloud.compute.providers import get_driver
+from dotenv import load_dotenv
+
 
 import util, meta
 import sys, json, os, configparser
@@ -45,8 +47,16 @@ def get_cloud_driver(cloud_name):
       driver = cls(lkey[0], lkey[1], region = lkey[2])
 
     elif libcloud_provider == Provider.OPENSTACK:
-      driver = cls(lkey[0], lkey[1], ex_force_auth_url = lkey[2],
-        ex_tenant_name = lkey[3], ex_force_auth_version='3.x_password')
+      load_dotenv(dotenv_path=keys)
+      username = os.getenv("OS_USERNAME", "")
+      print("DEBUG: username = " + str(username))
+      passwd = os.getenv("OS_PASSWORD", "")
+      print("DEBUG: passwd   = " + str(passwd))
+      auth_url = os.getenv("OS_AUTH_URL", "")
+      print("DEBUG: auth_url = " + str(auth_url))
+      project  = os.getenv("OS_PROJECT_NAME", "")
+      driver = cls(username, passwd, ex_force_auth_url = auth_url,
+        ex_tenant_name = project, ex_force_auth_version='3.x_password')
 
     else:
       util.message("driver not found", "error")
@@ -359,7 +369,6 @@ def get_aws_connection(svc, region, cloud_keys):
 
 def get_openstack_connection(region, cloud_keys):
   import openstack
-  from dotenv import load_dotenv
 
   try:
     load_dotenv(dotenv_path=cloud_keys)
