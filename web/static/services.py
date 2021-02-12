@@ -211,7 +211,7 @@ sql = "SELECT cat, cat_desc, image_file, component, project, release_name, \n" +
       "       rel_sort, release_notes \n" + \
       "  FROM v_versions v, services s \n" + \
       " WHERE v.project = s.service \n" + \
-      "   AND is_current >= 1 AND component NOT IN ('pg10') \n" + \
+      "   AND is_current >= 1 \n" + \
       "ORDER BY 17, 18"
 
 c.execute(sql)

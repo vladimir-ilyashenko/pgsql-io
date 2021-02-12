@@ -395,10 +395,10 @@ INSERT INTO projects VALUES ('sqlsvr', 10, 1433, 'hub', 0, 'https://www.microsof
 INSERT INTO releases VALUES ('sqlsvr', 3, 'sqlsvr', 'SQL Server for Linux', '', 'prod',  '', 0, 'MICROSOFT', '', '');
 INSERT INTO versions VALUES ('sqlsvr', '2019-1', 'amd', 1, '20200801', '', 'AMD64', '');
 
-INSERT INTO projects VALUES ('sybase', 11, 0, 'hub', 0, 'https://sap.com/products/sybase-ase.html', 
+INSERT INTO projects VALUES ('sybase', 10, 1234, 'hub', 0, 'https://sap.com/products/sybase-ase.html', 
   'sybase', 0, 'sybase.png', 'Sybase ASE', 'https://sap.com/products/sybase-ase.html');
 INSERT INTO releases VALUES ('sybase', 21, 'sybase', 'SAP Sybase ASE', '', 'prod',  '', 0, 'SAP', '', '');
-INSERT INTO versions VALUES ('sybase', '2019', 'amd', 1, '20191010', '', '', '');
+INSERT INTO versions VALUES ('sybase', '2019', 'amd', 1, '20191010', '', 'AMD64', '');
 
 INSERT INTO projects VALUES ('tdsfdw', 5, 0, 'hub', 0, 'https://github.com/tds-fdw/tds_fdw/releases',
   'tdsfdw', 1, 'tds.png', 'SQL Server & Sybase from PG', 'https://github.com/tds-fdw/tds_fdw/#tds-foreign-data-wrapper');
