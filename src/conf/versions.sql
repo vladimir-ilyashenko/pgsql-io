@@ -352,9 +352,10 @@ INSERT INTO projects VALUES ('mongodb', 10, 27017, 'hub', 0, 'https://github.com
   'mongodb', 0, 'mongodb.png', 'Distributed Document Database', 'https://mongodb.org');
 INSERT INTO releases VALUES ('mongodb', 4, 'mongodb', 'MongoDB', '', 'prod', '', 1, 'AGPLv3',
   'mongod --version', 'mongod --version | head -1 | awk ''{print $3}'' | sed s/v//g');
-INSERT INTO versions VALUES ('mongodb', '4.4.3', '', 1, '20201221', '', 'EL8 AMD64', '');
-INSERT INTO versions VALUES ('mongodb', '4.4.2', '', 0, '20201116', '', 'EL8 AMD64', '');
-INSERT INTO versions VALUES ('mongodb', '4.4.1', '', 0, '20200909', '', 'EL8 AMD64', '');
+INSERT INTO versions VALUES ('mongodb', '4.4.4', '', 1, '20210211', '', 'AMD64', '');
+INSERT INTO versions VALUES ('mongodb', '4.4.3', '', 0, '20201221', '', 'AMD64', '');
+INSERT INTO versions VALUES ('mongodb', '4.4.2', '', 0, '20201116', '', 'AMD64', '');
+INSERT INTO versions VALUES ('mongodb', '4.4.1', '', 0, '20200909', '', 'AMD64', '');
 
 INSERT INTO projects VALUES ('debezium', 10, 8080, 'kafka', 2, 'https://debezium.io/releases/1.2/', 
   'debezium', 0, 'debezium.png', 'Change Data Capture', 'https://debezium.io');
@@ -432,18 +433,18 @@ INSERT INTO versions VALUES ('zookeeper', '3.6.2', '',  1, '20200909', '', 'OPEN
 INSERT INTO projects VALUES ('prestosql', 10, 1515, 'hub', 1, 'https://github.com/prestosql/presto/releases',
   'prestosql', 0, 'presto.png', 'Distributed SQL Query Engine', 'https://github.com/prestosql/presto');
 INSERT INTO releases VALUES ('prestosql', 13, 'prestosql', 'PrestoSQL (Trino)', '', 'prod', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('prestosql', '351', '',  1, '20210103', '', 'OPENJDK11', '');
+INSERT INTO versions VALUES ('prestosql', '352', '',  1, '20210209', '', 'OPENJDK11', '');
+INSERT INTO versions VALUES ('prestosql', '351', '',  0, '20210103', '', 'OPENJDK11', '');
 INSERT INTO versions VALUES ('prestosql', '350', '',  0, '20201229', '', 'OPENJDK11', '');
-INSERT INTO versions VALUES ('prestosql', '347', '',  0, '20201126', '', 'EL7 OPENJDK11', '');
-INSERT INTO versions VALUES ('prestosql', '346', '',  0, '20201110', '', 'EL7 OPENJDK11', '');
 
 INSERT INTO projects VALUES ('elasticsearch', 10, 9200, 'hub', 1, 'https://www.elastic.co/downloads/elasticsearch',
   'elasticsearch', 0, 'elastic-search.png', 'ElasticSearch', 'https://github.com/elastic/elasticsearch#elasticsearch');
 INSERT INTO releases VALUES ('elasticsearch', 5, 'elasticsearch', 'ElasticSearch', '', 'prod', '', 1, 'Apache', 
   'curl -sXGET ''http://127.0.0.1:9200/?pretty'' | grep number',
   'curl -sXGET ''http://127.0.0.1:9200/?pretty'' | grep number | awk ''{print $3}'' | sed s/\"//g | sed s/,//g');
-INSERT INTO versions VALUES ('elasticsearch', '7.10.1', '',  1, '20201209', '', 'EL8 OPENJDK11', '');
-INSERT INTO versions VALUES ('elasticsearch', '7.10.0', '',  0, '20201111', '', 'EL8 OPENJDK11', '');
+INSERT INTO versions VALUES ('elasticsearch', '7.11.0', '',  1, '20210210', '', 'OPENJDK11', '');
+INSERT INTO versions VALUES ('elasticsearch', '7.10.1', '',  0, '20201209', '', 'OPENJDK11', '');
+INSERT INTO versions VALUES ('elasticsearch', '7.10.0', '',  0, '20201111', '', 'OPENJDK11', '');
 
 INSERT INTO projects VALUES ('kibana', 9, 5601, 'elasticsearch', 1, 'https://www.elastic.co/downloads/kibana',
   'kibana', 0, 'kibana.png', 'Window into the Elastic Stack', 'https://github.com/elastic/kibana#kibana');
