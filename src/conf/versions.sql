@@ -339,7 +339,7 @@ INSERT INTO projects VALUES ('cassandra', 10, 9042, 'hub', 0, 'https://cassandra
   'cassandra', 0, 'cstar.png', 'Multi-Master across Regions', 
   'https://cassandra.apache.org');
 INSERT INTO releases VALUES ('cassandra', 5, 'cassandra','Cassandra 3.11.9', '', 'soon', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('cassandra', '3.11-1', '', 0, '20201104', '', '', '');
+INSERT INTO versions VALUES ('cassandra', '3.11-1', '', 1, '20201104', '', '', '');
 
 INSERT INTO projects VALUES ('cassandrafdw', 5, 0, 'hub', 0, 'https://github.com/pgsql-io/cassandra_fdw/releases', 
   'cstarfdw', 1, 'cstar.png', 'Cassandra from PG', 'https://github.com/pgsql-io/cassandra_fdw#cassandra_fdw');
@@ -354,20 +354,20 @@ INSERT INTO versions VALUES ('mongodb', '4.4.3', '', 1, '20201221', '', 'EL8 AMD
 INSERT INTO versions VALUES ('mongodb', '4.4.2', '', 0, '20201116', '', 'EL8 AMD64', '');
 INSERT INTO versions VALUES ('mongodb', '4.4.1', '', 0, '20200909', '', 'EL8 AMD64', '');
 
-INSERT INTO projects VALUES ('debezium', 5, 8080, 'kafka', 2, 'https://debezium.io/releases/1.2/', 
+INSERT INTO projects VALUES ('debezium', 10, 8080, 'kafka', 2, 'https://debezium.io/releases/1.2/', 
   'debezium', 0, 'debezium.png', 'Change Data Capture', 'https://debezium.io');
 INSERT INTO releases VALUES ('debezium', 0, 'debezium', 'Debezium', '', 'test', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('debezium', '1.2.5', '', 0, '20200924', '', 'OPENJDK11', '');
+INSERT INTO versions VALUES ('debezium', '1.2.5', '', 1, '20200924', '', 'OPENJDK11', '');
 
 INSERT INTO projects VALUES ('hivemeta', 10, 10000, 'hub', 0, 'https://hive.apache.org/downloads.html', 
   'hivemeta', 0, 'hive.png', 'Big Data SQL Metastore', 'https://hive.apache.org');
 INSERT INTO releases VALUES ('hivemeta', 13, 'hivemeta', 'Hive Metastore', '', 'test', '', 1, 'Apache', '', '');
 INSERT INTO versions VALUES ('hivemeta', '3-1', '', 0, '20180607', '', 'OPENJDK11', '');
 
-INSERT INTO projects VALUES ('kafka', 5, 9092, 'zookeeper', 1, 'https://kafka.apache.org/downloads', 
+INSERT INTO projects VALUES ('kafka', 10, 9092, 'zookeeper', 1, 'https://kafka.apache.org/downloads', 
   'kafka', 0, 'kafka.png', 'Distributed Streaming Platform', 'https://kafka.apache.org');
 INSERT INTO releases VALUES ('kafka', 0, 'kafka', 'Kafka', '', 'test', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('kafka', '2.7.0', '', 0, '20201221', '', 'EL8  OPENJDK11', 'https://downloads.apache.org/kafka/2.7.0/RELEASE_NOTES.html');
+INSERT INTO versions VALUES ('kafka', '2.7.0', '', 1, '20201221', '', 'EL8  OPENJDK11', 'https://downloads.apache.org/kafka/2.7.0/RELEASE_NOTES.html');
 
 INSERT INTO projects VALUES ('mongofdw', 5, 0, 'hub', 0, 'https://github.com/EnterpriseDB/mongo_fdw/releases', 
   'mongofdw', 1, 'mongodb.png', 'MongoDB Queries from PG', 'https://github.com/EnterpriseDB/mongo_fdw#mongo_fdw');
@@ -418,19 +418,19 @@ INSERT INTO versions VALUES ('pgtop-pg12', '4.0.0-1', 'amd',  0, '20201008', 'pg
 INSERT INTO projects VALUES ('hadoop', 10, 0, 'hub', 1, 'https://hadoop.apache.org/releases.html',
   'hadoop', 0, 'hadoop.png', 'Hadoop', 'https://hadoop.apache.org');
 INSERT INTO releases VALUES ('hadoop', 20, 'hadoop', 'Hadoop', '', 'soon', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('hadoop', '3.3.0', '',  0, '20200714', '', '', '');
+INSERT INTO versions VALUES ('hadoop', '3.3.0', '',  1, '20200714', '', '', '');
 INSERT INTO versions VALUES ('hadoop', '3.2.1', '',  0, '20200923', '', '', '');
 
 INSERT INTO projects VALUES ('zookeeper', 13, 2181, 'hub', 1, 'https://zookeeper.apache.org/releases.html#releasenotes',
   'zookeeper', 0, 'zookeeper.png', 'Distributed Key-Store for HA', 'https://zookeeper.apache.org');
 INSERT INTO releases VALUES ('zookeeper', 5, 'zookeeper', 'Zookeeper', '', 'prod', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('zookeeper', '3.6.2', '',  0, '20200909', '', 'OPENJDK11',
+INSERT INTO versions VALUES ('zookeeper', '3.6.2', '',  1, '20200909', '', 'OPENJDK11',
   'https://zookeeper.apache.org/doc/r3.6.2/releasenotes.html');
 
 INSERT INTO projects VALUES ('prestosql', 10, 1515, 'hub', 1, 'https://github.com/prestosql/presto/releases',
   'prestosql', 0, 'presto.png', 'Distributed SQL Query Engine', 'https://github.com/prestosql/presto');
 INSERT INTO releases VALUES ('prestosql', 13, 'prestosql', 'PrestoSQL (Trino)', '', 'prod', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('prestosql', '351', '',  2, '20210103', '', 'OPENJDK11', '');
+INSERT INTO versions VALUES ('prestosql', '351', '',  1, '20210103', '', 'OPENJDK11', '');
 INSERT INTO versions VALUES ('prestosql', '350', '',  0, '20201229', '', 'OPENJDK11', '');
 INSERT INTO versions VALUES ('prestosql', '347', '',  0, '20201126', '', 'EL7 OPENJDK11', '');
 INSERT INTO versions VALUES ('prestosql', '346', '',  0, '20201110', '', 'EL7 OPENJDK11', '');
@@ -440,7 +440,7 @@ INSERT INTO projects VALUES ('elasticsearch', 10, 9200, 'hub', 1, 'https://www.e
 INSERT INTO releases VALUES ('elasticsearch', 5, 'elasticsearch', 'ElasticSearch', '', 'prod', '', 1, 'Apache', 
   'curl -sXGET ''http://127.0.0.1:9200/?pretty'' | grep number',
   'curl -sXGET ''http://127.0.0.1:9200/?pretty'' | grep number | awk ''{print $3}'' | sed s/\"//g | sed s/,//g');
-INSERT INTO versions VALUES ('elasticsearch', '7.10.1', '',  2, '20201209', '', 'EL8 OPENJDK11', '');
+INSERT INTO versions VALUES ('elasticsearch', '7.10.1', '',  1, '20201209', '', 'EL8 OPENJDK11', '');
 INSERT INTO versions VALUES ('elasticsearch', '7.10.0', '',  0, '20201111', '', 'EL8 OPENJDK11', '');
 
 INSERT INTO projects VALUES ('kibana', 9, 5601, 'elasticsearch', 1, 'https://www.elastic.co/downloads/kibana',
@@ -470,10 +470,10 @@ INSERT INTO releases VALUES ('haproxy', 5, 'haproxy', 'HAProxy', '', 'bring-own'
   'haproxy -v', 'haproxy -v | head -1 | awk ''{print $3}''');
 INSERT INTO versions VALUES ('haproxy', '1.8.23', '',  0, '20201128', '', '', '');
 
-INSERT INTO projects VALUES ('rabbitmq', 9, 5672, 'hub', 1, 'https://github.com/rabbitmq/rabbitmq-server/releases',
+INSERT INTO projects VALUES ('rabbitmq', 10, 5672, 'hub', 1, 'https://github.com/rabbitmq/rabbitmq-server/releases',
   'rabbitmq', 0, 'rabbitmq.png', 'Message Broker', 'https://github.com/rabbitmq/rabbitmq-server');
 INSERT INTO releases VALUES ('rabbitmq', 5, 'rabbitmq', 'RabbitMQ', '', 'test', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('rabbitmq', '3.8.9', '',  0, '20200924', '', 'EL8', '');
+INSERT INTO versions VALUES ('rabbitmq', '3.8.9', '',  1, '20200924', '', 'EL8', '');
 
 INSERT INTO projects VALUES ('esfdw', 5, 0, 'multicorn', 1, 'https://github.com/matthewfranglen/postgres-elasticsearch-fdw/releases',
   'esfdw', 1, 'esfdw.png', 'Elastic Search from PG', 'https://github.com/matthewfranglen/postgres-elasticsearch-fdw#postgresql-elastic-search-foreign-data-wrapper');
