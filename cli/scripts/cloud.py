@@ -49,11 +49,8 @@ def get_cloud_driver(cloud_name):
     elif libcloud_provider == Provider.OPENSTACK:
       load_dotenv(dotenv_path=keys)
       username = os.getenv("OS_USERNAME", "")
-      print("DEBUG: username = " + str(username))
       passwd = os.getenv("OS_PASSWORD", "")
-      print("DEBUG: passwd   = " + str(passwd))
       auth_url = os.getenv("OS_AUTH_URL", "")
-      print("DEBUG: auth_url = " + str(auth_url))
       project  = os.getenv("OS_PROJECT_NAME", "")
       driver = cls(username, passwd, ex_force_auth_url = auth_url,
         ex_tenant_name = project, ex_force_auth_version='3.x_password')
