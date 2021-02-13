@@ -325,17 +325,17 @@ INSERT INTO versions VALUES ('hub', '7.00', '',  1, '20210212', '', '', '');
 INSERT INTO projects VALUES ('pg', 1, 5432, 'hub', 1, 'https://postgresql.org/download',
  'postgres', 0, 'postgresql.png', 'Best RDBMS', 'https://postgresql.org');
 
-INSERT INTO releases VALUES ('pg10', 4, 'pg', 'PostgreSQL', '', 'prod', 'works w/ python2, EL7+, Ubu18+', 1, 'POSTGRES', '', '');
+INSERT INTO releases VALUES ('pg10', 4, 'pg', 'PostgreSQL', '', 'prod', 'works w/ EL7+, Ubu18+', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pg10', '10.16-1', 'amd', 1, '20210211', '', 'LIBC-2.17', '');
 
-INSERT INTO releases VALUES ('pg11', 3, 'pg', 'PostgreSQL', '', 'prod', 'works w/ python2, EL7+, Ubu18+', 1, 'POSTGRES', '', '');
+INSERT INTO releases VALUES ('pg11', 3, 'pg', 'PostgreSQL', '', 'prod', 'works w/ EL7+, Ubu18+', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pg11', '11.11-1', 'amd', 1, '20210211', '', 'LIBC-2.17', '');
 
-INSERT INTO releases VALUES ('pg12', 2, 'pg', 'PostgreSQL', '', 'prod', 'works w/ python3, EL8, Ubu20', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg12', '12.6-1', 'arm, amd', 1, '20210211', '', 'LIBC-2.28', '');
+INSERT INTO releases VALUES ('pg12', 2, 'pg', 'PostgreSQL', '', 'prod', 'works w/ EL7+, Ubu18+', 1, 'POSTGRES', '', '');
+INSERT INTO versions VALUES ('pg12', '12.6-1', 'arm, amd', 1, '20210211', '', 'LIBC-2.17', '');
 
-INSERT INTO releases VALUES ('pg13', 1, 'pg', 'PostgreSQL', '', 'prod', 'works w/ python3, EL8, Ubu20', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg13', '13.2-1',  'arm, amd', 1, '20210211','', 'LIBC-2.28', '');
+INSERT INTO releases VALUES ('pg13', 1, 'pg', 'PostgreSQL', '', 'prod', 'works w/ EL7+, Ubu18+', 1, 'POSTGRES', '', '');
+INSERT INTO versions VALUES ('pg13', '13.2-1',  'arm, amd', 1, '20210211','', 'LIBC-2.17', '');
 
 -- ##
 INSERT INTO projects VALUES ('cassandra', 10, 9042, 'hub', 0, 'https://cassandra.apache.org/download', 
