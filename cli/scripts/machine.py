@@ -282,10 +282,17 @@ def describe_openstack(machine_id, region, l_cloud_keys):
   import openstack
   for s in conn.list_servers():
     if s.id == machine_id:
+      ##print(json.dumps(s, indent=2))
       try:
         volume = s.volumes[0].id
       except:
         volume = ""
+
+      ##print(str(s["addresses"]["public-net"][0]["addr"]))
+      try:
+        public_ip = s["addresses"]["public-net"][0]["addr"]
+      except:
+        public_ip = s.public_v4
 
       if s.vm_state == "active":
         vm_state = "running"
@@ -300,7 +307,7 @@ def describe_openstack(machine_id, region, l_cloud_keys):
       svr['region'] = s.region
       svr['location'] = s.location.zone
       svr['private_v4'] = s.private_v4
-      svr['public_v4'] = s.public_v4
+      svr['public_v4'] = public_ip
       svr['key_name'] = s.key_name
       svr['created_at'] = s.created
       svr['launched_at'] = s.launched_at
@@ -312,7 +319,7 @@ def describe_openstack(machine_id, region, l_cloud_keys):
       svr['volumes'] = volume
 
       return (svr, s.name, s.flavor.original_name, vm_state, s.region, \
-        s.private_v4, s.public_v4, s.key_name, s.flavor.vcpus, volume)
+        s.private_v4, public_ip, s.key_name, s.flavor.vcpus, volume)
   
   util.message("not found in machine.describe_openstack() for " + str(machine_id), "error")
   return ('','','','','','','','','','')
@@ -354,7 +361,7 @@ def describe(cloud_name, machine_id, print_list=True):
 
   if print_list:
     util.print_list(headers, keys, jsonList)
-    return(dict)
+    return()
 
   return(dict)
 
