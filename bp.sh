@@ -26,8 +26,8 @@ cd $outp
 #./$api cloud create openstack nnj3 --default-ssh-key=denisl-pubkey
 ./$api cloud create aws       west2 us-west-2
 ./$api cloud create aws       east2 us-east-2 --default-ssh-key=lussier-io-east2-key
-./$api cloud create openstack nnj2 --region=RegionOne --keys=/home/denisl/.openstack/nnj2.env --default-ssh-key=denisl-pubkey
-./$api cloud create openstack nnj3 --region=RegionOne --keys=/home/denisl/.openstack/nnj3.env --default-ssh-key=denisl-pubkey
+./$api cloud create openstack nnj2 --region=nnj2 --keys=/home/denisl/.openstack/nnj2.env --default-ssh-key=denisl-pubkey
+./$api cloud create openstack nnj3 --region=nnj3 --keys=/home/denisl/.openstack/nnj3.env --default-ssh-key=denisl-pubkey
 
 ./$api set GLOBAL REPO http://localhost:8000
 ./$api info

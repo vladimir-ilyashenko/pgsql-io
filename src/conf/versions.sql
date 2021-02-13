@@ -200,8 +200,9 @@ CREATE TABLE images (
   PRIMARY KEY (image_type, provider, region, platform)
 );
 INSERT INTO images VALUES ('ubu20', 'aws',   'us-east-2', 'amd', 1, 'ami-0996d3051b72b5b2c' );
-INSERT INTO images VALUES ('cos8',  'openstack', 'RegionOne', 'amd', 0, 'dbc325a0-cab8-4674-b8c2-d23711c26337');
-INSERT INTO images VALUES ('ubu20', 'openstack', 'RegionOne', 'amd', 1, 'caa7edd2-5f07-4382-a235-fde652e9894e');
+INSERT INTO images VALUES ('cos8',  'openstack', 'nnj2', 'amd', 0, 'dbc325a0-cab8-4674-b8c2-d23711c26337');
+INSERT INTO images VALUES ('ubu20', 'openstack', 'nnj2', 'amd', 1, 'caa7edd2-5f07-4382-a235-fde652e9894e');
+INSERT INTO images VALUES ('ubu20', 'openstack', 'nnj3', 'amd', 1, '26994284-ed65-46c7-a147-3938f6a55434');
 
 
 CREATE VIEW v_images AS
