@@ -23,7 +23,7 @@ if os.path.exists("openrds"):
   print("ERROR: Cannot install over an existing 'openrds' directory.")
   sys.exit(1)
 
-my_file="openrds-" + VER + ".tar.bz2"
+my_file="openrds-io-" + VER + ".tar.bz2"
 f = REPO + "/" + my_file
 
 if not os.path.exists(my_file):
