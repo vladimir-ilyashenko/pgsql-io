@@ -1,19 +1,14 @@
 # OPENRDS 
 
-Steps to build a build postgresql build environment on CentOS 7/8 on AMD/ARM
+Steps to setup a dev environment
 
-## 1.) run ./setupInitial.sh to configure OS environment
+## 1.) run ./setupCLOUD.sh for runtime OS config
 
-## 2.) configure your ~/.aws credentials
+## 2.) run ./setupInitial.sh for dev OS config
 
-## 3.) run ./setupBLD-IN.sh to pull in the IN directory from S3
+## 3.) re-login so your new env variables get initialized
 
-## 4.) Setup Src builds for PGBIN in $BLD
-       in el7-only:
-         + libSrcBuilds.sh
-         + gisSrcBuilds.sh
-         + buildBoost.sh
-       in amd-only:
-         + installOracleInstantClient.sh
-         + installCppDriver.sh
-       sharedLibs.sh
+## 4.) configure your ~/.aws credentials
+
+## 5.) run ./setup-IN.sh to pull in the IN directory from S3
+

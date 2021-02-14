@@ -8,59 +8,6 @@ git config --global push.default simple
 git config --global credential.helper store
 git config --global pull.rebase false
 
-
-if [ `uname` == 'Linux' ]; then
-  owner_group="$USER:$USER"
-  yum --version 2>&1
-  rc=$?
-  if [ "$rc" == "0" ]; then
-    YUM="y"
-  else
-    YUM="n"
-  fi
-  if [ "$YUM" == "y" ]; then
-    cat /etc/os-release | grep el8
-    rc=$?
-    if [ "$rc" == "0" ]; then
-      echo ## CentOS 8 (uck!! )
-      yum="dnf -y install --nobest"
-      sudo $yum epel-release
-      sudo $yum wget python3 python3-devel
-      sudo $yum java-11-openjdk-devel maven ant
-      sudo dnf -y groupinstall 'development tools'
-      sudo $yum zlib-devel bzip2-devel \
-        openssl-devel libxslt-devel libevent-devel c-ares-devel \
-        perl-ExtUtils-Embed sqlite-devel tcl-devel \
-        pam-devel openldap-devel boost-devel unixODBC-devel \
-	mongo-c-driver-devel proj-devel jasper-devel
-      sudo $yum curl-devel chrpath clang-devel llvm-devel \
-        cmake libxml2-devel mysql-devel freetds-devel
-      sudo $yum readline-devel libuuid-devel uuid-devel
-      ## sudo $yum install gdal-devel
-      sudo $yum python2 python2-devel
-      cd /usr/bin
-      sudo ln -fs python2 python
-    else
-      ## CentOS 7 (used for PG10 thru PG13)
-      sudo yum -y install -y epel-release python-pip
-      sudo yum -y groupinstall 'development tools'
-      sudo yum -y install bison-devel libedit-devel zlib-devel bzip2-devel \
-        openssl-devel libmxl2-devel libxslt-devel libevent-devel c-ares-devel \
-        perl-ExtUtils-Embed sqlite-devel wget java-11-openjdk-devel \
-        pam-devel openldap-devel unixODBC-devel \
-        uuid-devel curl-devel chrpath 
-      sudo yum -y install clang llvm5.0 centos-release-scl-rh
-      sudo yum -y install llvm-toolset-7-llvm devtoolset-7 llvm-toolset-7-clang
-      sudo yum -y install python3 python3-devel
-    fi
-  fi
-fi
-
-sudo mkdir -p /opt/pgbin-build
-sudo chown $owner_group /opt/pgbin-build
-mkdir -p /opt/pgbin-build/pgbin/bin
-sudo mkdir -p /opt/pgcomponent
-sudo chown $owner_group /opt/pgcomponent
 mkdir -p ~/dev
 cd ~/dev
 mkdir -p in
@@ -76,7 +23,6 @@ if [ ! "$rc" == "0" ]; then
   rm get-pip.py
 fi
 
-
 aws --version 2>&1
 rc=$?
 if [ ! "$rc" == "0" ]; then
@@ -87,10 +33,6 @@ if [ ! "$rc" == "0" ]; then
   # vi config
   chmod 600 config
 fi
-
-pip3 install --user CLICK
-pip3 install --user apache-libcloud flask psutil fire
-pip3 install --user python-openstackclient twisted
 
 cd ~/dev/openrds
 if [ -f ~/.bashrc ]; then
