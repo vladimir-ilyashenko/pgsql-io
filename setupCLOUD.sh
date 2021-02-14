@@ -1,19 +1,21 @@
 
-yum --version
+p3=python3
+
+yum --version > /dev/null 2>&1
 rc=$?
 if [ "$rc" == "0" ]; then
   INSTALL="sudo yum install -y"
-  YUM=True
+  $INSTALL $p3 $p3-devel $p3-pip $p3-psutil $p3-paramiko
 else
   INSTALL="sudo apt install -y"
-  APT=True
+  $INSTALL $p3-distutils $p3-psutil $p3-paramiko $p3-pip
 fi
 
-if [ "$APT" == "True" ]; then
-  $INSTALL python3-distutils python3-psutil python3-paramiko python3-pip
-fi
+reqs="fire apache-libcloud python-dotenv parallel-ssh jmespath munch"
+reqs="$reqs CLICK paramiko psutil python-openstackclient boto3"
+reqs="$reqs mkdocs flask"
 
-if [ "$YUM" == "True" ]; then
-  $INSTALL python3 python3-devel python3-pip
-fi
+flags="--user --disable-pip-version-check --no-input"
+
+pip3 install $flags $reqs
 
