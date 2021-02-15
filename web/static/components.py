@@ -5,7 +5,7 @@ NUM_COLS = 3
 #ALL_PLATFORMS = "arm, amd"
 ALL_PLATFORMS = "amd"
 isSHOW_COMP_PLAT = "Y"
-isEXTRA_SPACING = "N"
+isEXTRA_SPACING = "Y"
 isSHOW_DESCRIPTION = "Y"
 HEADING_SIZE = "+1"
 
@@ -168,7 +168,7 @@ def print_row_detail(pCol, pBR):
 
   if component[0:3] in ("pg9", "pg1"):
     rel_name = "PostgreSQL"
-    plat_desc = platd + "<br><i>" + proj_desc + "</i>"
+    plat_desc = platd + "<br>" + proj_desc
   else:
     rel_name = "<a href=" + project_url + ">" + release_name + "</a>"
     plat_desc = platd + "<br><i>" + proj_desc + "</i>"
