@@ -166,14 +166,15 @@ def print_row_detail(pCol, pBR):
   print("  <td width=" + str(IMG_SIZE) + ">&nbsp;<img src=img/" + image_file + \
     " height=" + str(IMG_SIZE) + " width=" + str(IMG_SIZE) + " /></td>")
 
-  if component in ("pg13", "pg12", "pg11", "pg10", "pg96", "pg95"):
-    plat_desc = "<br><i>" + proj_desc + "</i>"
+  if component[0:3] in ("pg9", "pg1"):
+    rel_name = "PostgreSQL"
+    plat_desc = platd + "<br><i>" + proj_desc + "</i>"
   else:
+    rel_name = "<a href=" + project_url + ">" + release_name + "</a>"
     plat_desc = platd + "<br><i>" + proj_desc + "</i>"
 
   print("  <td width=" +str( COL_SIZE) + "><font size=" + str(FONT_SIZE) + \
-    "><a href=" + project_url + ">" + release_name + \
-    "</a>&nbsp;&nbsp;<a href=" + source_url + ">v" + version + \
+    ">" + rel_name + "&nbsp;&nbsp;<a href=" + source_url + ">v" + version + \
     "</a>&nbsp;<font color=red size=-1><sup>" + \
     rel_date_display +"</sup></font>" + plat_desc + "</td>")
 
