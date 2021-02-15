@@ -82,8 +82,8 @@ of your choice.
   print(string)
 
 
-def print_footer():
-  print('<center><table><tr> \n' + \
-        '   <td width=550>&copy; 2021 PGSQL.IO</td> \n' + \
-        '   <td width=550 align=right><a href="https://lussier.io">denis@lussier.io</a></td> \n' + \
+def print_footer(pWidth):
+  print('<center><table width=900><tr> \n' + \
+        '   <td width=450>&copy; 2021 PGSQL.IO</td> \n' + \
+        '   <td width=450 align=right><a href="https://lussier.io">denis@lussier.io</a></td> \n' + \
         '</tr></table></center>')

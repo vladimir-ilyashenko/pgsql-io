@@ -42,7 +42,7 @@ def print_top():
  
 def print_bottom():
   print('\n</td></tr></table></center><br>\n')
-  pgsql.print_footer()
+  pgsql.print_footer(WIDTH)
 
 
 def get_columns(d):
@@ -170,7 +170,10 @@ def print_row_detail(pCol, pBR):
     rel_name = "PostgreSQL"
     plat_desc = "<font size=-1>" + platd + "</font><br>" + proj_desc
   else:
-    rel_name = "<a href=" + project_url + ">" + release_name + "</a>"
+    if project_url > "":
+      rel_name = "<a href=" + project_url + ">" + release_name + "</a>"
+    else:
+      rel_name = project_url + release_name
     plat_desc = platd + "<br><i>" + proj_desc + "</i>"
 
   print("  <td width=" +str( COL_SIZE) + "><font size=" + str(FONT_SIZE) + \
