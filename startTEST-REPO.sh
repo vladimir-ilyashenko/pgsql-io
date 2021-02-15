@@ -3,7 +3,7 @@ rc=$?
 if [ "$rc" == "0" ]; then
   pid=`ps aux | grep "[h]ttp.server" | awk '{print $2}'`
   if [ "$pid" > " " ]; then
-    echo "killing ($pid)"
+    echo "killing http.server ($pid)"
     kill -9 $pid
   fi
   rm -f " "

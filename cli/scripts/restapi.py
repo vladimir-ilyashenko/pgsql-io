@@ -20,7 +20,7 @@ def sys_cli(p_cmd):
 
 @app.route('/', methods=['GET'])
 def home():
-    return '''<h1>OpenRDS Development API</h1>
+    return '''<h1>OpenRDS REST API</h1>
 <p>A REST API for "io" commands</p>'''
 
 
