@@ -168,7 +168,7 @@ def print_row_detail(pCol, pBR):
 
   if component[0:3] in ("pg9", "pg1"):
     rel_name = "PostgreSQL"
-    plat_desc = platd + "<br>" + proj_desc
+    plat_desc = "<font size=-1>" + platd + "</font><br>" + proj_desc
   else:
     rel_name = "<a href=" + project_url + ">" + release_name + "</a>"
     plat_desc = platd + "<br><i>" + proj_desc + "</i>"
