@@ -94,7 +94,7 @@ INSERT INTO categories VALUES (0,   0, 'Hidden', 'NotShown');
 INSERT INTO categories VALUES (1,  10, 'Strategic & Rock-Solid Postgres', 'PostgreSQL');
 INSERT INTO categories VALUES (4, 100, 'Hybrid & Multi-Cloud', 'Multi-Cloud');
 INSERT INTO categories VALUES (10, 96, 'Foreign Datastores', 'ForeignData');
-INSERT INTO categories VALUES (2,  60, 'Advanced Applications', 'Applications');
+INSERT INTO categories VALUES (2,  60, 'Extensions', 'Extensions');
 INSERT INTO categories VALUES (5,  70, 'Data Integration', 'Integration');
 INSERT INTO categories VALUES (3,  80, 'Database Developers', 'DB-Devs');
 INSERT INTO categories VALUES (9,  87, 'Management & Monitoring', 'Manage');
@@ -113,22 +113,29 @@ INSERT INTO versions VALUES ('hub', '6.32', '',  0, '20201119', '', '', '');
 INSERT INTO projects VALUES ('pg', 1, 5432, 'hub', 1, 'https://postgresql.org/download',
  'postgres', 0, 'postgresql.png', 'Best RDBMS', 'https://postgresql.org');
 
-INSERT INTO releases VALUES ('pg10', 4, 'pg', 'PostgreSQL', '', 'prod', 'works w/ EL7+ & Ubu18+', 1, 'POSTGRES', '', '');
+INSERT INTO releases VALUES ('pg10', 4, 'pg', 'PostgreSQL', '', 'prod', 
+  '<a href=https://www.postgresql.org/docs/10/release-10.html>New in v10</a><font size=-2>&nbsp;(05-Oct-2017)</font>', 
+  1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pg10', '10.16-1', 'amd', 1, '20210211', '', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg10', '10.15-4', 'amd', 0, '20201112', '', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg10', '10.14-1', 'amd', 0, '20200813', '', 'LIBC-2.17', '');
 
-INSERT INTO releases VALUES ('pg11', 3, 'pg', 'PostgreSQL', '', 'prod', 'works w/ EL7+ & Ubu18+', 1, 'POSTGRES', '', '');
+INSERT INTO releases VALUES ('pg11', 3, 'pg', 'PostgreSQL', '', 'prod', 
+  '<a href=https://www.postgresql.org/docs/11/release-11.html>New in v11</a><font size=-2>&nbsp;(18-Oct-2018)</font>', 
+  1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pg11', '11.11-1', 'amd', 1, '20210211', '', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg11', '11.10-4', 'amd', 0, '20201112', '', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg11', '11.9-1',  'amd', 0, '20200813', '', 'LIBC-2.17', '');
 
-INSERT INTO releases VALUES ('pg12', 2, 'pg', 'PostgreSQL', '', 'prod', 'works w/ EL7+ & Ubu18+', 1, 'POSTGRES', '', '');
+INSERT INTO releases VALUES ('pg12', 2, 'pg', 'PostgreSQL', '', 'prod', 
+  '<a href=https://www.postgresql.org/docs/12/release-12.html>New in v12</a><font size=-2>&nbsp;(03-Oct-2019)</font>', 
+  1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pg12', '12.6-1', 'arm, amd', 1, '20210211', '', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg12', '12.5-4', 'arm, amd', 0, '20201112', '', 'LIBC-2.17', '');
-INSERT INTO versions VALUES ('pg12', '12.4-1', 'arm, amd', 0, '20200813', '', 'LIBC-2.28', '');
 
-INSERT INTO releases VALUES ('pg13', 1, 'pg', 'PostgreSQL', '', 'prod', 'works w/ EL7+ & Ubu18+', 1, 'POSTGRES', '', '');
+INSERT INTO releases VALUES ('pg13', 1, 'pg', 'PostgreSQL', '', 'prod', 
+  '<a href=https://www.postgresql.org/docs/13/release-13.html>New in v13</a><font size=-2>&nbsp;(24-Sep-2020)</font>', 
+  1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pg13', '13.2-1',  'arm, amd', 1, '20210211','', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg13', '13.1-4',  'arm, amd', 0, '20201112','', 'LIBC-2.17', '');
 
@@ -320,27 +327,27 @@ INSERT INTO versions VALUES ('plv8-pg12', '2.3.15-1', 'amd', 0, '20200711', 'pg1
 
 INSERT INTO projects VALUES ('plpython', 3, 0, 'hub', 0, 'https://www.postgresql.org/docs/13/plpython.html',
   'plpython', 1, 'python.png', 'Python3 Stored Procedures', 'https://www.postgresql.org/docs/13/plpython.html');
-INSERT INTO releases VALUES ('plpython3', 1, 'plpython', 'PL/Python','', 'included', '', 1, 'POSTGRES', '', '');
+INSERT INTO releases VALUES ('plpython3', 5, 'plpython', 'PL/Python','', 'included', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('plpython3', '13', 'arm, amd', 1, '20200213', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('plperl', 3, 0, 'hub', 0, 'https://www.postgresql.org/docs/13/plperl.html',
 	'plperl', 1, 'perl.png', 'Perl Stored Procedures', 'https://www.postgresql.org/docs/13/plperl.html');
-INSERT INTO releases VALUES ('plperl', 2, 'plperl', 'PL/Perl','', 'included', '', 1, 'POSTGRES', '', '');
+INSERT INTO releases VALUES ('plperl', 6, 'plperl', 'PL/Perl','', 'included', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('plperl', '13', 'arm, amd', 1, '20200213', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('pljava', 3, 0, 'hub', 0, 'https://github.com/tada/pljava/releases', 
   'pljava', 1, 'pljava.png', 'Java Stored Procedures', 'https://github.com/tada/pljava');
-INSERT INTO releases VALUES ('pljava-pg13', 3, 'pljava', 'PL/Java', '', 'test', '', 1, 'POSTGRES', '', '');
+INSERT INTO releases VALUES ('pljava-pg13', 7, 'pljava', 'PL/Java', '', 'test', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pljava-pg13', '1.6.2-1',  'amd',  1, '20201127', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('pldebugger', 3, 0, 'hub', 0, 'https://github.com/bigsql/pldebugger2/releases',
   'pldebugger', 1, 'debugger.png', 'Procedural Language Debugger', 'https://github.com/bigsql/pldebugger2#pldebugger2');
-INSERT INTO releases VALUES ('pldebugger-pg12', 4, 'pldebugger', 'PL/Debugger', '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pldebugger-pg12', '2.0-1',  'amd',  0, '20200224', 'pg12', '', '');
+INSERT INTO releases VALUES ('pldebugger-pg12', 1, 'pldebugger', 'PL/Debugger', '', 'prod', '', 1, 'POSTGRES', '', '');
+INSERT INTO versions VALUES ('pldebugger-pg12', '2.0-1',  'amd',  1, '20200224', 'pg12', '', '');
 
 INSERT INTO projects VALUES ('plpgsql', 3, 0, 'hub', 0, 'https://www.postgresql.org/docs/13/plpgsql-overview.html',
   'plpgsql', 0, 'jan.png', 'Postgres Procedural Language', 'https://www.postgresql.org/docs/13/plpgsql-overview.html');
-INSERT INTO releases VALUES ('plpgsql', 0, 'plpgsql', 'PL/pgSQL', '', 'included', '', 1, 'POSTGRES', '', '');
+INSERT INTO releases VALUES ('plpgsql', 4, 'plpgsql', 'PL/pgSQL', '', 'included', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('plpgsql', '13',  'arm, amd',  1, '20200213', '', '', '');
 
 INSERT INTO projects VALUES ('pgtsql', 3, 0, 'hub', 0, 'https://github.com/bigsql/pgtsql/releases',
@@ -350,7 +357,7 @@ INSERT INTO versions VALUES ('pgtsql-pg13', '3.0-1', 'amd', 0, '20191119', 'pg13
 
 INSERT INTO projects VALUES ('plprofiler', 3, 0, 'hub', 7, 'https://github.com/bigsql/plprofiler/releases',
   'plprofiler', 1, 'plprofiler.png', 'Stored Procedure Profiler', 'https://github.com/bigsql/plprofiler#plprofiler');
-INSERT INTO releases VALUES ('plprofiler-pg13', 4, 'plprofiler',    'PL/Profiler',  '', 'prod', '', 1, 'POSTGRES', '', '');
+INSERT INTO releases VALUES ('plprofiler-pg13', 0, 'plprofiler',    'PL/Profiler',  '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('plprofiler-pg13', '4.1-1', 'amd', 1, '20190823', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('backrest', 2, 0, 'hub', 0, 'https://pgbackrest.org/release.html',
@@ -399,7 +406,7 @@ INSERT INTO versions VALUES ('timescaledb-pg12', '1.7.2-1',  'amd', 0, '20200707
   'https://github.com/timescale/timescaledb/releases/tag/1.7.2');
 
 INSERT INTO projects VALUES ('pglogical', 2, 0, 'hub', 2, 'https://github.com/2ndQuadrant/pglogical/releases',
-  'pglogical', 1, 'spock.png', 'Logical & Bi-Directional Replication', 'https://github.com/2ndQuadrant/pglogical');
+  'pglogical', 1, 'spock.png', 'Logical Replication', 'https://github.com/2ndQuadrant/pglogical');
 INSERT INTO releases VALUES ('pglogical-pg13', 2, 'pglogical', 'pgLogical', '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pglogical-pg13', '2.3.3-1',  'amd', 1, '20201005', 'pg13', '',
   'https://github.com/2ndQuadrant/pglogical/releases/tag/REL2_3_3');
@@ -416,7 +423,7 @@ INSERT INTO projects VALUES ('pgadmin', 9, 80, 'docker', 1, 'https://pgadmin.org
 INSERT INTO releases VALUES ('pgadmin', 0, 'pgadmin', 'pgAdmin 4.29', '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pgadmin', '4', '', 0, '20201210', '', '', '');
 
-INSERT INTO projects VALUES ('bulkload', 9, 0, 'hub', 5, 'https://github.com/ossc-db/pg_bulkload/releases',
+INSERT INTO projects VALUES ('bulkload', 2, 0, 'hub', 5, 'https://github.com/ossc-db/pg_bulkload/releases',
   'bulkload', 1, 'bulkload.png', 'High Speed Data Loading', 'https://github.com/ossc-db/pg_bulkload');
 INSERT INTO releases VALUES ('bulkload-pg12', 6, 'bulkload', 'pgBulkLoad',  '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('bulkload-pg12', '3.1.16-1', 'amd', 1, '20200121', 'pg12', '', '');
@@ -603,7 +610,7 @@ INSERT INTO releases VALUES ('ruby', 7, 'ruby', 'Ruby', '', 'bring-own', '', 1, 
 INSERT INTO versions VALUES ('ruby', '1.2.3', '', 0, '20200318', '', '', '');
 
 INSERT INTO projects VALUES ('psqlodbc', 3, 0, 'hub', 5, 'https://www.postgresql.org/ftp/odbc/versions/msi/', 'psqlodbc', 0, 'odbc.png', 'ODBC Driver', 'https://odbc.postgresql.org');
-INSERT INTO releases VALUES ('psqlodbc', 8, 'psqlodbc',  'psqlODBC', '', 'prod', '', 1, 'LIBGPLv2', '', '');
+INSERT INTO releases VALUES ('psqlodbc', 2, 'psqlodbc',  'psqlODBC', '', 'prod', '', 1, 'LIBGPLv2', '', '');
 INSERT INTO versions VALUES ('psqlodbc', '13.00-1', 'amd', 1, '20201119', '', '', '');
 
 INSERT INTO projects VALUES ('http', 3, 0, 'hub', 6, 'https://github.com/pramsey/pgsql-http/releases', 'http',  1, 'http.png', 'Invoke Web Services', 'https://github.com/pramsey/pgsql-http');

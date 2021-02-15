@@ -29,8 +29,8 @@ _atrk_opts = { atrk_acct:"D/nDv1DlQy20Y8", domain:"pgsql.io",dynamic: true};
 """\
 PGSQL is the PostgreSQL Community Distribution that is developer friendly and cross-platform.
 We fully embrace core PostgreSQL and it's rich community based eco-system of
-enterprise-class extensions & applications.
-We support Redhat, CentOS, Ubuntu & Debian on both ARM & Intel (including on Windows 10 Subsystem for Linux)
+enterprise-class extensions.
+We support CentOS 7 & 8 as well as Ubuntu 18.04 & 20.04 on both ARM & Intel (including on Windows 10 Subsystem for Linux)
 \
 """
   print("  <tr><td colspan=2><h2>Introduction</h2></td></tr>")
@@ -73,7 +73,7 @@ of your choice.
 <tr><td align=right><p><b>Usage sample:</b></td>
     <td>
       <input type='text' size=90 value =
-'cd pgsql; ./io install pg12; ./io start pg12' readonly='readonly' />
+'cd pgsql; ./io install pg13; ./io start' readonly='readonly' />
     </td>
 </tr>
 </table>

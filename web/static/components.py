@@ -1,6 +1,6 @@
 import sqlite3, sys, pgsql
 
-NUM_COLS = 4
+NUM_COLS = 3
 
 #ALL_PLATFORMS = "arm, amd"
 ALL_PLATFORMS = "amd"
@@ -10,8 +10,8 @@ isSHOW_DESCRIPTION = "Y"
 HEADING_SIZE = "+1"
 
 BR = "<br>"
-WIDTH = 1200
-COL_SIZE = 600
+WIDTH = 900 
+COL_SIZE = 300
 FONT_SIZE = 3
 IMG_SIZE = 35
 BORDER=0
@@ -165,12 +165,17 @@ def print_row_detail(pCol, pBR):
 
   print("  <td width=" + str(IMG_SIZE) + ">&nbsp;<img src=img/" + image_file + \
     " height=" + str(IMG_SIZE) + " width=" + str(IMG_SIZE) + " /></td>")
+
+  if component in ("pg13", "pg12", "pg11", "pg10", "pg96", "pg95"):
+    plat_desc = "<br><i>" + proj_desc + "</i>"
+  else:
+    plat_desc = platd + "<br><i>" + proj_desc + "</i>"
+
   print("  <td width=" +str( COL_SIZE) + "><font size=" + str(FONT_SIZE) + \
     "><a href=" + project_url + ">" + release_name + \
     "</a>&nbsp;&nbsp;<a href=" + source_url + ">v" + version + \
     "</a>&nbsp;<font color=red size=-1><sup>" + \
-    rel_date_display +"</sup></font>" + \
-    platd + pBR + "<i>" + proj_desc + "</font></i></td>")
+    rel_date_display +"</sup></font>" + plat_desc + "</td>")
 
   if pCol == NUM_COLS:
     print("</tr>")
