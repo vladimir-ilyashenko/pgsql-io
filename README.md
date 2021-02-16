@@ -10,5 +10,5 @@ Steps to setup a dev environment
 
 ## 4.) configure your ~/.aws credentials
 
-## 5.) run ./setup-IN.sh to pull in the IN directory from S3
+## 5.) run ./setupIN.sh to pull in the IN directory from S3
 
