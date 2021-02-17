@@ -115,17 +115,6 @@ def check_release(p_wild):
 
 
 #############################################################################
-# If the prefix for an release group uniquely matches only one group, then
-#  expand the prefix into the full releasegroup name
-#############################################################################
-def wildcard_releasegroup(p_group):
-  rg = str(p_group[2])
-  print("wildcard " + rg)
-
-  return(rg)
-
-
-#############################################################################
 # If the prefix for a component uniquely matches only one component, then
 #  expand the prefix into the full component name
 #############################################################################
@@ -220,9 +209,6 @@ def is_node(p_node):
 
 def is_component(p_comp):
   return(is_present("releases", "component", p_comp))
-
-def is_releasegroup(p_rg):
-  return(is_present("releasegroups", "releasegroup", p_rg))
 
 def is_any_autostart():
   return(is_present("components", "autostart", "on", "any"))

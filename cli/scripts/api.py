@@ -46,12 +46,6 @@ style_end = bcolors.ENDC
 table_header_style = bcolors.BOLD + bcolors.BACKGROUND
 error_start = bcolors.FAIL
 
-def bench(p_cmd_line):
-  print("Hello BENCH: " + p_cmd_line)
-  pg_nodes = util.get_installed_postgres_components()
-  print("DEBUG: " + str(pg_nodes))
-  return
-
 
 def get_pip_ver():
   try:

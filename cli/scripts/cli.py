@@ -74,10 +74,10 @@ ansi_escape = re.compile(r'\x1b[^m]*m')
 dep9 = util.get_depend()
 
 mode_list = ["start", "stop", "restart", "status", "list", "info", "update",
-             "upgrade", "downgrade", "enable", "disable", "install", "groupinstall", "tune",
+             "upgrade", "downgrade", "enable", "disable", "install", "tune",
              "remove", "reload", "activity", "help", "get", "set", "unset",
              "repolist", "repo-pkgs", "discover",
-             "register", "top", "bench", "--autostart", "--relnotes", "--start",
+             "register", "top", "--autostart", "--relnotes", "--start",
              "--help", "--json", "--test", "--extra", "--extensions",
              "--list", "--old", "--showduplicates", "-y", "-t", "-d"  ,
              "--verbose", "--debug", "--debug2"]
@@ -85,14 +85,13 @@ mode_list = ["start", "stop", "restart", "status", "list", "info", "update",
 mode_list_advanced = ['kill', 'config', 'deplist', 'download', 'cancel',
                       'verify', 'init', 'clean', 'useradd', 'provision']
 
-ignore_comp_list = [ "get", "set", "unset", "register", "repolist", "groupinstall", "bench",
-                     "repo-pkgs", "discover", "useradd", "cloud", "cluster", "node", "machine",
-                     "key", "service"]
+ignore_comp_list = [ "get", "set", "unset", "register", "repolist", 
+                     "repo-pkgs", "discover", "useradd"]
 
 no_log_commands = ['status', 'info', 'list', 'activity', 'top', 'register',
                    'cancel', 'get']
 
-lock_commands = ["install", "groupinstall", "remove", "update", "upgrade", "downgrade", "cloud", "bench"]
+lock_commands = ["install", "remove", "update", "upgrade", "downgrade"]
 
 my_depend = []
 installed_comp_list = []
@@ -1380,11 +1379,6 @@ try:
     exit_cleanly(0)
 
 
-  ## BENCH #####################################################################################
-  if (p_mode == 'bench'):
-    api.bench(full_cmd_line)
-    exit_cleanly(0)
-
   ## INFO ######################################################################################
   if (p_mode == 'info'):
     if(p_comp=="all" and info_arg==0):
@@ -1664,18 +1658,6 @@ try:
       if isJSON:
         msg = '[{"status":"complete","msg":"' + comment + '","component":"' + c + '"}]'
         print(msg)
-
-    exit_cleanly(0)
-
-
-  ## GROUPINSTALL ###########################################
-  if (p_mode == 'groupinstall'):
-    rg = meta.wildcard_releasegroup(sys.argv) 
-
-    if meta.is_releasegroup(rg):
-      print("DEBUG: unique - " + rg)
-    else:
-      print("DEBUG: not unique - " + rg)
 
     exit_cleanly(0)
 
