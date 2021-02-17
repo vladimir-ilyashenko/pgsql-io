@@ -373,7 +373,7 @@ def info(p_json, p_home, p_repo, print_flag=True):
     infoJson['jvm_location'] = jvm_location
     infoJsonArray.append(infoJson)
     if print_flag:
-      print(infoJson)
+      print(json.dumps(infoJson))
       return
     else:
       return infoJson

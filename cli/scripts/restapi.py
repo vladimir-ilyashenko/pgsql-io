@@ -2,7 +2,7 @@ import flask, os, subprocess
 from flask import request, jsonify
 from subprocess import Popen, PIPE, STDOUT
 
-import sys
+import sys, json
 
 import util, api
 
@@ -15,7 +15,7 @@ def sys_cli(p_cmd):
   cmd = io_cmd + " " + p_cmd + " --json"
   p = Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE, executable=None, close_fds=False)
   (out, err) = p.communicate()
-  return(out)
+  return(out.decode("utf-8").rstrip())
 
 
 @app.route('/', methods=['GET'])
@@ -26,7 +26,10 @@ def home():
 
 @app.route('/info', methods=['GET'])
 def info():
-  return(jsonify(sys_cli("info")))
+  inf = sys_cli("info")
+  j = json.loads(inf)
+  #print(j)
+  return(jsonify(j))
 
 @app.route('/cloud/create', methods=['GET'])
 def cloud_create():
@@ -62,6 +65,11 @@ def node_start():
 @app.route('/node/stop', methods=['GET'])
 def node_stop():
   return
+
+
+@app.route('/cloud/list/providers', methods=['GET'])
+def cloud_list_providers():
+  return(jsonify(sys_cli("cloud list-providers")))
 
 
 def test_required(req_args, p_arg):
