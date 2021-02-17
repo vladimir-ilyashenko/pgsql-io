@@ -37,7 +37,7 @@ printUsageMessage () {
   echo "#    badger-$badgerV  ora2pg-$ora2pgV"
   echo "#    bouncer-$bouncerV  backrest-$backrestV"
   echo "#    postgis-$postgisV  psqlodbc-$odbcV"
-  echo "#    hivefdw-$hivefdwV  prestosql-$prestosqlV"
+  echo "#    hivefdw-$hivefdwV "
   echo "#    mysqlfdw-$mysqlfdwV  tdsfdw-$tdsfdwV"
   echo "#    mongofdw-$mongofdwV  oraclefdw-$oraclefdwV"
   echo "#    esfdw-$esfdwV  multicorn-$multicornV"
@@ -436,44 +436,9 @@ initPG () {
 
   initC "pgbadger" "pgbadger" "$badgerV" "" "postgres/badger" "" "" "nil"
   initC "ora2pg" "ora2pg" "$ora2pgV" "" "postgres/ora2pg" "" "" "nil"
-  #initC "gcc" "gcc" "$gccV" "" "gcc" "" "" "Y"
-
-  #initC "docker" "docker" "$dockerV" "" "docker" "" "" "Y"
-  #initC "compose" "compose" "$composeV" "" "docker/compose" "" "" "Y"
-
-  #initC "pgadmin" "pgadmin" "$pgadminV" "" "postgres/pgadmin" "" "" "nil"
-  #initC "prestosql" "prestosql" "$prestosqlV" "" "prestosql" "" "" "Y"
-  #initC "hivemeta" "hivemeta" "$hiveV"   "" "hivemeta" "" "" "nil"
-  # initC "hadoop" "hadoop" "$hadoopV" "" "apache" "" "" "nil"
-  # initC "oracle_xe" "oracle_xe" "$oracle_xeV" "amd" "oracle" "" "" "nil"
-  #initC "sqlsvr"  "sqlsvr" "$sqlsvrV" "amd" "sqlsvr" "" "" "nil"
-  initC "mariadb" "mariadb" "$mariadbV" "" "mariadb" "" "" "Y"
-  #initC "mongodb" "mongodb" "$mongodbV" "" "mongodb" "" "" "Y"
-
-  #initC "zookeeper" "zookeeper" "$zookV" "" "zookeeper" "" "" "Y"
-  #initC "kafka" "kafka" "$kafkaV" "" "kafka" "" "" "Y"
-  #initC "debezium" "debezium" "$debezV" "" "debezium" "" "" "Y"
-  #initC "rabbitmq" "rabbitmq" "$rabbitV"  "" "rabbitmq" "" "" "Y"
-
-  #initC "openstack" "openstack" "$openstackV" "" "openstack" "" "" "nil"
-  #initC "kvm" "kvm" "$kvmV" "" "kvm" "" "" "nil"
-
   initC "bouncer" "bouncer" "$bouncerV" "$outPlat" "postgres/bouncer" "" "" "nil"
   initC "backrest" "backrest" "$backrestV" "$outPlat" "postgres/backrest" "" "" "nil"
   initC "psqlodbc" "psqlodbc" "$odbcV" "$outPlat" "postgres/psqlodbc" "" "" "nil"
-
-  #initC "cloud" "cloud" "$cloudV" "" "cloud" "" "" "Y"
-  #initC "ansible" "ansible" "$ansibleV" "" "ansible" "" "" "Y"
-  #initC "helm" "helm" "$helmV" "" "helm" "" "" "Y"
-  #initC "minikube" "minikube" "$minikubeV" "" "minikube" "" "" "Y"
-
-  #initC "elasticsearch" "elasticsearch" "$esV" "" "elk/elasticsearch" "" "" "Y"
-  #initC "kibana" "kibana" "$esV" "" "elk/kibana" "" "" "Y"
-  #initC "logstash" "logstash" "$esV" "" "elk/logstash" "" "" "Y"
-
-  #initC "patroni" "patroni" "$patroniV" "" "postgres/patroni" "" "" ""
-  #initC "haproxy" "haproxy" "$haproxyV" "" "haproxy" "" "" "Y"
-  #initC "etcd" "etcd" "$etcdV" "" "etcd" "" "" "Y"
 
   if [ "$outPlat" == "arm" ]; then
     return
