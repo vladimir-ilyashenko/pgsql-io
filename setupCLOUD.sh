@@ -8,7 +8,7 @@ if [ "$rc" == "0" ]; then
   $INSTALL $p3 $p3-devel $p3-pip $p3-psutil $p3-paramiko
 else
   INSTALL="sudo apt install -y"
-  $INSTALL $p3-distutils $p3-psutil $p3-paramiko $p3-pip sqlite3
+  $INSTALL $p3-distutils $p3-psutil $p3-paramiko $p3-pip sqlite3 net-tools
 fi
 
 reqs="fire apache-libcloud python-dotenv parallel-ssh jmespath munch"

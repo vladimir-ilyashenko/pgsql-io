@@ -6,9 +6,12 @@ Steps to setup a dev environment
 
 ## 2.) run ./setupInitial.sh for dev OS config
 
-## 3.) re-login so your new env variables get initialized
+## 3.) re-login so your new env variables get initialized.
 
-## 4.) configure your ~/.aws credentials
+## 4.) make sure your userid has passwordless sudo priv's
 
-## 5.) run ./setupIN.sh to pull in the IN directory from S3
+## 5.) configure your ~/.aws & ~/.openstack credentials
+
+## 6.) edit bp.sh initial io commands to create valid cloud connnections
+
 
