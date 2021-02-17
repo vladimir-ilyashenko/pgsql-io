@@ -15,7 +15,9 @@ def sys_cli(p_cmd):
   cmd = io_cmd + " " + p_cmd + " --json"
   p = Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE, executable=None, close_fds=False)
   (out, err) = p.communicate()
-  return(out.decode("utf-8").rstrip())
+  s_out = out.decode("utf-8").rstrip()
+  j_out = json.loads(s_out)
+  return(j_out)
 
 
 @app.route('/', methods=['GET'])
@@ -27,9 +29,8 @@ def home():
 @app.route('/info', methods=['GET'])
 def info():
   inf = sys_cli("info")
-  j = json.loads(inf)
-  #print(j)
-  return(jsonify(j))
+  return(jsonify(inf))
+
 
 @app.route('/cloud/create', methods=['GET'])
 def cloud_create():
