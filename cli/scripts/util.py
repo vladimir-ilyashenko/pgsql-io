@@ -589,15 +589,15 @@ def message(p_msg, p_state="info", p_isJSON=None):
     my_logger.info(p_msg)
     prefix = ""
 
+  json_dict = {}
   if p_isJSON:
-    json_dict = {}
     json_dict['state'] = p_state 
     json_dict['msg'] = p_msg
     print (json.dumps([json_dict]))
   else:
     print (prefix + p_msg)
 
-  return
+  return(json_dict)
 
 
 def verify(p_json):

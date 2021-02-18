@@ -36,11 +36,11 @@ def info():
 def cloud_create():
   prv = request.args.get('provider')
   if prv in (None, ""):
-    util.message("'provider' parm required.", "ERROR", True)
-    return("[]")
+    j = util.message("'provider' parm required.", "ERROR", True)
+    return(jsonify(j))
     
   i = sys_cli("cloud create " + prv)
-  return (i)
+  return (jsonify(i))
 
 
 @app.route('/cloud/list', methods=['GET'])
@@ -76,15 +76,17 @@ def cloud_list_images():
 def test_required(req_args, p_arg):
   arg = req_args.get(p_arg)
   if arg in (None, ""):
-    util.message("required arg '" + str(p_arg) + "' missing", "error", True)
-    return False
-  return True
+    j = util.message("required arg '" + str(p_arg) + "' missing", "error", True)
+    return(j)
+
+  return(None)
 
 
 @app.route('/machine/list', methods=['GET'])
 def machine_list():
-  if test_required(request.args, "cloud") == False:
-    return("")
+  rqd = test_required(request.args, "cloud")
+  if rqd:
+    return(jsonify(rqd))
 
   cld = request.args.get("cloud")
   i = sys_cli("machine list " + cld)
