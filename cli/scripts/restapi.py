@@ -88,7 +88,7 @@ def machine_list():
 
   cld = request.args.get("cloud")
   i = sys_cli("machine list " + cld)
-  return (i)
+  return(jsonify(i))
 
 
 if __name__ == "__main__":
