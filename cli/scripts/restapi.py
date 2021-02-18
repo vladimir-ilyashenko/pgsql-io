@@ -43,34 +43,34 @@ def cloud_create():
   return (i)
 
 
-@app.route('/node/create', methods=['GET'])
-def node_create():
-  return
-
-
-@app.route('/node/destroy', methods=['GET'])
-def node_destroy():
-  return
-
-
-@app.route('/node/reboot', methods=['GET'])
-def node_reboot():
-  return
-
-
-@app.route('/node/start', methods=['GET'])
-def node_start():
-  return
-
-
-@app.route('/node/stop', methods=['GET'])
-def node_stop():
-  return
+@app.route('/cloud/list', methods=['GET'])
+def cloud_list():
+  return(jsonify(sys_cli("cloud list")))
 
 
 @app.route('/cloud/list/providers', methods=['GET'])
 def cloud_list_providers():
   return(jsonify(sys_cli("cloud list-providers")))
+
+
+@app.route('/cloud/list/regions', methods=['GET'])
+def cloud_list_regions():
+  return(jsonify(sys_cli("cloud list-regions")))
+
+
+@app.route('/cloud/list/locations', methods=['GET'])
+def cloud_list_locations():
+  return(jsonify(sys_cli("cloud list-locations")))
+
+
+@app.route('/cloud/list/flavors', methods=['GET'])
+def cloud_list_flavors():
+  return(jsonify(sys_cli("cloud list-flavors")))
+
+
+@app.route('/cloud/list/images', methods=['GET'])
+def cloud_list_images():
+  return(jsonify(sys_cli("cloud list-images")))
 
 
 def test_required(req_args, p_arg):
@@ -81,13 +81,13 @@ def test_required(req_args, p_arg):
   return True
 
 
-@app.route('/node/list', methods=['GET'])
-def node_list():
+@app.route('/machine/list', methods=['GET'])
+def machine_list():
   if test_required(request.args, "cloud") == False:
     return("")
 
   cld = request.args.get("cloud")
-  i = sys_cli("node list " + cld)
+  i = sys_cli("machine list " + cld)
   return (i)
 
 
