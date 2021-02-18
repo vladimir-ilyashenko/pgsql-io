@@ -40,7 +40,7 @@ def cloud_create():
     return(jsonify(j))
     
   i = sys_cli("cloud create " + prv)
-  return (jsonify(i))
+  return ({"more work to do here"})
 
 
 @app.route('/cloud/list', methods=['GET'])
@@ -87,9 +87,26 @@ def machine_list():
   rqd = test_required(request.args, "cloud")
   if rqd:
     return(jsonify(rqd))
-
   cld = request.args.get("cloud")
+
   i = sys_cli("machine list " + cld)
+  return(jsonify(i))
+
+
+@app.route('/machine/create', methods=['GET'])
+def machine_create():
+  rqd = test_required(request.args, "cloud")
+  if rqd:
+    return(jsonify(rqd))
+  cld = request.args.get("cloud")
+
+  rqd = test_required(request.args, "flavor")
+  if rqd:
+    return(jsonify(rqd))
+  flv = request.args.get("flavor")
+
+  i = sys_cli("machine create " + cld + " " + flv)
+  print("DEBUG: restapi machine_create()" + str(i))
   return(jsonify(i))
 
 
