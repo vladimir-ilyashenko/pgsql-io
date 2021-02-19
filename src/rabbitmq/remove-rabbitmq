@@ -1,4 +1,15 @@
+#!/bin/bash
+cd "$(dirname "$(readlink -f "$0")")"
+
+source getPKMG.sh
+
+
 sudo systemctl stop rabbitmq-server
 sudo systemctl disable rabbitmq-server
-sudo yum -y remove rabbitmq-server
+
+if [ "$PKMG" == "yum" ]; then
+  sudo yum -y remove rabbitmq-server
+else
+  sudo apt -y remove rabbitmq-server
+fi
 
