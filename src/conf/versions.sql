@@ -476,8 +476,8 @@ INSERT INTO versions VALUES ('haproxy', '1.8.23', '',  0, '20201128', '', '', ''
 
 INSERT INTO projects VALUES ('rabbitmq', 10, 5672, 'hub', 1, 'https://github.com/rabbitmq/rabbitmq-server/releases',
   'rabbitmq', 0, 'rabbitmq.png', 'Message Broker', 'https://github.com/rabbitmq/rabbitmq-server');
-INSERT INTO releases VALUES ('rabbitmq', 5, 'rabbitmq', 'RabbitMQ', '', 'test', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('rabbitmq', '3.8.9', '',  1, '20200924', '', 'EL8', '');
+INSERT INTO releases VALUES ('rabbitmq', 5, 'rabbitmq', 'RabbitMQ', '', 'prod', '', 1, 'Apache', '', '');
+INSERT INTO versions VALUES ('rabbitmq', '3-1', '',  1, '20210215', '', '', '');
 
 INSERT INTO projects VALUES ('esfdw', 5, 0, 'multicorn', 1, 'https://github.com/matthewfranglen/postgres-elasticsearch-fdw/releases',
   'esfdw', 1, 'esfdw.png', 'Elastic Search from PG', 'https://github.com/matthewfranglen/postgres-elasticsearch-fdw#postgresql-elastic-search-foreign-data-wrapper');

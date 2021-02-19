@@ -453,7 +453,7 @@ initPG () {
   #initC "zookeeper" "zookeeper" "$zookV" "" "zookeeper" "" "" "Y"
   #initC "kafka" "kafka" "$kafkaV" "" "kafka" "" "" "Y"
   #initC "debezium" "debezium" "$debezV" "" "debezium" "" "" "Y"
-  #initC "rabbitmq" "rabbitmq" "$rabbitV"  "" "rabbitmq" "" "" "Y"
+  initC "rabbitmq" "rabbitmq" "$rabbitV"  "" "rabbitmq" "" "" "Y"
 
   #initC "openstack" "openstack" "$openstackV" "" "openstack" "" "" "nil"
   #initC "kvm" "kvm" "$kvmV" "" "kvm" "" "" "nil"
