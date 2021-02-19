@@ -5,6 +5,6 @@ if [ "$IN" == "" ]; then
 fi
 
 cd $IN
-cp $IO/devel/util/pull-s3.sh .
+cp $IO/devel/util/in/pull-s3.sh .
 ./pull-s3.sh
 chmod 755 *.sh

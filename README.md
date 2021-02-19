@@ -12,6 +12,8 @@ Steps to setup a dev environment
 
 ## 5.) configure your ~/.aws & ~/.openstack credentials
 
-## 6.) edit bp.sh initial io commands to create valid cloud connnections
+## 6.) run ./setupIN.sh to populate the IN directory from s3://pgsql-io-download/IN
+
+## 7.) edit bp.sh initial io commands to create valid cloud connnections
 
 
