@@ -4,7 +4,7 @@ Steps to setup a dev environment
 
 ## 1.) run ./setupCLOUD.sh for runtime OS config
 
-## 2.) run ./setupInitial.sh for dev OS config
+## 2.) run ./setupIO.sh for dev OS config
 
 ## 3.) re-login so your new env variables get initialized.
 
@@ -14,6 +14,6 @@ Steps to setup a dev environment
 
 ## 6.) run ./setupIN.sh to populate the IN directory from s3://pgsql-io-download/IN
 
-## 7.) edit bp.sh initial io commands to create valid cloud connnections
+## 7.) edit bp.sh initial io commands to create valid cloud keys & connnections
 
 
