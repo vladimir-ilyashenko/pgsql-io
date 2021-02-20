@@ -2,9 +2,9 @@
 
 Steps to setup a dev environment
 
-## 1.) run ./setupCLOUD.sh for runtime OS config
+## 1.) run ./setupIO.sh for dev OS config
 
-## 2.) run ./setupIO.sh for dev OS config
+## 2.) run ./setupCLOUD.sh for runtime OS config
 
 ## 3.) re-login so your new env variables get initialized.
 

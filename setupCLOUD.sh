@@ -12,7 +12,7 @@ else
   sudo apt update
   sudo apt upgrade
   INSTALL="sudo apt install -y"
-  $INSTALL $p3-distutils $p3-psutil $p3-paramiko $p3-pip $p3-celery
+  $INSTALL $p3-distutils $p3-psutil $p3-paramiko $p3-celery
   $INSTALL sqlite3 net-tools
 fi
 
