@@ -17,14 +17,14 @@ else
 fi
 
 reqs="fire apache-libcloud python-dotenv parallel-ssh jmespath munch"
-reqs="$reqs CLICK python-openstackclient boto3"
-reqs="$reqs mkdocs flask semantic_version mistune"
-
-flags="--user --disable-pip-version-check --no-input"
-
-pip3 install $flags $reqs
+reqs="$reqs CLICK flask semantic_version mistune"
+flags="--disable-pip-version-check --no-input"
+sudo pip3 install $flags $reqs
 
 src/rabbitmq/install-rabbitmq
+
+flags="--user --no-warn-script-location $flags"
+pip3 install $flags python-openstackclient boto3
 
 echo "Goodbye!"
 exit 0
