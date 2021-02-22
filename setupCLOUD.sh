@@ -10,7 +10,7 @@ if [ "$rc" == "0" ]; then
   $INSTALL $p3 $p3-devel $p3-pip $p3-psutil $p3-paramiko
 else
   sudo apt update
-  sudo apt upgrade
+  sudo apt upgrade -y
   INSTALL="sudo apt install -y"
   $INSTALL $p3-distutils $p3-psutil $p3-paramiko
   $INSTALL sqlite3 net-tools
