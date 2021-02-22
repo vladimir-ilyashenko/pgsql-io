@@ -353,10 +353,7 @@ INSERT INTO projects VALUES ('mongodb', 10, 27017, 'hub', 0, 'https://github.com
   'mongodb', 0, 'mongodb.png', 'Distributed Document Database', 'https://mongodb.org');
 INSERT INTO releases VALUES ('mongodb', 4, 'mongodb', 'MongoDB', '', 'prod', '', 1, 'AGPLv3',
   'mongod --version', 'mongod --version | head -1 | awk ''{print $3}'' | sed s/v//g');
-INSERT INTO versions VALUES ('mongodb', '4.4.4', '', 1, '20210211', '', 'AMD64', '');
-INSERT INTO versions VALUES ('mongodb', '4.4.3', '', 0, '20201221', '', 'AMD64', '');
-INSERT INTO versions VALUES ('mongodb', '4.4.2', '', 0, '20201116', '', 'AMD64', '');
-INSERT INTO versions VALUES ('mongodb', '4.4.1', '', 0, '20200909', '', 'AMD64', '');
+INSERT INTO versions VALUES ('mongodb', '4.4-1', '', 1, '20210211', '', 'AMD64', '');
 
 INSERT INTO projects VALUES ('debezium', 10, 8080, 'kafka', 2, 'https://debezium.io/releases/1.2/', 
   'debezium', 0, 'debezium.png', 'Change Data Capture', 'https://debezium.io');

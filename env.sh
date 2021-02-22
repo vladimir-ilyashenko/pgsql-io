@@ -69,7 +69,7 @@ mysqlfdwV=2.5.5-1
 mariadbV=10.5-1
 
 mongofdwV=5.2.8-1
-mongodbV=4.4.3
+mongodbV=4.4-1
 
 oraclefdwV=2.3.0-1
 oracle_xeV=18c-2

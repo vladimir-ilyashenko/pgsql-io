@@ -448,7 +448,7 @@ initPG () {
   # initC "oracle_xe" "oracle_xe" "$oracle_xeV" "amd" "oracle" "" "" "nil"
   initC "sqlsvr"  "sqlsvr" "$sqlsvrV" "amd" "sqlsvr" "" "" "nil"
   initC "mariadb" "mariadb" "$mariadbV" "" "mariadb" "" "" "Y"
-  #initC "mongodb" "mongodb" "$mongodbV" "" "mongodb" "" "" "Y"
+  initC "mongodb" "mongodb" "$mongodbV" "" "mongodb" "" "" "Y"
 
   #initC "zookeeper" "zookeeper" "$zookV" "" "zookeeper" "" "" "Y"
   #initC "kafka" "kafka" "$kafkaV" "" "kafka" "" "" "Y"
