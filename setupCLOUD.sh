@@ -12,7 +12,7 @@ else
   sudo apt update
   sudo apt upgrade
   INSTALL="sudo apt install -y"
-  $INSTALL $p3-distutils $p3-psutil $p3-paramiko $p3-celery
+  $INSTALL $p3-distutils $p3-psutil $p3-paramiko
   $INSTALL sqlite3 net-tools
 fi
 
@@ -21,10 +21,14 @@ reqs="$reqs CLICK flask semantic_version mistune"
 flags="--disable-pip-version-check --no-input"
 sudo pip3 install $flags $reqs
 
-src/rabbitmq/install-rabbitmq
+sudo pip3 install $flags python-openstackclient boto3
 
-flags="--user --no-warn-script-location $flags"
-pip3 install $flags python-openstackclient boto3
+src/rabbitmq/install-rabbitmq
+src/mongodb/install-mongodb
+
+
+sudo pip3 install $flags celery[librabbitmq]
+sudo pip3 install $flags celery[mongodb]
 
 echo "Goodbye!"
 exit 0

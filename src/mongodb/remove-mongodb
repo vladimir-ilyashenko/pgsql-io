@@ -1,1 +1,25 @@
-sudo yum remove -y mongodb-org-server
+#!/bin/bash
+cd "$(dirname "$0")"
+
+
+removeYUM () {
+  sudo yum remove -y mongodb-org-server
+}
+
+
+removeAPT () {
+  sudo systemctl stop mongod
+  sudo systemctl disable mongod
+  sudo apt autoremove -y mongodb-org
+}
+
+
+## MAINLINE ##################################
+source ./getPKMG.sh
+
+if [ "$PKMG" == "yum" ]; then
+  removeYUM
+else
+  removeAPT
+fi
+
