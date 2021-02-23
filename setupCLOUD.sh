@@ -6,14 +6,12 @@ rc=$?
 if [ "$rc" == "0" ]; then
   echo "ERROR: Only tested on Ubuntu 20.04"
   exit 1
-  INSTALL="sudo yum install -y"
-  $INSTALL $p3 $p3-devel $p3-pip $p3-psutil $p3-paramiko
 else
   sudo apt update
   sudo apt upgrade -y
   INSTALL="sudo apt install -y"
-  $INSTALL $p3-distutils $p3-psutil $p3-paramiko
   $INSTALL sqlite3 net-tools
+  $INSTALL $p3-distutils $p3-psutil $p3-paramiko
 fi
 
 reqs="fire apache-libcloud python-dotenv parallel-ssh jmespath munch"
@@ -25,10 +23,7 @@ sudo pip3 install $flags python-openstackclient boto3
 
 src/rabbitmq/install-rabbitmq
 src/mongodb/install-mongodb
-
-
-sudo pip3 install $flags celery[librabbitmq]
-sudo pip3 install $flags celery[mongodb]
+src/celery/install-celery
 
 echo "Goodbye!"
 exit 0
