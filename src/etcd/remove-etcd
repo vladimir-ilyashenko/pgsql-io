@@ -1,7 +1,25 @@
-sudo systemctl stop etcd
-sudo systemctl disable etcd
+#!/bin/bash
+cd "$(dirname "$(readlink -f "$0")")"
 
-sudo rm -rf /var/lib/etcd/
-sudo rm -rf /etc/etcd
+yumRemove () {
+  echo "Not yet!"
+  exit 1
+}
 
-sudo rm -f /etc/systemd/system/etcd.service 
+aptRemove () {
+  sudo apt remove  -y etcd
+}
+
+################## MAINLINE #####################################
+
+source getPKMG.sh
+echo "## INSTALLING ETCD w/ $PKMG ###############################"
+
+if [ "$PKMG" == "yum" ]; then
+  yumRemove 
+else
+  aptRemove 
+fi
+
+exit 0
+
