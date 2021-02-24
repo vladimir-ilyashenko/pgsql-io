@@ -9,7 +9,7 @@ CELERY_APP="proj"
 #CELERY_APP="proj.tasks:app"
 
 # Where to chdir at start.
-CELERYBEAT_CHDIR="/opt/Myproject/"
+CELERYBEAT_CHDIR="/opt/OpenRDS/"
 
 # Extra arguments to celerybeat
 CELERYBEAT_OPTS="--schedule=/var/run/celery/celerybeat-schedule"
