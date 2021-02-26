@@ -326,7 +326,7 @@ INSERT INTO projects VALUES ('pg', 1, 5432, 'hub', 1, 'https://postgresql.org/do
  'postgres', 0, 'postgresql.png', 'Best RDBMS', 'https://postgresql.org');
 
 INSERT INTO releases VALUES ('pg10', 4, 'pg', 'PostgreSQL', '', 'prod', 'works w/ EL7+, Ubu18+', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg10', '10.16-1', 'amd', 1, '20210211', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg10', '10.16-1', 'amd', 0, '20210211', '', 'LIBC-2.17', '');
 
 INSERT INTO releases VALUES ('pg11', 3, 'pg', 'PostgreSQL', '', 'prod', 'works w/ EL7+, Ubu18+', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pg11', '11.11-1', 'amd', 1, '20210211', '', 'LIBC-2.17', '');
@@ -342,7 +342,7 @@ INSERT INTO projects VALUES ('cassandra', 10, 9042, 'hub', 0, 'https://cassandra
   'cassandra', 0, 'cstar.png', 'Multi-Master across Regions', 
   'https://cassandra.apache.org');
 INSERT INTO releases VALUES ('cassandra', 5, 'cassandra','Cassandra 3.11.9', '', 'soon', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('cassandra', '3.11-1', '', 1, '20201104', '', '', '');
+INSERT INTO versions VALUES ('cassandra', '3.11-1', '', 0, '20201104', '', '', '');
 
 INSERT INTO projects VALUES ('cassandrafdw', 5, 0, 'hub', 0, 'https://github.com/pgsql-io/cassandra_fdw/releases', 
   'cstarfdw', 1, 'cstar.png', 'Cassandra from PG', 'https://github.com/pgsql-io/cassandra_fdw#cassandra_fdw');
@@ -399,7 +399,7 @@ INSERT INTO versions VALUES ('sqlsvr', '2019-1', 'amd', 1, '20200801', '', 'AMD6
 INSERT INTO projects VALUES ('sybase', 10, 1234, 'hub', 0, 'https://sap.com/products/sybase-ase.html', 
   'sybase', 0, 'sybase.png', 'Sybase ASE', 'https://sap.com/products/sybase-ase.html');
 INSERT INTO releases VALUES ('sybase', 21, 'sybase', 'SAP Sybase ASE', '', 'prod',  '', 0, 'SAP', '', '');
-INSERT INTO versions VALUES ('sybase', '2019', 'amd', 1, '20191010', '', 'AMD64', '');
+INSERT INTO versions VALUES ('sybase', '2019', 'amd', 0, '20191010', '', 'AMD64', '');
 
 INSERT INTO projects VALUES ('tdsfdw', 5, 0, 'hub', 0, 'https://github.com/tds-fdw/tds_fdw/releases',
   'tdsfdw', 1, 'tds.png', 'SQL Server & Sybase from PG', 'https://github.com/tds-fdw/tds_fdw/#tds-foreign-data-wrapper');
@@ -431,7 +431,7 @@ INSERT INTO versions VALUES ('zookeeper', '3.6.2', '',  1, '20200909', '', 'OPEN
 INSERT INTO projects VALUES ('prestosql', 10, 1515, 'hub', 1, 'https://github.com/prestosql/presto/releases',
   'prestosql', 0, 'presto.png', 'Distributed SQL Query Engine', 'https://github.com/prestosql/presto');
 INSERT INTO releases VALUES ('prestosql', 13, 'prestosql', 'PrestoSQL (Trino)', '', 'prod', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('prestosql', '352', '',  1, '20210209', '', 'OPENJDK11', '');
+INSERT INTO versions VALUES ('prestosql', '352', '',  0, '20210209', '', 'OPENJDK11', '');
 INSERT INTO versions VALUES ('prestosql', '351', '',  0, '20210103', '', 'OPENJDK11', '');
 INSERT INTO versions VALUES ('prestosql', '350', '',  0, '20201229', '', 'OPENJDK11', '');
 
