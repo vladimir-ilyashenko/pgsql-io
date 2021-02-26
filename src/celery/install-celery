@@ -1,0 +1,49 @@
+#!/bin/bash
+cd "$(dirname "$0")"
+
+
+installYUM () {
+  echo "Not tested yet!!"
+  exit 1
+}
+
+
+installAPT () {
+  sudo pip3 install --upgrade  celery[librabbitmq]
+  sudo pip3 install --upgrade  celery[mongodb]
+
+  sudo useradd celery -d /home/celery -b /bin/bash
+
+  sudo mkdir -p /var/log/celery
+  sudo chown -R celery:celery /var/log/celery
+  sudo chmod -R 755 /var/log/celery
+
+  sudo mkdir -p /var/run/celery
+  sudo chown -R celery:celery /var/run/celery
+  sudo chmod -R 755 /var/run/celery
+
+  sudo mkdir -p /opt/OpenRDS/working
+  sudo chown -R celery:celery /opt/OpenRDS
+
+  sudo cp beat.orig    /etc/default/celerybeat
+
+  sudo mkdir -p /etc/conf.d
+  sudo cp conf.orig    /etc/conf.d/celery
+
+  sudo cp service.orig /etc/systemd/system/celery.service
+
+  sudo systemctl daemon-reload
+  sudo systemctl start celery
+}
+
+
+## MAINLINE ##################################
+
+source ./getPKMG.sh
+
+if [ "$PKMG" == "yum" ]; then
+  installYUM
+else
+  installAPT
+fi
+

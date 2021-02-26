@@ -402,11 +402,8 @@ def list(cloud_name):
         ndDict['private_ip'] = ""
 
     jsonList.append(ndDict)
-                                                                                   
-  if os.getenv("isJson", None):                                                    
-    print(json.dumps(jsonList, sort_keys=True, indent=2))                          
-  else:                                                                            
-    print(api.format_data_to_table(jsonList, keys, headers))                       
+                       
+  util.print_list(headers, keys, jsonList)
                                                                                    
   return
 

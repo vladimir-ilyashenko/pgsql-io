@@ -2,7 +2,7 @@ import flask, os, subprocess
 from flask import request, jsonify
 from subprocess import Popen, PIPE, STDOUT
 
-import sys
+import sys, json
 
 import util, api
 
@@ -15,7 +15,9 @@ def sys_cli(p_cmd):
   cmd = io_cmd + " " + p_cmd + " --json"
   p = Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE, executable=None, close_fds=False)
   (out, err) = p.communicate()
-  return(out)
+  s_out = out.decode("utf-8").rstrip()
+  j_out = json.loads(s_out)
+  return(j_out)
 
 
 @app.route('/', methods=['GET'])
@@ -26,60 +28,86 @@ def home():
 
 @app.route('/info', methods=['GET'])
 def info():
-  return(jsonify(sys_cli("info")))
+  inf = sys_cli("info")
+  return(jsonify(inf))
+
 
 @app.route('/cloud/create', methods=['GET'])
 def cloud_create():
   prv = request.args.get('provider')
   if prv in (None, ""):
-    util.message("'provider' parm required.", "ERROR", True)
-    return("[]")
+    j = util.message("'provider' parm required.", "ERROR", True)
+    return(jsonify(j))
     
   i = sys_cli("cloud create " + prv)
-  return (i)
+  return ({"more work to do here"})
 
 
-@app.route('/node/create', methods=['GET'])
-def node_create():
-  return
+@app.route('/cloud/list', methods=['GET'])
+def cloud_list():
+  return(jsonify(sys_cli("cloud list")))
 
 
-@app.route('/node/destroy', methods=['GET'])
-def node_destroy():
-  return
+@app.route('/cloud/list/providers', methods=['GET'])
+def cloud_list_providers():
+  return(jsonify(sys_cli("cloud list-providers")))
 
 
-@app.route('/node/reboot', methods=['GET'])
-def node_reboot():
-  return
+@app.route('/cloud/list/regions', methods=['GET'])
+def cloud_list_regions():
+  return(jsonify(sys_cli("cloud list-regions")))
 
 
-@app.route('/node/start', methods=['GET'])
-def node_start():
-  return
+@app.route('/cloud/list/locations', methods=['GET'])
+def cloud_list_locations():
+  return(jsonify(sys_cli("cloud list-locations")))
 
 
-@app.route('/node/stop', methods=['GET'])
-def node_stop():
-  return
+@app.route('/cloud/list/flavors', methods=['GET'])
+def cloud_list_flavors():
+  return(jsonify(sys_cli("cloud list-flavors")))
+
+
+@app.route('/cloud/list/images', methods=['GET'])
+def cloud_list_images():
+  return(jsonify(sys_cli("cloud list-images")))
 
 
 def test_required(req_args, p_arg):
   arg = req_args.get(p_arg)
   if arg in (None, ""):
-    util.message("required arg '" + str(p_arg) + "' missing", "error", True)
-    return False
-  return True
+    j = util.message("required arg '" + str(p_arg) + "' missing", "error", True)
+    return(j)
+
+  return(None)
 
 
-@app.route('/node/list', methods=['GET'])
-def node_list():
-  if test_required(request.args, "cloud") == False:
-    return("")
-
+@app.route('/machine/list', methods=['GET'])
+def machine_list():
+  rqd = test_required(request.args, "cloud")
+  if rqd:
+    return(jsonify(rqd))
   cld = request.args.get("cloud")
-  i = sys_cli("node list " + cld)
-  return (i)
+
+  i = sys_cli("machine list " + cld)
+  return(jsonify(i))
+
+
+@app.route('/machine/create', methods=['GET'])
+def machine_create():
+  rqd = test_required(request.args, "cloud")
+  if rqd:
+    return(jsonify(rqd))
+  cld = request.args.get("cloud")
+
+  rqd = test_required(request.args, "flavor")
+  if rqd:
+    return(jsonify(rqd))
+  flv = request.args.get("flavor")
+
+  i = sys_cli("machine create " + cld + " " + flv)
+  print("DEBUG: restapi machine_create()" + str(i))
+  return(jsonify(i))
 
 
 if __name__ == "__main__":

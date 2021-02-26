@@ -1,18 +1,47 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
-VER=$1
-ver=`echo $VER | cut -c1-3`
 
-rpm=mongodb-org-server-$VER-1.el8.x86_64.rpm
-url=https://repo.mongodb.org/yum/redhat/8/mongodb-org/$ver/x86_64/RPMS
+installYUM () {
+  rpm=mongodb-org-server-$VER-1.el8.x86_64.rpm
+  url=https://repo.mongodb.org/yum/redhat/8/mongodb-org/$ver/x86_64/RPMS
 
-rm -rf $rpm
-wget $url/$rpm
-rc=$?
+  rm -rf $rpm
+  wget $url/$rpm
+  rc=$?
 
-if [ "$rc" == "0" ]; then
-  sudo rpm -ivh $rpm
-  rm $rpm
+  if [ "$rc" == "0" ]; then
+    sudo rpm -ivh $rpm
+    rm $rpm
+  fi
+}
+
+
+installAPT () {
+  curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+
+  repo=https://repo.mongodb.org/apt/ubuntu
+  lst="/etc/apt/sources.list.d/mongodb-org-4.4.list"
+  echo "deb [ arch=amd64 ] $repo $VER_OS/mongodb-org/4.4 multiverse" | sudo tee $lst
+
+  sudo apt update
+  sudo apt install -y mongodb-org
+
+  sudo systemctl start  mongod
+  sudo systemctl enable mongod
+}
+
+
+
+
+## MAINLINE ##################################
+set -x
+
+source ./getPKMG.sh
+
+if [ "$PKMG" == "yum" ]; then
+  installYUM
+else
+  installAPT
 fi
 

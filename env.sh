@@ -20,7 +20,7 @@ cloudV=3.3.0
 ansibleV=2.10.5
 helmV=3.4.2
 zookV=3.6.2
-rabbitV=3.8.9
+rabbitV=3-1
 kafkaV=2.7.0
 debezV=1.2.5
 minikubeV=1.16.0
@@ -69,7 +69,7 @@ mysqlfdwV=2.5.5-1
 mariadbV=10.5-1
 
 mongofdwV=5.2.8-1
-mongodbV=4.4.3
+mongodbV=4.4-1
 
 oraclefdwV=2.3.0-1
 oracle_xeV=18c-2

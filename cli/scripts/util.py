@@ -63,7 +63,8 @@ def sysdate ():
 
 def print_list(p_headers, p_keys, p_json_list):
   if os.getenv("isJson", None):
-    print(json.dumps(p_json_list, sort_keys=True, indent=2))
+    #print(json.dumps(p_json_list, sort_keys=True, indent=2))
+    print(json.dumps(p_json_list))
   else:
     print(api.format_data_to_table(p_json_list, p_keys, p_headers))
 
@@ -588,15 +589,15 @@ def message(p_msg, p_state="info", p_isJSON=None):
     my_logger.info(p_msg)
     prefix = ""
 
+  json_dict = {}
   if p_isJSON:
-    json_dict = {}
     json_dict['state'] = p_state 
     json_dict['msg'] = p_msg
     print (json.dumps([json_dict]))
   else:
     print (prefix + p_msg)
 
-  return
+  return(json_dict)
 
 
 def verify(p_json):
