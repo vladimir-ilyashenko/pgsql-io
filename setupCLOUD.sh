@@ -10,19 +10,19 @@ if [ ! "$rc" == "0" ]; then
 fi
 
 ## ADD REPO's & KEYS ##############################
-sudo apt-get install -y curl wget
+sudo apt-get install -y curl wget gnupg
 
 sudo add-apt-repository -y ppa:dqlite/stable
 
-url=https://repos.influxdata.com/ubuntu
-cmd="deb $url focal stable"
-echo "$cmd" | sudo tee /etc/apt/sources.list.d/influxdb.list
+url=https://repos.influxdata.com
 sudo curl -sL $url/influxdb.key | sudo apt-key add -
+cmd="deb $url/ubuntu focal stable"
+echo "$cmd" | sudo tee /etc/apt/sources.list.d/influxdb.list
 
-url=https://repo.mongodb.org/apt/ubuntu
-cmd="deb [ arch=amd64,arm64 ] $url focal/mongodb-org/4.4 multiverseo
+url=https://www.mongodb.org/static/pgp/server-4.4.asc
+wget -qO - $url | sudo apt-key add -
+cmd="deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse"
 echo "$cmd" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
-wget -qO - https://www.mongodb.org/statc/pgp/server-4.4.asc | sudo apt-key add -
 
 sudo apt update
 sudo apt upgrade -y
@@ -41,6 +41,7 @@ sudo pip3 install --disable-pip-version-check --no-input --upgrade \
   python-dotenv==0.15.0 \
   parallel-ssh==2.5.4 \
   jmespath==0.10.0 \
+  testresources \
   boto3==1.17.17 \
   awscli==1.19.17 \
   python-openstackclient==5.4.0 \
