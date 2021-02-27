@@ -332,7 +332,7 @@ def get_describe_data(provider, machine_id, region, cloud_keys):
     return (describe_openstack(machine_id, region, cloud_keys))
 
 
-def describe(cloud_name, machine_id, print_list=True):
+def describe(cloud_name, machine_id):
   provider, xxx, region, default_ssh_key, cloud_keys = cloud.read(cloud_name, True)
 
   svr, name, size, state, location, private_ip, \
@@ -359,11 +359,9 @@ def describe(cloud_name, machine_id, print_list=True):
   dict["volumes"] = volumes
   jsonList.append(dict)
 
-  if print_list:
-    util.print_list(headers, keys, jsonList)
-    return()
+  util.print_list(headers, keys, jsonList)
 
-  return(dict)
+  return
 
 
 def list(cloud_name):
