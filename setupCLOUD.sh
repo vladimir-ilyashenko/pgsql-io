@@ -49,6 +49,29 @@ sudo pip3 install --disable-pip-version-check --no-input --upgrade \
   pytelegraf==0.3.3 \
   telegraf-pgbouncer==0.3.0
 
+
+## configure background services #########################
+sudo systemctl enable --now influxdb
+sudo systemctl start influxdb
+
+sudo systemctl enable --now telegraf
+sudo systemctl start telegraf
+
+sudo systemctl enable --now rabbitmq-server
+sudo systemctl start rabbitmq-server
+
+# configure dqlite
+
+## show status of running daemons #########################
+status="sudo systemctl status --no-pager"
+echo ""
+$status influxdb
+echo ""
+$status telegraf
+echo ""
+$status rabbitmq-server
+
+echo ""
 echo "Goodbye!"
 exit 0
 
