@@ -10,18 +10,27 @@ if [ ! "$rc" == "0" ]; then
 fi
 
 ## ADD REPO's & KEYS ##############################
+sudo apt-get install -y curl wget
+
 sudo add-apt-repository -y ppa:dqlite/stable
 
-echo "deb https://repos.influxdata.com/ubuntu focal stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
-sudo curl -sL https://repos.influxdata.com/influxdb.key | sudo apt-key add -
+url=https://repos.influxdata.com/ubuntu
+cmd="deb $url focal stable"
+echo "$cmd" | sudo tee /etc/apt/sources.list.d/influxdb.list
+sudo curl -sL $url/influxdb.key | sudo apt-key add -
+
+url=https://repo.mongodb.org/apt/ubuntu
+cmd="deb [ arch=amd64,arm64 ] $url focal/mongodb-org/4.4 multiverseo
+echo "$cmd" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+wget -qO - https://www.mongodb.org/statc/pgp/server-4.4.asc | sudo apt-key add -
 
 sudo apt update
 sudo apt upgrade -y
 INSTALL="sudo apt install -y"
 
-$INSTALL influxdb telegraf dqlite
+$INSTALL influxdb telegraf dqlite libdqlite-dev mongodb-org
 
-$INSTALL sqlite3 net-tools rabbitmq-server mongodb
+$INSTALL sqlite3 net-tools rabbitmq-server
 $INSTALL $p3-celery $p3-pymongo
 $INSTALL $p3-distutils $p3-psutil $p3-paramiko
 $INSTALL $p3-mistune $p3-flask $p3-semantic-version 
