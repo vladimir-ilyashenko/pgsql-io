@@ -24,7 +24,8 @@ python-dotenv==0.15.0 \
 parallel-ssh==2.5.4 \
 jmespath==0.10.0 \
 boto3==1.17.17 \
-awscli==1.19.17
+awscli==1.19.17 \
+python-openstackclient==5.4.0
 
 echo "Goodbye!"
 exit 0
