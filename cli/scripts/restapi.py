@@ -13,6 +13,7 @@ app = flask.Flask(__name__)
 
 def sys_cli(p_cmd): 
   cmd = io_cmd + " " + p_cmd + " --json"
+  print("DEBUG: " + str(cmd))
   p = Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE, executable=None, close_fds=False)
   (out, err) = p.communicate()
   s_out = out.decode("utf-8").rstrip()
@@ -91,6 +92,19 @@ def machine_list():
 
   i = sys_cli("machine list " + cld)
   return(jsonify(i))
+
+
+@app.route('/machine/describe', methods=['GET'])
+def machine_describe():
+  cld = request.args.get("cloud")
+  if cld == None:
+    return(jsonify({"error": "missing cloud parm"}))
+
+  machine_id = request.args.get("machine_id")
+  if machine_id == None:
+    return(jsonify({"error": "missing machine_id parm"}))
+
+  i = sys_cli("machine describe " + str(cld) + " " + str(machine_id))
 
 
 @app.route('/machine/create', methods=['GET'])
