@@ -1,19 +1,17 @@
 # OPENRDS 
 
-Steps to setup a dev environment
+Steps to setup devel environment
 
-## 1.) make sure 'hostname -f' works and that u have passwdless priv's for 'sudo' & 'ssh localhost'.
+## 1.) ensure 'hostname --fqdn' works & u have passwdless priv's for 'sudo' & 'ssh localhost'.
 
-## 2.) mkdir ~/dev; cd ~/dev; git clone https://github.com/pgsql-io/pgsql-io
+## 2.) $ mkdir -p ~/dev; cd ~/dev; git clone https://github.com/pgsql-io/pgsql-io
 
-## 3.) cd pgsql-io; ./setupIO.sh
+## 3.) $ cd pgsql-io; ./setupIO.sh; source ~/.bashrc
 
-## 4.) ./setupCLOUD.sh
+## 4.) configure your ~/.aws & ~/.openstack credentials
 
-## 5.) configure your ~/.aws & ~/.openstack credentials
+## 5.) $ cd $IO; ./setupCLOUD.sh; ./setupIN.sh
 
-## 6.) run ./setupIN.sh to populate the IN directory from s3://pgsql-io-download/IN
-
-## 7.) edit bp.sh io commands to create valid cloud keys & connnections
+## 6.) edit bp.sh io commands to create valid cloud keys & connnections
 
 
