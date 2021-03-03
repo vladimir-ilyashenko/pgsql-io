@@ -68,7 +68,8 @@ def io_cmd(cloud_name, machine_id, cmd):
 def create(cloud_name, machine_id):
 
   util.message("creating node for " + str(machine_id), "info")
-  describe = machine.describe(cloud_name, machine_id, False)
+  #describe = machine.describe(cloud_name, machine_id, False)
+  describe = machine.describe(cloud_name, machine_id)
   if describe == None:
     util.message("machine not found", "error")
     return

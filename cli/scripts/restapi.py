@@ -16,8 +16,20 @@ def sys_cli(p_cmd):
   print("DEBUG: " + str(cmd))
   p = Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE, executable=None, close_fds=False)
   (out, err) = p.communicate()
-  s_out = out.decode("utf-8").rstrip()
-  j_out = json.loads(s_out)
+
+  try:
+    s_out = out.decode("utf-8").rstrip()
+    j_out = json.loads(s_out)
+  except Exception:
+    try:
+      dList = []
+      for line in s_out.splitlines():
+        print(json.dumps(line))
+        dList.append(json.loads(line))
+      j_out = dList
+    except Exception:
+      j_out = {"bad json": str(s_out)}
+
   return(j_out)
 
 
