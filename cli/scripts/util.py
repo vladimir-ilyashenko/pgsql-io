@@ -63,8 +63,10 @@ def sysdate ():
 
 def print_list(p_headers, p_keys, p_json_list):
   if os.getenv("isJson", None):
-    #print(json.dumps(p_json_list, sort_keys=True, indent=2))
-    print(json.dumps(p_json_list))
+    if os.getenv("isPretty", None):
+      print(json.dumps(p_json_list, sort_keys=True, indent=2))
+    else:
+      print(json.dumps(p_json_list))
   else:
     print(api.format_data_to_table(p_json_list, p_keys, p_headers))
 

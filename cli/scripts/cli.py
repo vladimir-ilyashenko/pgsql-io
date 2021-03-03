@@ -64,7 +64,7 @@ mode_list = ["start", "stop", "restart", "status", "list", "info", "update",
              "remove", "reload", "activity", "help", "get", "set", "unset",
              "pgdglist", "pgdg-pkgs", "discover",
              "register", "top", "bench", "--autostart", "--relnotes", "--start",
-             "--help", "--json", "--test", "--extra", "--extensions",
+             "--help", "--json", "--jsonp", "--test", "--extra", "--extensions",
              "--list", "--old", "--showduplicates", "-y", "-t", "-d"  ,
              "--verbose", "--debug", "--debug2"]
 
@@ -1061,8 +1061,16 @@ if ((args[1] == "help") or (args[1] == "--help")):
 isJSON = False
 if "--json" in args:
   isJSON = True
-  args.remove("--json")
   os.environ['isJson'] = "True"
+  args.remove("--json")
+
+isPRETTY = False
+if "--jsonp" in args:
+  isJSON = True
+  isPRETTY = True
+  os.environ['isJson'] = "True"
+  os.environ['isPretty'] = "True"
+  args.remove("--jsonp")
 
 if "--debug" in args:
   args.remove('--debug')
