@@ -23,8 +23,8 @@ cd $outp
 
 ./$api key insert $USER-pubkey ubuntu ~/keys/$USER-pubkey.pem
 ./$api key insert lussier-io-east2-key ubuntu ~/keys/lussier-io-east2-key.pem
-./$api cloud create aws       west2 us-west-2
-./$api cloud create aws       east2 us-east-2 --default-ssh-key=lussier-io-east2-key
+./$api cloud create aws       west2 --region=us-west-2 --keys=$HOME/.aws/aws.env
+./$api cloud create aws       east2 --region=us-east-2 --keys=$HOME/.aws/aws.env --default-ssh-key=lussier-io-east2-key
 ./$api cloud create openstack nnj2 --region=nnj2 --keys=$HOME/.openstack/nnj2.env --default-ssh-key=$USER-pubkey
 ./$api cloud create openstack nnj3 --region=nnj3 --keys=$HOME/.openstack/nnj3.env --default-ssh-key=$USER-pubkey
 

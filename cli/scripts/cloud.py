@@ -33,9 +33,9 @@ def get_cloud_driver(cloud_name):
     return
 
   provider = data[0]
+  rgn = data[2]
 
   keys = data[4]
-  lkey = keys.split()
 
   libcloud_provider = get_provider_constant(provider)
   if libcloud_provider == None:
@@ -43,11 +43,14 @@ def get_cloud_driver(cloud_name):
 
   try:
     cls = get_driver(libcloud_provider)
+    load_dotenv(dotenv_path=keys)
+
     if libcloud_provider == Provider.EC2:
-      driver = cls(lkey[0], lkey[1], region = lkey[2])
+      access_key = os.getenv("AWS_ACCESS_KEY_ID", None)
+      secret_key = os.getenv("AWS_SECRET_ACCESS_KEY", None)
+      driver = cls(access_key, secret_key, region = rgn)
 
     elif libcloud_provider == Provider.OPENSTACK:
-      load_dotenv(dotenv_path=keys)
       username = os.getenv("OS_USERNAME", "")
       passwd = os.getenv("OS_PASSWORD", "")
       auth_url = os.getenv("OS_AUTH_URL", "")
@@ -99,34 +102,17 @@ def create(provider, name=None, region=None, keys=None, default_ssh_key=None):
     util.message("invalid provider", "error")
     return
 
-  if lc_provider == Provider.OPENSTACK:
-    if region == None:
-      util.message("region must be specied", "error")
-      return
+  if region == None:
+    util.message("region must be specified", "error")
+    return
 
-    if keys == None:
-      util.message("env file must be specified as key", "error")
-      return
+  if keys == None:
+    util.message("env file must be specified as key", "error")
+    return
 
-    if not os.path.isfile(keys):
-      util.message("invalid env file specified as key", "error")
-      return
-
-  if keys == None and lc_provider == Provider.EC2:
-    conf_f = os.getenv('HOME') + os.sep + ".aws" + os.sep + "config"
-    util.message("Using [default] AWS credentials from file " + conf_f, "info")
-
-    config = configparser.ConfigParser()
-    config.read(conf_f)
-
-    key1 = config['default']['aws_access_key_id']
-    key2 = config['default']['aws_secret_access_key']
-
-    if region == None:
-      region = config['default']['region']
-    key3 = region
-
-    keys = key1 + " " + key2 + " " + key3
+  if not os.path.isfile(keys):
+    util.message("invalid env file specified as key", "error")
+    return
 
   sql = "INSERT INTO clouds (name, provider, region, keys, default_ssh_key, " + \
         "  created_utc, updated_utc) \n" + \
@@ -349,12 +335,13 @@ def list_flavors(provider=None, family=None, flavor=None, size=None):
 def get_aws_connection(svc, region, cloud_keys):
   import boto3
 
-  l_cloud_keys = cloud_keys.split()
-
   try:
+    load_dotenv(dotenv_path=cloud_keys)
+    access_key = os.getenv("AWS_ACCESS_KEY_ID", None)
+    secret_key = os.getenv("AWS_SECRET_ACCESS_KEY", None)
     conn = boto3.client(svc,
-            aws_access_key_id=l_cloud_keys[0],
-            aws_secret_access_key=l_cloud_keys[1],
+            aws_access_key_id=access_key,
+            aws_secret_access_key=secret_key,
             region_name=region)
 
   except Exception as e:
