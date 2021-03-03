@@ -3,7 +3,7 @@
 ########################################################
 
 import util, meta, api, cloud, node, service
-import sys, json, os, configparser, jmespath
+import sys, json, os, configparser, jmespath, re
 import munch, time
 from pprint import pprint
 
@@ -69,18 +69,21 @@ def get_machine_ids(cloud_name, machine_name):
     if driver == None:
       return
 
-    machine_ids = ""
+    machine_ids = [] 
     kount = 0
     nds = driver.list_nodes()
     for n in nds:
-      if n.name == machine_name:
-        if machine_ids == "":
-          machine_ids = str(n.id)
+      try:
+        if machine_name == n.name:
+          machine_ids.append(n.id)
         else:
-          machine_ids = machine_ids + ", " + str(n.id)
+          if re.search("^" + str(machine_name) + "$", n.name):
+            machine_ids.append(n.id)
+      except Exception:
+        continue
   except:
     util.message("error thrown in get_machine_ids()", "error")
-    return(None)
+    return([])
   
   util.message('machine_ids = "' + str(machine_ids) + '"', 'info')
   return(machine_ids)
