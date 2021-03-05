@@ -1,7 +1,7 @@
 
 bundle=openrds
 api=io
-hubV=7.01
+hubV=7.02
 
 P13=13.2-1
 P12=12.6-1

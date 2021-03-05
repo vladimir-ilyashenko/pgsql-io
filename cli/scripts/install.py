@@ -4,7 +4,7 @@
 
 import sys, os
 
-VER="7.01"
+VER="7.02"
 REPO=os.getenv("REPO", "https://openrds-download.s3.amazonaws.com/REPO")
   
 if sys.version_info < (3, 5):
