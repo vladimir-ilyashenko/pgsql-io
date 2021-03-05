@@ -335,7 +335,7 @@ def get_describe_data(provider, machine_id, region, cloud_keys):
     return (describe_openstack(machine_id, region, cloud_keys))
 
 
-def describe(cloud_name, machine_id):
+def describe(cloud_name, machine_id, print_list=True):
   provider, xxx, region, default_ssh_key, cloud_keys = cloud.read(cloud_name, True)
 
   svr, name, size, state, location, private_ip, \
@@ -362,9 +362,11 @@ def describe(cloud_name, machine_id):
   dict["volumes"] = volumes
   jsonList.append(dict)
 
-  util.print_list(headers, keys, jsonList)
+  if print_list:
+    util.print_list(headers, keys, jsonList)
+    return
 
-  return
+  return(dict)
 
 
 def list(cloud_name):
@@ -478,7 +480,7 @@ def create(cloud_name, size, machine_name=None, key_name=None, svc=None, \
     return
 
   component = None
-  if svc in ('pg11', 'pg12', 'pg13'):
+  if svc in ('pg95', 'pg96', 'pg10', 'pg11', 'pg12', 'pg13'):
     component = svc
     svc = 'postgres'
 
