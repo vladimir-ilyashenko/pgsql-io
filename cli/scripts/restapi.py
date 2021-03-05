@@ -129,7 +129,29 @@ def machine_create():
   if flv == None:
     return(jsonify({"error": "missing 'flavor' parm"}))
 
-  i = sys_cli("machine create " + str(cld) + " " + str(flv))
+  cmd = "machine create " + str(cld) + " " + str(flv)
+
+  mn = request.args.get("machine_name")
+  if mn:
+    cmd = cmd + " --machine-name=" + str(mn)
+
+  kn = request.args.get("key_name")
+  if kn:
+    cmd = cmd + " --key-name=" + str(kn)
+
+  sv = request.args.get("svc")
+  if sv:
+    cmd = cmd + " --svc=" + str(sv)
+
+  lc = request.args.get("location")
+  if lc:
+    cmd = cmd + " --location" + str(lc)
+
+  sg = request.args.get("security_group")
+  if sg:
+    cmd = cmd + " --security-group=" + str(sg)
+
+  i = sys_cli(cmd)
   return(jsonify(i))
 
 
