@@ -4,11 +4,11 @@
 
 import sys, os
 
-VER="7.00"
+VER="7.01"
 REPO=os.getenv("REPO", "https://openrds-download.s3.amazonaws.com/REPO")
   
-if sys.version_info < (3, 4):
-  print("ERROR: Requires Python 3.4 or greater")
+if sys.version_info < (3, 5):
+  print("ERROR: Requires Python 3.5 or greater")
   sys.exit(1)
 
 from urllib import request as urllib2
