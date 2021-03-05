@@ -24,8 +24,11 @@ def sys_cli(p_cmd):
     try:
       dList = []
       for line in s_out.splitlines():
-        print(json.dumps(line))
-        dList.append(json.loads(line))
+        try:
+          jl = json.loads(line)
+        except Exception:
+          jl = {"state": "info", "msg": line.rstrip()}
+        dList.append(jl)
       j_out = dList
     except Exception:
       j_out = {"bad json": str(s_out)}
