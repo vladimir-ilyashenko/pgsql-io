@@ -2,7 +2,7 @@
 #  Copyright 2020-2021  OpenRDS   All rights reserved. #
 ########################################################
 
-import util, meta, api, cloud, machine, key
+import util, cloud, machine, key
 import sys, json, os, configparser, jmespath, munch, time
 
 import libcloud, fire
@@ -95,7 +95,7 @@ def read(cloud_name, machine_id, cluster_name=None):
           "     describe, created_utc, updated_utc \n" + \
           "  FROM nodes WHERE " + where + " ORDER BY 1, 2"
   
-  data =  meta.exec_sql_list(sql)
+  data =  cloud.exec_sql_list(sql)
   if data == [] or data == None:
     return(None, None, None, None, None, None, None)
 
@@ -108,28 +108,28 @@ def read(cloud_name, machine_id, cluster_name=None):
 
 def upsert(cloud_name, machine_id, describe):
 
-  sql = "SELECT count(*) FROM nodes WHERE machine_id = ?"
-  data = meta.exec_sql(sql, [machine_id])
+  sql = "SELECT count(*) FROM nodes WHERE machine_id = %s"
+  data = cloud.exec_sql(sql, [machine_id])
   kount = data[0]
 
   now = util.sysdate()
   if kount == 0:
     sql = "INSERT INTO nodes (cloud, machine_id, \n" + \
           "  describe, created_utc, updated_utc) \n" + \
-          "VAlUES (?,?,?,?,?)"
-    meta.exec_sql(sql, [cloud_name, machine_id,
+          "VAlUES (%s, %s, %s, %s, %s)"
+    cloud.exec_sql(sql, [cloud_name, machine_id,
                   str(describe), now, now])
   else:
-    sql = "UPDATE nodes SET cloud = ?, describe = ?, \n" + \
-          " updated_utc = ? WHERE machine_id = ?"
-    meta.exec_sql(sql, [cloud_name, str(describe), now, machine_id])
+    sql = "UPDATE nodes SET cloud = %s, describe = %s, \n" + \
+          " updated_utc = %s WHERE machine_id = %s"
+    cloud.exec_sql(sql, [cloud_name, str(describe), now, machine_id])
 
   return
 
 
 def delete(machine_id):
-  sql = "DELETE FROM nodes WHERE machine_id = ?"
-  meta.exec_sql(sql, [machine_id])
+  sql = "DELETE FROM nodes WHERE machine_id = %s"
+  cloud.exec_sql(sql, [machine_id])
   return
 
 

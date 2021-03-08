@@ -2,16 +2,46 @@
 #  Copyright 2020-2021  OpenRDS  All rights reserved. #
 ########################################################
 
-import libcloud
-import fire
+import libcloud, fire
 from libcloud.compute.types import Provider
 from libcloud.compute.providers import get_driver
 from dotenv import load_dotenv
 
 
-import util, meta
+import util
 import sys, json, os, configparser
-from pprint import pprint
+
+from sqlalchemy import create_engine
+db_string = "postgres://postgres:password@localhost:5432/openrds"
+dba = create_engine(db_string)
+
+
+def exec_sql_list(sql):
+  try:
+    rs = dba.execute(sql)
+    data = []
+    for r in rs:
+      data.append(r)
+  except Exception as e:
+    util.message(str(e), "error")
+    return []
+
+  return(data)
+
+
+def exec_sql(sql, in_vars, commit=True):
+  try:
+    rs = dba.execute(sql, in_vars)
+    sql_type_list = sql.split()
+    sql_type = sql_type_list[0].upper()
+    if sql_type == "SELECT":
+      for r in rs:
+        return r
+  except Exception as e:
+    util.message(str(e), "error")
+    return None
+
+  return None 
 
 
 def get_provider(cloud_name):
@@ -82,14 +112,14 @@ def get_provider_constant(p_provider):
 
                                                                                    
 def delete(cloud_name):
-  sql = "DELETE FROM clouds WHERE name = ?"
-  meta.exec_sql(sql, [cloud_name])
+  sql = "DELETE FROM clouds WHERE name = %s"
+  exec_sql(sql, [cloud_name])
   return
                                                                                    
                                                                                    
 def update(cloud_name, provider, region, keys):
-  sql = "UPDATE clouds SET provider = ?, region = ?, keys = ?, updated_utc = ? WHERE name = ?"
-  meta.exec_sql(sql, [provider, region, keys, util.sysdate(), cloud_name])
+  sql = "UPDATE clouds SET provider = %s, region = %s, keys = %s, updated_utc = %s WHERE name = %s"
+  exec_sql(sql, [provider, region, keys, util.sysdate(), cloud_name])
   return
                                                                                    
                                                                                    
@@ -116,9 +146,9 @@ def create(provider, name=None, region=None, keys=None, default_ssh_key=None):
 
   sql = "INSERT INTO clouds (name, provider, region, keys, default_ssh_key, " + \
         "  created_utc, updated_utc) \n" + \
-        "VALUES (?, ?, ?, ?, ?, ?, ?)"
+        "VALUES (%s, %s, %s, %s, %s, %s, %s)"
   now = util.sysdate()
-  meta.exec_sql(sql, [name, provider, region, keys, default_ssh_key, now, now])
+  exec_sql(sql, [name, provider, region, keys, default_ssh_key, now, now])
 
   return
 
@@ -138,7 +168,7 @@ def read(cloud_name=None, data_only=False):
 
   sql = "SELECT provider, name, region, default_ssh_key, keys \n" + \
         "  FROM clouds " + where + " ORDER BY 1, 2"
-  data = meta.exec_sql_list(sql)
+  data = exec_sql_list(sql)
 
   if data_only:
     for d in data:
@@ -182,7 +212,7 @@ def list_providers(status=None):
         "       short_name, disp_name \n" + \
         "  FROM providers WHERE " + where + " ORDER BY 2, 3"
 
-  data = meta.exec_sql_list(sql)
+  data = exec_sql_list(sql)
 
   l_prov = []
   for d in data:
@@ -216,7 +246,7 @@ def list_locations(provider=None, country=None, metro=None):
         "       region, location, is_preferred \n" + \
         "  FROM v_locations WHERE " + where
 
-  data = meta.exec_sql_list(sql)
+  data = exec_sql_list(sql)
 
   l_lcn = []
   for d in data:
@@ -250,7 +280,7 @@ def list_regions(provider=None, country=None, metro=None):
   sql = "SELECT country, area, metro_name, metro, provider, region" + \
         "  FROM v_regions WHERE " + where
 
-  data = meta.exec_sql_list(sql)
+  data = exec_sql_list(sql)
 
   l_rgn = []
   for d in data:
@@ -275,7 +305,7 @@ def list_images():
   sql = "SELECT os, image_type, disp_name, provider, region, platform, is_default, image_id \n" + \
         "  FROM v_images"
 
-  data = meta.exec_sql_list(sql)
+  data = exec_sql_list(sql)
 
   l_img = []
   for d in data:
@@ -312,7 +342,7 @@ def list_flavors(provider=None, family=None, flavor=None, size=None):
   sql = "SELECT provider, family, flavor, size, v_cpu, mem_gb, das_gb, price_hr \n" + \
         "  FROM flavors WHERE " + where + " ORDER BY provider, v_cpu"
 
-  data = meta.exec_sql_list(sql)
+  data = exec_sql_list(sql)
 
   l_flv = []
   for d in data:
@@ -367,6 +397,7 @@ def get_openstack_connection(region, cloud_keys):
 
 
 ## MAINLINE ##########################################
+
 cloudAPIs = {
   'create': create,
   'update': update,

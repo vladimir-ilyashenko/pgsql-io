@@ -2,7 +2,7 @@
 #  Copyright 2020-2021  OpenRDS   All rights reserved. #
 ########################################################
 
-import util, meta, api, cloud, node
+import util, cloud, node
 
 import sys, json, os, configparser
 
@@ -13,8 +13,6 @@ from libcloud.compute.providers import get_driver
 
 
 def install(cloud_name, node_id, service, component=None):
-  ##if not node.is_valid("running"):
-  ##  return
 
   if service in ("postgres", "pg", "postgresql"):
     service = "pg"
@@ -41,7 +39,7 @@ def list():
         "       port, image_file, project_url, description \n" + \
         "  FROM v_services"
 
-  data = meta.exec_sql_list(sql)
+  data = cloud.exec_sql_list(sql)
 
   l_svc = []
   for d in data:

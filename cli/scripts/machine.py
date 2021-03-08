@@ -2,10 +2,9 @@
 #  Copyright 2020-2021  OpenRDS   All rights reserved. #
 ########################################################
 
-import util, meta, api, cloud, node, service
+import util, cloud, node, service
 import sys, json, os, configparser, jmespath, re
 import munch, time
-from pprint import pprint
 
 import libcloud, fire
 from libcloud.compute.types import Provider
@@ -48,8 +47,8 @@ def action(cloud_name, machine_ids, action):
 
 
 def get_size(provider, flavor):
-  sql = "SELECT size FROM flavors WHERE provider = ? AND flavor = ?"
-  data = meta.exec_sql(sql, [provider, flavor])
+  sql = "SELECT size FROM flavors WHERE provider = %s AND flavor = %s"
+  data = cloud.exec_sql(sql, [provider, flavor])
 
   size = flavor
   if data == None or data == []:
@@ -118,8 +117,8 @@ def get_image(driver, cloud_name, platform='amd'):
   provider, xxx, region, default_ssh_key, cloud_keys = cloud.read(cloud_name, True)
 
   sql = "SELECT image_id, image_type FROM images \n" + \
-        " WHERE provider = ? AND region = ? AND platform = ? AND is_default = 1"
-  data = meta.exec_sql(sql,[provider, region, platform])
+        " WHERE provider = %s AND region = %s AND platform = %s AND is_default = 1"
+  data = cloud.exec_sql(sql,[provider, region, platform])
   if data == None or data == []:
     util.message("Image not known for " + str(cloud_name) + \
       ", " + str(region) + ", " + str(platform) + ")", "error")
@@ -458,10 +457,7 @@ def list_sizes(cloud_name):
 
     jsonList.append(sizeDict)
 
-  if os.getenv("isJson", None):                                                    
-    print(json.dumps(jsonList, sort_keys=True, indent=2))                          
-  else:                                                                            
-    print(api.format_data_to_table(jsonList, keys, headers))                       
+  util.print_list(headers, keys, jsonList)
 
   return
 

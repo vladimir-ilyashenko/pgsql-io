@@ -2,7 +2,7 @@
 #  Copyright 2020-2021  OpenRDS   All rights reserved. #
 ########################################################
 
-import util, meta, api, cloud
+import util, cloud
 
 import sys, json, os, configparser
 
@@ -29,7 +29,7 @@ def destroy(cloud_name, name):
     util.fatal_error(str(e))
 
 
-def list(cloud_name):                                                  
+def list_cloud_keys(cloud_name):                                                  
   try:
     driver = cloud.get_cloud_driver(cloud_name)                                          
     kk = driver.list_key_pairs()                                                    
@@ -46,11 +46,8 @@ def list(cloud_name):
     dict['name'] = key.name
 
     jsonList.append(dict)
-                                                                                   
-  if os.getenv("isJson", None):                                                    
-    print(json.dumps(jsonList, sort_keys=True, indent=2))                          
-  else:                                                                            
-    print(api.format_data_to_table(jsonList, keys, headers))                       
+          
+  util.print_list(headers, keys, jsonList)
                                                                                    
   return
 
@@ -62,9 +59,9 @@ def insert(name, username, pem_file):
     util.message("WARNING: pem_file not found", "info")
 
   sql = "INSERT INTO keys (name, username, pem_file, \n" + \
-        "  created_utc, updated_utc) VALUES (?,?,?,?,?)"
+        "  created_utc, updated_utc) VALUES (%s, %s, %s, %s, %s)"
 
-  rc = meta.exec_sql(sql, [name, username, pem_file, now, now])
+  rc = cloud.exec_sql(sql, [name, username, pem_file, now, now])
 
   return(rc)
 
@@ -73,9 +70,9 @@ def read(key_name):
 
   sql = "SELECT username, pem_file, \n" + \
         "       created_utc, updated_utc \n" + \
-        "  FROM keys WHERE name = ?"
+        "  FROM keys WHERE name = %s"
 
-  data = meta.exec_sql(sql, [key_name])
+  data = cloud.exec_sql(sql, [key_name])
   return(str(data[0]), str(data[1]))
 
 
@@ -83,26 +80,51 @@ def update(name, username, pem_file):
   if not os.path.isfile(pem_file):
     util.message("WARNING: pem_file not found", "info")
 
-  sql = "UPDATE keys SET username = ?, pem_file = ?, updated_utc = ? \n" + \
-        " WHERE name = ?"
+  sql = "UPDATE keys SET username = %s, pem_file = %s, updated_utc = %s \n" + \
+        " WHERE name = %s"
 
-  rc =  meta.exec_sql(sql, [username, pem_file, util.sysdate(), name])
+  rc =  cloud.exec_sql(sql, [username, pem_file, util.sysdate(), name])
   return(rc)
 
 
 def delete(name):
-  sql = "DELETE FROM keys WHERE name = ?"
+  sql = "DELETE FROM keys WHERE name = %s"
 
-  rc = meta.exec_sql(sql, [name])
+  rc = cloud.exec_sql(sql, [name])
   return(rc)
 
 
+def list():
+  headers = ['Name', 'UserName', 'PemFile', 'Updated UTC ']
+  keys    = ['name', 'username', 'pem_file', 'updated_utc']
+
+  sql = "SELECT name, username, pem_file, updated_utc \n" + \
+        "  FROM keys ORDER BY 1"
+
+  data = cloud.exec_sql_list(sql)
+
+  lst = []
+  for d in data:
+    dict = {}
+    dict['name'] = str(d[0])
+    dict['username'] = str(d[1])
+    dict['pem_file'] = str(d[2])
+    dict['updated_utc'] = str(d[3])
+
+    lst.append(dict)
+
+  util.print_list(headers, keys, lst)
+
+  return
+
+
+
 keyAPIs = {
-  'list': list,
+  'list-cloud-keys': list_cloud_keys,
   'import-from-file': import_from_file,
   'destroy': destroy,
   'insert': insert,
-  'read': read,
+  'list': list,
   'update': update,
   'delete': delete
 }
