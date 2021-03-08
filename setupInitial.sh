@@ -32,11 +32,10 @@ if [ `uname` == 'Linux' ]; then
         openssl-devel libxslt-devel libevent-devel c-ares-devel \
         perl-ExtUtils-Embed sqlite-devel tcl-devel \
         pam-devel openldap-devel boost-devel unixODBC-devel \
-	mongo-c-driver-devel proj-devel jasper-devel
+	mongo-c-driver-devel proj-devel
       sudo $yum curl-devel chrpath clang-devel llvm-devel \
         cmake libxml2-devel mysql-devel freetds-devel
-      sudo $yum readline-devel libuuid-devel uuid-devel
-      ## sudo $yum install gdal-devel
+      sudo $yum readline-devel libuuid-devel
       sudo $yum python2 python2-devel
       cd /usr/bin
       sudo ln -fs python2 python
