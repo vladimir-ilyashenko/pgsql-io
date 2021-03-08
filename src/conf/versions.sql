@@ -2,8 +2,6 @@
 DROP VIEW  IF EXISTS v_versions;
 DROP TABLE IF EXISTS versions;
 DROP TABLE IF EXISTS releases;
-DROP TABLE IF EXISTS projects;
-DROP TABLE IF EXISTS categories;
 
 DROP TABLE IF EXISTS flavors;
 
@@ -23,6 +21,32 @@ DROP VIEW  IF EXISTS v_services;
 DROP TABLE IF EXISTS services;
 DROP TABLE IF EXISTS service_types;
 
+DROP TABLE IF EXISTS projects;
+DROP TABLE IF EXISTS categories;
+
+CREATE TABLE categories (
+  category    INTEGER  NOT NULL PRIMARY KEY,
+  sort_order  SMALLINT NOT NULL,
+  description TEXT     NOT NULL,
+  short_desc  TEXT     NOT NULL
+);
+
+
+CREATE TABLE projects (
+  project   	 TEXT     NOT NULL PRIMARY KEY,
+  category  	 INTEGER  NOT NULL,
+  port      	 INTEGER  NOT NULL,
+  depends   	 TEXT     NOT NULL,
+  start_order    INTEGER  NOT NULL,
+  sources_url    TEXT     NOT NULL,
+  short_name     TEXT     NOT NULL,
+  is_extension   SMALLINT NOT NULL,
+  image_file     TEXT     NOT NULL,
+  description    TEXT     NOT NULL,
+  project_url    TEXT     NOT NULL,
+  FOREIGN KEY (category) REFERENCES categories(category)
+);
+
 
 CREATE TABLE service_types (
   svc_type       TEXT NOT NULL PRIMARY KEY,
@@ -38,7 +62,7 @@ INSERT INTO service_types VALUES ('int',         'int', 'Integration',      5);
 
 
 CREATE TABLE services (
-  service        TEXT NOT NULL PRIMARY KEY REFERENCES projects(projects),
+  service        TEXT NOT NULL PRIMARY KEY,
   svc_type       TEXT NOT NULL REFERENCES service_types(svc_type),
   sort_order     SMALLINT NOT NULL
 );
@@ -66,8 +90,8 @@ ORDER BY 1, 2;
 
 CREATE TABLE provider_types (
   provider_type  TEXT NOT NULL PRIMARY KEY,
-  sort_order     SMALLINT NOT NULL,
-  disp_name      TEXT
+  disp_name      TEXT,
+  sort_order     SMALLINT NOT NULL
 );
 INSERT INTO provider_types VALUES ('public',    'Public Clouds',  1);
 INSERT INTO provider_types VALUES ('private',   'Private Clouds', 2);
@@ -149,7 +173,7 @@ CREATE VIEW v_regions AS
 
 CREATE TABLE locations (
   provider      TEXT       NOT NULL REFERENCES providers(provider),
-  region        TEXT       NOT NULL REFERENCES regions(region),
+  region        TEXT       NOT NULL,
   location      TEXT       NOT NULL,
   is_preferred  SMALLINT   NOT NULL,
   PRIMARY KEY (provider, region, location)
@@ -239,31 +263,6 @@ INSERT INTO flavors VALUES ('aws',   'm5d', '2xl',  'm5d.2xlarge',   8,  32,  30
 INSERT INTO flavors VALUES ('aws',   'm5d', '4xl',  'm5d.4xlarge',  16,  64,  600, 0.768);
 INSERT INTO flavors VALUES ('aws',   'm5d', '8xl',  'm5d.8xlarge',  32, 128, 1200, 1.536);
 INSERT INTO flavors VALUES ('aws',   'm5d', '16xl', 'm5d.16xlarge', 64, 256, 2400, 3.072);
-
-
-CREATE TABLE categories (
-  category    INTEGER  NOT NULL PRIMARY KEY,
-  sort_order  SMALLINT NOT NULL,
-  description TEXT     NOT NULL,
-  short_desc  TEXT     NOT NULL
-);
-
-
-CREATE TABLE projects (
-  project   	 TEXT     NOT NULL PRIMARY KEY,
-  category  	 INTEGER  NOT NULL,
-  port      	 INTEGER  NOT NULL,
-  depends   	 TEXT     NOT NULL,
-  start_order    INTEGER  NOT NULL,
-  sources_url    TEXT     NOT NULL,
-  short_name     TEXT     NOT NULL,
-  is_extension   SMALLINT NOT NULL,
-  image_file     TEXT     NOT NULL,
-  description    TEXT     NOT NULL,
-  project_url    TEXT     NOT NULL,
-  FOREIGN KEY (category) REFERENCES categories(category)
-);
-
 
 CREATE TABLE releases (
   component     TEXT     NOT NULL PRIMARY KEY,
@@ -424,11 +423,11 @@ INSERT INTO releases VALUES ('hadoop', 20, 'hadoop', 'Hadoop', '', 'soon', '', 1
 INSERT INTO versions VALUES ('hadoop', '3.3.0', '',  1, '20200714', '', '', '');
 INSERT INTO versions VALUES ('hadoop', '3.2.1', '',  0, '20200923', '', '', '');
 
-INSERT INTO projects VALUES ('zookeeper', 13, 2181, 'hub', 1, 'https://zookeeper.apache.org/releases.html#releasenotes',
-  'zookeeper', 0, 'zookeeper.png', 'Distributed Key-Store for HA', 'https://zookeeper.apache.org');
-INSERT INTO releases VALUES ('zookeeper', 5, 'zookeeper', 'Zookeeper', '', 'prod', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('zookeeper', '3.6.2', '',  1, '20200909', '', 'OPENJDK11',
-  'https://zookeeper.apache.org/doc/r3.6.2/releasenotes.html');
+--INSERT INTO projects VALUES ('zookeeper', 13, 2181, 'hub', 1, 'https://zookeeper.apache.org/releases.html#releasenotes',
+--  'zookeeper', 0, 'zookeeper.png', 'Distributed Key-Store for HA', 'https://zookeeper.apache.org');
+--INSERT INTO releases VALUES ('zookeeper', 5, 'zookeeper', 'Zookeeper', '', 'prod', '', 1, 'Apache', '', '');
+--INSERT INTO versions VALUES ('zookeeper', '3.6.2', '',  1, '20200909', '', 'OPENJDK11',
+--  'https://zookeeper.apache.org/doc/r3.6.2/releasenotes.html');
 
 INSERT INTO projects VALUES ('prestosql', 10, 1515, 'hub', 1, 'https://github.com/prestosql/presto/releases',
   'prestosql', 0, 'presto.png', 'Distributed SQL Query Engine', 'https://github.com/prestosql/presto');
@@ -673,12 +672,6 @@ INSERT INTO versions VALUES ('docker', '20.10.1', '', 0, '20201215', '', '', 'ht
 INSERT INTO versions VALUES ('docker', '20.10.0', '', 0, '20201208', '', '', 'https://docs.docker.com/engine/release-notes/#20100');
 INSERT INTO versions VALUES ('docker', '19.03.13', '', 0, '20200916', '', '', 'https://docs.docker.com/engine/release-notes/#190313');
 
-INSERT INTO projects VALUES ('compose', 7, 0, 'docker', 1, 'https://github.com/docker/compose/releases', 'compose', 0, 'compose.png', 
-  'Multi-Container Development', 'https://docs.docker.com/compose');
-INSERT INTO releases VALUES ('compose', 3, 'compose', 'Docker Compose', '', 'prod', '', 1, 'Apache',
-  'docker-compose --version', 'docker-compose --version | awk ''{print $3}'' | sed s/,//');
-INSERT INTO versions VALUES ('compose', '1.27.4', '', 0, '20200924', '', 'EL8', 'https://docs.docker.com/compose/release-notes/#1274');
-
 INSERT INTO projects VALUES ('minikube', 4, 0, 'docker', 2, 'https://github.com/kubernetes/minikube/releases', 'minikube', 0, 'minikube.png', 
   'Run Kubernetes locally', 'https://minikube.sigs.k8s.io/');
 INSERT INTO releases VALUES ('minikube', 7, 'minikube', 'MiniKube', '', 'prod', '', 1, 'Apache', 
@@ -754,33 +747,6 @@ INSERT INTO versions VALUES ('cloud', '3.3.0', '', 0, '20210102', '', 'PYTHON3',
 INSERT INTO versions VALUES ('cloud', '3.2.0', '', 0, '20200927', '', 'PYTHON3',
   'https://libcloud.readthedocs.io/en/latest/changelog.html#changes-in-apache-libcloud-3-2-0');
 
-INSERT INTO projects VALUES ('llvm', 7, 0, 'hub', 3, 'https://releases.llvm.org', 
-  'llvm', 0, 'llvm.png', 'Just in Time Compilation', 'https://llvm.org');
-INSERT INTO releases VALUES ('llvm', 5, 'llvm', 'LLVM', '', 'bring-own', '', 1, '', '', '');
-INSERT INTO versions VALUES ('llvm', '11.0.0', '', 0, '20201012', '', '', '');
-
-INSERT INTO projects VALUES ('bison', 7, 0, 'hub', 4, 'http://ftp.gnu.org/gnu/bison/',
-  'bison', 0, 'gnu.png', 'Parser-Generator', 'https://gnu.org/software/bison/');
-INSERT INTO releases VALUES ('bison', 6, 'bison', 'Bison', '', 'bring-own', '', 1, '', '', '');
-INSERT INTO versions VALUES ('bison', '3.7.4', '', 0, '20201114', '', '', '');
-INSERT INTO versions VALUES ('bison', '3.7.3', '', 0, '20201013', '', '', '');
-
-INSERT INTO projects VALUES ('gcc', 7, 0, 'hub', 4, 'http://ftp.gnu.org/gnu/gcc/',
-  'gcc', 0, 'gcc.png', 'the GNU Compiler Collection', 'https://gnu.org/software/gcc/');
-INSERT INTO releases VALUES ('gcc', 6, 'gcc', 'GCC', '', 'prod', '', 1, '', '', '');
-INSERT INTO versions VALUES ('gcc', '10.2.0', '', 0, '20200723', '', '', 
-  'https://gcc.gnu.org/gcc-10/changes.html');
-
-INSERT INTO projects VALUES ('valgrind', 7, 0, 'hub', 4, 'http://valgrind.org',
-  'valgrind', 0, 'valgrind.png', 'Memory Checker & Profiler', 'http://valgrind.org');
-INSERT INTO releases VALUES ('valgrind', 8, 'valgrind', 'Valgrind', '', 'bring-own', '', 1, '', '', '');
-INSERT INTO versions VALUES ('valgrind', '3.16.1', '', 0, '20200622', '', '', '');
-
-INSERT INTO projects VALUES ('gdb', 7, 0, 'hub', 4, 'http://ftp.gnu.org/gnu/gdb/',
-  'gdb', 0, 'gdb.png', 'the GNU Debugger', 'https://gnu.org/software/gdb/');
-INSERT INTO releases VALUES ('gdb', 7, 'gdb', 'GDB', '', 'bring-own', '', 1, '', '', '');
-INSERT INTO versions VALUES ('gdb', '10.1', '', 0, '20201024', '', '', '');
-
 -- ##
 INSERT INTO projects VALUES ('omnidb', 9, 8000, 'docker', 2, 'https://github.com/omnidb/omnidb/releases', 'omnidb', 0, 'omnidb.png', 'RDBMS Admin for Docker', 'https://github.com/omnidb/omnidb/#omnidb');
 INSERT INTO releases VALUES ('omnidb', 1, 'omnidb', 'OmniDB', '', 'soon', '', 1, 'MIT', '', '');
@@ -790,25 +756,6 @@ INSERT INTO versions VALUES ('omnidb', '3.0.1b', '', 0, '20201026', '', '', '');
 INSERT INTO versions VALUES ('omnidb', '3.0.0b', '', 0, '20201024', '', '', '');
 INSERT INTO versions VALUES ('omnidb', '2.17',   '', 0, '20191205', '', '', '');
 
-INSERT INTO projects VALUES ('pgjdbc', 7, 0, 'hub', 1, 'https://jdbc.postgresql.org', 'jdbc', 0, 'java.png', 'JDBC Driver', 'https://jdbc.postgresql.org');
-INSERT INTO releases VALUES ('pgjdbc', 7, 'jdbc', 'JDBC', '', 'bring-own', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pgjdbc', '42.2.18', '', 0, '20201015', '', '',
-  'https://jdbc.postgresql.org/documentation/changelog.html#version_42.2.18');
-
-INSERT INTO projects VALUES ('npgsql', 7, 0, 'hub', 2, 'https://www.nuget.org/packages/Npgsql/', 'npgsql', 0, 'npgsql.png', '.NET Provider', 'https://www.npgsql.org');
-INSERT INTO releases VALUES ('npgsql', 20, 'npgsql', '.net PG', '', 'bring-own', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('npgsql', '5.0.1.1', '', 0, '20201211', '', '', '');
-INSERT INTO versions VALUES ('npgsql', '5.0.0', '', 0, '20201115', '', '', '');
-INSERT INTO versions VALUES ('npgsql', '4.1.5', '', 0, '20200929', '', '', '');
-
-INSERT INTO projects VALUES ('psycopg', 7, 0, 'hub', 3, 'https://pypi.org/project/psycopg2/', 'psycopg', 0, 'psycopg.png', 'Python Adapter', 'http://psycopg.org');
-INSERT INTO releases VALUES ('psycopg', 6, 'psycopg', 'Psycopg2', '', 'bring-own', '', 1, 'LGPLv2', '', '');
-INSERT INTO versions VALUES ('psycopg', '2.8.6', '', 0, '20200906', '', '', '');
-
-INSERT INTO projects VALUES ('ruby', 7, 0, 'hub', 4, 'https://rubygems.org/gems/pg', 'ruby', 0, 'ruby.png', 'Ruby Interface', 'https://github.com');
-INSERT INTO releases VALUES ('ruby', 7, 'ruby', 'Ruby', '', 'bring-own', '', 1, 'BSD-2', '', '');
-INSERT INTO versions VALUES ('ruby', '1.2.3', '', 0, '20200318', '', '', '');
-
 INSERT INTO projects VALUES ('psqlodbc', 3, 0, 'hub', 5, 'https://www.postgresql.org/ftp/odbc/versions/msi/', 'psqlodbc', 0, 'odbc.png', 'ODBC Driver', 'https://odbc.postgresql.org');
 INSERT INTO releases VALUES ('psqlodbc', 8, 'psqlodbc',  'psqlODBC', '', 'prod', '', 1, 'LIBGPLv2', '', '');
 INSERT INTO versions VALUES ('psqlodbc', '13.00-1', 'amd', 1, '20201119', '', '', '');
@@ -817,11 +764,11 @@ INSERT INTO projects VALUES ('http', 3, 0, 'hub', 6, 'https://github.com/pramsey
 INSERT INTO releases VALUES ('http-pg12', 13, 'http', 'HTTP Client', '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('http-pg12', '1.3.1-1', 'amd', 1, '20191225', 'pg12', '', '');
 
-INSERT INTO projects VALUES ('ddlx',      7, 0, 'hub', 0, 'https://github.com/lacanoid/pgddl/releases', 'ddlx',  1, 'ddlx.png', 'DDL Extractor', 'https://github.com/lacanoid/pgddl#ddl-extractor-functions--for-postgresql');
+INSERT INTO projects VALUES ('ddlx',      9, 0, 'hub', 0, 'https://github.com/lacanoid/pgddl/releases', 'ddlx',  1, 'ddlx.png', 'DDL Extractor', 'https://github.com/lacanoid/pgddl#ddl-extractor-functions--for-postgresql');
 INSERT INTO releases VALUES ('ddlx-pg13', 2, 'ddlx', 'DDLeXtact', '', 'prod','',  0, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('ddlx-pg13', '0.17-1', 'amd', 1, '20200911', 'pg13', '', '');
 
-INSERT INTO projects VALUES ('multicorn', 7, 0, 'hub', 0, 'https://github.com/Segfault-Inc/Multicorn/releases',
+INSERT INTO projects VALUES ('multicorn', 9, 0, 'hub', 0, 'https://github.com/Segfault-Inc/Multicorn/releases',
   'multicorn', 1, 'multicorn.png', 'Python FDW Library', 'http://multicorn.org');
 INSERT INTO releases VALUES ('multicorn-pg12', 1, 'multicorn', 'Multicorn', '', 'prod','',  1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('multicorn-pg12', '1.4.0-1', 'amd', 1, '20200318', 'pg12', '', '');

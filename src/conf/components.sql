@@ -1,5 +1,13 @@
 
+DROP TABLE IF EXISTS volumes;
+DROP TABLE IF EXISTS nodes;
+DROP TABLE IF EXISTS clusters;
+DROP TABLE IF EXISTS clouds;
+DROP TABLE IF EXISTS keys;
+
 DROP TABLE IF EXISTS settings;
+DROP TABLE IF EXISTS hosts;
+
 CREATE TABLE settings (
   section            TEXT      NOT NULL,
   s_key              TEXT      NOT NULL,
@@ -9,7 +17,6 @@ CREATE TABLE settings (
 INSERT INTO settings VALUES ('GLOBAL', 'REPO', 'https://pgsql-io.s3.amazonaws.com/REPO');
 
 
-DROP TABLE IF EXISTS hosts;
 CREATE TABLE hosts (
   host_id            INTEGER PRIMARY KEY,
   host               TEXT NOT NULL,
@@ -17,7 +24,7 @@ CREATE TABLE hosts (
   last_update_utc    DATETIME,
   unique_id          TEXT
 );
-INSERT INTO hosts (host) VALUES ('localhost');
+INSERT INTO hosts (host_id, host) VALUES (1, 'localhost');
 
 
 DROP TABLE IF EXISTS components;
@@ -38,34 +45,15 @@ CREATE TABLE components (
 );
 
 
-DROP TABLE IF EXISTS volumes;
-CREATE TABLE volumes (
-  id             TEXT     NOT NULL PRIMARY KEY,
-  cloud_id       TEXT     NOT NULL REFERENCES cloud(id),
-  machine_id     TEXT     REFERENCES machine(id),
-  volume_types   TEXT     NOT NULL REFERENCES volume_types(volume_type),
-  size_gb        INTEGER  NOT NULL,
-  tested_iops    SMALLINT,
+CREATE TABLE keys (
+  name           TEXT     NOT NULL PRIMARY KEY,
+  username       TEXT     NOT NULL,
+  pem_file       TEXT     NOT NULL,
   created_utc    DATETIME NOT NULL,
   updated_utc    DATETIME NOT NULL
 );
 
 
-DROP TABLE IF EXISTS nodes;
-CREATE TABLE nodes (
-  machine_id     TEXT     NOT NULL PRIMARY KEY,
-  cloud          TEXT     NOT NULL REFERENCES clouds(name),
-  service        TEXT     REFERENCES services(service),
-  cluster_name   TEXT     REFERENCES clusters(name),
-  describe       TEXT,
-  os_info        TEXT,
-  components     TEXT,
-  created_utc    DATETIME NOT NULL,
-  updated_utc    DATETIME NOT NULL
-);
-
-
-DROP TABLE IF EXISTS clouds;
 CREATE TABLE clouds (
   name            TEXT     NOT NULL PRIMARY KEY,
   provider        TEXT     NOT NULL,
@@ -77,21 +65,36 @@ CREATE TABLE clouds (
 );
 
 
-DROP TABLE IF EXISTS keys;
-CREATE TABLE keys (
-  name           TEXT     NOT NULL PRIMARY KEY,
-  username       TEXT     NOT NULL,
-  pem_file       TEXT     NOT NULL,
-  created_utc    DATETIME NOT NULL,
-  updated_utc    DATETIME NOT NULL
-);
-
-
-DROP TABLE IF EXISTS clusters;
 CREATE TABLE clusters (
   name           TEXT     NOT NULL PRIMARY KEY,
-  service        TEXT     NOT NULL REFERENCES services(service),
+  service        TEXT     NOT NULL,
   created_utc    DATETIME NOT NULL,
   updated_utc    DATETIME NOT NULL
 );
+
+
+CREATE TABLE nodes (
+  machine_id     TEXT     NOT NULL PRIMARY KEY,
+  cloud          TEXT     NOT NULL REFERENCES clouds(name),
+  service        TEXT,
+  cluster_name   TEXT     REFERENCES clusters(name),
+  describe       TEXT,
+  os_info        TEXT,
+  components     TEXT,
+  created_utc    DATETIME NOT NULL,
+  updated_utc    DATETIME NOT NULL
+);
+
+
+CREATE TABLE volumes (
+  id             TEXT     NOT NULL PRIMARY KEY,
+  cloud          TEXT     NOT NULL REFERENCES clouds(name),
+  machine_id     TEXT     REFERENCES nodes(machine_id),
+  volume_types   TEXT     NOT NULL,
+  size_gb        INTEGER  NOT NULL,
+  tested_iops    SMALLINT,
+  created_utc    DATETIME NOT NULL,
+  updated_utc    DATETIME NOT NULL
+);
+
 
