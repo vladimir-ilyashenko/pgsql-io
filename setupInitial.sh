@@ -38,6 +38,9 @@ if [ `uname` == 'Linux' ]; then
       sudo $yum python2 python2-devel
       cd /usr/bin
       sudo ln -fs python2 python
+      ## specific for RHEL 8
+      sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+      sudo $yum install uuid-devel
       ## optional below
       sudo $yum mongo-c-driver-devel freetds-devel proj-devel
     else
