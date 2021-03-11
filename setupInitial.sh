@@ -22,7 +22,7 @@ if [ `uname` == 'Linux' ]; then
     cat /etc/os-release | grep el8
     rc=$?
     if [ "$rc" == "0" ]; then
-      echo ## CentOS 8 Stream (used for PG12+)
+      echo ## RHEL 8 Developer
       yum="dnf -y install --nobest"
       sudo $yum epel-release
       sudo $yum wget python3 python3-devel
@@ -31,14 +31,15 @@ if [ `uname` == 'Linux' ]; then
       sudo $yum zlib-devel bzip2-devel \
         openssl-devel libxslt-devel libevent-devel c-ares-devel \
         perl-ExtUtils-Embed sqlite-devel tcl-devel \
-        pam-devel openldap-devel boost-devel unixODBC-devel \
-	mongo-c-driver-devel proj-devel
+        pam-devel openldap-devel boost-devel unixODBC-devel
       sudo $yum curl-devel chrpath clang-devel llvm-devel \
-        cmake libxml2-devel mysql-devel freetds-devel
+        cmake libxml2-devel mysql-devel
       sudo $yum readline-devel libuuid-devel
       sudo $yum python2 python2-devel
       cd /usr/bin
       sudo ln -fs python2 python
+      ## optional below
+      sudo $yum mongo-c-driver-devel freetds-devel proj-devel
     else
       ## CentOS 7 (used for stable & ...)  
       sudo yum -y install -y epel-release python-pip
