@@ -4,7 +4,14 @@ alias bp="cd ~/dev/pgsql-io; . ./bp.sh"
 alias ver="vi ~/dev/pgsql-io/src/conf/versions.sql"
 
 export REGION=us-west-2
-export BUCKET=s3://pgsql-io-download
+
+cat /etc/os-release | grep el8 > /dev/null 2>&1
+rc=$?
+if [ "$rc" == "0" ]; then
+  export BUCKET=s3://pgsql-io-download-el8
+else
+  export BUCKET=s3://pgsql-io-download
+fi
 
 export DEV=$HOME/dev
 export IN=$DEV/in
