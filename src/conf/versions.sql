@@ -91,8 +91,7 @@ CREATE VIEW v_versions AS
      AND r.component = v.component;
 
 INSERT INTO categories VALUES (0,   0, 'Hidden', 'NotShown');
-INSERT INTO categories VALUES (1,  10, 'Strategic & Rock-Solid Postgres', 'PostgreSQL');
-INSERT INTO categories VALUES (4, 100, 'Hybrid & Multi-Cloud', 'Multi-Cloud');
+INSERT INTO categories VALUES (1,  10, 'Rock-Solid Postgres', 'PostgreSQL');
 INSERT INTO categories VALUES (10, 96, 'Foreign Datastores', 'ForeignData');
 INSERT INTO categories VALUES (2,  60, 'Extensions', 'Extensions');
 INSERT INTO categories VALUES (5,  70, 'Data Integration', 'Integration');
@@ -116,22 +115,22 @@ INSERT INTO projects VALUES ('pg', 1, 5432, 'hub', 1, 'https://postgresql.org/do
 
 INSERT INTO releases VALUES ('pg95', 6, 'pg', 'PostgreSQL', '', 'prod', 
   '<font size=-1>New in <a href=https://www.postgresql.org/docs/release/9.5.0/>v9.5</a></font>&nbsp;<font size=-2>07-Jan-2016</font>', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg95', '9.5.26-1', 'arm, amd', 1, '20210211', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg95', '9.5.26-1', 'arm, amd', 0, '20210211', '', 'LIBC-2.17', '');
 
 INSERT INTO releases VALUES ('pg96', 5, 'pg', 'PostgreSQL', '', 'prod', 
   '<font size=-1>New in <a href=https://www.postgresql.org/docs/release/9.6.0/>v9.6</a></font>&nbsp;<font size=-2>29-Sep-2016</font>', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg96', '9.6.21-1', 'arm, amd', 1, '20210211', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg96', '9.6.21-1', 'arm, amd', 0, '20210211', '', 'LIBC-2.17', '');
 
 INSERT INTO releases VALUES ('pg10', 4, 'pg', 'PostgreSQL', '', 'prod', 
   '<font size=-1>New in <a href=https://www.postgresql.org/docs/10/release-10.html>v10</a></font>&nbsp;<font size=-2>05-Oct-2017</font>', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg10', '10.16-1', 'arm, amd', 1, '20210211', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg10', '10.16-1', 'arm, amd', 0, '20210211', '', 'LIBC-2.17', '');
 
 INSERT INTO releases VALUES ('pg11', 3, 'pg', 'PostgreSQL', '', 'prod', 
   '<font size=-1>New in <a href=https://www.postgresql.org/docs/11/release-11.html>v11</a></font>&nbsp;<font size=-2>08-Oct-2018</font>', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pg11', '11.11-1', 'arm, amd', 1, '20210211', '', 'LIBC-2.17', '');
 
 INSERT INTO releases VALUES ('pg12', 2, 'pg', 'PostgreSQL', '', 'prod', 
-  '<font size=-1>New in<a href=https://www.postgresql.org/docs/12/release-12.html>v12</a></font>&nbsp;<font size=-2>03-Oct-2019</font>', 1, 'POSTGRES', '', '');
+  '<font size=-1>New in <a href=https://www.postgresql.org/docs/12/release-12.html>v12</a></font>&nbsp;<font size=-2>03-Oct-2019</font>', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pg12', '12.6-1', 'arm, amd', 1, '20210211', '', 'LIBC-2.17', '');
 
 INSERT INTO releases VALUES ('pg13', 1, 'pg', 'PostgreSQL', '', 'prod', 

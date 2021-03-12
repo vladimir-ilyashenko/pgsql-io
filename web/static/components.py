@@ -5,7 +5,7 @@ NUM_COLS = 3
 #ALL_PLATFORMS = "arm, amd"
 ALL_PLATFORMS = "amd"
 isSHOW_COMP_PLAT = "Y"
-isEXTRA_SPACING = "Y"
+isEXTRA_SPACING = "N"
 isSHOW_DESCRIPTION = "Y"
 HEADING_SIZE = "+1"
 
@@ -134,7 +134,7 @@ def print_row_header(pBR):
     print("<tr><td>&nbsp;</td></tr>")
 
   print("<tr><td colspan=" + str(NUM_COLS * 2) + \
-    ">&nbsp;<p>&nbsp;<b><font size=" + HEADING_SIZE + ">" + \
+    "><br><b><font size=" + HEADING_SIZE + ">" + \
     cat_desc + "</font></b></td></tr>")
 
 
@@ -188,7 +188,7 @@ def print_row_detail(pCol, pBR):
    
     
     if NUM_COLS != 1:
-      print("<tr><td></td></tr>")
+      print("<tr><td>&nbsp;</td></tr>")
 
   return
 
