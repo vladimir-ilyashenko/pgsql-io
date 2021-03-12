@@ -132,10 +132,6 @@ os.chmod(pg_data, 0o600)
 
 logfile = os.path.join(pg_log, "install.log")
 
-if not os.path.isfile("/usr/lib64/libtinfo.so.5"):
-  if os.path.isfile("/usr/lib64/libtinfo.so.6"):
-    os.system("sudo ln -s /usr/lib64/libtinfo.so.6 /usr/lib64/libtinfo.so.5")
-
 ## INITDB #############################################
 print('\nInitializing Postgres DB with:')
 initdb_cmd = os.path.join(pg_home, 'bin', 'initdb')
