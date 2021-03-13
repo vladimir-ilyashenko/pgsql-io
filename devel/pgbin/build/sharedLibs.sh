@@ -111,11 +111,11 @@ cp -Pv $lib64/libjson-c*           $shared_lib/.
 
 ## cleanups at the end #################
 cd $shared_lib
-ln -fs libcrypt-2.17.so libcrypt.so
+#ln -fs libcrypt-2.17.so libcrypt.so
 
-#sl="$shared_lib/."
-#rm -f $sl/*.a
-#rm -f $sl/*.la
-#rm -f $sl/*libboost*test*
+sl="$shared_lib/."
+rm -f $sl/*.a
+rm -f $sl/*.la
+rm -f $sl/*libboost*test*
 
 
