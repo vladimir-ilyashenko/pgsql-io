@@ -1,6 +1,6 @@
  
 ####################################################################
-######          Copyright (c)  2015-2020 BigSQL           ##########
+######          Copyright (c)  2020-2021 OpenRDS          ##########
 ####################################################################
 
 import util, datetime, os
@@ -53,5 +53,16 @@ sql = \
 OPTIONS ( filename '" + csvlogfile + "', format 'csv' )"
 util.run_sql_cmd("pgXX", sql, True)
 
+## TODO This is for demo and isn't yet secure ################
+sql="CREATE ROLE replication WITH SUPERUSER REPLICATION LOGIN ENCRYPTED PASSWORD 'password'"
+util.run_sql_cmd("pgXX", sql, True)
+
+datadir = util.get_column('datadir', pgver)
+os.system("cp " + datadir + "/pg_hba.conf " + datadir + "/pg_hba.conf.orig")
+
+thisdir = os.path.dirname(os.path.realpath(__file__))
+os.system("cp " + thisdir + "/pg_hba.conf.replication " + datadir + "/pg_hba.conf")
+
 util.create_extension("pgXX", "pglogical", True)
+
 
