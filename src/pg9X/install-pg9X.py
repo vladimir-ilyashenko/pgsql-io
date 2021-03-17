@@ -12,15 +12,12 @@ if isFIPS == "True":
   print("\nConfiguring for FIPS")
   os.system("rm -v " + thisDir + "/lib/libcrypt*")
 
-
 if isAutoStart != "True":
   sys.exit(0)
 
-
-######################################
+#########################################################
 ## AutoStart 
-#####################################
-
+#########################################################
 svcuser = util.get_user()
 
 print("Initializing " + str(pgver) + " as a service to run as " + str(svcuser))
@@ -32,6 +29,8 @@ print("Configuring " + str(pgver) + " to Autostart")
 script = thisDir + os.sep + "config-" + pgver + ".py --autostart=on"
 cmd = sys.executable + " -u " + script
 rc = os.system(cmd)
+
+util.tune_postgresql_conf(pgver)
 
 print("Starting " + str(pgver) + " for first time")
 script = thisDir + os.sep + "start-" + pgver + ".py"
