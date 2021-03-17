@@ -57,7 +57,7 @@ util.run_sql_cmd("pgXX", sql, True)
 sql="CREATE ROLE replication WITH SUPERUSER REPLICATION LOGIN ENCRYPTED PASSWORD 'password'"
 util.run_sql_cmd("pgXX", sql, True)
 
-datadir = util.get_column('datadir', pgver)
+datadir = util.get_column("datadir", "pgXX")
 os.system("cp " + datadir + "/pg_hba.conf " + datadir + "/pg_hba.conf.orig")
 
 thisdir = os.path.dirname(os.path.realpath(__file__))
