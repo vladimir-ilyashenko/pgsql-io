@@ -77,8 +77,8 @@ mode_list = ["start", "stop", "restart", "status", "list", "info", "update",
              "upgrade", "downgrade", "enable", "disable", "install", "tune",
              "remove", "reload", "activity", "help", "get", "set", "unset",
              "repolist", "repo-pkgs", "discover",
-             "register", "top", "--autostart", "--relnotes", "--start",
-             "--help", "--json", "--test", "--extra", "--extensions",
+             "register", "top", "--autostart", "--fips", "--relnotes", "--start",
+             "--help", "--json", "--test", "--extensions",
              "--list", "--old", "--showduplicates", "-y", "-t", "-d"  ,
              "--verbose", "--debug", "--debug2"]
 
@@ -1133,10 +1133,6 @@ isTEST = False
 if "--test" in args:
   isTEST = True
   args.remove("--test")
-if "--extra" in args:
-  # '--extra' is a synonym for '--test'
-  isTEST = True
-  args.remove("--extra")
 
 if util.get_stage() == "test":
   isTEST = True
@@ -1148,6 +1144,12 @@ if "--old" in args:
 if "--showduplicates" in args:
   isSHOWDUPS = True
   args.remove("--showduplicates")
+
+isFIPS = False
+if "--fips" in args and 'install' in args:
+  isFIPS = True
+  os.environ['isFIPS'] = "True"
+  args.remove("--fips")
 
 isAUTOSTART = False
 if "--autostart" in args and 'install' in args:

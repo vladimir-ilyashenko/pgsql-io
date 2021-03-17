@@ -3,8 +3,15 @@ import util
 import os, sys
 
 pgver="pg9X"
+thisDir = os.path.dirname(os.path.realpath(__file__))
 
 isAutoStart = str(os.getenv("isAutoStart", "False"))
+isFIPS = str(os.getenv("isFIPS", "False"))
+
+if isFIPS == "True":
+  print("\nConfiguring for FIPS")
+  os.system("rm -v " + thisDir + "/lib/libcrypt*")
+
 
 if isAutoStart != "True":
   sys.exit(0)
@@ -14,7 +21,6 @@ if isAutoStart != "True":
 ## AutoStart 
 #####################################
 
-thisDir = os.path.dirname(os.path.realpath(__file__))
 svcuser = util.get_user()
 
 print("Initializing " + str(pgver) + " as a service to run as " + str(svcuser))
