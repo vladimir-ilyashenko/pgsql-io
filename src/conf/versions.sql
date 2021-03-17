@@ -127,7 +127,8 @@ INSERT INTO versions VALUES ('pg10', '10.16-1', 'arm, amd', 0, '20210211', '', '
 
 INSERT INTO releases VALUES ('pg11', 3, 'pg', 'PostgreSQL', '', 'prod', 
   '<font size=-1>New in <a href=https://www.postgresql.org/docs/11/release-11.html>v11</a></font>&nbsp;<font size=-2>08-Oct-2018</font>', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg11', '11.11-2', 'arm, amd', 1, '20210211', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg11', '11.11-3', 'arm, amd', 1, '20210211', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg11', '11.11-2', 'arm, amd', 0, '20210211', '', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg11', '11.11-1', 'arm, amd', 0, '20210211', '', 'LIBC-2.17', '');
 
 INSERT INTO releases VALUES ('pg12', 2, 'pg', 'PostgreSQL', '', 'prod', 
