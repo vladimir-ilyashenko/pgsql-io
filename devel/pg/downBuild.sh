@@ -1,8 +1,8 @@
 
-v10=10.15
-v11=11.10
-v12=12.5
-v13=13.1
+v10=10.16
+v11=11.11
+v12=12.6
+v13=13.2
 
 fatalError () {
   echo "FATAL ERROR!  $1"
@@ -76,17 +76,17 @@ makeInstall () {
 
 ## MAINLINE ##############################
 
+options=""
 if [ "$1" == "10" ]; then
-  options=""
   downBuild $v10
 elif [ "$1" == "11" ]; then
-  options="--with-llvm"
+  #options="--with-llvm"
   downBuild $v11
 elif [ "$1" == "12" ]; then
-  options="--with-llvm"
+  #options="--with-llvm"
   downBuild $v12
 elif [ "$1" == "13" ]; then
-  options="--with-llvm"
+  #options="--with-llvm"
   downBuild $v13
 else
   echo "ERROR: Incorrect PG version.  Must be between 10 and 13"
