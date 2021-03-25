@@ -22,7 +22,7 @@ if [ `uname` == 'Linux' ]; then
     cat /etc/os-release | grep el8
     rc=$?
     if [ "$rc" == "0" ]; then
-      echo ## RHEL 8 Developer
+      echo ## RHEL 8
       yum="dnf -y install --nobest"
       sudo $yum epel-release
       sudo $yum wget python3 python3-devel
@@ -38,7 +38,6 @@ if [ `uname` == 'Linux' ]; then
       sudo $yum python2 python2-devel
       cd /usr/bin
       sudo ln -fs python2 python
-      ## specific for RHEL 8
       sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
       sudo $yum install uuid-devel
       ## optional below
@@ -55,6 +54,7 @@ if [ `uname` == 'Linux' ]; then
       sudo yum -y install clang llvm5.0 centos-release-scl-rh
       sudo yum -y install llvm-toolset-7-llvm devtoolset-7 llvm-toolset-7-clang
       sudo yum -y install python3 python3-devel
+      sudo yum -y install lz4-devel libzstd-devel
     fi
   fi
 fi

@@ -285,8 +285,8 @@ INSERT INTO versions VALUES ('anon-pg13', '0.7.1-1', 'amd', 0, '20200929', 'pg13
 
 INSERT INTO projects VALUES ('citus', 2, 0, 'hub',0, 'https://github.com/citusdata/citus/releases',
   'citus', 1, 'citus.png', 'Multi Node Data & Queries', 'https://github.com/citusdata/citus');
-INSERT INTO releases VALUES ('citus-pg13', 99, 'citus', 'Citus', '', 'test', '', 1, 'AGPLv3', '', '');
-INSERT INTO versions VALUES ('citus-pg13', '9.5.1-1', 'amd', 0, '20201202', 'pg13', '', 'https://github.com/citusdata/citus/releases/tag/v9.5.1');
+INSERT INTO releases VALUES ('citus-pg13', 99, 'citus', 'Citus', '', 'prod', '', 1, 'AGPLv3', '', '');
+INSERT INTO versions VALUES ('citus-pg13', '10.0.3-1', 'amd', 1, '20210315', 'pg13', '', 'https://github.com/citusdata/citus/releases/tag/v10.0.3');
 
 INSERT INTO projects VALUES ('cron', 2, 0, 'hub',0, 'https://github.com/citusdata/pg_cron/releases',
   'cron', 1, 'cron.png', 'Scheduler as Background Worker', 'https://github.com/citusdata/pg_cron');
