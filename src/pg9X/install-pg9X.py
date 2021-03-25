@@ -11,6 +11,7 @@ isFIPS = str(os.getenv("isFIPS", "False"))
 if isFIPS == "True":
   print("\nConfiguring for FIPS")
   os.system("rm -v " + thisDir + "/lib/libcrypt*")
+  os.system("rm -v " + thisDir + "/lib/libssl*")
 
 if isAutoStart != "True":
   sys.exit(0)
@@ -38,6 +39,6 @@ cmd = sys.executable + " -u " + script
 rc = os.system(cmd)
 
 # This script runs after the install script succeeds and must
-# therefore always return success
+# therefore always has to return "success"
 sys.exit(0)
 
