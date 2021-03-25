@@ -57,9 +57,7 @@ if args.datadir > '':
 
 ## PORT ################################################
 if args.port > 0:
-  rc = util.update_postgresql_conf(pgver, args.port, False)
-  if rc > 0:
-    sys.exit(rc)
+  util.update_postgresql_conf(pgver, args.port, False)
 
 if args.logdir > '':
   util.set_column("logdir", pgver, args.logdir)
