@@ -3,6 +3,9 @@ function test13 {
   ./io install pg13; 
   ./io start pg13 -y -d demo;
 
+  ./io install citus-pg$1   -d demo
+  ./io install timescaledb-pg$1   -d demo
+
   if [ "$1" == "fdw" ]; then
     ./io install hivefdw-pg$1       -d demo
     ./io install tdsfdw-pg$1        -d demo
@@ -17,18 +20,19 @@ function test13 {
   ./io install partman-pg$1       -d demo
   ./io install audit-pg$1         -d demo
 
+
   ./io install cron-pg$1
   ./io install plprofiler-pg$1    -d demo
   ./io install repack-pg$1        -d demo
   ./io install orafce-pg$1        -d demo
 
   ./io install pglogical-pg$1     -d demo
-  ./io install postgis-pg$1       -d demo
+  #./io install postgis-pg$1       -d demo
 
-  if [ ! `arch` == "aarch64" ]; then
-    ./io install ddlx-pg$1          -d demo
-    ./io install anon-pg$1          -d demo
-  fi
+  #if [ ! `arch` == "aarch64" ]; then
+  #  ./io install ddlx-pg$1          -d demo
+  #  ./io install anon-pg$1          -d demo
+  #fi
 
 }
 
@@ -40,7 +44,6 @@ function test12 {
   ./io install http-pg$1          -d demo
 
   if [ ! `arch` == "aarch64" ]; then
-    ./io install timescaledb-pg$1   -d demo
     ./io install multicorn-pg$1     -d demo
   fi
 }
