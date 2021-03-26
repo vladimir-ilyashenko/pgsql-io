@@ -106,10 +106,6 @@ INSERT INTO versions VALUES ('hub', '6.39', '',  0, '20210317', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.38', '',  0, '20210312', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.37', '',  0, '20210210', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.36', '',  0, '20210204', '', '', '');
-INSERT INTO versions VALUES ('hub', '6.35', '',  0, '20210127', '', '', '');
-INSERT INTO versions VALUES ('hub', '6.34', '',  0, '20210127', '', '', '');
-INSERT INTO versions VALUES ('hub', '6.33', '',  0, '20201212', '', '', '');
-INSERT INTO versions VALUES ('hub', '6.32', '',  0, '20201119', '', '', '');
 
 -- ##
 INSERT INTO projects VALUES ('pg', 1, 5432, 'hub', 1, 'https://postgresql.org/download',
