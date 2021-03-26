@@ -48,7 +48,7 @@ httpFullV=1.3.1
 httpShortV=
 httpBuildV=1
 
-hypopgFullV=1.1.4
+hypopgFullV=1.2.0
 hypopgShortV=
 hypopgBuildV=1
 
