@@ -468,6 +468,7 @@ initPG () {
     initC "orafce-pg$pgM" "orafce" "$orafceV" "$outPlat" "postgres/orafce" "" "" "nil"
     initC "ddlx-pg$pgM" "ddlx" "$ddlxV" "$outPlat" "postgres/ddlx" "" "" "nil"
     initC "timescaledb-pg$pgM" "timescaledb" "$timescaleV"  "$outPlat" "postgres/timescale" "" "" "nil"
+    initC "bulkload-pg$pgM" "bulkload" "$bulkloadV" "$outPlat" "postgres/bulkload" "" "" "nil"
   fi
 
   if [ "$pgM" == "12" ]; then 
@@ -483,7 +484,6 @@ initPG () {
     fi
 
     #initC "cassandra" "cassandra" "$cstarV" "" "cassandra" "" "" "nil"
-    #initC "bulkload-pg$pgM" "bulkload" "$bulkloadV" "$outPlat" "postgres/bulkload" "" "" "nil"
 
 
     #initC "http-pg$pgM" "http" "$httpV" "$outPlat" "postgres/http" "" "" "nil"

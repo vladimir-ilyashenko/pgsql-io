@@ -156,7 +156,7 @@ pgTSQLFullV=3.0
 pgTSQLShortV=
 pgTSQLBuildV=1
 
-bulkloadFullV=3.1.16
+bulkloadFullV=3.1.17
 bulkloadShortV=
 bulkloadBuildV=1
 

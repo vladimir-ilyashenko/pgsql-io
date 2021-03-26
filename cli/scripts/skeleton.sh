@@ -27,6 +27,7 @@ function test13 {
   ./io install orafce-pg$1        -d demo
 
   ./io install pglogical-pg$1     -d demo
+  ./io install bulkload-pg$1      -d demo
   #./io install postgis-pg$1       -d demo
 
   #if [ ! `arch` == "aarch64" ]; then

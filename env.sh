@@ -27,7 +27,7 @@ hypoV=1.1.4-1
 timescaleV=2.1.0-1
 logicalV=2.3.3-1
 profV=4.1-1
-bulkloadV=3.1.16-1
+bulkloadV=3.1.17-1
 partmanV=4.4.1-1
 repackV=1.4.6-1
 
