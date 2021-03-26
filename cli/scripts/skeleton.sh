@@ -28,12 +28,11 @@ function test13 {
 
   ./io install pglogical-pg$1     -d demo
   ./io install bulkload-pg$1      -d demo
+  ./io install anon-pg$1          -d demo
+
   #./io install postgis-pg$1       -d demo
 
-  #if [ ! `arch` == "aarch64" ]; then
-  #  ./io install ddlx-pg$1          -d demo
-  #  ./io install anon-pg$1          -d demo
-  #fi
+  #./io install ddlx-pg$1          -d demo
 
 }
 
