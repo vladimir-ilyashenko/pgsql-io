@@ -1,0 +1,13 @@
+#!/bin/bash
+cd "$(dirname "$0")"
+
+echo " "
+echo "## INSTALL PGADMIN 4 #############################################"
+source getPKMG.sh
+
+if [ "$PKMG" == "yum" ]; then
+  echo "not supported yet"
+else
+  sudo apt install pgadmin4.deb
+fi
+
