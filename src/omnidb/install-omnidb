@@ -1,13 +1,28 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
+if [ "$1" == "" ]; then
+  echo "ERROR: version num parm required"
+  exit 1
+fi
+
+ver=$1
+svr=omnidb-server-$ver
+deb=$(echo ${svr}_linux_x86_64.deb)
+rpm=$(echo ${svr}_linux_x86_64.rpm)
+
+
 echo " "
-echo "## INSTALL OMNIDB v$1 ############################################"
+echo "## INSTALL OMNIDB v$ver ##########################################"
 source getPKMG.sh
 
 if [ "$PKMG" == "yum" ]; then
-  echo "not supported yet"
+  wget https://github.com/OmniDB/OmniDB/releases/download/$ver/$rpm
+  sudo rpm -ivh --force $rpm
 else
-  sudo apt install omnidb.deb
+  wget https://github.com/OmniDB/OmniDB/releases/download/$ver/$deb
+  sudo apt install -y $deb
 fi
 
+sudo systemctl start  omnidb
+sudo systemctl status omnidb

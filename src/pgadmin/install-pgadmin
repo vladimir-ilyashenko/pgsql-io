@@ -1,8 +1,16 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
+
+if [ "$1" == "" ]; then
+  echo "ERROR: version num parm required"
+  exit 1
+fi
+
+ver=$1
+
 echo " "
-echo "## INSTALL PGADMIN 4 v$1 #########################################"
+echo "## INSTALL PGADMIN 4 v$ver #######################################"
 source getPKMG.sh
 
 if [ "$PKMG" == "yum" ]; then
