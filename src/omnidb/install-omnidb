@@ -2,7 +2,7 @@
 cd "$(dirname "$0")"
 
 echo " "
-echo "## INSTALL OMNIDB ################################################"
+echo "## INSTALL OMNIDB v$1 ############################################"
 source getPKMG.sh
 
 if [ "$PKMG" == "yum" ]; then

@@ -473,8 +473,8 @@ initPG () {
 
   #initC "cassandra" "cassandra" "$cstarV" "" "cassandra" "" "" "nil"
 
-  initC "pgadmin" "pgadmin" "$adminV" "" "postgres/pgadmin" "" "" "nil"
-  initC "omnidb" "omnidb" "$omniV" "" "postgres/omnidb" "" "" "nil"
+  initC "pgadmin" "pgadmin" "$adminV" "" "postgres/pgadmin" "" "" "Y"
+  initC "omnidb" "omnidb" "$omniV" "" "postgres/omnidb" "" "" "Y"
 
   if [ "$pgM" == "12" ]; then 
 

@@ -2,7 +2,7 @@
 cd "$(dirname "$0")"
 
 echo " "
-echo "## INSTALL PGADMIN 4 #############################################"
+echo "## INSTALL PGADMIN 4 v$1 #########################################"
 source getPKMG.sh
 
 if [ "$PKMG" == "yum" ]; then
