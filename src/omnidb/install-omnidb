@@ -10,6 +10,7 @@ ver=$1
 svr=omnidb-server-$ver
 deb=$(echo ${svr}_linux_x86_64.deb)
 rpm=$(echo ${svr}_linux_x86_64.rpm)
+url=https://github.com/OmniDB/OmniDB/releases/download
 
 
 echo " "
@@ -17,10 +18,10 @@ echo "## INSTALL OMNIDB v$ver ##########################################"
 source getPKMG.sh
 
 if [ "$PKMG" == "yum" ]; then
-  wget https://github.com/OmniDB/OmniDB/releases/download/$ver/$rpm
+  wget $url/$ver/$rpm
   sudo rpm -ivh --force $rpm
 else
-  wget https://github.com/OmniDB/OmniDB/releases/download/$ver/$deb
+  wget $url/$ver/$deb
   sudo apt install -y $deb
 fi
 
