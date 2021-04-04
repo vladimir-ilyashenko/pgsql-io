@@ -31,6 +31,9 @@ bulkloadV=3.1.17-1
 partmanV=4.4.1-1
 repackV=1.4.6-1
 
+adminV=4
+omniV=3
+
 audit13V=1.5.0-1
 postgisV=3.1.0-1
 

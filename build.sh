@@ -471,6 +471,11 @@ initPG () {
     initC "bulkload-pg$pgM" "bulkload" "$bulkloadV" "$outPlat" "postgres/bulkload" "" "" "nil"
   fi
 
+  #initC "cassandra" "cassandra" "$cstarV" "" "cassandra" "" "" "nil"
+
+  initC "pgadmin" "pgadmin" "$adminV" "" "postgres/pgadmin" "" "" "nil"
+  initC "omnidb" "omnidb" "$omniV" "" "postgres/omnidb" "" "" "nil"
+
   if [ "$pgM" == "12" ]; then 
 
     initC "pldebugger-pg$pgM" "pldebugger" "$debuggerV" "$outPlat" "postgres/pldebugger" "" "" "nil"
