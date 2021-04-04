@@ -308,10 +308,15 @@ INSERT INTO versions VALUES ('postgis-pg13', '3.1.0-1', 'amd', 1, '20201210', 'p
 INSERT INTO versions VALUES ('postgis-pg13', '3.0.3-1', 'amd', 0, '20201119', 'pg13', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.0.3/NEWS');
 INSERT INTO versions VALUES ('postgis-pg13', '3.0.2-1', 'amd', 0, '20200815', 'pg13', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.0.2/NEWS');
 
-INSERT INTO projects VALUES ('pgadmin', 9, 80, 'docker', 1, 'https://pgadmin.org',
-  'pgadmin', 0, 'pgadmin.png', 'PG Admin for Docker', 'https://pgadmin.org');
-INSERT INTO releases VALUES ('pgadmin', 0, 'pgadmin', 'pgAdmin 4.29', '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pgadmin', '4', '', 0, '20201210', '', '', '');
+INSERT INTO projects VALUES ('omnidb', 9, 8080, '', 1, 'https://omnidb.org',
+  'omnidb', 0, 'omnidb.png', 'OmniDB', 'https://omnidb.org');
+INSERT INTO releases VALUES ('omnidb', 0, 'omnidb', 'OmniDB 3.0.3b', '', 'test', '', 1, '', '', '');
+INSERT INTO versions VALUES ('omnidb', '3', '', 2, '20201217', '', '', '');
+
+INSERT INTO projects VALUES ('pgadmin', 9, 80, '', 1, 'https://pgadmin.org',
+  'pgadmin', 0, 'pgadmin.png', 'PG Admin', 'https://pgadmin.org');
+INSERT INTO releases VALUES ('pgadmin', 0, 'pgadmin', 'pgAdmin 4 v5.1', '', 'prod', '', 1, '', '', '');
+INSERT INTO versions VALUES ('pgadmin', '4', '', 2, '20210325', '', '', '');
 
 INSERT INTO projects VALUES ('bulkload', 2, 0, 'hub', 5, 'https://github.com/ossc-db/pg_bulkload/releases',
   'bulkload', 1, 'bulkload.png', 'High Speed Data Loading', 'https://github.com/ossc-db/pg_bulkload');
