@@ -308,7 +308,7 @@ INSERT INTO versions VALUES ('postgis-pg13', '3.1.0-1', 'amd', 1, '20201210', 'p
 INSERT INTO versions VALUES ('postgis-pg13', '3.0.3-1', 'amd', 0, '20201119', 'pg13', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.0.3/NEWS');
 INSERT INTO versions VALUES ('postgis-pg13', '3.0.2-1', 'amd', 0, '20200815', 'pg13', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.0.2/NEWS');
 
-INSERT INTO projects VALUES ('omnidb', 9, 8080, '', 1, 'https://omnidb.org',
+INSERT INTO projects VALUES ('omnidb', 9, 8000, '', 1, 'https://omnidb.org',
   'omnidb', 0, 'omnidb.png', 'OmniDB', 'https://omnidb.org');
 INSERT INTO releases VALUES ('omnidb', 0, 'omnidb', 'OmniDB', '', 'test', '', 1, '', '', '');
 INSERT INTO versions VALUES ('omnidb', '3.0.3b', '', 2, '20201217', '', '', '');
