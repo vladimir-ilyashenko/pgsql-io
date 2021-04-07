@@ -16,9 +16,9 @@ odbcFullV=13.00
 odbcShortV=
 odbcBuildV=2
 
-backrestFullV=2.31
+backrestFullV=2.33
 backrestShortV=
-backrestBuildV=2
+backrestBuildV=1
 
 bouncerFullV=1.15.0
 bouncerShortV=
@@ -52,7 +52,7 @@ hypopgFullV=1.2.0
 hypopgShortV=
 hypopgBuildV=1
 
-postgisFullV=3.1.0
+postgisFullV=3.1.1
 postgisShortV=
 postgisBuildV=1
 
@@ -68,7 +68,7 @@ cassFullV=3.1.5
 cassShortV=
 cassBuildV=1
 
-orafceFullV=3.14.0
+orafceFullV=3.15.0
 orafceShortV=
 orafceBuildV=1
 
@@ -172,7 +172,7 @@ repackFullV=1.4.6
 repackShortV=
 repackBuildV=1
 
-partmanFullV=4.4.1
+partmanFullV=4.5.0
 partmanShortV=
 partmanBuildV=1
 
@@ -180,11 +180,11 @@ hintplanFullV=1.3.4
 hintplanShortV=
 hintplanBuildV=1
 
-timescaledbFullV=2.1.0
+timescaledbFullV=2.1.1
 timescaledbShortV=
 timescaledbBuildV=1
 
-cronFullV=1.3.0
+cronFullV=1.3.1
 cronShortV=
 cronBuildV=1
 

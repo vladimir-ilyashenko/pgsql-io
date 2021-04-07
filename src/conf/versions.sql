@@ -207,7 +207,8 @@ INSERT INTO versions VALUES ('oracle', '19c', 'amd', 2, '20200801', '', '', '');
 INSERT INTO projects VALUES ('orafce', 5, 0, 'hub', 0, 'https://github.com/orafce/orafce/releases',
   'orafce', 1, 'larry.png', 'Ora Built-in Packages', 'https://github.com/orafce/orafce#orafce---oracles-compatibility-functions-and-packages');
 INSERT INTO releases VALUES ('orafce-pg13', 2, 'orafce', 'OraFCE', '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('orafce-pg13', '3.14.0-1',  'amd', 1, '20201222', 'pg13', '', '');
+INSERT INTO versions VALUES ('orafce-pg13', '3.15.0-1',  'amd', 1, '20210311', 'pg13', '', '');
+INSERT INTO versions VALUES ('orafce-pg13', '3.14.0-1',  'amd', 0, '20201222', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('fixeddecimal', 5, 0, 'hub', 0, 'https://github.com/pgsql-io/fixeddecimal/releases',
   'fixeddecimal', 1, 'fixeddecimal.png', 'Much faster than NUMERIC', 'https://github.com/pgsql-io/fixeddecimal');
@@ -262,10 +263,10 @@ INSERT INTO versions VALUES ('plprofiler-pg13', '4.1-1', 'amd', 1, '20190823', '
 INSERT INTO projects VALUES ('backrest', 2, 0, 'hub', 0, 'https://pgbackrest.org',
   'backrest', 0, 'backrest.png', 'Backup & Restore', '');
 INSERT INTO releases VALUES ('backrest', 9, 'backrest', 'pgBackRest', '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('backrest', '2.32-1', 'amd', 1, '20210208', '', '', 'https://pgbackrest.org/release.html#2.32');
+INSERT INTO versions VALUES ('backrest', '2.33-1', 'amd', 1, '20210405', '', '', 'https://pgbackrest.org/release.html#2.33');
+INSERT INTO versions VALUES ('backrest', '2.32-1', 'amd', 0, '20210208', '', '', 'https://pgbackrest.org/release.html#2.32');
 INSERT INTO versions VALUES ('backrest', '2.31-1', 'amd', 0, '20201208', '', '', '');
 INSERT INTO versions VALUES ('backrest', '2.30-1', 'amd', 0, '20201005', '', '', '');
-INSERT INTO versions VALUES ('backrest', '2.29-1', 'amd', 0, '20200821', '', '', '');
 
 INSERT INTO projects VALUES ('audit', 2, 0, 'hub', 0, 'https://github.com/pgaudit/pgaudit/releases',
   'audit', 1, 'audit.png', 'Audit Logging', 'https://github.com/pgaudit/pgaudit');
@@ -287,12 +288,15 @@ INSERT INTO versions VALUES ('citus-pg13', '10.0.3-1', 'amd', 1, '20210315', 'pg
 INSERT INTO projects VALUES ('cron', 2, 0, 'hub',0, 'https://github.com/citusdata/pg_cron/releases',
   'cron', 1, 'cron.png', 'Scheduler as Background Worker', 'https://github.com/citusdata/pg_cron');
 INSERT INTO releases VALUES ('cron-pg13', 5, 'cron', 'pgCron', '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('cron-pg13', '1.3.0-1', 'amd', 1, '20201006', 'pg13', '', '');
+INSERT INTO versions VALUES ('cron-pg13', '1.3.1-1', 'amd', 1, '20210330', 'pg13', '', '');
+INSERT INTO versions VALUES ('cron-pg13', '1.3.0-1', 'amd', 0, '20201006', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('timescaledb', 2, 0, 'hub', 1, 'https://github.com/timescale/timescaledb/releases',
    'timescaledb', 1, 'timescaledb.png', 'Time Series Data', 'https://github.com/timescale/timescaledb/#timescaledb');
 INSERT INTO releases VALUES ('timescaledb-pg13',  1, 'timescaledb', 'TimescaleDB', '', 'prod', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('timescaledb-pg13', '2.1.0-1',  'amd', 1, '20210222', 'pg13', '',
+INSERT INTO versions VALUES ('timescaledb-pg13', '2.1.1-1',  'amd', 1, '20210329', 'pg13', '',
+  'https://github.com/timescale/timescaledb/releases/tag/2.1.1');
+INSERT INTO versions VALUES ('timescaledb-pg13', '2.1.0-1',  'amd', 0, '20210222', 'pg13', '',
   'https://github.com/timescale/timescaledb/releases/tag/2.1.0');
 
 INSERT INTO projects VALUES ('pglogical', 2, 0, 'hub', 2, 'https://github.com/2ndQuadrant/pglogical/releases',
@@ -304,7 +308,8 @@ INSERT INTO versions VALUES ('pglogical-pg13', '2.3.3-1',  'amd', 1, '20201005',
 INSERT INTO projects VALUES ('postgis', 2, 1, 'hub', 3, 'http://postgis.net/source',
   'postgis', 1, 'postgis.png', 'Spatial Extensions', 'http://postgis.net');
 INSERT INTO releases VALUES ('postgis-pg13', 3, 'postgis', 'PostGIS', '', 'prod', '', 1, 'GPLv2', '', '');
-INSERT INTO versions VALUES ('postgis-pg13', '3.1.0-1', 'amd', 1, '20201210', 'pg13', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.1.0/NEWS');
+INSERT INTO versions VALUES ('postgis-pg13', '3.1.1-1', 'amd', 1, '20210128', 'pg13', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.1.1/NEWS');
+INSERT INTO versions VALUES ('postgis-pg13', '3.1.0-1', 'amd', 0, '20201210', 'pg13', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.1.0/NEWS');
 INSERT INTO versions VALUES ('postgis-pg13', '3.0.3-1', 'amd', 0, '20201119', 'pg13', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.0.3/NEWS');
 INSERT INTO versions VALUES ('postgis-pg13', '3.0.2-1', 'amd', 0, '20200815', 'pg13', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.0.2/NEWS');
 
@@ -331,7 +336,8 @@ INSERT INTO versions VALUES ('repack-pg13', '1.4.6-1', 'amd', 1, '20200930', 'pg
 INSERT INTO projects VALUES ('partman', 2, 0, 'hub', 4, 'https://github.com/pgpartman/pg_partman/releases',
   'partman', 1, 'partman.png', 'Partition Managemnt', 'https://github.com/pgpartman/pg_partman#pg-partition-manager');
 INSERT INTO releases VALUES ('partman-pg13', 6, 'partman', 'pgPartman',   '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('partman-pg13', '4.4.1-1',  'amd', 1, '20201223', 'pg13', '', '');
+INSERT INTO versions VALUES ('partman-pg13', '4.5.0-1',  'amd', 1, '20210331', 'pg13', '', '');
+INSERT INTO versions VALUES ('partman-pg13', '4.4.1-1',  'amd', 0, '20201223', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('hypopg', 2, 0, 'hub', 8, 'https://github.com/HypoPG/hypopg/releases',
   'hypopg', 1, 'whatif.png', 'Hypothetical Indexes', 'https://hypopg.readthedocs.io/en/latest/');
