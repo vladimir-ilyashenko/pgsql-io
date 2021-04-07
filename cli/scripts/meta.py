@@ -402,9 +402,11 @@ def get_list(p_isOLD, p_isExtensions, p_isJSON, p_isTEST, p_showLATEST, p_comp=N
   available_category_conditions = " AND p.is_extension = 0"
   ext_component = ""
 
+  extra_extensions = "('ora2pg', 'backrest', 'psqlodbc')"
+
   if p_isExtensions:
-    installed_category_conditions = " AND p.is_extension = 1"
-    available_category_conditions = " AND p.is_extension = 1"
+    installed_category_conditions = " AND ((p.is_extension = 1) OR (c.component in " + extra_extensions + "))"
+    available_category_conditions = " AND ((p.is_extension = 1) OR (v.component in " + extra_extensions + "))"
     if p_comp != "all":
       ext_component = " AND parent = '" + p_comp + "' "
 
@@ -445,7 +447,8 @@ def get_list(p_isOLD, p_isExtensions, p_isJSON, p_isTEST, p_showLATEST, p_comp=N
     " WHERE v.component = r.component AND r.project = p.project \n" + \
     "   AND p.is_extension = 1 AND p.category = c.category \n" + \
     "   AND " + util.like_pf("v.platform") + " \n" + \
-    "   AND v.parent in (select component from components) AND " + r_sup_plat + exclude_comp
+    "   AND v.parent in (select component from components) AND " + r_sup_plat + exclude_comp + \
+    "    OR v.component in " + extra_extensions
 
   if p_isExtensions:
     sql = installed + "\n UNION \n" + available + "\n ORDER BY 1, 3, 4, 6"
