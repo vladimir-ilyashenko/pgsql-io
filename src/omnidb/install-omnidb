@@ -7,23 +7,53 @@ if [ "$1" == "" ]; then
 fi
 
 ver=$1
-svr=omnidb-server-$ver
-deb=$(echo ${svr}_linux_x86_64.deb)
-rpm=$(echo ${svr}_linux_x86_64.rpm)
+svr=omnidb-server
+dbg=omnidb-plpgsql-debugger
 url=https://github.com/OmniDB/OmniDB/releases/download
-
 
 echo " "
 echo "## INSTALL OMNIDB v$ver ##########################################"
 source getPKMG.sh
 
+rm -rf omnidb-*
+rm -rf plugins
+rm -rf static
+
+set -x
+
 if [ "$PKMG" == "yum" ]; then
+  rpm=$(echo ${svr}-${ver}_linux_x86_64.rpm)
   wget $url/$ver/$rpm
   sudo rpm -ivh --force $rpm
 else
-  wget $url/$ver/$deb
-  sudo apt install -y $deb
+  sudo apt install -y wget unzip
+  flags="--quiet --show-progress"
+
+  deb=$(echo ${svr}_${ver}_linux_x86_64.deb)
+  wget $flags $url/$ver/$deb
+  sudo dpkg -i $PWD/$deb
+  rc=$?
+  if [ ! "$rc" == "0" ]; then
+    exit $rc
+  fi
+
+  deb_dbg=$(echo ${dbg}_${ver}_linux_x86_64.deb)
+  wget $flags $url/$ver/$deb_dbg
+  sudo dpkg -i $PWD/$deb_dbg
 fi
 
-sudo systemctl start  omnidb
-sudo systemctl status omnidb
+lgc=omnidb-pglogical
+zip=$(echo ${lgc}_1.1.0.zip)
+wget $url/2.17.0/$zip
+unzip $zip
+app_dir=/opt/omnidb-server/OmniDB_app/
+sudo mkdir -p $app_dir
+sudo cp -r plugins/ static/ $app_dir
+
+sudo systemctl restart omnidb
+sudo systemctl status  omnidb
+
+rm -rf omnidb-*
+rm -rf plugins
+rm -rf static
+
