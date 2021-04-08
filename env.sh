@@ -32,7 +32,7 @@ partmanV=4.5.0-1
 repackV=1.4.6-1
 
 adminV=5.1
-omniV=3.0.3b
+omniV=2.17.0
 
 audit13V=1.5.0-1
 postgisV=3.1.1-1
