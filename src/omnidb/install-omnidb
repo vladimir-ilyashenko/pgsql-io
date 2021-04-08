@@ -8,7 +8,6 @@ fi
 
 ver=$1
 svr=omnidb-server
-dbg=omnidb-plpgsql-debugger
 url=https://github.com/OmniDB/OmniDB/releases/download
 
 echo " "
@@ -29,7 +28,7 @@ else
   sudo apt install -y wget unzip
   flags="--quiet --show-progress"
 
-  deb=$(echo ${svr}_${ver}_linux_x86_64.deb)
+  deb=$(echo ${svr}_${ver}-debian-amd64.deb)
   wget $flags $url/$ver/$deb
   sudo dpkg -i $PWD/$deb
   rc=$?
@@ -37,21 +36,19 @@ else
     exit $rc
   fi
 
-  deb_dbg=$(echo ${dbg}_${ver}_linux_x86_64.deb)
-  wget $flags $url/$ver/$deb_dbg
-  sudo dpkg -i $PWD/$deb_dbg
 fi
 
 lgc=omnidb-pglogical
 zip=$(echo ${lgc}_1.1.0.zip)
-wget $url/2.17.0/$zip
+wget $url/$ver/$zip
 unzip $zip
 app_dir=/opt/omnidb-server/OmniDB_app/
-sudo mkdir -p $app_dir
 sudo cp -r plugins/ static/ $app_dir
 
+sudo cp omnidb.service /etc/systemd/system/.
+
+sudo systemctl daemon-reload
 sudo systemctl restart omnidb
-sudo systemctl status  omnidb
 
 rm -rf omnidb-*
 rm -rf plugins
