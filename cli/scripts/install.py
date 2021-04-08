@@ -56,7 +56,7 @@ except Exception as e:
 cmd = "pgsql" + os.sep + "io"
 os.system(cmd + " set GLOBAL REPO " + REPO)
 
-print("PGSQL installed.\n")
+print("IO installed.\n")
 
 sys.exit(0)
 
