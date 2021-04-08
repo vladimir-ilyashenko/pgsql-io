@@ -183,13 +183,16 @@ INSERT INTO versions VALUES ('pgtop-pg12', '4.0.0-1', 'amd',  0, '20201008', 'pg
 INSERT INTO projects VALUES ('esfdw', 5, 0, 'multicorn', 1, 'https://github.com/matthewfranglen/postgres-elasticsearch-fdw/releases',
   'esfdw', 1, 'esfdw.png', 'Elastic Search from PG', 'https://github.com/matthewfranglen/postgres-elasticsearch-fdw#postgresql-elastic-search-foreign-data-wrapper');
 INSERT INTO releases VALUES ('esfdw-pg13', 99, 'esfdw', 'ElasticSearchFDW', '', 'test', '', 1, 'MIT', '', '');
-INSERT INTO versions VALUES ('esfdw-pg13', '0.10.2', 'amd',  1, '20201027', 'pg13', 'PYTHON3', '');
+INSERT INTO versions VALUES ('esfdw-pg13', '0.11.0', 'amd',  1, '20210225', 'pg13', 'PYTHON3', '');
+INSERT INTO versions VALUES ('esfdw-pg13', '0.10.2', 'amd',  0, '20201027', 'pg13', 'PYTHON3', '');
 INSERT INTO versions VALUES ('esfdw-pg13', '0.10.0', 'amd',  0, '20201018', 'pg13', 'PYTHON3', '');
 
 INSERT INTO projects VALUES ('ora2pg', 5, 0, 'hub', 0, 'https://github.com/darold/ora2pg/releases',
   'ora2pg', 0, 'ora2pg.png', 'Migrate from Oracle to PG', 'https://ora2pg.darold.net');
 INSERT INTO releases VALUES ('ora2pg', 2, 'ora2pg', 'Oracle to PG', '', 'prod', '', 1, 'GPLv2', '', '');
-INSERT INTO versions VALUES ('ora2pg', '21.0', '', 1, '20201012', '', 'GCC PERL',
+INSERT INTO versions VALUES ('ora2pg', '21.1', '', 1, '20210401', '', 'GCC PERL',
+  'https://github.com/darold/ora2pg/releases/tag/v21.1');
+INSERT INTO versions VALUES ('ora2pg', '21.0', '', 0, '20201012', '', 'GCC PERL',
   'https://github.com/darold/ora2pg/releases/tag/v21.0');
 INSERT INTO versions VALUES ('ora2pg', '20.0', '', 0, '20200829', '', 'GCC PERL',
   'https://github.com/darold/ora2pg/releases/tag/v20.0');
@@ -261,8 +264,8 @@ INSERT INTO projects VALUES ('plprofiler', 3, 0, 'hub', 7, 'https://github.com/b
 INSERT INTO releases VALUES ('plprofiler-pg13', 0, 'plprofiler',    'PL/Profiler',  '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('plprofiler-pg13', '4.1-1', 'amd', 1, '20190823', 'pg13', '', '');
 
-INSERT INTO projects VALUES ('backrest', 2, 0, 'hub', 0, 'https://pgbackrest.org',
-  'backrest', 0, 'backrest.png', 'Backup & Restore', '');
+INSERT INTO projects VALUES ('backrest', 2, 0, 'hub', 0, 'https://github.com/pgbackrest/pgbackrest/releases',
+  'backrest', 0, 'backrest.png', 'Backup & Restore', 'https://pgbackrest.org');
 INSERT INTO releases VALUES ('backrest', 9, 'backrest', 'pgBackRest', '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('backrest', '2.33-1', 'amd', 1, '20210405', '', '', 'https://pgbackrest.org/release.html#2.33');
 INSERT INTO versions VALUES ('backrest', '2.32-1', 'amd', 0, '20210208', '', '', 'https://pgbackrest.org/release.html#2.32');
