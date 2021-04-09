@@ -31,6 +31,10 @@ bulkloadV=3.1.17-1
 partmanV=4.5.0-1
 repackV=1.4.6-1
 
+zooV=3.7.0
+kfkV=2.7.0
+dbzV=1.5.0
+
 adminV=5.1
 omniV=2.17.0
 
