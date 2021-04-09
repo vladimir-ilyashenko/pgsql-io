@@ -144,6 +144,16 @@ INSERT INTO versions VALUES ('pg13', '13.2-3',  'amd', 1, '20210211','', 'LIBC-2
 INSERT INTO versions VALUES ('pg13', '13.2-2',  'amd', 0, '20210211','', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg13', '13.2-1',  'amd', 0, '20210211','', 'LIBC-2.17', '');
 
+INSERT INTO projects VALUES ('debezium', 10, 8080, 'kafka', 2, 'https://debezium.io/releases/1.2/',
+  'Debezium', 0, 'debezium.png', 'Stream DB Changes', 'https://debezium.io');
+INSERT INTO releases VALUES ('debezium', 0, 'debezium', 'Debezium', '', 'test', '', 1, 'Apache', '', '');
+INSERT INTO versions VALUES ('debezium', '1.2.5', '', 1, '20200924', '', 'OPENJDK11', '');
+
+INSERT INTO projects VALUES ('kafka', 10, 9092, 'zookeeper', 1, 'https://kafka.apache.org/downloads',
+  'Kafka', 0, 'kafka.png', 'Streaming Platform', 'https://kafka.apache.org');
+INSERT INTO releases VALUES ('kafka', 0, 'kafka', 'Kafka', '', 'test', '', 1, 'Apache', '', '');
+INSERT INTO versions VALUES ('kafka', '2.7.0', '', 1, '20201221', '', 'EL8  OPENJDK11', 'https://downloads.apache.org/kafka/2.7.0/RELEASE_NOTES.html');
+
 INSERT INTO projects VALUES ('cassandrafdw', 5, 0, 'hub', 0, 'https://github.com/pgsql-io/cassandra_fdw/releases', 
   'cstarfdw', 1, 'cstar.png', 'Cassandra from PG', 'https://github.com/pgsql-io/cassandra_fdw#cassandra_fdw');
 INSERT INTO releases VALUES ('cassandrafdw-pg12', 12, 'cassandrafdw', 'CassandraFDW','','test', '', 1, 'AGPLv3', '', '');
