@@ -78,7 +78,7 @@ mode_list = ["start", "stop", "restart", "status", "list", "info", "update",
              "remove", "reload", "activity", "help", "get", "set", "unset",
              "repolist", "repo-pkgs", "discover",
              "register", "top", "--autostart", "--fips", "--relnotes", "--start",
-             "--help", "--json", "--test", "--extensions",
+             "--help", "--json", "--jsonp", "--test", "--extensions",
              "--list", "--old", "--showduplicates", "-y", "-t", "-d"  ,
              "--verbose", "--debug", "--debug2"]
 
@@ -1074,6 +1074,13 @@ if "--json" in args:
   isJSON = True
   args.remove("--json")
   os.environ['isJson'] = "True"
+
+isPRETTY = False
+if "--jsonp" in args:
+  isJSON = True
+  isPRETTY = True
+  args.remove("--jsonp")
+  os.environ['isPretty'] = "True"
 
 if "--debug" in args:
   args.remove('--debug')
