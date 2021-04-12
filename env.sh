@@ -10,14 +10,14 @@ P10=10.16-1
 P96=9.6.21-1
 P95=9.5.26-1
 
-esfdwV=0.10.2
+esfdwV=0.11.1
 odbcV=13.00-1
 backrestV=2.33-1
 bouncerV=1.15.0-1
 pgtopV=3.7.0-1
 proctabV=0.0.8.1-1
 citusV=10.0.3-1
-multicornV=1.4.0-1
+multicornV=1.4.1-1
 orafceV=3.15.0-1
 fdV=1.1.0-1
 httpV=1.3.1-1

@@ -469,6 +469,7 @@ initPG () {
     initC "ddlx-pg$pgM" "ddlx" "$ddlxV" "$outPlat" "postgres/ddlx" "" "" "nil"
     initC "timescaledb-pg$pgM" "timescaledb" "$timescaleV"  "$outPlat" "postgres/timescale" "" "" "nil"
     initC "bulkload-pg$pgM" "bulkload" "$bulkloadV" "$outPlat" "postgres/bulkload" "" "" "nil"
+    initC "multicorn-pg$pgM" "multicorn" "$multicornV" "$outPlat" "postgres/multicorn" "" "" "nil"
   fi
 
   #initC "cassandra" "cassandra" "$cstarV" "" "cassandra" "" "" "nil"
@@ -476,21 +477,20 @@ initPG () {
   ### Not supported in Open Source (for testing only) #############################
   initC "pgadmin"   "pgadmin"   "$adminV" "" "postgres/pgadmin" "" "" "Y"
   initC "omnidb"    "omnidb"    "$omniV"  "" "postgres/omnidb"  "" "" "Y"
-  initC "zookeeper" "zookeeper" "$zooV"   "" "apache/zookeeper" "" "" "Y"
-  initC "kafka"     "kafka"     "$kfkV"   "" "apache/kafka"     "" "" "Y"
-  initC "debezium"  "debezium"  "$dbzV"   "" "debezium"         "" "" "Y"
+  #initC "zookeeper" "zookeeper" "$zooV"   "" "apache/zookeeper" "" "" "Y"
+  #initC "kafka"     "kafka"     "$kfkV"   "" "apache/kafka"     "" "" "Y"
+  #initC "debezium"  "debezium"  "$dbzV"   "" "debezium"         "" "" "Y"
 
   if [ "$pgM" == "12" ]; then 
 
     initC "pldebugger-pg$pgM" "pldebugger" "$debuggerV" "$outPlat" "postgres/pldebugger" "" "" "nil"
 
-    if [ "$outPlat" == "amd" ]; then
+    #if [ "$outPlat" == "amd" ]; then
       #initC "cassandrafdw-pg$pgM" "cassandrafdw" "$cstarfdwV" "$outPlat" "postgres/cassandrafdw" "" "" "nil"
 
       #initC "pgtop-pg$pgM" "pgtop" "$pgtopV" "$outPlat" "postgres/pgtop" "" "" "nil"
       #initC "proctab-pg$pgM" "proctab" "$proctabV" "$outPlat" "postgres/proctab" "" "" "nil"
-      initC "multicorn-pg$pgM" "multicorn" "$multicornV" "$outPlat" "postgres/multicorn" "" "" "nil"
-    fi
+    #fi
 
     #initC "cassandra" "cassandra" "$cstarV" "" "cassandra" "" "" "nil"
 

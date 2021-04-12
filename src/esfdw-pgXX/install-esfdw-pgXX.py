@@ -10,7 +10,7 @@ print('   ' + cmd)
 os.system(cmd)
 
 esfdwV = str(sys.argv[1])
-cmd="python3 -m pip install --user pg_es_fdw='" + esfdwV + "'"
+cmd="python3 -m pip install --user pg_es_fdw=='" + esfdwV + "'"
 print('   ' + cmd)
 os.system(cmd)
 
