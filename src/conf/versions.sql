@@ -170,7 +170,7 @@ INSERT INTO versions VALUES ('cassandrafdw-pg12', '3.1.5-1', 'amd', 1, '20191230
 
 INSERT INTO projects VALUES ('mongofdw', 5, 0, 'hub', 0, 'https://github.com/EnterpriseDB/mongo_fdw/releases', 
   'mongofdw', 1, 'mongodb.png', 'MongoDB Queries from PG', 'https://github.com/EnterpriseDB/mongo_fdw#mongo_fdw');
-INSERT INTO releases VALUES ('mongofdw-pg13', 14, 'mongofdw', 'MongoFDW', '', 'prod', '', 1, 'AGPLv3', '', '');
+INSERT INTO releases VALUES ('mongofdw-pg13',  3, 'mongofdw', 'MongoFDW', '', 'prod', '', 1, 'AGPLv3', '', '');
 INSERT INTO versions VALUES ('mongofdw-pg13', '5.2.8-1', 'amd', 1, '20201027', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('hivefdw', 5, 0, 'hub', 0, 'https://github.com/pgsql-io/hive_fdw/releases', 
@@ -186,7 +186,7 @@ INSERT INTO versions VALUES ('mysqlfdw-pg13', '2.5.4-1', 'amd', 0, '20200802', '
 
 INSERT INTO projects VALUES ('tdsfdw', 5, 0, 'hub', 0, 'https://github.com/tds-fdw/tds_fdw/releases',
   'tdsfdw', 1, 'tds.png', 'SQL Server & Sybase from PG', 'https://github.com/tds-fdw/tds_fdw/#tds-foreign-data-wrapper');
-INSERT INTO releases VALUES ('tdsfdw-pg13', 3, 'tdsfdw', 'TDS FDW', '', 'prod', '', 1, 'POSTGRES', '', '');
+INSERT INTO releases VALUES ('tdsfdw-pg13', 4, 'tdsfdw', 'TDS FDW', '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('tdsfdw-pg13', '2.0.2-1', 'amd',  1, '20200926', 'pg13', '', 'https://github.com/tds-fdw/tds_fdw/releases/tag/v2.0.2');
 
 INSERT INTO projects VALUES ('proctab', 9, 0, 'hub', 0, 'https://github.com/markwkm/pg_proctab/releases',
@@ -201,7 +201,7 @@ INSERT INTO versions VALUES ('pgtop-pg12', '4.0.0-1', 'amd',  0, '20201008', 'pg
 
 INSERT INTO projects VALUES ('esfdw', 5, 0, 'multicorn', 1, 'https://github.com/matthewfranglen/postgres-elasticsearch-fdw/releases',
   'esfdw', 1, 'esfdw.png', 'Elastic Search from PG', 'https://github.com/matthewfranglen/postgres-elasticsearch-fdw#postgresql-elastic-search-foreign-data-wrapper');
-INSERT INTO releases VALUES ('esfdw-pg13', 99, 'esfdw', 'ElasticSearchFDW', '', 'prod', '', 1, 'MIT', '', '');
+INSERT INTO releases VALUES ('esfdw-pg13',  3, 'esfdw', 'ElasticSearchFDW', '', 'prod', '', 1, 'MIT', '', '');
 INSERT INTO versions VALUES ('esfdw-pg13', '0.11.1', 'amd',  1, '20210409', 'pg13', 'PYTHON3', '');
 
 INSERT INTO projects VALUES ('ora2pg', 5, 0, 'hub', 0, 'https://github.com/darold/ora2pg/releases',
@@ -231,9 +231,9 @@ INSERT INTO releases VALUES ('orafce-pg13', 2, 'orafce', 'OraFCE', '', 'prod', '
 INSERT INTO versions VALUES ('orafce-pg13', '3.15.0-1',  'amd', 1, '20210311', 'pg13', '', '');
 INSERT INTO versions VALUES ('orafce-pg13', '3.14.0-1',  'amd', 0, '20201222', 'pg13', '', '');
 
-INSERT INTO projects VALUES ('fixeddecimal', 5, 0, 'hub', 0, 'https://github.com/pgsql-io/fixeddecimal/releases',
+INSERT INTO projects VALUES ('fixeddecimal', 2, 0, 'hub', 0, 'https://github.com/pgsql-io/fixeddecimal/releases',
   'fixeddecimal', 1, 'fixeddecimal.png', 'Much faster than NUMERIC', 'https://github.com/pgsql-io/fixeddecimal');
-INSERT INTO releases VALUES ('fixeddecimal-pg13', 2, 'fixeddecimal', 'FixedDecimal', '', 'prod', '', 1, 'POSTGRES', '', '');
+INSERT INTO releases VALUES ('fixeddecimal-pg13', 99, 'fixeddecimal', 'FixedDecimal', '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('fixeddecimal-pg13', '1.1.0-1',  'amd', 1, '20201119', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('plr', 3, 0, 'hub', 0, 'https://github.com/postgres-plr/plr/releases',
@@ -303,7 +303,7 @@ INSERT INTO versions VALUES ('anon-pg13', '0.7.1-1', 'amd', 0, '20200929', 'pg13
 
 INSERT INTO projects VALUES ('citus', 2, 0, 'hub',0, 'https://github.com/citusdata/citus/releases',
   'citus', 1, 'citus.png', 'Multi Node Data & Queries', 'https://github.com/citusdata/citus');
-INSERT INTO releases VALUES ('citus-pg13', 99, 'citus', 'Citus', '', 'prod', '', 1, 'AGPLv3', '', '');
+INSERT INTO releases VALUES ('citus-pg13',  5, 'citus', 'Citus', '', 'prod', '', 1, 'AGPLv3', '', '');
 INSERT INTO versions VALUES ('citus-pg13', '10.0.3-1', 'amd', 1, '20210315', 'pg13', '', 'https://github.com/citusdata/citus/releases/tag/v10.0.3');
 
 INSERT INTO projects VALUES ('cron', 2, 0, 'hub',0, 'https://github.com/citusdata/pg_cron/releases',
