@@ -10,10 +10,6 @@ echo " "
 echo "## INSTALL ZOOKEEPER v$1 ######################################"
 source getPKMG.sh
 
-set -x
-
-sudo apt-get install -y openjdk-11-jdk
-
 zookeeperV=$1
 
 id -u zk
@@ -23,8 +19,10 @@ if [ "$rc" == "1" ]; then
 fi
 
 if [ "$PKMG" == "yum" ]; then
+  sudo yum install -y java-11-openjdk-devel
   sudo usermod -a -G wheel zk
 else
+  sudo apt-get install -y openjdk-11-jdk
   sudo usermod -a -G sudo zk
 fi
 

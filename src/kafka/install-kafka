@@ -10,8 +10,6 @@ echo " "
 echo "## INSTALL KAFKA v$1 ######################################"
 source getPKMG.sh
 
-set -x
-
 kafkaV=$1
 kafkaD=kafka_2.13-$kafkaV
 kafkaF=$kafkaD.tgz
@@ -23,6 +21,14 @@ tar xzf $kafkaF
 
 sudo rm -rf /usr/local/kafka
 sudo mv $kafkaD /usr/local/kafka
+
+if [ "$PKMG" == "yum" ]; then
+  java_home=/usr/lib/jvm/jre-11-openjdk
+else
+  java_home=/usr/lib/jvm/java-11-openjdk-amd64
+fi
+cp kafka.service.orig kafka.service
+sed -i "s|java_home|$java_home|g" kafka.service
 
 sudo cp kafka.service     /etc/systemd/system/.
 rm -rf $kafkaF
