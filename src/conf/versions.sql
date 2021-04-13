@@ -145,22 +145,22 @@ INSERT INTO versions VALUES ('pg13', '13.2-1',  'amd', 0, '20210211','', 'LIBC-2
 
 INSERT INTO projects VALUES ('debezium', 10, 8080, 'kafka', 2, 'https://debezium.io/releases/1.2/',
   'Debezium', 0, 'debezium.png', 'Stream DB Changes', 'https://debezium.io');
-INSERT INTO releases VALUES ('debezium', 0, 'debezium', 'Debezium', '', 'test', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('debezium', '1.5.0', '', 2, '20210408', '', 'OPENJDK11', '');
-INSERT INTO versions VALUES ('debezium', '1.2.5', '', 0, '20200924', '', 'OPENJDK11', '');
+INSERT INTO releases VALUES ('debezium', 0, 'debezium', 'Debezium', '', 'prod', '', 1, 'Apache', '', '');
+INSERT INTO versions VALUES ('debezium', '1.5.0', '', 2, '20210408', '', '', '');
+INSERT INTO versions VALUES ('debezium', '1.2.5', '', 0, '20200924', '', '', '');
 
 INSERT INTO projects VALUES ('kafka', 10, 9092, 'zookeeper', 1, 'https://kafka.apache.org/downloads',
   'Kafka', 0, 'kafka.png', 'Streaming Platform', 'https://kafka.apache.org');
-INSERT INTO releases VALUES ('kafka', 0, 'kafka', 'Kafka', '', 'test', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('kafka', '2.7.0', '', 2, '20201221', '', 'OPENJDK11', 'https://downloads.apache.org/kafka/2.7.0/RELEASE_NOTES.html');
-INSERT INTO versions VALUES ('kafka', '2.6.1', '', 0, '20210107', '', 'OPENJDK11', 'https://downloads.apache.org/kafka/2.6.0/RELEASE_NOTES.html');
+INSERT INTO releases VALUES ('kafka', 0, 'kafka', 'Kafka', '', 'prod', '', 1, 'Apache', '', '');
+INSERT INTO versions VALUES ('kafka', '2.7.0', '', 2, '20201221', '', '', 'https://downloads.apache.org/kafka/2.7.0/RELEASE_NOTES.html');
+INSERT INTO versions VALUES ('kafka', '2.6.1', '', 0, '20210107', '', '', 'https://downloads.apache.org/kafka/2.6.0/RELEASE_NOTES.html');
 
 INSERT INTO projects VALUES ('zookeeper', 13, 2181, 'hub', 1, 'https://zookeeper.apache.org/releases.html#releasenotes',
   'zookeeper', 0, 'zookeeper.png', 'Distributed Key-Store for HA', 'https://zookeeper.apache.org');
 INSERT INTO releases VALUES ('zookeeper', 5, 'zookeeper', 'Zookeeper', '', 'prod', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('zookeeper', '3.7.0', '',  2, '20210327', '', 'OPENJDK11',
+INSERT INTO versions VALUES ('zookeeper', '3.7.0', '',  2, '20210327', '', '',
   'https://zookeeper.apache.org/doc/r3.7.0/releasenotes.html');
-INSERT INTO versions VALUES ('zookeeper', '3.6.2', '',  0, '20200909', '', 'OPENJDK11',
+INSERT INTO versions VALUES ('zookeeper', '3.6.2', '',  0, '20200909', '', '',
   'https://zookeeper.apache.org/doc/r3.6.2/releasenotes.html');
 
 INSERT INTO projects VALUES ('cassandrafdw', 5, 0, 'hub', 0, 'https://github.com/pgsql-io/cassandra_fdw/releases', 
