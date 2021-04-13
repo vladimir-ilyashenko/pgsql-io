@@ -1,6 +1,19 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
+if [ "$1" == "" ]; then
+  echo "ERROR: version num parm required"
+  exit 1
+fi
+
+echo " "
+echo "## INSTALL ZOOKEEPER v$1 ######################################"
+source getPKMG.sh
+
+set -x
+
+sudo apt-get install -y openjdk-11-jdk
+
 zookeeperV=$1
 
 id -u zk
@@ -8,12 +21,18 @@ rc=$?
 if [ "$rc" == "1" ]; then
   sudo useradd zk -m
 fi
-sudo usermod -a -G wheel zk
+
+if [ "$PKMG" == "yum" ]; then
+  sudo usermod -a -G wheel zk
+else
+  sudo usermod -a -G sudo zk
+fi
+
 sudo usermod --shell /bin/bash zk
 
 zookeeperD=apache-zookeeper-$zookeeperV-bin
 zookeeperF=$zookeeperD.tar.gz
-URL=http://mirror.cc.columbia.edu/pub/software/apache/zookeeper
+URL=https://mirrors.ocf.berkeley.edu/apache/zookeeper
 rm -rf $zookeeperF
 wget $URL/zookeeper-$zookeeperV/$zookeeperF
 tar xzf $zookeeperF
@@ -31,4 +50,6 @@ rm -f $zookeeperF
 sudo systemctl daemon-reload
 sudo mkdir -p /var/zookeeper
 sudo chown zk:zk -R /var/zookeeper
+
+sudo systemctl start zookeeper
 
