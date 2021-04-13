@@ -1,21 +1,25 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
+if [ "$1" == "" ]; then
+  echo "ERROR: version num parm required"
+  exit 1
+fi
+
+echo " "
+echo "## INSTALL DEBEZIUM v$1.Final ###########################"
+source getPKMG.sh
+
+#set -x
+
 dbzV=$1.Final
-
-echo ""
-echo "# Installing Debezium $dbzV ###############"
-
 repo=https://repo1.maven.org/maven2/io/debezium
 connectD=/usr/local/kafka/connect
 sudo mkdir -p $connectD
 
 
-
-
 getConn () {
   pDB=$1
-
 
   dbzB=debezium-connector-$pDB
   dbzF=$dbzB-$dbzV-plugin.tar.gz
@@ -42,6 +46,3 @@ getConn oracle
 getConn sqlserver
 getConn mysql
 getConn mongodb
-getConn db2
-getConn cassandra
-
