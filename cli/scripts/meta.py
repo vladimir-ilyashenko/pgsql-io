@@ -667,7 +667,7 @@ def get_version(p_comp):
 def get_current_version(p_comp):
   try:
     c = con.cursor()
-    sql = "SELECT version FROM versions WHERE component = ? AND is_current=1"
+    sql = "SELECT version FROM versions WHERE component = ? AND is_current >= 1"
     c.execute(sql,[p_comp])
     data = c.fetchone()
     if data is None:
