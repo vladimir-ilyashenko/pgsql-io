@@ -56,6 +56,10 @@ fi
 
 ## prod ready across platforms #######################
 
+if [ "$1" == "wal2json" ]; then
+  build wal2json $wal2jsonFullV $2 wal2json
+fi
+
 if [ "$1" == "mongofdw" ]; then
   build mongofdw $mongofdwFullV $2 mongofdw
 fi

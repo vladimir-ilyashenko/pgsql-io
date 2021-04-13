@@ -12,6 +12,10 @@ pg11BuildV=3
 pg10V="10.16"
 pg10BuildV=1
 
+wal2jsonFullV=2.3
+wal2jsonShortV=
+wal2jsonBuildV=1
+
 odbcFullV=13.00
 odbcShortV=
 odbcBuildV=2

@@ -665,6 +665,7 @@ while true; do
     --build-pgtsql ) buildTSQL=true; tsqlSource=$2; shift; shift ;;
     --build-tdsfdw ) buildTDSFDW=true; Source=$2; shift; shift ;;
     --build-mongofdw ) buildMongoFDW=true Source=$2; shift; shift ;;
+    --build-wal2json ) buildWal2json=true Source=$2; shift; shift ;;
     --build-mysqlfdw ) buildMySQLFDW=true; Source=$2; shift; shift ;;
     --build-oraclefdw ) buildOracleFDW=true; Source=$2; shift; shift ;;
     --build-orafce ) buildOrafce=true; Source=$2; shift; shift ;;
@@ -731,6 +732,10 @@ fi
 
 if [[ $buildMongoFDW == "true" ]]; then
 	buildComp mongofdw "$mongofdwShortV" "$mongofdwFullV" "$mongofdwBuildV" "$Source"
+fi
+
+if [[ $buildWal2json == "true" ]]; then
+	buildComp wal2json "$wal2jsonShortV" "$wal2jsonFullV" "$wal2jsonBuildV" "$Source"
 fi
 
 if [[ $buildTDSFDW == "true" ]]; then
