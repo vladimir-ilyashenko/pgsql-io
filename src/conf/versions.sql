@@ -101,7 +101,8 @@ INSERT INTO categories VALUES (9,  87, 'Management & Monitoring', 'Manage');
 -- ## HUB ################################
 INSERT INTO projects VALUES ('hub',0, 0, 'hub', 0, 'https://github.com/pgsql-io/pgsql-io','',0,'','','');
 INSERT INTO releases VALUES ('hub', 1, 'hub', '', '', 'hidden', '', 1, '', '', '');
-INSERT INTO versions VALUES ('hub', '6.42', '',  1, '20210412', '', '', '');
+INSERT INTO versions VALUES ('hub', '6.43', '',  1, '20210413', '', '', '');
+INSERT INTO versions VALUES ('hub', '6.42', '',  0, '20210412', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.41', '',  0, '20210408', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.40', '',  0, '20210326', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.39', '',  0, '20210317', '', '', '');
@@ -153,7 +154,6 @@ INSERT INTO projects VALUES ('kafka', 10, 9092, 'zookeeper', 1, 'https://kafka.a
   'Kafka', 0, 'kafka.png', 'Streaming Platform', 'https://kafka.apache.org');
 INSERT INTO releases VALUES ('kafka', 0, 'kafka', 'Kafka', '', 'prod', '', 1, 'Apache', '', '');
 INSERT INTO versions VALUES ('kafka', '2.7.0', '', 2, '20201221', '', '', 'https://downloads.apache.org/kafka/2.7.0/RELEASE_NOTES.html');
-INSERT INTO versions VALUES ('kafka', '2.6.1', '', 0, '20210107', '', '', 'https://downloads.apache.org/kafka/2.6.0/RELEASE_NOTES.html');
 
 INSERT INTO projects VALUES ('zookeeper', 13, 2181, 'hub', 1, 'https://zookeeper.apache.org/releases.html#releasenotes',
   'zookeeper', 0, 'zookeeper.png', 'Distributed Key-Store for HA', 'https://zookeeper.apache.org');

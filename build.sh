@@ -477,9 +477,9 @@ initPG () {
   ### Not supported in Open Source (for testing only) #############################
   initC "pgadmin"   "pgadmin"   "$adminV" "" "postgres/pgadmin" "" "" "Y"
   initC "omnidb"    "omnidb"    "$omniV"  "" "postgres/omnidb"  "" "" "Y"
-  #initC "zookeeper" "zookeeper" "$zooV"   "" "apache/zookeeper" "" "" "Y"
-  #initC "kafka"     "kafka"     "$kfkV"   "" "apache/kafka"     "" "" "Y"
-  #initC "debezium"  "debezium"  "$dbzV"   "" "debezium"         "" "" "Y"
+  initC "zookeeper" "zookeeper" "$zooV"   "" "zookeeper"        "" "" "Y"
+  initC "kafka"     "kafka"     "$kfkV"   "" "kafka"            "" "" "Y"
+  initC "debezium"  "debezium"  "$dbzV"   "" "debezium"         "" "" "Y"
 
   if [ "$pgM" == "12" ]; then 
 
