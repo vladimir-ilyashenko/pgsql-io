@@ -145,13 +145,13 @@ INSERT INTO versions VALUES ('pg13', '13.2-3',  'amd', 1, '20210211','', 'LIBC-2
 INSERT INTO versions VALUES ('pg13', '13.2-2',  'amd', 0, '20210211','', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg13', '13.2-1',  'amd', 0, '20210211','', 'LIBC-2.17', '');
 
-INSERT INTO projects VALUES ('debezium', 10, 8080, 'kafka', 2, 'https://debezium.io/releases/1.2/',
+INSERT INTO projects VALUES ('debezium', 10, 8080, 'kafka', 3, 'https://debezium.io/releases/1.5/',
   'Debezium', 0, 'debezium.png', 'Stream DB Changes', 'https://debezium.io');
 INSERT INTO releases VALUES ('debezium', 0, 'debezium', 'Debezium', '', 'prod', '', 1, 'Apache', '', '');
 INSERT INTO versions VALUES ('debezium', '1.5.0', '', 2, '20210408', '', '', '');
 INSERT INTO versions VALUES ('debezium', '1.2.5', '', 0, '20200924', '', '', '');
 
-INSERT INTO projects VALUES ('kafka', 10, 9092, 'zookeeper', 1, 'https://kafka.apache.org/downloads',
+INSERT INTO projects VALUES ('kafka', 10, 9092, 'zookeeper', 2, 'https://kafka.apache.org/downloads',
   'Kafka', 0, 'kafka.png', 'Streaming Platform', 'https://kafka.apache.org');
 INSERT INTO releases VALUES ('kafka', 0, 'kafka', 'Kafka', '', 'prod', '', 1, 'Apache', '', '');
 INSERT INTO versions VALUES ('kafka', '2.7.0', '', 2, '20201221', '', '', 'https://downloads.apache.org/kafka/2.7.0/RELEASE_NOTES.html');
