@@ -908,7 +908,7 @@ def read_env_file(component):
   return
 
 
-def remember_pgpassword(p_passwd, p_port):
+def get_pgpass_file():
   if get_platform() == "Windows":
     pw_dir = os.getenv("APPDATA") + "\postgresql"
     if not os.path.isdir(pw_dir):
@@ -922,7 +922,60 @@ def remember_pgpassword(p_passwd, p_port):
       if home is not None:
         pw_file = home + "/.pgpass"
       else:
-        fatal_error("No valid HOME for user %s" % get_user())
+        message("No valid HOME for user %s" % get_user(), "error")
+        return(None)
+
+  return(pw_file)
+
+
+def retrieve_pgpassword(p_host="localhost", p_port="5432", p_db="*", p_user="postgres"):
+  pw_file = get_pgpass_file()
+  if pw_file == None:
+    return None
+
+  if os.path.isfile(pw_file):
+    s_pw = read_file_string(pw_file)
+  else:
+    return(None)
+
+  lines = s_pw.split("\n")
+  for line in lines:
+    fields = line.split(":")
+    if len(fields) != 5:
+      continue
+
+    host = f[0]
+    port = f[1]
+    db = f[2]
+    user = f[3]
+    pwd = f[4]
+    
+    print(f"DEBUG: host={host}, port={port}, db={db}, user={user}, pwd={pwd}")
+
+    if host != "*" and host != p_host:
+      continue
+
+    if port != "*" and port != p_port:
+      continue
+
+    if db != "*" and db != p_db:
+      continue
+
+    if user != "*" and user != p_user:
+      continue
+
+    ## we've got a match
+    return(pwd)
+
+  ## we looped through the file and never found a match
+  return(None)
+  
+
+def remember_pgpassword(p_passwd, p_port="5432", p_host="localhost", p_db="*", p_user="postgres"):
+
+  pw_file = get_pgpass_file()
+  if pw_file == None:
+    return None
 
   if os.path.isfile(pw_file):
     s_pw = read_file_string(pw_file)
@@ -935,19 +988,24 @@ def remember_pgpassword(p_passwd, p_port):
   escaped_passwd = p_passwd
   escaped_passwd = escaped_passwd.replace("\\", "\\\\")
   escaped_passwd = escaped_passwd.replace(":", "\:")
-  s_localhost = "localhost:" + p_port + ":*:postgres:" + escaped_passwd
-  file.write(s_localhost + "\n")
-  s_127 = "127.0.0.1:" + p_port + ":*:postgres:" + escaped_passwd
-  file.write(s_127 + "\n")
 
-  ## append the old (skipping duplicate lines)
+  prt_db_usr_pwd = p_port + ":" + p_db + ":" + p_user + ":" + escaped_passwd
+  s_host = p_host + ":" + prt_db_usr_pwd
+  file.write(s_host + "\n")
+  s_host2 = s_host
+  if p_host == "localhost":
+    s_host2 = "127.0.0.1:" + prt_db_usr_pwd
+    file.write(s_host2 + "\n")
+
+  ## append the old (skipping duplicate & blank lines)
   if s_pw > "":
     lines = s_pw.split("\n")
     for line in lines:
-      if ((line == s_localhost) or (line == s_127)):
+      if ((line == s_host) or (line == s_host2)):
         pass
       else:
-        file.write(line + "\n")
+        if line.strip() > "":
+          file.write(line + "\n")
 
   file.close()
 
