@@ -14,7 +14,6 @@ MY_HOME = os.getenv('MY_HOME', '')
 homedir = os.path.join(MY_HOME, pgver)
 logdir = os.path.join(homedir, pgver)
 datadir = util.get_column('datadir', pgver)
-isJson = os.getenv("isJson", None)
 
 first_time="no"
 if not os.path.isdir(datadir):
@@ -31,16 +30,8 @@ logfile   = util.get_column('logdir', pgver) + os.sep + "postgres.log"
 svcname   = util.get_column('svcname', pgver, 'PostgreSQL ' + dotver + ' Server')
 port      = util.get_column('port', pgver)
 
-isJson = os.getenv("isJson", None)
 msg = pgver + " starting on port " + str(port)
-if isJson:
-  jsonMsg = {}
-  jsonMsg['status'] = "wip"
-  jsonMsg['component'] = pgver
-  jsonMsg['msg'] = msg
-  print(json.dumps([jsonMsg]))
-else:
-  print(msg)
+util.message(msg)
 
 cmd = sys.executable + " " + homedir + os.sep  + "run-pgctl.py"
 
@@ -53,11 +44,11 @@ else:
 isYes = os.getenv("isYes", "False")
 pgName = os.getenv("pgName", "")
 if ((pgName > "") and (isYes == "True")):
-   print("\n # waiting for DB to start...")
+   util.message("\n # waiting for DB to start...")
    time.sleep(4)
    cmd = os.path.join(pgver, 'bin', 'createdb')
    cmd = cmd + " -U postgres -w -e -p " + str(port) + " " + str(pgName)
-   print("\n # " + cmd)
+   util.message("\n # " + cmd)
 
    cmd = os.path.join(MY_HOME, cmd)
    os.system(cmd)

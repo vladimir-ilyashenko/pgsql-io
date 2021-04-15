@@ -9,7 +9,7 @@ import util, startup
 
 pgver = "pg9X"
 
-print(pgver + " reloading")
+util.message(pgver + " reloading")
 
 autostart = util.get_column('autostart', pgver)
 if autostart == "on":

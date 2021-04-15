@@ -27,8 +27,6 @@ parser.add_argument("--svcname", type=str, default="")
 parser.usage = parser.format_usage().replace("--autostart {on,off}","--autostart={on,off}")
 args = parser.parse_args()
 
-isJson = os.getenv("isJson", None)
-
 autostart = util.get_column('autostart', pgver)
 app_datadir = util.get_comp_datadir(pgver)
 port = util.get_comp_port(pgver)
@@ -38,18 +36,9 @@ is_running = False
 if app_datadir != "" and util.is_socket_busy(int(port), pgver):
   is_running = True
   msg = "You cannot change the configuration when the server is running."
-  if isJson:
-    jsonMsg = {}
-    jsonMsg['status'] = "error"
-    jsonMsg['component'] = pgver
-    jsonMsg['msg'] = msg
-    print(json.dumps([jsonMsg]))
-  else:
-    print(msg)
+  util.message(msg, "error")
 
   sys.exit(0)
-
-
 
 ## DATADIR, PORT , LOGDIR & SVCNAME ###########################
 if args.datadir > '':

@@ -15,14 +15,7 @@ from ConsoleLogger import ConsoleLogger
 
 
 def fatal_error(p_msg):
-  if isJson:
-    sys.stdout = previous_stdout
-    jsonMsg = {}
-    jsonMsg['status'] = "error"
-    jsonMsg['msg'] = p_msg
-    print(json.dumps([jsonMsg]))
-  else:
-    print(p_msg)
+  util.message(p_msg, "error")
   sys.exit(1)
   return
 
@@ -51,12 +44,9 @@ isSilent = os.getenv("isSilent", None)
 previous_stdout = sys.stdout
 sys.stdout = ConsoleLogger()
 
-isJson = os.getenv("isJson", None)
-
 pg_home = os.path.join(MY_HOME, pgver)
 
-print(" ")
-print("## Initializing " + pgver + " #######################")
+util.message("\n## Initializing " + pgver + " #######################")
 
 ## PORT ###############################################
 if args.port > 0:
@@ -120,7 +110,7 @@ if not os.path.isdir(pg_log):
   os.mkdir(pg_log)
 
 ## PERMISSIONS ########################################
-print("\nSetting secure directory permissions")
+util.message("\nSetting secure directory permissions")
 if util.is_admin():
   chown_cmd = "chown " + svcuser + ":" + svcuser
   if not startup.user_exists(svcuser):
@@ -133,7 +123,7 @@ os.chmod(pg_data, 0o600)
 logfile = os.path.join(pg_log, "install.log")
 
 ## INITDB #############################################
-print('\nInitializing Postgres DB with:')
+util.message('\nInitializing Postgres DB with:')
 initdb_cmd = os.path.join(pg_home, 'bin', 'initdb')
 
 # default to utf8 across platforms
@@ -156,7 +146,7 @@ else:
 if svcuser > "" and svcuser != curr_user:
   batcmd = "sudo su - " + svcuser + " -c '" + batcmd + "'"
 
-print('  ' + batcmd)
+util.message('  ' + batcmd)
 err = os.system(batcmd)
 
 
@@ -182,10 +172,7 @@ if is_password:
   shutil.copy(src_dir + "pg_hba.conf", pg_data)
   os.remove(pgpass_file)
 
-if isJson:
-  sys.stdout = previous_stdout
-  msg = '[{"status":"complete","msg":"Initialization completed.","component":"' + pgver + '"}]'
-  print(msg)
+util.message("Initialization Completed")
 
 if update_install_date:
   util.update_installed_date(pgver)

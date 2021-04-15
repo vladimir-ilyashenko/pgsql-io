@@ -7,7 +7,6 @@ from __future__ import print_function, division
 
 import os, sys, json
 
-
 MY_HOME = os.getenv("MY_HOME", "")
 scripts_path = os.path.join(MY_HOME, 'hub', 'scripts')
 scripts_lib_path = os.path.join(MY_HOME, 'hub', 'scripts', 'lib')
@@ -27,24 +26,14 @@ datadir = util.get_column('datadir', pgver)
 
 pidfile = os.path.join(datadir, "postmaster.pid")
 
-isJson = os.getenv("isJson", None)
-
 if os.path.isfile(pidfile):
   with open(pidfile, 'r') as f:
     pid = f.readline().rstrip(os.linesep)
 else:
-  print(pgver + " stopped")
+  util.message(pgver + " stopped")
   sys.exit(0)
 
-msg = pgver + " stopping"
-if isJson:
-  jsonMsg = {}
-  jsonMsg['status'] = "wip"
-  jsonMsg['component'] = pgver
-  jsonMsg['msg'] = msg
-  print(json.dumps([jsonMsg]))
-else:
-  print(msg)
+util.message(pgver + " stopping")
 
 pg_ctl = os.path.join(homedir, "bin", "pg_ctl")
 
@@ -57,14 +46,6 @@ else:
   rc = util.system(stop_cmd)
 
 if (rc > 0):
-  msg = "problem stopping " + pgver
-  if isJson:
-    jsonMsg = {}
-    jsonMsg['status'] = "error"
-    jsonMsg['component'] = pgver
-    jsonMsg['msg'] = msg
-    print(json.dumps([jsonMsg]))
-  else:
-    print(msg)
+  util.message("problem stopping " + pgver)
 
 sys.exit(rc)

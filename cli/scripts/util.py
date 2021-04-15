@@ -1295,8 +1295,7 @@ def update_postgresql_conf(p_pgver, p_port, is_new=True,update_listen_addr=True)
 
   put_pgconf(p_pgver, ns)
 
-  print (" ")
-  print ("Using PostgreSQL Port " + str(p_port))
+  message ("\nUsing PostgreSQL Port " + str(p_port))
 
   return
 
@@ -1397,16 +1396,15 @@ def get_email_address(p_email=""):
   return email1;
 
 
-
 def get_superuser_passwd(p_user="Superuser"):
-  print (" ")
+  message(" ")
 
   passwd = "password"
   prompt = p_user + " Password [" + passwd + "]: "  
 
   isYES = str(os.getenv("isYes", "False"))
   if isYES == "True":
-    print(prompt)
+    message(prompt)
     return(passwd)
 
   try:
@@ -1462,10 +1460,10 @@ def write_pgenv_file(p_pghome, p_pgver, p_pgdata, p_pguser, p_pgdatabase, p_pgpo
   except IOError as e:
     return 1
 
-  print (" ")
-  print ("to load this postgres into your environment, " + source + " the env file: ")
-  print ("    " + env_file)
-  print (" ")
+  message (" ")
+  message ("to load this postgres into your environment, " + source + " the env file: ")
+  message ("    " + env_file)
+  message (" ")
   return 0
 
 
