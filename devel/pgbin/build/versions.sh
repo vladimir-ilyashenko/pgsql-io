@@ -180,6 +180,18 @@ partmanFullV=4.5.0
 partmanShortV=
 partmanBuildV=1
 
+powaFullV=4.1.2
+powaShortV=
+powaBuildV=1
+
+statkFullV=2.2.0
+statkShortV=
+statkBuildV=1
+
+qstatFullV=2.0.2
+qstatShortV=
+qstatBuildV=1
+
 hintplanFullV=1.3.4
 hintplanShortV=
 hintplanBuildV=1

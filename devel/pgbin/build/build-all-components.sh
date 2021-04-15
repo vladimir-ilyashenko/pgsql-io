@@ -42,10 +42,6 @@ if [ "$1" == "pljava" ]; then
   build pljava $pljavaFullV $2 pljava
 fi
 
-if [ "$1" == "hintplan" ]; then
-  build hintplan $hintplanFullV $2 hintplan
-fi
-
 if [ "$1" == "plv8" ]; then
   build plv8 $plv8FullV $2 plv8
 fi
@@ -55,6 +51,22 @@ if [ "$1" == "pgtsql" ]; then
 fi
 
 ## prod ready across platforms #######################
+
+if [ "$1" == "powa" ]; then
+  build powa $powaFullV $2 powa
+fi
+
+if [ "$1" == "statkcache" ]; then
+  build statkcache $statkFullV $2 statkcache
+fi
+
+if [ "$1" == "qualstats" ]; then
+  build qualstats $qstatFullV $2 qualstats
+fi
+
+if [ "$1" == "hintplan" ]; then
+  build hintplan $hintplanFullV $2 hintplan
+fi
 
 if [ "$1" == "wal2json" ]; then
   build wal2json $wal2jsonFullV $2 wal2json
