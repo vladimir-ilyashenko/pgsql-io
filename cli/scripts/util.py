@@ -589,10 +589,12 @@ def message(p_msg, p_state="info", p_isJSON=None):
     prefix = ""
 
   if p_isJSON:
-    json_dict = {}
-    json_dict['state'] = p_state 
-    json_dict['msg'] = p_msg
-    print (json.dumps([json_dict]))
+    msg = p_msg.replace("\n", "")
+    if msg.strip() > "":
+      json_dict = {}
+      json_dict['state'] = p_state 
+      json_dict['msg'] = msg
+      print (json.dumps([json_dict]))
   else:
     print (prefix + p_msg)
 

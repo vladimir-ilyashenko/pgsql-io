@@ -331,16 +331,7 @@ def install_comp(p_app, p_ver=0, p_rver=None, p_re_install=False):
     elif not retrieve_comp(base_name, p_app):
       exit_cleanly(1)
 
-    msg = " Unpacking " + file
-    my_logger.info(msg)
-    if isJSON:
-      json_dict['state'] = "unpack"
-      json_dict['status'] = "start"
-      json_dict['msg'] = msg
-      msg = json.dumps([json_dict])
-
-    if not isSILENT:
-      print(msg)
+    util.message(" Unpacking " + file)
 
     tarFileObj = ProgressTarExtract("conf" + os.sep + "cache" + os.sep + file)
     tarFileObj.component_name = p_app
@@ -368,8 +359,7 @@ def install_comp(p_app, p_ver=0, p_rver=None, p_re_install=False):
     except Exception as e:
       temp_tar_dir = os.path.join(MY_HOME, p_app)
       util.delete_dir(temp_tar_dir)
-      msg = "Unpacking failed for file %s" % str(e)
-      my_logger.error(msg)
+      util.message("Unpacking failed for file %s" % str(e), "error")
       my_logger.error(traceback.format_exc())
       return_code = 1
       if isJSON:
@@ -383,9 +373,7 @@ def install_comp(p_app, p_ver=0, p_rver=None, p_re_install=False):
 
     tar.close
     if isJSON:
-      json_dict['msg'] = "Unpack complete."
-      json_dict['status'] = "complete"
-      print(json.dumps([json_dict]))
+      util.message("Unpack complete")
   else:
     msg = p_app + " is already installed."
     my_logger.info(msg)
