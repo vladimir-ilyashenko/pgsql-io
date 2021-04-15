@@ -928,10 +928,47 @@ def get_pgpass_file():
   return(pw_file)
 
 
+def set_con(p_args, p_pwd):
+  arg = p_args.split()
+  if len(arg) != 5:
+    message("5 arguments required: svc, host, port, db, user", "error")
+    return
+
+  if arg[0] == "postgres":
+    host = arg[1]
+    port = arg[2]
+    db = arg[3]
+    user = arg[4]
+    remember_pgpassword(p_pwd, port, host, db, user)
+    return
+
+  message(f"Svc '{arg[0]}' not supported.  Must be 'postgres'", "error")
+  return
+
+
+def get_con(p_args):
+  arg = p_args.split()
+  if len(arg) != 5:
+    message("5 arguments required: svc, host, port, db, user", "error")
+    return
+
+  if arg[0] == "postgres":
+    pwd = retrieve_pgpassword(arg[1], arg[2], arg[3], arg[4])
+    if pwd == None:
+      message("not found", "error")
+    else:
+      print(pwd)
+
+    return
+
+  message(f"Svc '{arg[0]}' not supported.  Must be 'postgres'", "error")
+  return
+
+
 def retrieve_pgpassword(p_host="localhost", p_port="5432", p_db="*", p_user="postgres"):
   pw_file = get_pgpass_file()
   if pw_file == None:
-    return None
+    return(None)
 
   if os.path.isfile(pw_file):
     s_pw = read_file_string(pw_file)
@@ -940,8 +977,8 @@ def retrieve_pgpassword(p_host="localhost", p_port="5432", p_db="*", p_user="pos
 
   lines = s_pw.split("\n")
   for line in lines:
-    fields = line.split(":")
-    if len(fields) != 5:
+    f = line.split(":")
+    if len(f) != 5:
       continue
 
     host = f[0]
@@ -950,8 +987,6 @@ def retrieve_pgpassword(p_host="localhost", p_port="5432", p_db="*", p_user="pos
     user = f[3]
     pwd = f[4]
     
-    print(f"DEBUG: host={host}, port={port}, db={db}, user={user}, pwd={pwd}")
-
     if host != "*" and host != p_host:
       continue
 
@@ -972,7 +1007,6 @@ def retrieve_pgpassword(p_host="localhost", p_port="5432", p_db="*", p_user="pos
   
 
 def remember_pgpassword(p_passwd, p_port="5432", p_host="localhost", p_db="*", p_user="postgres"):
-
   pw_file = get_pgpass_file()
   if pw_file == None:
     return None
@@ -1012,8 +1046,8 @@ def remember_pgpassword(p_passwd, p_port="5432", p_host="localhost", p_db="*", p
   if not get_platform() == "Windows":
     os.chmod(pw_file, 0o600)
 
-  print (" ")
-  print ("Password securely remembered in the file: " + pw_file)
+  message(f"Password securely remembered in the file: {pw_file}")
+
   return pw_file
 
 

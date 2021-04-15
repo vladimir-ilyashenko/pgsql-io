@@ -1950,20 +1950,28 @@ try:
   ## SET #################################################
   if p_mode == 'set':
     if len(args) == 5:
-      util.set_value(args[2], args[3], args[4])
+      if args[2] == "con":
+        util.set_con(args[3], args[4])
+      else:
+        util.set_value(args[2], args[3], args[4])
     else:
       print("ERROR: The SET command must have 3 parameters.")
       exit_cleanly(1)
+
     exit_cleanly(0)
 
 
   ## GET ################################################
   if p_mode == 'get':
     if len(args) == 4:
-      print(util.get_value(args[2], args[3]))
+      if args[2] == "con":
+        util.get_con(args[3])
+      else:
+        print(util.get_value(args[2], args[3]))
     else:
       print("ERROR: The GET command must have 2 parameters.")
       exit_cleanly(1)
+
     exit_cleanly(0)
 
 
