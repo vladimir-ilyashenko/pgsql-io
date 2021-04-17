@@ -458,11 +458,15 @@ initPG () {
     initC "timescaledb-pg$pgM" "timescaledb" "$timescaleV"  "$outPlat" "postgres/timescale" "" "" "nil"
     initC "bulkload-pg$pgM" "bulkload" "$bulkloadV" "$outPlat" "postgres/bulkload" "" "" "nil"
     initC "multicorn-pg$pgM" "multicorn" "$multicornV" "$outPlat" "postgres/multicorn" "" "" "nil"
+
+    initC "powa-pg$pgM" "powa" "$powaV" "$outPlat" "postgres/powa" "" "" "nil"
+    initC "qualstats-pg$pgM" "qualstats" "$qstatV" "$outPlat" "postgres/qualstats" "" "" "nil"
+    initC "statkcache-pg$pgM" "statkcache" "$statkV" "$outPlat" "postgres/statkcache" "" "" "nil"
   fi
 
   #initC "cassandra" "cassandra" "$cstarV" "" "cassandra" "" "" "nil"
 
-  ### Not supported in Open Source (for testing only) #############################
+  ### Not supported (for testing only) ####################################
   initC "pgadmin"   "pgadmin"   "$adminV" "" "postgres/pgadmin" "" "" "Y"
   initC "omnidb"    "omnidb"    "$omniV"  "" "postgres/omnidb"  "" "" "Y"
   initC "zookeeper" "zookeeper" "$zooV"   "" "zookeeper"        "" "" "Y"
