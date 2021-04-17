@@ -423,7 +423,11 @@ INSERT INTO projects VALUES ('ddlx',      7, 0, 'hub', 0, 'https://github.com/la
 INSERT INTO releases VALUES ('ddlx-pg13', 2, 'ddlx', 'DDLeXtact', '', 'prod','',  0, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('ddlx-pg13', '0.17-1', 'amd', 1, '20200911', 'pg13', '', '');
 
-INSERT INTO projects VALUES ('multicorn', 7, 0, 'hub', 0, 'https://github.com/pgsql-io/Multicorn/',
+INSERT INTO projects VALUES ('powa',      2, 0, 'hub', 0, 'https://github.com/powa-team/powa-archivist/releases', 'powa',  1, 'powa.png', 'WorkLoad Analyzer', 'https://github.com/powa-team/powa-archivist');
+INSERT INTO releases VALUES ('powa-pg13', 2, 'powa', 'POWA-Archivist', '', 'prod','',  0, 'POSTGRES', '', '');
+INSERT INTO versions VALUES ('powa-pg13', '4.1.2-1', 'amd', 1, '20201220', 'pg13', '', '');
+
+INSERT INTO projects VALUES ('multicorn', 2, 0, 'hub', 0, 'https://github.com/pgsql-io/Multicorn/',
   'multicorn', 1, 'multicorn.png', 'Python FDW Library', 'http://multicorn.org');
 INSERT INTO releases VALUES ('multicorn-pg13', 1, 'multicorn', 'Multicorn', '', 'prod','',  1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('multicorn-pg13', '1.4.1-1', 'amd', 0, '20210412', 'pg13', '', '');
+INSERT INTO versions VALUES ('multicorn-pg13', '1.4.1-1', 'amd', 1, '20210412', 'pg13', '', '');

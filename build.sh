@@ -229,6 +229,7 @@ initDir () {
   copy-pgXX "multicorn"
   copy-pgXX "esfdw"
   copy-pgXX "pljava"
+  copy-pgXX "powa"
 
   if [ -f $myNewDir/LICENSE.TXT ]; then
     mv $myNewDir/LICENSE.TXT $myNewDir/$pComponent-LICENSE.TXT

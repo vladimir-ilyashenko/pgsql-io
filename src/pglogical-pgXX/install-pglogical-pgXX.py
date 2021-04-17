@@ -55,7 +55,7 @@ util.run_sql_cmd("pgXX", sql, True)
 
 ## TODO This is for demo and isn't yet secure ################
 sql="CREATE ROLE replication WITH SUPERUSER REPLICATION LOGIN ENCRYPTED PASSWORD 'password'"
-util.run_sql_cmd("pgXX", sql, True)
+util.run_sql_cmd("pgXX", sql, False)
 
 datadir = util.get_column("datadir", "pgXX")
 os.system("cp " + datadir + "/pg_hba.conf " + datadir + "/pg_hba.conf.orig")
