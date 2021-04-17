@@ -93,7 +93,8 @@ CREATE VIEW v_versions AS
 INSERT INTO categories VALUES (0,   0, 'Hidden', 'NotShown');
 INSERT INTO categories VALUES (1,  10, 'Rock-Solid Postgres', 'PostgreSQL');
 INSERT INTO categories VALUES (10, 96, 'Foreign Datastores', 'ForeignData');
-INSERT INTO categories VALUES (2,  60, 'Extensions', 'Extensions');
+INSERT INTO categories VALUES (2,  60, 'Advanced Applications', 'Applications');
+INSERT INTO categories VALUES (4,  65, 'Workload Optimization', 'Optimization');
 INSERT INTO categories VALUES (5,  70, 'Data Integration', 'Integration');
 INSERT INTO categories VALUES (3,  80, 'Database Developers', 'DB-Devs');
 INSERT INTO categories VALUES (9,  87, 'Management & Monitoring', 'Manage');
@@ -237,7 +238,7 @@ INSERT INTO releases VALUES ('orafce-pg13', 2, 'orafce', 'OraFCE', '', 'prod', '
 INSERT INTO versions VALUES ('orafce-pg13', '3.15.0-1',  'amd', 1, '20210311', 'pg13', '', '');
 INSERT INTO versions VALUES ('orafce-pg13', '3.14.0-1',  'amd', 0, '20201222', 'pg13', '', '');
 
-INSERT INTO projects VALUES ('fixeddecimal', 2, 0, 'hub', 0, 'https://github.com/pgsql-io/fixeddecimal/releases',
+INSERT INTO projects VALUES ('fixeddecimal', 4, 0, 'hub', 0, 'https://github.com/pgsql-io/fixeddecimal/releases',
   'fixeddecimal', 1, 'fixeddecimal.png', 'Much faster than NUMERIC', 'https://github.com/pgsql-io/fixeddecimal');
 INSERT INTO releases VALUES ('fixeddecimal-pg13', 99, 'fixeddecimal', 'FixedDecimal', '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('fixeddecimal-pg13', '1.1.0-1',  'amd', 1, '20201119', 'pg13', '', '');
@@ -269,12 +270,12 @@ INSERT INTO versions VALUES ('pljava-pg13', '1.6.2-1',  'amd',  1, '20201127', '
 
 INSERT INTO projects VALUES ('pldebugger', 3, 0, 'hub', 0, 'https://github.com/bigsql/pldebugger2/releases',
   'pldebugger', 1, 'debugger.png', 'Procedural Language Debugger', 'https://github.com/bigsql/pldebugger2#pldebugger2');
-INSERT INTO releases VALUES ('pldebugger-pg12', 1, 'pldebugger', 'PL/Debugger', '', 'prod', '', 1, 'POSTGRES', '', '');
+INSERT INTO releases VALUES ('pldebugger-pg12', 2, 'pldebugger', 'PL/Debugger', '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pldebugger-pg12', '2.0-1',  'amd',  1, '20200224', 'pg12', '', '');
 
 INSERT INTO projects VALUES ('plpgsql', 3, 0, 'hub', 0, 'https://www.postgresql.org/docs/13/plpgsql-overview.html',
   'plpgsql', 0, 'jan.png', 'Postgres Procedural Language', 'https://www.postgresql.org/docs/13/plpgsql-overview.html');
-INSERT INTO releases VALUES ('plpgsql', 4, 'plpgsql', 'PL/pgSQL', '', 'included', '', 1, 'POSTGRES', '', '');
+INSERT INTO releases VALUES ('plpgsql', 1, 'plpgsql', 'PL/pgSQL', '', 'included', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('plpgsql', '13',  'amd',  1, '20200213', '', '', '');
 
 INSERT INTO projects VALUES ('pgtsql', 3, 0, 'hub', 0, 'https://github.com/bigsql/pgtsql/releases',
@@ -282,7 +283,7 @@ INSERT INTO projects VALUES ('pgtsql', 3, 0, 'hub', 0, 'https://github.com/bigsq
 INSERT INTO releases VALUES ('pgtsql-pg13', 3, 'pgtsql', 'PL/pgTSQL','', 'soon', '', 1, 'AGPLv3', '', '');
 INSERT INTO versions VALUES ('pgtsql-pg13', '3.0-1', 'amd', 0, '20191119', 'pg13', '', '');
 
-INSERT INTO projects VALUES ('plprofiler', 3, 0, 'hub', 7, 'https://github.com/bigsql/plprofiler/releases',
+INSERT INTO projects VALUES ('plprofiler', 4, 0, 'hub', 7, 'https://github.com/bigsql/plprofiler/releases',
   'plprofiler', 1, 'plprofiler.png', 'Stored Procedure Profiler', 'https://github.com/bigsql/plprofiler#plprofiler');
 INSERT INTO releases VALUES ('plprofiler-pg13', 0, 'plprofiler',    'PL/Profiler',  '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('plprofiler-pg13', '4.1-1', 'amd', 1, '20190823', 'pg13', '', '');
@@ -350,39 +351,39 @@ INSERT INTO projects VALUES ('pgadmin', 9, 80, '', 1, 'https://pgadmin.org',
 INSERT INTO releases VALUES ('pgadmin', 0, 'pgadmin', 'pgAdmin 4', '', 'prod', '', 1, '', '', '');
 INSERT INTO versions VALUES ('pgadmin', '5.1', '', 2, '20210325', '', '', '');
 
-INSERT INTO projects VALUES ('bulkload', 2, 0, 'hub', 5, 'https://github.com/ossc-db/pg_bulkload/releases',
+INSERT INTO projects VALUES ('bulkload', 4, 0, 'hub', 5, 'https://github.com/ossc-db/pg_bulkload/releases',
   'bulkload', 1, 'bulkload.png', 'High Speed Data Loading', 'https://github.com/ossc-db/pg_bulkload');
 INSERT INTO releases VALUES ('bulkload-pg13', 6, 'bulkload', 'pgBulkLoad',  '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('bulkload-pg13', '3.1.17-1', 'amd', 1, '20210205', 'pg13', '', '');
 
-INSERT INTO projects VALUES ('repack', 2, 0, 'hub', 5, 'https://github.com/reorg/pg_repack/releases',
+INSERT INTO projects VALUES ('repack', 4, 0, 'hub', 5, 'https://github.com/reorg/pg_repack/releases',
   'repack', 1, 'repack.png', 'Remove Table/Index Bloat' , 'https://github.com/reorg/pg_repack');
 INSERT INTO releases VALUES ('repack-pg13', 6, 'repack', 'pgRepack',  '', 'prod','',  1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('repack-pg13', '1.4.6-1', 'amd', 1, '20200930', 'pg13', '', '');
 
-INSERT INTO projects VALUES ('partman', 2, 0, 'hub', 4, 'https://github.com/pgpartman/pg_partman/releases',
+INSERT INTO projects VALUES ('partman', 4, 0, 'hub', 4, 'https://github.com/pgpartman/pg_partman/releases',
   'partman', 1, 'partman.png', 'Partition Managemnt', 'https://github.com/pgpartman/pg_partman#pg-partition-manager');
 INSERT INTO releases VALUES ('partman-pg13', 6, 'partman', 'pgPartman',   '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('partman-pg13', '4.5.0-1',  'amd', 1, '20210331', 'pg13', '', '');
 INSERT INTO versions VALUES ('partman-pg13', '4.4.1-1',  'amd', 0, '20201223', 'pg13', '', '');
 
-INSERT INTO projects VALUES ('hypopg', 2, 0, 'hub', 8, 'https://github.com/HypoPG/hypopg/releases',
+INSERT INTO projects VALUES ('hypopg', 4, 0, 'hub', 8, 'https://github.com/HypoPG/hypopg/releases',
   'hypopg', 1, 'whatif.png', 'Hypothetical Indexes', 'https://hypopg.readthedocs.io/en/latest/');
 INSERT INTO releases VALUES ('hypopg-pg13', 7, 'hypopg', 'HypoPG', '', 'prod','',  1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('hypopg-pg13', '1.2.0-1',  'amd', 1, '20210226', 'pg13', '', '');
 INSERT INTO versions VALUES ('hypopg-pg13', '1.1.4-1',  'amd', 0, '20200711', 'pg13', '', '');
 
-INSERT INTO projects VALUES ('pgbadger', 2, 0, 'hub', 6, 'https://github.com/darold/pgbadger/releases',
+INSERT INTO projects VALUES ('pgbadger', 4, 0, 'hub', 6, 'https://github.com/darold/pgbadger/releases',
   'badger', 0, 'badger.png', 'Performance Reporting', 'https://pgbadger.darold.net');
 INSERT INTO releases VALUES ('pgbadger', 8, 'pgbadger','pgBadger','', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pgbadger', '11.4', '', 2, '20201125', '', '', '');
+INSERT INTO versions VALUES ('pgbadger', '11.5', '', 1, '20210218', '', '', '');
+INSERT INTO versions VALUES ('pgbadger', '11.4', '', 0, '20201125', '', '', '');
 INSERT INTO versions VALUES ('pgbadger', '11.3', '', 0, '20200726', '', '', '');
-INSERT INTO versions VALUES ('pgbadger', '11.2', '', 0, '20200311', '', '', '');
 
-INSERT INTO projects VALUES ('bouncer',  2, 0, 'hub', 3, 'http://pgbouncer.org',
+INSERT INTO projects VALUES ('bouncer',  4, 0, 'hub', 3, 'http://pgbouncer.org',
   'bouncer',  0, 'bouncer.png', 'Lightweight Connection Pooler', 'http://pgbouncer.org');
-INSERT INTO releases VALUES ('bouncer', 2, 'bouncer',  'pgBouncer', '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('bouncer', '1.15.0-1', 'amd', 2, '20201119', '', '', '');
+INSERT INTO releases VALUES ('bouncer', 1, 'bouncer',  'pgBouncer', '', 'prod', '', 1, 'POSTGRES', '', '');
+INSERT INTO versions VALUES ('bouncer', '1.15.0-1', 'amd', 1, '20201119', '', '', '');
 INSERT INTO versions VALUES ('bouncer', '1.14.0-1', 'amd', 0, '20200611', '', '', '');
 INSERT INTO versions VALUES ('bouncer', '1.13.0-1', 'amd', 0, '20200427', '', '', '');
 
@@ -423,11 +424,11 @@ INSERT INTO projects VALUES ('ddlx',      7, 0, 'hub', 0, 'https://github.com/la
 INSERT INTO releases VALUES ('ddlx-pg13', 2, 'ddlx', 'DDLeXtact', '', 'prod','',  0, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('ddlx-pg13', '0.17-1', 'amd', 1, '20200911', 'pg13', '', '');
 
-INSERT INTO projects VALUES ('powa',      2, 0, 'hub', 0, 'https://github.com/powa-team/powa-archivist/releases', 'powa',  1, 'powa.png', 'WorkLoad Analyzer', 'https://github.com/powa-team/powa-archivist');
+INSERT INTO projects VALUES ('powa',      4, 0, 'hub', 0, 'https://github.com/powa-team/powa-archivist/releases', 'powa',  1, 'powa.png', 'WorkLoad Analyzer', 'https://powa.readthedocs.io/en/latest/components/powa-archivist/index.html');
 INSERT INTO releases VALUES ('powa-pg13', 2, 'powa', 'POWA-Archivist', '', 'prod','',  0, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('powa-pg13', '4.1.2-1', 'amd', 1, '20201220', 'pg13', '', '');
 
-INSERT INTO projects VALUES ('multicorn', 2, 0, 'hub', 0, 'https://github.com/pgsql-io/Multicorn/',
+INSERT INTO projects VALUES ('multicorn', 5, 0, 'hub', 0, 'https://github.com/pgsql-io/Multicorn/',
   'multicorn', 1, 'multicorn.png', 'Python FDW Library', 'http://multicorn.org');
-INSERT INTO releases VALUES ('multicorn-pg13', 1, 'multicorn', 'Multicorn', '', 'prod','',  1, 'POSTGRES', '', '');
+INSERT INTO releases VALUES ('multicorn-pg13', 99, 'multicorn', 'Multicorn', '', 'prod','',  1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('multicorn-pg13', '1.4.1-1', 'amd', 1, '20210412', 'pg13', '', '');
