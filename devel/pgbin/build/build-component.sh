@@ -643,7 +643,7 @@ function buildTimeScaleDBComponent {
         packageComponent $componentBundle
 }
 
-TEMP=`getopt -l no-tar, copy-bin,no-copy-bin,with-pgver:,with-pgbin:,build-hypopg:,build-postgis:,build-bouncer:,build-hvefdw:,build-cassandrafdw:,build-pgtsql:,build-tdsfdw:,build-mongofdw:,build-mysqlfdw:,build-oraclefdw:,build-orafce:,build-audit:,build-set-user:,build-partman:,build-pldebugger:,build-plr:,build-pljava:,build-plv8:,build-plprofiler:,build-background:,build-bulkload:,build-backrest:,build-psqlodbc:,build-cstore-fdw:,build-parquet-fdw:,build-repack:,build-spock:,build-pglogical:,build-hintplan:,build-statkcache:,build-qualstats:,build-powa:,build-timescaledb:,build-cron:,build-multicorn:,build-pgmp:,build-fixeddecimal:,build-anon,build-ddlx:,build-http:,build-pgtop:,build-proctab:,build-agent:,build-citus:,build-number: -- "$@"`
+TEMP=`getopt -l no-tar, copy-bin,no-copy-bin,with-pgver:,with-pgbin:,build-hypopg:,build-postgis:,build-bouncer:,build-hvefdw:,build-cassandrafdw:,build-pgtsql:,build-tdsfdw:,build-mongofdw:,build-mysqlfdw:,build-oraclefdw:,build-orafce:,build-audit:,build-set-user:,build-partman:,build-pldebugger:,build-plr:,build-pljava:,build-plv8:,build-plprofiler:,build-background:,build-bulkload:,build-backrest:,build-psqlodbc:,build-cstore-fdw:,build-parquet-fdw:,build-repack:,build-spock:,build-pglogical:,build-hintplan:,build-statkcache:,build-qualstats:,build-powa:,build-waitsampling:,build-timescaledb:,build-cron:,build-multicorn:,build-pgmp:,build-fixeddecimal:,build-anon,build-ddlx:,build-http:,build-pgtop:,build-proctab:,build-agent:,build-citus:,build-number: -- "$@"`
 
 if [ $? != 0 ] ; then
 	echo "Required parameters missing, Terminating..."
@@ -691,6 +691,7 @@ while true; do
     --build-hintplan ) buildHintPlan=true; Source=$2; shift; shift ;;
     --build-powa ) buildPowa=true; Source=$2; shift; shift ;;
     --build-qualstats ) buildQualStats=true; Source=$2; shift; shift ;;
+    --build-waitsampling ) buildWaitSampling=true; Source=$2; shift; shift ;;
     --build-statkcache ) buildStatKcache=true; Source=$2; shift; shift ;;
     --build-timescaledb ) buildTimeScaleDB=true; timescaleDBSource=$2; shift; shift ;;
     --build-cron ) buildCron=true; Source=$2; shift; shift ;;
@@ -828,6 +829,9 @@ if [[ $buildPowa == "true" ]]; then
 fi
 if [[ $buildQualStats == "true" ]]; then
 	buildComp qualstats "$qstatShortV" "$qstatFullV" "$qstatBuildV" "$Source"
+fi
+if [[ $buildWaitSampling == "true" ]]; then
+	buildComp waitsampling "$waitsShortV" "$waitsFullV" "$waitsBuildV" "$Source"
 fi
 if [[ $buildStatKcache == "true" ]]; then
 	buildComp statkcache "$statkShortV" "$statkFullV" "$statkBuildV" "$Source"

@@ -64,6 +64,10 @@ if [ "$1" == "qualstats" ]; then
   build qualstats $qstatFullV $2 qualstats
 fi
 
+if [ "$1" == "waitsampling" ]; then
+  build waitsampling $waitsFullV $2 waitsampling
+fi
+
 if [ "$1" == "hintplan" ]; then
   build hintplan $hintplanFullV $2 hintplan
 fi

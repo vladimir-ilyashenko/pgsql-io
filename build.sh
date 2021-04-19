@@ -232,6 +232,7 @@ initDir () {
   copy-pgXX "powa"
   copy-pgXX "qualstats"
   copy-pgXX "statkcache"
+  copy-pgXX "waitsampling"
 
   if [ -f $myNewDir/LICENSE.TXT ]; then
     mv $myNewDir/LICENSE.TXT $myNewDir/$pComponent-LICENSE.TXT
@@ -465,6 +466,7 @@ initPG () {
     initC "powa-pg$pgM" "powa" "$powaV" "$outPlat" "postgres/powa" "" "" "nil"
     initC "qualstats-pg$pgM" "qualstats" "$qstatV" "$outPlat" "postgres/qualstats" "" "" "nil"
     initC "statkcache-pg$pgM" "statkcache" "$statkV" "$outPlat" "postgres/statkcache" "" "" "nil"
+    initC "waitsampling-pg$pgM" "waitsampling" "$waitsV" "$outPlat" "postgres/waitsampling" "" "" "nil"
   fi
 
   #initC "cassandra" "cassandra" "$cstarV" "" "cassandra" "" "" "nil"

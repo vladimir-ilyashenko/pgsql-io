@@ -192,6 +192,10 @@ qstatFullV=2.0.2
 qstatShortV=
 qstatBuildV=1
 
+waitsFullV=1.1.3
+waitsShortV=
+waitsBuildV=1
+
 hintplanFullV=1.3.4
 hintplanShortV=
 hintplanBuildV=1
