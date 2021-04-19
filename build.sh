@@ -230,6 +230,8 @@ initDir () {
   copy-pgXX "esfdw"
   copy-pgXX "pljava"
   copy-pgXX "powa"
+  copy-pgXX "qualstats"
+  copy-pgXX "statkcache"
 
   if [ -f $myNewDir/LICENSE.TXT ]; then
     mv $myNewDir/LICENSE.TXT $myNewDir/$pComponent-LICENSE.TXT
