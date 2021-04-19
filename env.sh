@@ -53,6 +53,7 @@ debuggerV=2.0-1
 agentV=4.0-1
 cronV=1.3.1-1
 
+redisfdwV=1.13-1
 mysqlfdwV=2.5.5-1
 mongofdwV=5.2.8-1
 oraclefdwV=2.3.0-1

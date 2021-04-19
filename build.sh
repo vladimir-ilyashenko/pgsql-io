@@ -220,6 +220,7 @@ initDir () {
   copy-pgXX "audit"   
   copy-pgXX "postgis"   
   copy-pgXX "mysqlfdw"  
+  copy-pgXX "redisfdw"  
   copy-pgXX "mongofdw"  
   copy-pgXX "wal2json"  
   copy-pgXX "oraclefdw"  
@@ -443,6 +444,7 @@ initPG () {
       initC "esfdw-pg$pgM" "esfdw" "$esfdwV" "$outPlat" "postgres/esfdw" "" "" "nil"
     fi
     initC "audit-pg$pgM" "audit" "$audit13V" "$outPlat" "postgres/audit" "" "" "nil"
+    initC "redisfdw-pg$pgM" "redisfdw" "$redisfdwV" "$outPlat" "postgres/redisfdw" "" "" "nil"
     initC "mysqlfdw-pg$pgM" "mysqlfdw" "$mysqlfdwV" "$outPlat" "postgres/mysqlfdw" "" "" "nil"
     initC "wal2json-pg$pgM" "wal2json" "$w2jV" "$outPlat" "postgres/wal2json" "" "" "nil"
     initC "mongofdw-pg$pgM" "mongofdw" "$mongofdwV" "$outPlat" "postgres/mongofdw" "" "" "nil"
