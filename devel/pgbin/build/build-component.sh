@@ -643,7 +643,7 @@ function buildTimeScaleDBComponent {
         packageComponent $componentBundle
 }
 
-TEMP=`getopt -l no-tar, copy-bin,no-copy-bin,with-pgver:,with-pgbin:,build-hypopg:,build-postgis:,build-bouncer:,build-hvefdw:,build-cassandrafdw:,build-pgtsql:,build-tdsfdw:,build-mongofdw:,build-mysqlfdw:,build-oraclefdw:,build-orafce:,build-audit:,build-set-user:,build-partman:,build-pldebugger:,build-plr:,build-pljava:,build-plv8:,build-plprofiler:,build-background:,build-bulkload:,build-backrest:,build-psqlodbc:,build-cstore-fdw:,build-parquet-fdw:,build-repack:,build-spock:,build-pglogical:,build-hintplan:,build-statkcache:,build-qualstats:,build-powa:,build-waitsampling:,build-timescaledb:,build-cron:,build-multicorn:,build-pgmp:,build-fixeddecimal:,build-anon,build-ddlx:,build-http:,build-pgtop:,build-proctab:,build-agent:,build-citus:,build-number: -- "$@"`
+TEMP=`getopt -l no-tar, copy-bin,no-copy-bin,with-pgver:,with-pgbin:,build-hypopg:,build-postgis:,build-bouncer:,build-hvefdw:,build-cassandrafdw:,build-pgtsql:,build-tdsfdw:,build-mongofdw:,build-mysqlfdw:,build-redisfdw:,build-oraclefdw:,build-orafce:,build-audit:,build-set-user:,build-partman:,build-pldebugger:,build-plr:,build-pljava:,build-plv8:,build-plprofiler:,build-background:,build-bulkload:,build-backrest:,build-psqlodbc:,build-cstore-fdw:,build-parquet-fdw:,build-repack:,build-spock:,build-pglogical:,build-hintplan:,build-statkcache:,build-qualstats:,build-powa:,build-waitsampling:,build-timescaledb:,build-cron:,build-multicorn:,build-pgmp:,build-fixeddecimal:,build-anon,build-ddlx:,build-http:,build-pgtop:,build-proctab:,build-agent:,build-citus:,build-number: -- "$@"`
 
 if [ $? != 0 ] ; then
 	echo "Required parameters missing, Terminating..."
@@ -667,6 +667,7 @@ while true; do
     --build-mongofdw ) buildMongoFDW=true Source=$2; shift; shift ;;
     --build-wal2json ) buildWal2json=true Source=$2; shift; shift ;;
     --build-mysqlfdw ) buildMySQLFDW=true; Source=$2; shift; shift ;;
+    --build-redisfdw ) buildRedisFDW=true; Source=$2; shift; shift ;;
     --build-oraclefdw ) buildOracleFDW=true; Source=$2; shift; shift ;;
     --build-orafce ) buildOrafce=true; Source=$2; shift; shift ;;
     --build-fixeddecimal ) buildFD=true; Source=$2; shift; shift ;;
@@ -753,6 +754,10 @@ fi
 
 if [[ $buildMySQLFDW == "true" ]]; then
 	buildComp mysqlfdw "$mysqlfdwShortV" "$mysqlfdwFullV" "$mysqlfdwBuildV" "$Source"
+fi
+
+if [[ $buildRedisFDW == "true" ]]; then
+	buildComp redisfdw "$redisfdwShortV" "$redisfdwFullV" "$redisfdwBuildV" "$Source"
 fi
 
 if [[ $buildPostGIS ==  "true" ]]; then

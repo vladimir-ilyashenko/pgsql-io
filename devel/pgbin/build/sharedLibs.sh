@@ -61,6 +61,9 @@ cp -Pv $lib64/libcom_err.so.*      $shared_lib/.
 cp -Pv $lib64/libkeyutils.so.*     $shared_lib/.
 cp -Pv $lib64/libreadline.so.*     $shared_lib/.
 
+# redisfdw (hiredis seems small enough to include by default)
+cp -Pv $lib64/libhiredis.so.0.12   $shared_lib/.
+
 # postgis
 #cp -Pv $lib64/libgeos*.so*         $shared_lib/.
 #cp -Pv $lib64/libprotobuf-c.so.*   $shared_lib/.

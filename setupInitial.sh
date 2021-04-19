@@ -55,6 +55,7 @@ if [ `uname` == 'Linux' ]; then
       sudo yum -y install llvm-toolset-7-llvm devtoolset-7 llvm-toolset-7-clang
       sudo yum -y install python3 python3-devel
       sudo yum -y install lz4-devel libzstd-devel
+      sudo yum -y install hiredis-devel
     fi
   fi
 fi
