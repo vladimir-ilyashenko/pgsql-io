@@ -426,10 +426,6 @@ initPG () {
   writeSettRow "GLOBAL" "STAGE" "prod"
   writeSettRow "GLOBAL" "AUTOSTART" "off"
 
-  #initC "pgbadger" "pgbadger" "$badgerV" "" "postgres/badger" "" "" "nil"
-  #initC "ora2pg" "ora2pg" "$ora2pgV" "" "postgres/ora2pg" "" "" "nil"
-  initC "bouncer" "bouncer" "$bouncerV" "$outPlat" "postgres/bouncer" "" "" "nil"
-  initC "backrest" "backrest" "$backrestV" "$outPlat" "postgres/backrest" "" "" "nil"
   initC "psqlodbc" "psqlodbc" "$odbcV" "$outPlat" "postgres/psqlodbc" "" "" "nil"
 
   if [ "$outPlat" == "arm" ]; then
@@ -479,6 +475,11 @@ initPG () {
   initC "zookeeper" "zookeeper" "$zooV"   "" "zookeeper"        "" "" "Y"
   initC "kafka"     "kafka"     "$kfkV"   "" "kafka"            "" "" "Y"
   initC "debezium"  "debezium"  "$dbzV"   "" "debezium"         "" "" "Y"
+  initC "redis"     "redis"     "$redisV" "" "redis"            "" "" "Y"
+  initC "badger"    "badger"    "$badgerV" "" "postgres/badger" "" "" "nil"
+  initC "ora2pg"    "ora2pg"    "$ora2pgV" "" "postgres/ora2pg" "" "" "nil"
+  initC "bouncer"   "bouncer"   "$bouncerV" "$outPlat" "postgres/bouncer" "" "" "nil"
+  initC "backrest"  "backrest"  "$backrestV" "$outPlat" "postgres/backrest" "" "" "nil"
 
   if [ "$pgM" == "12" ]; then 
 

@@ -160,8 +160,9 @@ INSERT INTO versions VALUES ('kafka', '2.7.0', '', 2, '20201221', '', '', 'https
 
 INSERT INTO projects VALUES ('redis', 10, 6379, 'hub', 2, 'https://github.com/redis/redis/releases',
   'Redis', 0, 'redis.png', 'Hi-Speed Cache', 'https://redis.io');
-INSERT INTO releases VALUES ('redis', 0, 'redis', 'Redis', '', 'test', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('redis', '6.2.2', '', 2, '20210420', '', '', '');
+INSERT INTO releases VALUES ('redis', 0, 'redis', 'Redis', '', 'test', '', 1, 'BSD', '', '');
+INSERT INTO versions VALUES ('redis', '5-1', '',   2, '20210420', '', '', '');
+INSERT INTO versions VALUES ('redis', '6.2.2', '', 0, '20210420', '', '', '');
 INSERT INTO versions VALUES ('redis', '6.2.1', '', 0, '20210302', '', '', '');
 
 INSERT INTO projects VALUES ('zookeeper', 10, 2181, 'hub', 1, 'https://zookeeper.apache.org/releases.html#releasenotes',
@@ -303,7 +304,7 @@ INSERT INTO versions VALUES ('plprofiler-pg13', '4.1-1', 'amd', 1, '20190823', '
 INSERT INTO projects VALUES ('backrest', 2, 0, 'hub', 0, 'https://github.com/pgbackrest/pgbackrest/releases',
   'backrest', 0, 'backrest.png', 'Backup & Restore', 'https://pgbackrest.org');
 INSERT INTO releases VALUES ('backrest', 9, 'backrest', 'pgBackRest', '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('backrest', '2.33-1', 'amd', 1, '20210405', '', '', 'https://pgbackrest.org/release.html#2.33');
+INSERT INTO versions VALUES ('backrest', '2.33-1', 'amd', 2, '20210405', '', '', 'https://pgbackrest.org/release.html#2.33');
 INSERT INTO versions VALUES ('backrest', '2.32-1', 'amd', 0, '20210208', '', '', 'https://pgbackrest.org/release.html#2.32');
 INSERT INTO versions VALUES ('backrest', '2.31-1', 'amd', 0, '20201208', '', '', '');
 INSERT INTO versions VALUES ('backrest', '2.30-1', 'amd', 0, '20201005', '', '', '');
@@ -387,12 +388,10 @@ INSERT INTO releases VALUES ('hypopg-pg13', 99, 'hypopg', 'HypoPG', '', 'prod','
 INSERT INTO versions VALUES ('hypopg-pg13', '1.2.0-1',  'amd', 1, '20210226', 'pg13', '', '');
 INSERT INTO versions VALUES ('hypopg-pg13', '1.1.4-1',  'amd', 0, '20200711', 'pg13', '', '');
 
-INSERT INTO projects VALUES ('pgbadger', 4, 0, 'hub', 6, 'https://github.com/darold/pgbadger/releases',
+INSERT INTO projects VALUES ('badger', 4, 0, 'hub', 6, 'https://github.com/darold/pgbadger/releases',
   'badger', 0, 'badger.png', 'Performance Reporting', 'https://pgbadger.darold.net');
-INSERT INTO releases VALUES ('pgbadger', 101, 'pgbadger','pgBadger','', 'test', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pgbadger', '11.5', '', 2, '20210218', '', '', '');
-INSERT INTO versions VALUES ('pgbadger', '11.4', '', 0, '20201125', '', '', '');
-INSERT INTO versions VALUES ('pgbadger', '11.3', '', 0, '20200726', '', '', '');
+INSERT INTO releases VALUES ('badger', 101, 'badger','pgBadger','', 'test', '', 1, 'POSTGRES', '', '');
+INSERT INTO versions VALUES ('badger', '11.5', '', 2, '20210218', '', '', '');
 
 INSERT INTO projects VALUES ('bouncer',  4, 0, 'hub', 3, 'http://pgbouncer.org',
   'bouncer',  0, 'bouncer.png', 'Lightweight Connection Pooler', 'http://pgbouncer.org');

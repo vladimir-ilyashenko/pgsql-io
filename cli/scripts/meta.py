@@ -100,7 +100,7 @@ def check_release(p_wild):
   data = []
   sql = "SELECT r.component FROM releases r, versions v \n" + \
         " WHERE r.component = v.component \n"+ \
-        "   AND r.component LIKE '" + p_wild + "' AND v.is_current = 1"
+        "   AND r.component LIKE '" + p_wild + "' AND v.is_current >= 1"
   try:
     c = con.cursor()
     c.execute(sql)
