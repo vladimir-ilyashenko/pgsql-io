@@ -437,6 +437,16 @@ def get_list(p_isOLD, p_isExtensions, p_isJSON, p_isTEST, p_showLATEST, p_comp=N
     "   AND " + util.like_pf("v.platform") + " \n" + \
     "   AND " + r_sup_plat + exclude_comp + available_category_conditions + ext_component
 
+  svcs = \
+    "SELECT c.category, c.description, c.short_desc as short_cat_desc, v.component, v.version, 0, 'NotInstalled', \n" + \
+    "       r.stage, v.is_current, '', p.is_extension, v.parent as parent, v.release_date, '', \n" + \
+    "       r.disp_name, \n" + \
+    "       coalesce((select release_date from versions where v.component = component and is_current = 1),'20200101'), \n" + \
+    "       r.is_available, r.available_ver \n" + \
+    "  FROM versions v, releases r, projects p, categories c \n" + \
+    " WHERE v.component = r.component AND r.project = p.project \n" + \
+    "   AND p.category = c.category AND ((v.is_current = 2) or ((p.project = 'pg') AND (v.is_current =1)))"
+
   extensions = \
     "SELECT c.category, c.description, c.short_desc as short_cat_desc, v.component, v.version, 0, 'NotInstalled', \n" + \
     "       r.stage, v.is_current, '', p.is_extension, v.parent as parent, v.release_date, '', \n" + \
@@ -450,7 +460,9 @@ def get_list(p_isOLD, p_isExtensions, p_isJSON, p_isTEST, p_showLATEST, p_comp=N
     "   AND v.parent in (select component from components) AND " + r_sup_plat + exclude_comp + \
     "    OR v.component in " + extra_extensions
 
-  if p_isExtensions:
+  if os.getenv('isSVCS', "") == "True":
+    sql = svcs + "\n ORDER BY 1, 3, 4, 6"
+  elif p_isExtensions:
     sql = installed + "\n UNION \n" + available + "\n ORDER BY 1, 3, 4, 6"
   else:
     sql = installed + "\n UNION \n" + available + "\n UNION \n" + extensions + "\n ORDER BY 1, 3, 4, 6"

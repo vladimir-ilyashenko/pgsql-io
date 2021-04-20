@@ -78,7 +78,7 @@ mode_list = ["start", "stop", "restart", "status", "list", "info", "update",
              "remove", "reload", "activity", "help", "get", "set", "unset",
              "repolist", "repo-pkgs", "discover",
              "register", "top", "--autostart", "--fips", "--relnotes", "--start",
-             "--help", "--json", "--jsonp", "--test", "--extensions",
+             "--help", "--json", "--jsonp", "--test", "--extensions", "--svcs",
              "--list", "--old", "--showduplicates", "-y", "-t", "-d"  ,
              "--verbose", "--debug", "--debug2"]
 
@@ -1139,6 +1139,12 @@ if "--old" in args:
 if "--showduplicates" in args:
   isSHOWDUPS = True
   args.remove("--showduplicates")
+
+isSVCS = False
+if "--svcs" in args and 'list' in args:
+  isSVCS = True
+  os.environ['isSVCS'] = "True"
+  args.remove("--svcs")
 
 isFIPS = False
 if "--fips" in args and 'install' in args:
