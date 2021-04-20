@@ -40,6 +40,7 @@ waitsV=1.1.3-1
 zooV=3.7.0
 kfkV=2.7.0
 dbzV=1.5.0
+redisV=5-1
 
 adminV=5.1
 omniV=2.17.0
@@ -61,8 +62,8 @@ tdsfdwV=2.0.2-1
 cstarfdwV=3.1.5-1
 hivefdwV=4.0-1
 hadoopV=2.10.0
-badgerV=11.4
-ora2pgV=21.0
+badgerV=11.5
+ora2pgV=21.1
 
 HUB="$PWD"
 SRC="$HUB/src"
