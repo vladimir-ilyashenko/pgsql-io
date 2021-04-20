@@ -40,7 +40,7 @@ waitsV=1.1.3-1
 zooV=3.7.0
 kfkV=2.7.0
 dbzV=1.5.0
-redisV=5-1
+redisV=6
 
 adminV=5.1
 omniV=2.17.0

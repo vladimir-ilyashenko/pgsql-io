@@ -161,7 +161,7 @@ INSERT INTO versions VALUES ('kafka', '2.7.0', '', 2, '20201221', '', '', 'https
 INSERT INTO projects VALUES ('redis', 10, 6379, 'hub', 2, 'https://github.com/redis/redis/releases',
   'Redis', 0, 'redis.png', 'Hi-Speed Cache', 'https://redis.io');
 INSERT INTO releases VALUES ('redis', 0, 'redis', 'Redis', '', 'test', '', 1, 'BSD', '', '');
-INSERT INTO versions VALUES ('redis', '5-1', '',   2, '20210420', '', '', '');
+INSERT INTO versions VALUES ('redis', '6', '',   2, '20210420', '', '', '');
 INSERT INTO versions VALUES ('redis', '6.2.2', '', 0, '20210420', '', '', '');
 INSERT INTO versions VALUES ('redis', '6.2.1', '', 0, '20210302', '', '', '');
 
