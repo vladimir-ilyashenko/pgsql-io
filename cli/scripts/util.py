@@ -959,7 +959,7 @@ def get_con(p_args):
     if pwd == None:
       message("not found", "error")
     else:
-      print(pwd)
+      message(pwd)
 
     return
 
