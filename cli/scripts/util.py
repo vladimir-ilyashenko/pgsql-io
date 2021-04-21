@@ -57,6 +57,11 @@ except ImportError:
   pass
 
 
+def run_backrest(p_cmd):
+  print(f"run_backrest({p_cmd})")
+  return
+
+
 def sysdate ():
   return (datetime.utcnow())
 

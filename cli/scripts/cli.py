@@ -76,17 +76,16 @@ dep9 = util.get_depend()
 mode_list = ["start", "stop", "restart", "status", "list", "info", "update",
              "upgrade", "downgrade", "enable", "disable", "install", "tune",
              "remove", "reload", "activity", "help", "get", "set", "unset",
-             "repolist", "repo-pkgs", "discover",
+             "repolist", "repo-pkgs", "discover", "backrest",
              "register", "top", "--autostart", "--fips", "--relnotes", "--start",
              "--help", "--json", "--jsonp", "--test", "--extensions", "--svcs",
              "--list", "--old", "--showduplicates", "-y", "-t", "-d"  ,
              "--verbose", "--debug", "--debug2"]
 
-mode_list_advanced = ['kill', 'config', 'deplist', 'download', 'cancel',
-                      'verify', 'init', 'clean', 'useradd', 'provision']
+mode_list_advanced = ['kill', 'config', 'deplist', 'download', 'init', 'clean', 'useradd']
 
 ignore_comp_list = [ "get", "set", "unset", "register", "repolist", 
-                     "repo-pkgs", "discover", "useradd"]
+                     "repo-pkgs", "discover", "useradd", "backrest"]
 
 no_log_commands = ['status', 'info', 'list', 'activity', 'top', 'register',
                    'cancel', 'get']
@@ -1976,6 +1975,18 @@ try:
     else:
       print("ERROR: The UNSET command must have 2 parameters.")
       exit_cleanly(1)
+    exit_cleanly(0)
+
+
+  ## BACKREST ##########################################
+  if p_mode == 'backrest':
+    if len(args) == 2:
+      cmd = "help"
+    else:
+      cmd = ""
+      for n in range(2, len(args)):
+        cmd = cmd + " " + args[n]
+    util.run_backrest(cmd)
     exit_cleanly(0)
 
 
