@@ -58,7 +58,12 @@ except ImportError:
 
 
 def run_backrest(p_cmd):
-  print(f"run_backrest({p_cmd})")
+  backrest =  os.path.join(MY_HOME, 'backrest', 'bin', 'pgbackrest')
+  if not os.path.isfile(backrest):
+    message("backrest not installed", "error")
+    return
+
+  os.system(backrest + " " + p_cmd)
   return
 
 
