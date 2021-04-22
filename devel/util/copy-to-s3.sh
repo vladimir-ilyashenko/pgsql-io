@@ -1,25 +1,30 @@
 # copy-to-s3
 
-if [ $# -ne 1 ]; then
+if [ ! "$1" == "prod" ]; then
+  echo "invalid 1st parm"
+  exit 1
+fi
+
+if [ $# -ne 2 ]; then
   echo "ERROR: missing pOutDir parm"
   exit 1
 fi
 
-outDir=$HIST/$1
+outDir=$HIST/$2
 echo $outDir
-sleep 3
 
 if [ ! -d $outDir ]; then
   echo "ERROR: missing $outDir"
   exit 1
 fi
+
+sleep 2
 cd $outDir
 ls
-sleep 3
+sleep 2
 
-exclude="--exclude xyz/*"
 flags="--acl public-read --storage-class STANDARD --recursive"
-cmd="aws --region $REGION s3 cp . $BUCKET/REPO $flags $exclude"
+cmd="aws --region $REGION s3 cp . $BUCKET/REPO $flags"
 echo $cmd
 sleep 3
 
