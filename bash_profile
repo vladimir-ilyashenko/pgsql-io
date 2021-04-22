@@ -12,6 +12,7 @@ if [ "$rc" == "0" ]; then
 else
   export BUCKET=s3://pgsql-io-download
 fi
+export TEST_BUCKET=s3://test-io-download
 
 export DEV=$HOME/dev
 export IN=$DEV/in
