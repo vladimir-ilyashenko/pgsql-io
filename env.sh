@@ -64,6 +64,7 @@ hivefdwV=4.0-1
 hadoopV=2.10.0
 badgerV=11.5
 ora2pgV=21.1
+patroniV=2.0.2
 
 HUB="$PWD"
 SRC="$HUB/src"

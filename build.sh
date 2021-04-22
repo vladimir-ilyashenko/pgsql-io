@@ -476,6 +476,7 @@ initPG () {
   initC "kafka"     "kafka"     "$kfkV"   "" "kafka"            "" "" "Y"
   initC "debezium"  "debezium"  "$dbzV"   "" "debezium"         "" "" "Y"
   initC "redis"     "redis"     "$redisV" "" "redis"            "" "" "Y"
+  initC "patroni"   "patroni"   "$patroniV" "" "postgres/patroni" "" "" "nil"
   initC "badger"    "badger"    "$badgerV" "" "postgres/badger" "" "" "nil"
   initC "ora2pg"    "ora2pg"    "$ora2pgV" "" "postgres/ora2pg" "" "" "nil"
   initC "bouncer"   "bouncer"   "$bouncerV" "$outPlat" "postgres/bouncer" "" "" "nil"
