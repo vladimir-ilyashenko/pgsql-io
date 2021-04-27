@@ -1,9 +1,6 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
-echo " "
-echo "## INSTALL ETCD v$1 #########################################"
-
 ver=$1
 if [ "$ver" == "" ]; then
   echo "ERROR: You must supply version number to be installed"

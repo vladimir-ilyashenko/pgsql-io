@@ -22,13 +22,13 @@ def user_exists(p_user):
 
 ## Create a system user for running specific system services
 def useradd_linux(p_user):
-  print("Creating the user "+ p_user)
+  util.message("Creating the user "+ p_user)
   if not util.get_platform() == "Linux":
-    print("ERROR: USERADD is a Linux only command.")
+    util.message("USERADD is a Linux only command", "error")
     return(1)
 
   if not util.is_admin():
-    print("ERROR: Must be ROOT to run USERADD.")
+    util.message("Must be ROOT to run USERADD", "error")
     return(1)
 
   ## make sure the user exists....
@@ -47,7 +47,7 @@ def config_linux(p_comp, p_systemsvc, p_svc_user, p_start, p_start_log,
 
   sys_svc_file = os.path.join(util.get_systemd_dir(), p_systemsvc + ".service")
 
-  print(p_comp + " config autostart " + sys_svc_file)
+  util.message(p_comp + " config autostart " + sys_svc_file)
 
   ## systemD ################################
   unit_file = tempfile.mktemp(".service")

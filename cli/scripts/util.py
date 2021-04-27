@@ -471,7 +471,7 @@ def run_sudo(p_cmd, p_display=True, p_isJSON=False):
 
 def run_sh_cmd(p_cmd, p_display=True, p_isJSON=False):
   if p_display:
-    message("$ " + p_cmd, "info", p_isJSON)
+    message("$ " + p_cmd, "info")
 
   rc = os.system(p_cmd)
 
@@ -1337,7 +1337,7 @@ def get_mem_mb():
 
 
 def tune_postgresql_conf(p_pgver):
-  print("Tuning 'postgresl.conf' parms for '" + p_pgver + "':")
+  message("Tuning 'postgresl.conf' parms for '" + p_pgver + "':")
   mem_mb = get_mem_mb()
 
   s = get_pgconf(p_pgver)
@@ -1345,28 +1345,28 @@ def tune_postgresql_conf(p_pgver):
   lines = s.split('\n')
   for line in lines:
     if line.startswith("shared_buffers") or line.startswith("#shared_buffers"):
-      print("  old: " + line)
+      message("  old: " + line)
       shared_buf_mb = int(mem_mb / 4)
       if shared_buf_mb > 16384:
         shared_buf_mb = 16384
       shared_buf = "shared_buffers = " + str(shared_buf_mb) + "MB"
-      print("  new: " + shared_buf + "\n")
+      message("  new: " + shared_buf + "\n")
       ns = ns + "\n" + shared_buf
 
     elif line.startswith("maintenance_work_mem") or line.startswith("#maintenance_work_mem"):
-      print("  old: " + line)
+      message("  old: " + line)
       maint_mb = int(mem_mb / 10)
       if maint_mb > 4096:
         maint_mb = 4096
       maint_buf = "maintenance_work_mem = " + str(maint_mb) + "MB"
-      print("  new: " + maint_buf + "\n")
+      message("  new: " + maint_buf + "\n")
       ns = ns + "\n" + maint_buf
 
     elif line.startswith("effective_cache_size") or line.startswith("#effective_cache_size"):
-      print("  old: " + line)
+      message("  old: " + line)
       cache_mb = int(mem_mb / 2)
       cache_size = "effective_cache_size = " + str(cache_mb) + "MB"
-      print("  new: " + cache_size + "\n")
+      message("  new: " + cache_size + "\n")
       ns = ns + "\n" + cache_size
 
     else:

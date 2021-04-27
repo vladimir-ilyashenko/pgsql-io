@@ -1,7 +1,0 @@
-set -x
-
-pip3 install --user click
-pip3 install --user --upgrade pip
-
-pip3 install --user urllib3 PyYAML six python-etcd prettytable python-dateutil pysyncobj psutil ydiff
-pip3 install --user psycopg2-binary python-etcd haproxyadmin

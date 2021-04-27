@@ -1675,6 +1675,7 @@ try:
         msg = '[{"status":"error","msg":"' + msg + '"}]'
       util.exit_message(msg, return_code)
 
+    util.message("\n########### Installing " + p_comp + " ###############")
     deplist = get_depend_list(p_comp_list)
     component_installed = False
     dependent_components = []

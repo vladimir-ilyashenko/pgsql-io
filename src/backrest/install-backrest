@@ -1,10 +1,6 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
-
-echo " "
-echo "## INSTALL BACKREST ###########################################"
-
 sudo cp bin/pgbackrest  /usr/bin
 sudo chmod 755 /usr/bin/pgbackrest
 
@@ -23,7 +19,4 @@ sudo chown $USER:$USER /var/lib/pgbackrest
 cp pgbackrest.conf /etc/pgbackrest/pgbackrest.conf
 rm -rf lib
 rm -rf share
-
-pgbackrest version
-
 

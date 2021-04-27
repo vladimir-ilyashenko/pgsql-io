@@ -38,15 +38,15 @@ MY_HOME = os.getenv('MY_HOME')
 install_cmd = MY_HOME + os.sep + MY_CMD + " install "
 
 if os.getenv("isJson"):
-  jflag = "--json"
+  jflag = " --json"
 else:
   jflag = ""
 
-os.system(install_cmd + " pgbouncer " + jflag)
-os.system(install_cmd + "  backrest " + jflag)
-os.system(install_cmd + "  patroni  " + jflag)
+os.system(install_cmd + "bouncer" + jflag)
+os.system(install_cmd + "backrest" + jflag)
+os.system(install_cmd + "patroni" + jflag)
 
-util.message("Starting " + str(pgver) + " for first time")
+util.message("\nStarting " + str(pgver) + " for first time")
 script = thisDir + os.sep + "start-" + pgver + ".py"
 cmd = sys.executable + " -u " + script
 rc = os.system(cmd)
