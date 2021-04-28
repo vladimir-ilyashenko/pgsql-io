@@ -193,7 +193,7 @@ INSERT INTO versions VALUES ('hivefdw-pg13', '4.0-1', 'amd', 1, '20200927', 'pg1
 
 INSERT INTO projects VALUES ('redisfdw', 5, 0, 'hub', 0, 'https://github.com/pgsql-io/redis_fdw/releases', 
   'redisfdw', 1, 'redis.png', 'Access Redis', 'https://github.com/pgsql-io/redis_fdw');
-INSERT INTO releases VALUES ('redisfdw-pg13',  4, 'redisfdw', 'Redis FDW',  '', 'prod', '', 1, 'POSTGRES', '', '');
+INSERT INTO releases VALUES ('redisfdw-pg13',  4, 'redisfdw', 'RedisFDW',  '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('redisfdw-pg13', '1.13-1', 'amd', 1, '20200608', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('mysqlfdw', 5, 0, 'hub', 0, 'https://github.com/EnterpriseDB/mysql_fdw/releases', 
@@ -234,7 +234,7 @@ INSERT INTO versions VALUES ('ora2pg', '20.0', '', 0, '20200829', '', 'GCC PERL'
 
 INSERT INTO projects VALUES ('oraclefdw', 5, 0, 'hub', 0, 'https://github.com/laurenz/oracle_fdw/releases',
   'oraclefdw', 1, 'oracle_fdw.png', 'Oracle from PG', 'https://github.com/laurenz/oracle_fdw');
-INSERT INTO releases VALUES ('oraclefdw-pg13', 2, 'oraclefdw', 'Oracle FDW', '', 'prod', '', 1, 'POSTGRES', '', '');
+INSERT INTO releases VALUES ('oraclefdw-pg13', 2, 'oraclefdw', 'OracleFDW', '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('oraclefdw-pg13','2.3.0-1', 'amd', 1, '20200924', 'pg13', '', 'https://github.com/laurenz/oracle_fdw/releases/tag/ORACLE_FDW_2_3_0');
 
 INSERT INTO projects VALUES ('oracle', 10, 1521, 'hub', 0, 'https://www.oracle.com/database/technologies/oracle-database-software-downloads.html#19c', 

@@ -75,7 +75,7 @@ of your choice.
 <tr><td align=right><p><b>Usage sample:</b></td>
     <td>
       <input type='text' size=90 value =
-'cd pgsql; ./io install pg13; ./io start' readonly='readonly' />
+'cd pgsql; ./io install pg13; ./io start; ./io install timescaledb' readonly='readonly' />
     </td>
 </tr>
 </table>
