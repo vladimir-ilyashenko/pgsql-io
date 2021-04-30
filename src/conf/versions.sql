@@ -324,9 +324,9 @@ INSERT INTO projects VALUES ('citus', 2, 0, 'hub',0, 'https://github.com/citusda
 INSERT INTO releases VALUES ('citus-pg13',  5, 'citus', 'Citus', '', 'prod', '', 1, 'AGPLv3', '', '');
 INSERT INTO versions VALUES ('citus-pg13', '10.0.3-1', 'amd', 1, '20210315', 'pg13', '', 'https://github.com/citusdata/citus/releases/tag/v10.0.3');
 
-INSERT INTO projects VALUES ('cron', 2, 0, 'hub',0, 'https://github.com/citusdata/pg_cron/releases',
+INSERT INTO projects VALUES ('cron', 4, 0, 'hub',0, 'https://github.com/citusdata/pg_cron/releases',
   'cron', 1, 'cron.png', 'Scheduler as Background Worker', 'https://github.com/citusdata/pg_cron');
-INSERT INTO releases VALUES ('cron-pg13', 5, 'cron', 'pgCron', '', 'prod', '', 1, 'POSTGRES', '', '');
+INSERT INTO releases VALUES ('cron-pg13', 10, 'cron', 'pgCron', '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('cron-pg13', '1.3.1-1', 'amd', 1, '20210330', 'pg13', '', '');
 INSERT INTO versions VALUES ('cron-pg13', '1.3.0-1', 'amd', 0, '20201006', 'pg13', '', '');
 
@@ -436,24 +436,28 @@ INSERT INTO projects VALUES ('ddlx',      7, 0, 'hub', 0, 'https://github.com/la
 INSERT INTO releases VALUES ('ddlx-pg13', 2, 'ddlx', 'DDLeXtact', '', 'prod','',  0, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('ddlx-pg13', '0.17-1', 'amd', 1, '20200911', 'pg13', '', '');
 
-INSERT INTO projects VALUES ('powa',      4, 0, 'hub', 1, 'https://github.com/powa-team/powa-archivist/releases', 'powa',  1, 'powa.png', 'WorkLoad Analyzer', 'https://powa.readthedocs.io/en/latest/components/powa-archivist/index.html');
-INSERT INTO releases VALUES ('powa-pg13', 97, 'powa', 'POWA-Archivist', '', 'prod','',  0, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('powa-pg13', '4.1.2-1', 'amd', 1, '20201220', 'pg13', '', '');
+INSERT INTO projects VALUES ('wa',      4, 0, 'hub', 1, 'https://github.com/powa-team/powa-archivist/releases', 'powa',  1, 'powa.png', 'WorkLoad Analyzer', 'https://powa.readthedocs.io/en/latest/components/powa-archivist/index.html');
+INSERT INTO releases VALUES ('wa-pg13', 97, 'wa', 'WA', '', '','', '', 'POSTGRES', '', '');
+INSERT INTO versions VALUES ('wa-pg13', '4.1.2-1', 'amd', 2, '20201220', 'pg13', '', '');
+
+INSERT INTO projects VALUES ('archivist',      4, 0, 'hub', 1, 'https://github.com/powa-team/powa-team/releases', 'archivist',  1, 'archivist.png', 'Snapshot Workloads', 'https://powa.readthedocs.io/en/latest/components/archivist-archivist/index.html');
+INSERT INTO releases VALUES ('archivist-pg13', 97, 'archivist', 'POWA-Archivist', '', 'prod','',  0, 'POSTGRES', '', '');
+INSERT INTO versions VALUES ('archivist-pg13', '4.1.2-1', 'amd', 2, '20201220', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('qualstats', 4, 0, 'powa', 2, 'https://github.com/powa-team/pg_qualstats/releases',
   'qualstats', 1, 'qualstats.png', 'Predicate Stats', 'https://github.com/powa-team/pg_qualstats');
 INSERT INTO releases VALUES ('qualstats-pg13', 98, 'qualstats', 'POWA-QualStats', '', 'prod','',  1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('qualstats-pg13', '2.0.2-1', 'amd', 1, '20200523', 'pg13', '', '');
+INSERT INTO versions VALUES ('qualstats-pg13', '2.0.2-1', 'amd', 2, '20200523', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('statkcache', 4, 0, 'powa', 3, 'https://github.com/powa-team/pg_stat_kcache/releases',
   'statkcache', 1, 'statkcache.png', 'Filesystem Stats', 'https://github.com/powa-team/pg_stat_kcache');
 INSERT INTO releases VALUES ('statkcache-pg13', 98, 'statkcache', 'POWA-StatKcache', '', 'prod','',  1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('statkcache-pg13', '2.2.0-1', 'amd', 1, '20201210', 'pg13', '', '');
+INSERT INTO versions VALUES ('statkcache-pg13', '2.2.0-1', 'amd', 2, '20201210', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('waitsampling', 4, 0, 'powa', 4, 'https://github.com/postgrespro/pg_wait_sampling/releases',
   'waitsampling', 1, 'waitsampling.png', 'Stats for Wait Events', 'https://github.com/postgrespro/pg_wait_sampling');
 INSERT INTO releases VALUES ('waitsampling-pg13', 98, 'waitsampling', 'WaitSampling', '', 'prod','',  1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('waitsampling-pg13', '1.1.3-1', 'amd', 1, '20210127', 'pg13', '', '');
+INSERT INTO versions VALUES ('waitsampling-pg13', '1.1.3-1', 'amd', 2, '20210127', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('multicorn', 5, 0, 'hub', 0, 'https://github.com/pgsql-io/Multicorn/',
   'multicorn', 1, 'multicorn.png', 'Python FDW Library', 'http://multicorn.org');
