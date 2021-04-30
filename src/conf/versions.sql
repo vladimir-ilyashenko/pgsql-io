@@ -439,7 +439,7 @@ INSERT INTO versions VALUES ('ddlx-pg13', '0.17-1', 'amd', 1, '20200911', 'pg13'
 
 INSERT INTO projects VALUES ('wa',      4, 0, 'hub', 1, 'https://github.com/powa-team/powa-archivist/releases', 'powa',  1, 'powa.png', 'WorkLoad Analyzer', 'https://powa.readthedocs.io/en/latest/components/powa-archivist/index.html');
 INSERT INTO releases VALUES ('wa-pg13', 97, 'wa', 'WA', '', '','', '', 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('wa-pg13', '4.1.2-1', 'amd', 2, '20201220', 'pg13', '', '');
+INSERT INTO versions VALUES ('wa-pg13', '2.1-1', 'amd', 2, '20210508', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('archivist',      4, 0, 'hub', 1, 'https://github.com/powa-team/powa-team/releases', 'archivist',  1, 'archivist.png', 'Snapshot Workloads', 'https://powa.readthedocs.io/en/latest/components/archivist-archivist/index.html');
 INSERT INTO releases VALUES ('archivist-pg13', 97, 'archivist', 'POWA-Archivist', '', 'prod','',  0, 'POSTGRES', '', '');

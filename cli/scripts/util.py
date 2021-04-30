@@ -10,7 +10,7 @@ from subprocess import Popen, PIPE, STDOUT
 from datetime import datetime, timedelta
 
 import os, sys, socket, platform, sqlite3, getpass, signal, hashlib
-import json, uuid, logging, tempfile, shutil, filecmp, traceback
+import json, uuid, logging, tempfile, shutil, filecmp, traceback, time
 
 import api, meta
 
@@ -202,13 +202,127 @@ def run_sql_cmd(p_pg, p_sql, p_display=False):
   return(rc)
 
 
-def pre_install_extension(p_pg, p_ext):
-    print("\ninstall-" + p_ext + "-" + p_pg + ":")
+def install_extension(p_pg, p_ext):
+  ## install an extension without configuring it.  Used for the POWA family
+  ## and possible future group installs
+  install_comp(p_ext + "-" + p_pg)
+
+
+
+## Install Component ######################################################
+def install_comp(p_app, p_ver=0, p_rver=None, p_re_install=False):
+  if p_ver is None:
+    p_ver = 0
+
+  if p_rver:
+    parent = get_parent_component(p_app, p_rver)
+  else:
+    parent = get_parent_component(p_app, p_ver)
+
+  if parent != "":
+    parent_state = get_comp_state(parent)
+    if parent_state == "NotInstalled":
+      errmsg = "{0} has to be installed before installing {1}".format(parent, p_app)
+      message(errmsg, "error")
+      return 1
+
+  state = get_comp_state(p_app)
+  if state == "NotInstalled" or p_re_install:
+    pass
+  else:
+    message(p_app + " is already installed", "error")
+    return 1
+
+  if p_ver ==  0:
+    ver = meta.get_latest_ver_plat(p_app)
+  else:
+    ver = p_ver
+
+  message('')
+  if meta.check_pre_reqs(p_app, ver):
+    pass
+  else:
+    return(1)
+
+  base_name = p_app + "-" + ver
+  conf_cache = "conf" + os.sep + "cache"
+  file = base_name + ".tar.bz2"
+  bz2_file = conf_cache + os.sep + file
+  message("starting download")
+
+  if os.path.exists(bz2_file) and is_downloaded(base_name, p_app):
+    msg = "File is already downloaded."
+    my_logger.info(msg)
+    if os.getenv("isJson", None):
+      json_dict['status'] = "complete"
+      msg = json.dumps([json_dict])
+    if not isSILENT:
+      print(msg)
+  elif not retrieve_comp(base_name, p_app):
+    return(1)
+
+  message(" Unpacking " + file)
+
+  tarFileObj = ProgressTarExtract("conf" + os.sep + "cache" + os.sep + file)
+  tarFileObj.component_name = p_app
+  tarFileObj.file_name = file
+
+  tar = tarfile.open(fileobj=tarFileObj, mode="r:bz2")
+
+  try:
+    tar.extractall(path=".")
+  except KeyboardInterrupt as e:
+    temp_tar_dir = os.path.join(MY_HOME, p_app)
+    util.delete_dir(temp_tar_dir)
+    msg = "Unpacking cancelled for file %s" % file
+    my_logger.error(msg)
+    message("unpack cancelled")
+    return(0)
+  except Exception as e:
+    temp_tar_dir = os.path.join(MY_HOME, p_app)
+    delete_dir(temp_tar_dir)
+    message("Unpacking failed for file %s" % str(e), "error")
+    my_logger.error(traceback.format_exc())
+    return(1)
+
+  tar.close
+  message("Unpack complete")
+  return(0)
+
+
+## Download tarball component and verify against checksum ###############
+def retrieve_comp(p_base_name, component_name=None):
+  conf_cache = "conf" + os.sep + "cache"
+  bz2_file = p_base_name + ".tar.bz2"
+  checksum_file = bz2_file + ".sha512"
+
+  repo=get_value('GLOBAL', 'REPO')
+  isJson = os.getenv("isJson", None)
+  display_status = True
+  if not http_get_file(isJson, bz2_file, repo, conf_cache, display_status, "", component_name):
+    return (False)
+
+  msg = "Preparing to unpack " + p_base_name
+  if not http_get_file(isJson, checksum_file, repo, conf_cache, False, msg, component_name):
+    return (False)
+
+  return validate_checksum(conf_cache + os.sep + bz2_file, conf_cache + os.sep + checksum_file)
+
+
+def validate_checksum(p_file_name, p_checksum_file_name):
+  checksum_from_file = util.get_file_checksum(p_file_name)
+  checksum_from_remote_file = util.read_file_string(p_checksum_file_name).rstrip()
+  checksum_from_remote = checksum_from_remote_file.split()[0]
+  global check_sum_match
+  check_sum_match = False
+  if checksum_from_remote == checksum_from_file:
+    return True
+  else:
+    message("SHA512 CheckSum Mismatch", "error" )
+    return check_sum_match
 
 
 def create_extension(p_pg, p_ext, p_reboot=False, p_extension="", p_cascade=False):
-  import time
-
   if p_ext > " ":
     rc = change_pgconf_keyval(p_pg, "shared_preload_libraries", p_ext)
     if rc == False:
@@ -238,14 +352,6 @@ def create_virtualenv():
   # rc = system(PIP + " install --user virtualenv" , is_display=True)
   # return(rc)
   return(0)
-
-
-def install_pgadmin4_server():
-  pgadmin4_wheel = os.path.join(MY_HOME, 'pgadmin4', '*.whl')
-
-  rc = system(PIP + " install --user " + pgadmin4_wheel, is_display=True)
-
-  return(rc)
 
 
 def confirm_pip():

@@ -32,7 +32,8 @@ bulkloadV=3.1.17-1
 partmanV=4.5.0-1
 repackV=1.4.6-1
 
-powaV=4.1.2-1
+waV=2.1-1
+archiV=4.1.2-1
 qstatV=2.0.2-1
 statkV=2.2.0-1
 waitsV=1.1.3-1

@@ -373,6 +373,7 @@ def install_comp(p_app, p_ver=0, p_rver=None, p_re_install=False):
     tar.close
     if isJSON:
       util.message("Unpack complete")
+
   else:
     msg = p_app + " is already installed."
     my_logger.info(msg)

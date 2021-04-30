@@ -230,7 +230,10 @@ initDir () {
   copy-pgXX "multicorn"
   copy-pgXX "esfdw"
   copy-pgXX "pljava"
-  copy-pgXX "powa"
+
+  ## POWA #######################
+  copy-pgXX "wa"
+  copy-pgXX "archivist"
   copy-pgXX "qualstats"
   copy-pgXX "statkcache"
   copy-pgXX "waitsampling"
@@ -461,7 +464,8 @@ initPG () {
     initC "bulkload-pg$pgM" "bulkload" "$bulkloadV" "$outPlat" "postgres/bulkload" "" "" "nil"
     initC "multicorn-pg$pgM" "multicorn" "$multicornV" "$outPlat" "postgres/multicorn" "" "" "nil"
 
-    initC "powa-pg$pgM" "powa" "$powaV" "$outPlat" "postgres/powa" "" "" "nil"
+    initC "wa-pg$pgM" "wa" "$waV" "$outPlat" "postgres/wa" "" "" "nil"
+    #initC "archivist-pg$pgM" "archivist" "$archiV" "$outPlat" "postgres/archivist" "" "" "nil"
     initC "qualstats-pg$pgM" "qualstats" "$qstatV" "$outPlat" "postgres/qualstats" "" "" "nil"
     initC "statkcache-pg$pgM" "statkcache" "$statkV" "$outPlat" "postgres/statkcache" "" "" "nil"
     initC "waitsampling-pg$pgM" "waitsampling" "$waitsV" "$outPlat" "postgres/waitsampling" "" "" "nil"
