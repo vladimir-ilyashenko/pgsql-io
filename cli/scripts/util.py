@@ -57,6 +57,12 @@ except ImportError:
   pass
 
 
+def get_1st_ip():
+  ips = getoutput("hostname --all-ip-addresses")
+  ipl = ips.split()
+  return(ipl[0])
+
+
 def run_backrest(p_cmd):
   backrest =  os.path.join(MY_HOME, 'backrest', 'bin', 'pgbackrest')
   if not os.path.isfile(backrest):
