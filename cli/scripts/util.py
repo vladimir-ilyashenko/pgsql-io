@@ -57,6 +57,15 @@ except ImportError:
   pass
 
 
+def get_random_password(p_length=12):
+  import string, random
+  passwd_chars = string.ascii_letters + string.digits + "~!@#$%^&*()_+{}|"
+  passwd = []
+  for x in range(p_length):
+    passwd.append(random.choice(passwd_chars))
+  return(''.join(passwd))
+
+
 def get_1st_ip():
   ips = getoutput("hostname --all-ip-addresses")
   ipl = ips.split()
