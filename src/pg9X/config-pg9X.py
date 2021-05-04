@@ -69,7 +69,10 @@ if args.getpwd > "":
   user = pwdargs[0]
 
   pwd = util.retrieve_pgpassword(p_user=user)
-  util.message(pwd, "pwd")
+  if pwd == None:
+    util.message("not found", "error")
+  else:
+    util.message(pwd, "pwd")
 
   sys.exit(0)
 

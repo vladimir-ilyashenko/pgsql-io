@@ -712,6 +712,9 @@ def message(p_msg, p_state="info", p_isJSON=None):
   if p_isJSON == None:
     p_isJSON = os.getenv("isJson")
 
+  if p_msg == None:
+    return
+
   if p_state.lower() == "error":
     my_logger.error(p_msg)
     prefix = "ERROR: "
@@ -1179,7 +1182,7 @@ def remember_pgpassword(p_passwd, p_port="5432", p_host="localhost", p_db="*", p
   if not get_platform() == "Windows":
     os.chmod(pw_file, 0o600)
 
-  message(f"Password securely remembered in the file: {pw_file}")
+  message("Password securely remembered")
 
   return pw_file
 
