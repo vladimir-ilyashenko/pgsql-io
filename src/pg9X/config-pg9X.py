@@ -24,6 +24,10 @@ parser.add_argument("--datadir", type=str, default="")
 parser.add_argument("--logdir", type=str, default="")
 parser.add_argument("--svcname", type=str, default="")
 
+parser.add_argument("--setpwd", type=str, default="")
+parser.add_argument("--getpwd", type=str, default="")
+
+
 parser.usage = parser.format_usage().replace("--autostart {on,off}","--autostart={on,off}")
 args = parser.parse_args()
 
@@ -39,6 +43,36 @@ if app_datadir != "" and util.is_socket_busy(int(port), pgver):
   util.message(msg, "error")
 
   sys.exit(0)
+
+
+## SECURE SECRETS MANAGMENT ###################################
+if args.setpwd > "":
+  pwdargs = args.setpwd.split()
+  if len(pwdargs) != 2:
+     util.message("invalid --setpwd args", "error")
+     sys.exit(1)
+
+  user = pwdargs[0]
+  pwd = pwdargs[1]
+
+  util.remember_pgpassword(pwd, p_user=user)
+  
+  sys.exit(0)
+
+
+if args.getpwd > "":
+  pwdargs = args.getpwd.split()
+  if len(pwdargs) != 1:
+     util.message("invalid --getpwd args", "error")
+     sys.exit(1)
+
+  user = pwdargs[0]
+
+  pwd = util.retrieve_pgpassword(p_user=user)
+  util.message(pwd, "pwd")
+
+  sys.exit(0)
+
 
 ## DATADIR, PORT , LOGDIR & SVCNAME ###########################
 if args.datadir > '':
