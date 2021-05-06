@@ -102,7 +102,8 @@ INSERT INTO categories VALUES (9,  87, 'Management & Monitoring', 'Manage');
 -- ## HUB ################################
 INSERT INTO projects VALUES ('hub',0, 0, 'hub', 0, 'https://github.com/pgsql-io/pgsql-io','',0,'','','');
 INSERT INTO releases VALUES ('hub', 1, 'hub', '', '', 'hidden', '', 1, '', '', '');
-INSERT INTO versions VALUES ('hub', '6.46', '',  1, '20210504', '', '', '');
+INSERT INTO versions VALUES ('hub', '6.47', '',  1, '20210506', '', '', '');
+INSERT INTO versions VALUES ('hub', '6.46', '',  0, '20210504', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.45', '',  0, '20210427', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.44', '',  0, '20210419', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.43', '',  0, '20210413', '', '', '');
@@ -305,7 +306,6 @@ INSERT INTO releases VALUES ('backrest', 9, 'backrest', 'pgBackRest', '', 'prod'
 INSERT INTO versions VALUES ('backrest', '2.33-1', 'amd', 1, '20210405', '', '', 'https://pgbackrest.org/release.html#2.33');
 INSERT INTO versions VALUES ('backrest', '2.32-1', 'amd', 0, '20210208', '', '', 'https://pgbackrest.org/release.html#2.32');
 INSERT INTO versions VALUES ('backrest', '2.31-1', 'amd', 0, '20201208', '', '', '');
-INSERT INTO versions VALUES ('backrest', '2.30-1', 'amd', 0, '20201005', '', '', '');
 
 INSERT INTO projects VALUES ('audit', 2, 0, 'hub', 0, 'https://github.com/pgaudit/pgaudit/releases',
   'audit', 1, 'audit.png', 'Audit Logging', 'https://github.com/pgaudit/pgaudit');
