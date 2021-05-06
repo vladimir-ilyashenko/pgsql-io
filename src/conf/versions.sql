@@ -145,28 +145,28 @@ INSERT INTO versions VALUES ('pg13', '13.2-3',  'amd', 1, '20210211','', 'LIBC-2
 INSERT INTO versions VALUES ('pg13', '13.2-2',  'amd', 0, '20210211','', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg13', '13.2-1',  'amd', 0, '20210211','', 'LIBC-2.17', '');
 
-INSERT INTO projects VALUES ('debezium', 10, 8080, 'kafka', 3, 'https://debezium.io/releases/1.5/',
+INSERT INTO projects VALUES ('debezium',  5, 8080, 'kafka', 3, 'https://debezium.io/releases/1.5/',
   'Debezium', 0, 'debezium.png', 'Stream DB Changes', 'https://debezium.io');
 INSERT INTO releases VALUES ('debezium', 0, 'debezium', 'Debezium', '', 'test', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('debezium', '1.5.0', '', 2, '20210408', '', '', '');
+INSERT INTO versions VALUES ('debezium', '1.5.0', '', 1, '20210408', '', '', '');
 INSERT INTO versions VALUES ('debezium', '1.2.5', '', 0, '20200924', '', '', '');
 
 INSERT INTO projects VALUES ('kafka', 10, 9092, 'zookeeper', 2, 'https://kafka.apache.org/downloads',
   'Kafka', 0, 'kafka.png', 'Streaming Platform', 'https://kafka.apache.org');
 INSERT INTO releases VALUES ('kafka', 0, 'kafka', 'Kafka', '', 'test', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('kafka', '2.7.0', '', 2, '20201221', '', '', 'https://downloads.apache.org/kafka/2.7.0/RELEASE_NOTES.html');
+INSERT INTO versions VALUES ('kafka', '2.7.0', '', 1, '20201221', '', '', 'https://downloads.apache.org/kafka/2.7.0/RELEASE_NOTES.html');
 
 INSERT INTO projects VALUES ('redis', 10, 6379, 'hub', 2, 'https://github.com/redis/redis/releases',
   'Redis', 0, 'redis.png', 'Hi-Speed Cache', 'https://redis.io');
 INSERT INTO releases VALUES ('redis', 0, 'redis', 'Redis', '', 'test', '', 1, 'BSD', '', '');
-INSERT INTO versions VALUES ('redis', '6', '',   2, '20210420', '', '', '');
+INSERT INTO versions VALUES ('redis', '6', '',   1, '20210420', '', '', '');
 INSERT INTO versions VALUES ('redis', '6.2.2', '', 0, '20210420', '', '', '');
 INSERT INTO versions VALUES ('redis', '6.2.1', '', 0, '20210302', '', '', '');
 
 INSERT INTO projects VALUES ('zookeeper', 10, 2181, 'hub', 1, 'https://zookeeper.apache.org/releases.html#releasenotes',
   'zookeeper', 0, 'zookeeper.png', 'Distributed Key-Store for HA', 'https://zookeeper.apache.org');
 INSERT INTO releases VALUES ('zookeeper', 5, 'zookeeper', 'Zookeeper', '', 'test', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('zookeeper', '3.7.0', '',  2, '20210327', '', '',
+INSERT INTO versions VALUES ('zookeeper', '3.7.0', '',  1, '20210327', '', '',
   'https://zookeeper.apache.org/doc/r3.7.0/releasenotes.html');
 INSERT INTO versions VALUES ('zookeeper', '3.6.2', '',  0, '20200909', '', '',
   'https://zookeeper.apache.org/doc/r3.6.2/releasenotes.html');
@@ -225,7 +225,7 @@ INSERT INTO versions VALUES ('esfdw-pg13', '0.11.1', 'amd',  1, '20210409', 'pg1
 INSERT INTO projects VALUES ('ora2pg', 5, 0, 'hub', 0, 'https://github.com/darold/ora2pg/releases',
   'ora2pg', 0, 'ora2pg.png', 'Migrate from Oracle to PG', 'https://ora2pg.darold.net');
 INSERT INTO releases VALUES ('ora2pg', 2, 'ora2pg', 'Oracle to PG', '', 'test', '', 1, 'GPLv2', '', '');
-INSERT INTO versions VALUES ('ora2pg', '21.1', '', 2, '20210401', '', 'GCC PERL',
+INSERT INTO versions VALUES ('ora2pg', '21.1', '', 1, '20210401', '', 'GCC PERL',
   'https://github.com/darold/ora2pg/releases/tag/v21.1');
 INSERT INTO versions VALUES ('ora2pg', '21.0', '', 0, '20201012', '', 'GCC PERL',
   'https://github.com/darold/ora2pg/releases/tag/v21.0');
@@ -240,7 +240,7 @@ INSERT INTO versions VALUES ('oraclefdw-pg13','2.3.0-1', 'amd', 1, '20200924', '
 INSERT INTO projects VALUES ('oracle', 10, 1521, 'hub', 0, 'https://www.oracle.com/database/technologies/oracle-database-software-downloads.html#19c', 
   'oracle', 0, 'oracle.png', 'Oracle Database', 'https://www.oracle.com/database/technologies');
 INSERT INTO releases VALUES ('oracle', 2, 'oracle', 'Oracle', '', 'test','', 0, 'ORACLE', '', '');
-INSERT INTO versions VALUES ('oracle', '19c', 'amd', 2, '20200801', '', '', '');
+INSERT INTO versions VALUES ('oracle', '19c', 'amd', 1, '20200801', '', '', '');
 
 -- ##
 INSERT INTO projects VALUES ('orafce', 5, 0, 'hub', 0, 'https://github.com/orafce/orafce/releases',
@@ -302,7 +302,7 @@ INSERT INTO versions VALUES ('plprofiler-pg13', '4.1-1', 'amd', 1, '20190823', '
 INSERT INTO projects VALUES ('backrest', 2, 0, 'hub', 0, 'https://github.com/pgbackrest/pgbackrest/releases',
   'backrest', 0, 'backrest.png', 'Backup & Restore', 'https://pgbackrest.org');
 INSERT INTO releases VALUES ('backrest', 9, 'backrest', 'pgBackRest', '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('backrest', '2.33-1', 'amd', 2, '20210405', '', '', 'https://pgbackrest.org/release.html#2.33');
+INSERT INTO versions VALUES ('backrest', '2.33-1', 'amd', 1, '20210405', '', '', 'https://pgbackrest.org/release.html#2.33');
 INSERT INTO versions VALUES ('backrest', '2.32-1', 'amd', 0, '20210208', '', '', 'https://pgbackrest.org/release.html#2.32');
 INSERT INTO versions VALUES ('backrest', '2.31-1', 'amd', 0, '20201208', '', '', '');
 INSERT INTO versions VALUES ('backrest', '2.30-1', 'amd', 0, '20201005', '', '', '');
@@ -357,12 +357,12 @@ INSERT INTO versions VALUES ('postgis-pg13', '3.0.2-1', 'amd', 0, '20200815', 'p
 INSERT INTO projects VALUES ('omnidb', 9, 8000, '', 1, 'https://omnidb.org',
   'omnidb', 0, 'omnidb.png', 'OmniDB', 'https://omnidb.org');
 INSERT INTO releases VALUES ('omnidb', 0, 'omnidb', 'OmniDB', '', 'test', '', 1, '', '', '');
-INSERT INTO versions VALUES ('omnidb', '2.17.0', '', 2, '20191205', '', '', '');
+INSERT INTO versions VALUES ('omnidb', '2.17.0', '', 1, '20191205', '', '', '');
 
 INSERT INTO projects VALUES ('pgadmin', 9, 80, '', 1, 'https://pgadmin.org',
   'pgadmin', 0, 'pgadmin.png', 'PG Admin', 'https://pgadmin.org');
 INSERT INTO releases VALUES ('pgadmin', 0, 'pgadmin', 'pgAdmin 4', '', 'test', '', 1, '', '', '');
-INSERT INTO versions VALUES ('pgadmin', '5.1', '', 2, '20210325', '', '', '');
+INSERT INTO versions VALUES ('pgadmin', '5.1', '', 1, '20210325', '', '', '');
 
 INSERT INTO projects VALUES ('bulkload', 4, 0, 'hub', 5, 'https://github.com/ossc-db/pg_bulkload/releases',
   'bulkload', 1, 'bulkload.png', 'High Speed Data Loading', 'https://github.com/ossc-db/pg_bulkload');
@@ -394,14 +394,14 @@ INSERT INTO versions VALUES ('badger', '11.5', '', 2, '20210218', '', '', '');
 INSERT INTO projects VALUES ('bouncer',  4, 0, 'hub', 3, 'http://pgbouncer.org',
   'bouncer',  0, 'bouncer.png', 'Lightweight Connection Pooler', 'http://pgbouncer.org');
 INSERT INTO releases VALUES ('bouncer', 1, 'bouncer',  'pgBouncer', '', 'test', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('bouncer', '1.15.0-1', 'amd', 2, '20201119', '', '', '');
+INSERT INTO versions VALUES ('bouncer', '1.15.0-1', 'amd', 1, '20201119', '', '', '');
 INSERT INTO versions VALUES ('bouncer', '1.14.0-1', 'amd', 0, '20200611', '', '', '');
 INSERT INTO versions VALUES ('bouncer', '1.13.0-1', 'amd', 0, '20200427', '', '', '');
 
 INSERT INTO projects VALUES ('patroni',  2, 0, 'haproxy', 4, 'https://github.com/zalando/patroni/releases',
   'patroni', 0, 'patroni.png', 'Postgres HA Template', 'https://github.com/zalando/patroni');
 INSERT INTO releases VALUES ('patroni', 1, 'patroni', 'Patroni', '', 'test', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('patroni', '2.0.2', '', 2, '20210222', '', '', 'https://github.com/zalando/patroni/releases/tag/v2.0.2');
+INSERT INTO versions VALUES ('patroni', '2.0.2', '', 1, '20210222', '', '', 'https://github.com/zalando/patroni/releases/tag/v2.0.2');
 INSERT INTO versions VALUES ('patroni', '2.0.1', '', 0, '20201001', '', '', 'https://github.com/zalando/patroni/releases/tag/v2.0.1');
 INSERT INTO versions VALUES ('patroni', '2.0.0', '', 0, '20200902', '', '', 'https://github.com/zalando/patroni/releases/tag/v2.0.0');
 
@@ -442,22 +442,22 @@ INSERT INTO versions VALUES ('wa-pg13', '2.1-1', 'amd', 2, '20210508', 'pg13', '
 
 INSERT INTO projects VALUES ('archivist',      4, 0, 'hub', 1, 'https://github.com/powa-team/powa-team/releases', 'archivist',  1, 'archivist.png', 'Snapshot Workloads', 'https://powa.readthedocs.io/en/latest/components/archivist-archivist/index.html');
 INSERT INTO releases VALUES ('archivist-pg13', 97, 'archivist', 'POWA-Archivist', '', 'prod','',  0, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('archivist-pg13', '4.1.2-1', 'amd', 2, '20201220', 'pg13', '', '');
+INSERT INTO versions VALUES ('archivist-pg13', '4.1.2-1', 'amd', 1, '20201220', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('qualstats', 4, 0, 'powa', 2, 'https://github.com/powa-team/pg_qualstats/releases',
   'qualstats', 1, 'qualstats.png', 'Predicate Stats', 'https://github.com/powa-team/pg_qualstats');
 INSERT INTO releases VALUES ('qualstats-pg13', 98, 'qualstats', 'POWA-QualStats', '', 'prod','',  1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('qualstats-pg13', '2.0.2-1', 'amd', 2, '20200523', 'pg13', '', '');
+INSERT INTO versions VALUES ('qualstats-pg13', '2.0.2-1', 'amd', 1, '20200523', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('statkcache', 4, 0, 'powa', 3, 'https://github.com/powa-team/pg_stat_kcache/releases',
   'statkcache', 1, 'statkcache.png', 'Filesystem Stats', 'https://github.com/powa-team/pg_stat_kcache');
 INSERT INTO releases VALUES ('statkcache-pg13', 98, 'statkcache', 'POWA-StatKcache', '', 'prod','',  1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('statkcache-pg13', '2.2.0-1', 'amd', 2, '20201210', 'pg13', '', '');
+INSERT INTO versions VALUES ('statkcache-pg13', '2.2.0-1', 'amd', 1, '20201210', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('waitsampling', 4, 0, 'powa', 4, 'https://github.com/postgrespro/pg_wait_sampling/releases',
   'waitsampling', 1, 'waitsampling.png', 'Stats for Wait Events', 'https://github.com/postgrespro/pg_wait_sampling');
 INSERT INTO releases VALUES ('waitsampling-pg13', 98, 'waitsampling', 'WaitSampling', '', 'prod','',  1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('waitsampling-pg13', '1.1.3-1', 'amd', 2, '20210127', 'pg13', '', '');
+INSERT INTO versions VALUES ('waitsampling-pg13', '1.1.3-1', 'amd', 1, '20210127', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('multicorn', 5, 0, 'hub', 0, 'https://github.com/pgsql-io/Multicorn/',
   'multicorn', 1, 'multicorn.png', 'Python FDW Library', 'http://multicorn.org');
