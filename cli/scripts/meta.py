@@ -402,7 +402,7 @@ def get_list(p_isOLD, p_isExtensions, p_isJSON, p_isTEST, p_showLATEST, p_comp=N
   available_category_conditions = " AND p.is_extension = 0"
   ext_component = ""
 
-  extra_extensions = "('ora2pg', 'backrest', 'psqlodbc')"
+  extra_extensions = "('')"
 
   if p_isExtensions:
     installed_category_conditions = " AND ((p.is_extension = 1) OR (c.component in " + extra_extensions + "))"
