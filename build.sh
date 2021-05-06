@@ -465,7 +465,7 @@ initPG () {
     initC "multicorn-pg$pgM" "multicorn" "$multicornV" "$outPlat" "postgres/multicorn" "" "" "nil"
 
     initC "wa-pg$pgM" "wa" "$waV" "$outPlat" "postgres/wa" "" "" "nil"
-    #initC "archivist-pg$pgM" "archivist" "$archiV" "$outPlat" "postgres/archivist" "" "" "nil"
+    initC "archivist-pg$pgM" "archivist" "$archiV" "$outPlat" "postgres/archivist" "" "" "nil"
     initC "qualstats-pg$pgM" "qualstats" "$qstatV" "$outPlat" "postgres/qualstats" "" "" "nil"
     initC "statkcache-pg$pgM" "statkcache" "$statkV" "$outPlat" "postgres/statkcache" "" "" "nil"
     initC "waitsampling-pg$pgM" "waitsampling" "$waitsV" "$outPlat" "postgres/waitsampling" "" "" "nil"

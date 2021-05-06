@@ -52,8 +52,8 @@ fi
 
 ## prod ready across platforms #######################
 
-if [ "$1" == "powa" ]; then
-  build powa $powaFullV $2 powa
+if [ "$1" == "archivist" ]; then
+  build archivist $archivFullV $2 archivist
 fi
 
 if [ "$1" == "statkcache" ]; then

@@ -184,9 +184,9 @@ partmanFullV=4.5.0
 partmanShortV=
 partmanBuildV=1
 
-powaFullV=4.1.2
-powaShortV=
-powaBuildV=1
+archivFullV=4.1.2
+archivShortV=
+archivBuildV=1
 
 statkFullV=2.2.0
 statkShortV=
