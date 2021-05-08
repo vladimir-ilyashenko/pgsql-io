@@ -155,14 +155,13 @@ INSERT INTO versions VALUES ('debezium', '1.2.5', '', 0, '20200924', '', '', '')
 INSERT INTO projects VALUES ('kafka', 10, 9092, 'zookeeper', 2, 'https://kafka.apache.org/downloads',
   'Kafka', 0, 'kafka.png', 'Streaming Platform', 'https://kafka.apache.org');
 INSERT INTO releases VALUES ('kafka', 0, 'kafka', 'Kafka', '', 'test', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('kafka', '2.7.0', '', 1, '20201221', '', '', 'https://downloads.apache.org/kafka/2.7.0/RELEASE_NOTES.html');
+INSERT INTO versions VALUES ('kafka', '2.8.0', '', 1, '20210502', '', '', 'https://downloads.apache.org/kafka/2.8.0/RELEASE_NOTES.html');
+INSERT INTO versions VALUES ('kafka', '2.7.0', '', 0, '20201221', '', '', 'https://downloads.apache.org/kafka/2.7.0/RELEASE_NOTES.html');
 
 INSERT INTO projects VALUES ('redis', 10, 6379, 'hub', 2, 'https://github.com/redis/redis/releases',
   'Redis', 0, 'redis.png', 'Hi-Speed Cache', 'https://redis.io');
 INSERT INTO releases VALUES ('redis', 0, 'redis', 'Redis', '', 'test', '', 1, 'BSD', '', '');
-INSERT INTO versions VALUES ('redis', '6', '',   1, '20210420', '', '', '');
-INSERT INTO versions VALUES ('redis', '6.2.2', '', 0, '20210420', '', '', '');
-INSERT INTO versions VALUES ('redis', '6.2.1', '', 0, '20210302', '', '', '');
+INSERT INTO versions VALUES ('redis', '6', '',   1, '20210503', '', '', '');
 
 INSERT INTO projects VALUES ('zookeeper', 10, 2181, 'hub', 1, 'https://zookeeper.apache.org/releases.html#releasenotes',
   'zookeeper', 0, 'zookeeper.png', 'Distributed Key-Store for HA', 'https://zookeeper.apache.org');
@@ -363,7 +362,8 @@ INSERT INTO versions VALUES ('omnidb', '2.17.0', '', 1, '20191205', '', '', '');
 INSERT INTO projects VALUES ('pgadmin', 9, 80, '', 1, 'https://pgadmin.org',
   'pgadmin', 0, 'pgadmin.png', 'PG Admin', 'https://pgadmin.org');
 INSERT INTO releases VALUES ('pgadmin', 0, 'pgadmin', 'pgAdmin 4', '', 'test', '', 1, '', '', '');
-INSERT INTO versions VALUES ('pgadmin', '5.1', '', 1, '20210325', '', '', '');
+INSERT INTO versions VALUES ('pgadmin', '5.2', '', 1, '20210422', '', '', '');
+INSERT INTO versions VALUES ('pgadmin', '5.1', '', 0, '20210325', '', '', '');
 
 INSERT INTO projects VALUES ('bulkload', 4, 0, 'hub', 5, 'https://github.com/ossc-db/pg_bulkload/releases',
   'bulkload', 1, 'bulkload.png', 'High Speed Data Loading', 'https://github.com/ossc-db/pg_bulkload');

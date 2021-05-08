@@ -39,7 +39,7 @@ statkV=2.2.0-1
 waitsV=1.1.3-1
 
 zooV=3.7.0
-kfkV=2.7.0
+kfkV=2.8.0
 dbzV=1.5.0
 redisV=6
 
