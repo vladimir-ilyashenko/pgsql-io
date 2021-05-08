@@ -247,7 +247,8 @@ INSERT INTO versions VALUES ('oracle', '19c', 'amd', 1, '20200801', '', '', '');
 INSERT INTO projects VALUES ('orafce', 5, 0, 'hub', 0, 'https://github.com/orafce/orafce/releases',
   'orafce', 1, 'larry.png', 'Ora Built-in Packages', 'https://github.com/orafce/orafce#orafce---oracles-compatibility-functions-and-packages');
 INSERT INTO releases VALUES ('orafce-pg13', 2, 'orafce', 'OraFCE', '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('orafce-pg13', '3.15.0-1',  'amd', 1, '20210311', 'pg13', '', '');
+INSERT INTO versions VALUES ('orafce-pg13', '3.15.1-1',  'amd', 1, '20210506', 'pg13', '', '');
+INSERT INTO versions VALUES ('orafce-pg13', '3.15.0-1',  'amd', 0, '20210311', 'pg13', '', '');
 INSERT INTO versions VALUES ('orafce-pg13', '3.14.0-1',  'amd', 0, '20201222', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('fixeddecimal', 4, 0, 'hub', 0, 'https://github.com/pgsql-io/fixeddecimal/releases',
