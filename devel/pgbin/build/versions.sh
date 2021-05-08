@@ -16,9 +16,9 @@ wal2jsonFullV=2.3
 wal2jsonShortV=
 wal2jsonBuildV=1
 
-odbcFullV=13.00
+odbcFullV=13.01
 odbcShortV=
-odbcBuildV=2
+odbcBuildV=1
 
 backrestFullV=2.33
 backrestShortV=
@@ -88,7 +88,7 @@ tdsfdwFullV=2.0.2
 tdsfdwShortV=
 tdsfdwBuildV=1
 
-mysqlfdwFullV=2.5.5
+mysqlfdwFullV=2.6.0
 mysqlfdwShortV=
 mysqlfdwBuildV=1
 

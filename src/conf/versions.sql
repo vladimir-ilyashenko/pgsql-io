@@ -199,7 +199,8 @@ INSERT INTO versions VALUES ('redisfdw-pg13', '1.13-1', 'amd', 1, '20200608', 'p
 INSERT INTO projects VALUES ('mysqlfdw', 5, 0, 'hub', 0, 'https://github.com/EnterpriseDB/mysql_fdw/releases', 
   'mysqlfdw', 1, 'mysql.png', 'Access MySQL, Percona & MariaDB', 'https://github.com/EnterpriseDb/mysql_fdw');
 INSERT INTO releases VALUES ('mysqlfdw-pg13',  4, 'mysqlfdw', 'MySQL FDW',  '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('mysqlfdw-pg13', '2.5.5-1', 'amd', 1, '20201021', 'pg13', '', '');
+INSERT INTO versions VALUES ('mysqlfdw-pg13', '2.6.0-1', 'amd', 1, '20210502', 'pg13', '', '');
+INSERT INTO versions VALUES ('mysqlfdw-pg13', '2.5.5-1', 'amd', 0, '20201021', 'pg13', '', '');
 INSERT INTO versions VALUES ('mysqlfdw-pg13', '2.5.4-1', 'amd', 0, '20200802', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('tdsfdw', 5, 0, 'hub', 0, 'https://github.com/tds-fdw/tds_fdw/releases',
