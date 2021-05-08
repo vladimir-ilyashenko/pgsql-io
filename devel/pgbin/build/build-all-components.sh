@@ -30,6 +30,10 @@ fi
 
 ## WIP across platforms ###########################
 
+if [ "$1" == "parquets3fdw" ]; then
+  build parquets3fdw $parquetFullV $2 parquets3fdw
+fi
+
 if [ "$1" == "psqlodbc" ]; then
   build psqlodbc $odbcFullV $2 psqlodbc
 fi

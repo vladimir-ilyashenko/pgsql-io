@@ -563,41 +563,6 @@ function buildCstoreFDWComponent {
 }
 
 
-function buildParquetFDWComponent {
-
-        componentName="parquet_fdw$parquetFDWShortVersion-pg$pgShortVersion-$parquetFDWFullVersion-$parquetFDWBuildV-$buildOS"
-        echo " $componentName"
-        mkdir -p "$baseDir/$workDir/logs"
-        cd "$baseDir/$workDir"
-        mkdir parquet_fdw && tar -xf $parquetFDWSource --strip-components=1 -C parquet_fdw
-        cd parquet_fdw
-
-        buildLocation="$baseDir/$workDir/build/$componentName"
-
-        prepComponentBuildDir $buildLocation
-
-
-        PATH=$buildLocation/bin:$PATH:/opt/pgbin-build/pgbin/shared/linux_64/bin
-        make_log=$baseDir/$workDir/logs/parquet_make.log
-        export CPPFLAGS="$CPPFLAGS -std=c++11"
-        USE_PGXS=1 make > $make_log 2>&1
-        if [[ $? -eq 0 ]]; then
-                 USE_PGXS=1 make install > $baseDir/$workDir/logs/parquet_install.log 2>&1
-                if [[ $? -ne 0 ]]; then
-                        echo "PARQUET FDW install failed, check logs for details."
-                fi
-        else
-                echo "PARQUET FDW Make failed, check logs for details."
-                cat $make_log
-                return 1
-        fi
-
-        componentBundle=$componentName
-        cleanUpComponentDir $buildLocation
-        updateSharedLibs
-        packageComponent $componentBundle
-}
-
 
 function buildTimeScaleDBComponent {
 
@@ -643,7 +608,7 @@ function buildTimeScaleDBComponent {
         packageComponent $componentBundle
 }
 
-TEMP=`getopt -l no-tar, copy-bin,no-copy-bin,with-pgver:,with-pgbin:,build-hypopg:,build-postgis:,build-bouncer:,build-hvefdw:,build-cassandrafdw:,build-pgtsql:,build-tdsfdw:,build-mongofdw:,build-mysqlfdw:,build-redisfdw:,build-oraclefdw:,build-orafce:,build-audit:,build-set-user:,build-partman:,build-pldebugger:,build-plr:,build-pljava:,build-plv8:,build-plprofiler:,build-background:,build-bulkload:,build-backrest:,build-psqlodbc:,build-cstore-fdw:,build-parquet-fdw:,build-repack:,build-spock:,build-pglogical:,build-hintplan:,build-statkcache:,build-qualstats:,build-archivist:,build-waitsampling:,build-timescaledb:,build-cron:,build-multicorn:,build-pgmp:,build-fixeddecimal:,build-anon,build-ddlx:,build-http:,build-pgtop:,build-proctab:,build-agent:,build-citus:,build-number: -- "$@"`
+TEMP=`getopt -l no-tar, copy-bin,no-copy-bin,with-pgver:,with-pgbin:,build-hypopg:,build-postgis:,build-bouncer:,build-hvefdw:,build-cassandrafdw:,build-pgtsql:,build-tdsfdw:,build-mongofdw:,build-mysqlfdw:,build-redisfdw:,build-oraclefdw:,build-orafce:,build-audit:,build-set-user:,build-partman:,build-pldebugger:,build-plr:,build-pljava:,build-plv8:,build-plprofiler:,build-background:,build-bulkload:,build-backrest:,build-psqlodbc:,build-cstore-fdw:,build-parquets3fdw:,build-repack:,build-spock:,build-pglogical:,build-hintplan:,build-statkcache:,build-qualstats:,build-archivist:,build-waitsampling:,build-timescaledb:,build-cron:,build-multicorn:,build-pgmp:,build-fixeddecimal:,build-anon,build-ddlx:,build-http:,build-pgtop:,build-proctab:,build-agent:,build-citus:,build-number: -- "$@"`
 
 if [ $? != 0 ] ; then
 	echo "Required parameters missing, Terminating..."
@@ -685,7 +650,7 @@ while true; do
     --build-psqlodbc ) buildODBC=true; Source=$2; shift; shift ;;
     --build-backrest ) buildBackrest=true; Source=$2; shift; shift ;;
     --build-cstore-fdw ) buildCstoreFDW=true; cstoreFDWSource=$2; shift; shift ;;
-    --build-parquet-fdw ) buildParquetFDW=true; parquetFDWSource=$2; shift; shift ;;
+    --build-parquets3fdw ) buildParquetS3FDW=true; Source=$2; shift; shift ;;
     --build-repack ) buildRepack=true; Source=$2; shift; shift ;;
     --build-pglogical ) buildPgLogical=true; Source=$2; shift; shift ;;
     --build-spock ) buildSpock=true; Source=$2; shift; shift ;;
@@ -823,8 +788,8 @@ fi
 if [[ $buildCstoreFDW == "true" ]]; then
 	buildCstoreFDWComponent
 fi
-if [[ $buildParquetFDW == "true" ]]; then
-	buildParquetFDWComponent
+if [[ $buildParquetS3FDW == "true" ]]; then
+	buildComp parquets3fdw "$parquetShortV" "$parquetFullV" "$parquetBuildV" "$Source"
 fi
 if [[ $buildHintPlan == "true" ]]; then
 	buildComp hintplan "$hintplanShortV" "$hintplanFullV" "$hintplanBuildV" "$Source"

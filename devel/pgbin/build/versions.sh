@@ -108,9 +108,9 @@ pgmpFullVersion=1.2.2
 pgmpShortVersion=
 pgmpBuildV=1
 
-parquetFDWFullVersion=0.1.3
-parquetFDWShortVersion=
-parquetFDWBuildV=1
+parquetFullV=0.1
+parquetShortV=
+parquetBuildV=1
 
 cstoreFDWFullVersion=1.6.2
 cstoreFDWShortVersion=
@@ -200,7 +200,7 @@ waitsFullV=1.1.3
 waitsShortV=
 waitsBuildV=1
 
-hintplanFullV=1.3.4
+hintplanFullV=1.3.7
 hintplanShortV=
 hintplanBuildV=1
 
