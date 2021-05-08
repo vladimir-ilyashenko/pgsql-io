@@ -427,7 +427,8 @@ INSERT INTO versions VALUES ('ruby', '1.2.3', '', 0, '20200318', '', '', '');
 
 INSERT INTO projects VALUES ('psqlodbc', 3, 0, 'hub', 5, 'https://www.postgresql.org/ftp/odbc/versions/msi/', 'psqlodbc', 0, 'odbc.png', 'ODBC Driver', 'https://odbc.postgresql.org');
 INSERT INTO releases VALUES ('psqlodbc', 2, 'psqlodbc',  'psqlODBC', '', 'prod', '', 1, 'LIBGPLv2', '', '');
-INSERT INTO versions VALUES ('psqlodbc', '13.00-1', 'amd', 1, '20201119', '', '', '');
+INSERT INTO versions VALUES ('psqlodbc', '13.01-1', 'amd', 1, '20210502', '', '', '');
+INSERT INTO versions VALUES ('psqlodbc', '13.00-1', 'amd', 0, '20201119', '', '', '');
 
 INSERT INTO projects VALUES ('http', 3, 0, 'hub', 6, 'https://github.com/pramsey/pgsql-http/releases', 'http',  1, 'http.png', 'Invoke Web Services', 'https://github.com/pramsey/pgsql-http');
 INSERT INTO releases VALUES ('http-pg12', 13, 'http', 'HTTP Client', '', 'prod', '', 1, 'POSTGRES', '', '');

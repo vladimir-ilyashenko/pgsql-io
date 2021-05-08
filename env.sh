@@ -12,7 +12,7 @@ P95=9.5.26-1
 
 w2jV=2.3-1
 esfdwV=0.11.1
-odbcV=13.00-1
+odbcV=13.01-1
 backrestV=2.33-1
 bouncerV=1.15.0-1
 pgtopV=3.7.0-1
