@@ -4,9 +4,9 @@ sudo chown $USER:$USER /opt/gis-tools
 function buildGDAL {
   cd /opt/gis-tools
   rm -rf gdal*
-  VER=3.2.1
+  VER=3.2.3
   wget https://github.com/OSGeo/gdal/releases/download/v$VER/gdal-$VER.tar.gz
-  tar -xvf gdal-$VER.tar.gz
+  tar -xf gdal-$VER.tar.gz
   cd gdal-$VER
   ./configure
   sudo make -j8
@@ -16,9 +16,10 @@ function buildGDAL {
 
 function buildGeos {
   cd /opt/gis-tools
-  VER=3.8.1
+  rm -rf geos*
+  VER=3.9.1
   wget http://download.osgeo.org/geos/geos-$VER.tar.bz2
-  tar -xvf geos-$VER.tar.bz2
+  tar -xf geos-$VER.tar.bz2
   cd geos-$VER
   ./configure
   sudo make -j8
@@ -26,7 +27,52 @@ function buildGeos {
   return
 }
 
+function buildProj {
+  cd /opt/gis-tools
+  rm -rf proj*
+  VER=6.0.0
+  wget http://download.osgeo.org/proj/proj-$VER.tar.gz
+  tar -xf proj-$VER.tar.gz
+  cd proj-$VER
+  ./configure
+  sudo make -j8
+  sudo make install
+  return
+}
+
+function buildProto {
+  cd /opt/gis-tools
+  VER=2.6.1
+  rm -rf protobuf-$VER
+  wget https://github.com/google/protobuf/releases/download/v$VER/protobuf-$VER.tar.gz
+  tar -xf protobuf-$VER.tar.gz
+  cd protobuf-$VER
+  ./configure
+  sudo make -j8
+  sudo make install
+  return
+}
+
+function buildProtoC {
+  cd /opt/gis-tools
+  VER=1.3.1
+  rm -rf protobuf-c*
+  rm -f v$VER*
+  wget https://github.com/protobuf-c/protobuf-c/archive/refs/tags/v$VER.tar.gz
+  tar -xf v$VER.tar.gz
+  cd protobuf-c-$VER
+  ./autogen.sh
+  ./configure
+  sudo make -j8
+  sudo make install
+  return
+}
+
+
 ############# MAINLINE ###################
+#buildProto
+buildProtoC
 #buildGeos
-buildGDAL
+#buildProj
+#buildGDAL
 
