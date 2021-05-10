@@ -111,6 +111,7 @@ function  packageComponent {
 
 
 function updateSharedLibs {
+        comp=$1
 
         if [ `uname` == "Darwin" ]; then
           suffix="*dylib*"
@@ -137,6 +138,12 @@ function updateSharedLibs {
 			ls -sh $file
              		chrpath -r "\${ORIGIN}/../../lib" "$file" >> $baseDir/$workDir/logs/libPath.log 2>&1
 		done
+        fi
+
+	lib64=/usr/lib64
+	shared_lib=$buildLocation/lib
+        if [ "$comp" == "mysqlfdw" ]; then
+		cp -Pv $lib64/mysql/libmysqlclient.* $shared_lib/.
         fi
 }
 
@@ -347,7 +354,7 @@ function buildComp {
 
         componentBundle=$componentName
         cleanUpComponentDir $buildLocation
-        updateSharedLibs
+        updateSharedLibs $comp
         packageComponent $componentBundle
 }
 
