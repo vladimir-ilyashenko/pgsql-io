@@ -128,13 +128,15 @@ INSERT INTO versions VALUES ('pg10', '10.16-1', 'amd', 0, '20210211', '', 'LIBC-
 
 INSERT INTO releases VALUES ('pg11', 3, 'pg', 'PostgreSQL', '', 'prod', 
   '<font size=-1>New in <a href=https://www.postgresql.org/docs/11/release-11.html>v11</a></font>&nbsp;<font size=-2>08-Oct-2018</font>', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg11', '11.11-3', 'amd', 1, '20210211', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg11', '11.12-1', 'amd', 1, '20210513', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg11', '11.11-3', 'amd', 0, '20210211', '', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg11', '11.11-2', 'amd', 0, '20210211', '', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg11', '11.11-1', 'amd', 0, '20210211', '', 'LIBC-2.17', '');
 
 INSERT INTO releases VALUES ('pg12', 2, 'pg', 'PostgreSQL', '', 'prod', 
   '<font size=-1>New in <a href=https://www.postgresql.org/docs/12/release-12.html>v12</a></font>&nbsp;<font size=-2>03-Oct-2019</font>', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg12', '12.6-3', 'amd', 1, '20210211', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg12', '12.7-1', 'amd', 1, '20210513', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg12', '12.6-3', 'amd', 0, '20210211', '', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg12', '12.6-2', 'amd', 0, '20210211', '', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg12', '12.6-1', 'amd', 0, '20210211', '', 'LIBC-2.17', '');
 
@@ -142,7 +144,8 @@ INSERT INTO releases VALUES ('pg13', 1, 'pg', 'PostgreSQL', '', 'prod',
   '<font size=-1>New in <a href=https://www.postgresql.org/docs/13/release-13.html>v13</a>
   </font>&nbsp;<font size =-2>24-Sep-2020</sup></font>', 
   1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg13', '13.2-3',  'amd', 1, '20210211','', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg13', '13.3-1',  'amd', 1, '20210513','', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg13', '13.2-3',  'amd', 0, '20210211','', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg13', '13.2-2',  'amd', 0, '20210211','', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg13', '13.2-1',  'amd', 0, '20210211','', 'LIBC-2.17', '');
 

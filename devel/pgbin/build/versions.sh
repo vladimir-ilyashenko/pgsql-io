@@ -1,16 +1,13 @@
 #!/bin/bash
 
-pg13V="13.2"
-pg13BuildV=3
+pg13V="13.3"
+pg13BuildV=1
 
-pg12V="12.6"
-pg12BuildV=3
+pg12V="12.7"
+pg12BuildV=1
 
-pg11V="11.11"
-pg11BuildV=3
-
-pg10V="10.16"
-pg10BuildV=1
+pg11V="11.12"
+pg11BuildV=1
 
 wal2jsonFullV=2.3
 wal2jsonShortV=
