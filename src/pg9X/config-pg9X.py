@@ -27,22 +27,12 @@ parser.add_argument("--svcname", type=str, default="")
 parser.add_argument("--setpwd", type=str, default="")
 parser.add_argument("--getpwd", type=str, default="")
 
-
 parser.usage = parser.format_usage().replace("--autostart {on,off}","--autostart={on,off}")
 args = parser.parse_args()
 
 autostart = util.get_column('autostart', pgver)
 app_datadir = util.get_comp_datadir(pgver)
 port = util.get_comp_port(pgver)
-
-is_running = False
-
-if app_datadir != "" and util.is_socket_busy(int(port), pgver):
-  is_running = True
-  msg = "You cannot change the configuration when the server is running."
-  util.message(msg, "error")
-
-  sys.exit(0)
 
 
 ## SECURE SECRETS MANAGMENT ###################################
@@ -55,7 +45,7 @@ if args.setpwd > "":
   user = pwdargs[0]
   pwd = pwdargs[1]
 
-  util.remember_pgpassword(pwd, p_user=user)
+  util.change_pgpassword(pwd, p_user=user, p_port=port, p_ver=pgver)
   
   sys.exit(0)
 
@@ -68,11 +58,21 @@ if args.getpwd > "":
 
   user = pwdargs[0]
 
-  pwd = util.retrieve_pgpassword(p_user=user)
+  pwd = util.retrieve_pgpassword(p_user=user, p_port=port)
   if pwd == None:
     util.message("not found", "error")
   else:
     util.message(pwd, "pwd")
+
+  sys.exit(0)
+
+
+## IS_RUNNING ###############################################
+is_running = False
+if app_datadir != "" and util.is_socket_busy(int(port), pgver):
+  is_running = True
+  msg = "You cannot change the configuration when the server is running."
+  util.message(msg, "error")
 
   sys.exit(0)
 
