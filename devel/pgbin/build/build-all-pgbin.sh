@@ -49,10 +49,7 @@ function runPgBin {
 majorV="$1"
 optional="$2"
 
-if [ "$majorV" == "10" ]; then
-  pgV=$pg10V
-  pgBuildV=$pg10BuildV
-elif [ "$majorV" == "11" ]; then
+if [ "$majorV" == "11" ]; then
   pgV=$pg11V
   pgBuildV=$pg11BuildV
 elif [ "$majorV" == "12" ]; then
@@ -61,13 +58,16 @@ elif [ "$majorV" == "12" ]; then
 elif [ "$majorV" == "13" ]; then
   pgV=$pg13V
   pgBuildV=$pg13BuildV
+elif [ "$majorV" == "14" ]; then
+  pgV=$pg14V
+  pgBuildV=$pg14BuildV
 fi
 
 if [ "$majorV" == "all" ]; then
-  runPgBin "$binBld" "$pgSrc-$pg10V.tar.gz" "$pg10BuildV"
   runPgBin "$binBld" "$pgSrc-$pg11V.tar.gz" "$pg11BuildV"
   runPgBin "$binBld" "$pgSrc-$pg12V.tar.gz" "$pg12BuildV"
   runPgBin "$binBld" "$pgSrc-$pg13V.tar.gz" "$pg13BuildV"
+  runPgBin "$binBld" "$pgSrc-$pg14V.tar.gz" "$pg14BuildV"
 else
   runPgBin "$binBld" "$pgSrc-$pgV.tar.gz" "$pgBuildV"
 fi

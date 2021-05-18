@@ -3,6 +3,7 @@ bundle=pgsql
 api=io
 hubV=6.48
 
+P14=14beta1-1
 P13=13.3-1
 P12=12.7-1
 P11=11.12-1

@@ -401,14 +401,14 @@ initC () {
 
 
 initPG () {
-  if [ "$pgM" == "10" ]; then
-    pgV=$P10
-  elif [ "$pgM" == "11" ]; then
+  if [ "$pgM" == "11" ]; then
     pgV=$P11
   elif [ "$pgM" == "12" ]; then
     pgV=$P12
   elif [ "$pgM" == "13" ]; then
     pgV=$P13
+  elif [ "$pgM" == "14" ]; then
+    pgV=$P14
   else
     echo "ERROR: Invalid PG version '$pgM'"
     exit 1
