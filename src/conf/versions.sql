@@ -102,7 +102,8 @@ INSERT INTO categories VALUES (9,  87, 'Management & Monitoring', 'Manage');
 -- ## HUB ################################
 INSERT INTO projects VALUES ('hub',0, 0, 'hub', 0, 'https://github.com/pgsql-io/pgsql-io','',0,'','','');
 INSERT INTO releases VALUES ('hub', 1, 'hub', '', '', 'hidden', '', 1, '', '', '');
-INSERT INTO versions VALUES ('hub', '6.47', '',  1, '20210513', '', '', '');
+INSERT INTO versions VALUES ('hub', '6.48', '',  1, '20210518', '', '', '');
+INSERT INTO versions VALUES ('hub', '6.47', '',  0, '20210513', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.46', '',  0, '20210504', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.45', '',  0, '20210427', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.44', '',  0, '20210419', '', '', '');
