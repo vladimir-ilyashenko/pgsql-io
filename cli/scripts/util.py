@@ -1123,16 +1123,16 @@ def retrieve_pgpassword(p_host="localhost", p_port="5432", p_db="*", p_user="pos
     user = f[3]
     pwd = f[4]
     
-    if host != "*" and host != p_host:
+    if host != "*" and host != p_host and p_host != '*':
       continue
 
-    if port != "*" and port != p_port:
+    if port != "*" and port != p_port and p_port != '*':
       continue
 
-    if db != "*" and db != p_db:
+    if db != "*" and db != p_db and p_db != '*':
       continue
 
-    if user != "*" and user != p_user:
+    if user != "*" and user != p_user and p_user != '*':
       continue
 
     ## we've got a match
