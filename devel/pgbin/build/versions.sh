@@ -180,7 +180,7 @@ repackFullV=1.4.6
 repackShortV=
 repackBuildV=1
 
-partmanFullV=4.5.0
+partmanFullV=4.5.1
 partmanShortV=
 partmanBuildV=1
 
@@ -204,7 +204,7 @@ hintplanFullV=1.3.7
 hintplanShortV=
 hintplanBuildV=1
 
-timescaledbFullV=2.2.0
+timescaledbFullV=2.2.1
 timescaledbShortV=
 timescaledbBuildV=1
 

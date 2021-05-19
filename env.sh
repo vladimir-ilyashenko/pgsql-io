@@ -23,11 +23,11 @@ httpV=1.3.1-1
 anonV=0.8.1-1
 ddlxV=0.17-1
 hypoV=1.2.0-1
-timescaleV=2.2.0-1
+timescaleV=2.2.1-1
 logicalV=2.3.3-1
 profV=4.1-1
 bulkloadV=3.1.17-1
-partmanV=4.5.0-1
+partmanV=4.5.1-1
 repackV=1.4.6-1
 
 waV=2.1-1

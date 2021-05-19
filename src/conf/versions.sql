@@ -342,7 +342,9 @@ INSERT INTO versions VALUES ('cron-pg13', '1.3.0-1', 'amd', 0, '20201006', 'pg13
 INSERT INTO projects VALUES ('timescaledb', 2, 0, 'hub', 1, 'https://github.com/timescale/timescaledb/releases',
    'timescaledb', 1, 'timescaledb.png', 'Time Series Data', 'https://github.com/timescale/timescaledb/#timescaledb');
 INSERT INTO releases VALUES ('timescaledb-pg13',  1, 'timescaledb', 'TimescaleDB', '', 'prod', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('timescaledb-pg13', '2.2.0-1',  'amd', 1, '20210413', 'pg13', '',
+INSERT INTO versions VALUES ('timescaledb-pg13', '2.2.1-1',  'amd', 1, '20210505', 'pg13', '',
+  'https://github.com/timescale/timescaledb/releases/tag/2.2.1');
+INSERT INTO versions VALUES ('timescaledb-pg13', '2.2.0-1',  'amd', 0, '20210413', 'pg13', '',
   'https://github.com/timescale/timescaledb/releases/tag/2.2.0');
 INSERT INTO versions VALUES ('timescaledb-pg13', '2.1.1-1',  'amd', 0, '20210329', 'pg13', '',
   'https://github.com/timescale/timescaledb/releases/tag/2.1.1');
@@ -387,7 +389,8 @@ INSERT INTO versions VALUES ('repack-pg13', '1.4.6-1', 'amd', 1, '20200930', 'pg
 INSERT INTO projects VALUES ('partman', 4, 0, 'hub', 4, 'https://github.com/pgpartman/pg_partman/releases',
   'partman', 1, 'partman.png', 'Partition Managemnt', 'https://github.com/pgpartman/pg_partman#pg-partition-manager');
 INSERT INTO releases VALUES ('partman-pg13', 6, 'partman', 'pgPartman',   '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('partman-pg13', '4.5.0-1',  'amd', 1, '20210331', 'pg13', '', '');
+INSERT INTO versions VALUES ('partman-pg13', '4.5.1-1',  'amd', 1, '20210513', 'pg13', '', '');
+INSERT INTO versions VALUES ('partman-pg13', '4.5.0-1',  'amd', 0, '20210331', 'pg13', '', '');
 INSERT INTO versions VALUES ('partman-pg13', '4.4.1-1',  'amd', 0, '20201223', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('hypopg', 4, 0, 'hub', 8, 'https://github.com/HypoPG/hypopg/releases',
