@@ -150,9 +150,7 @@ INSERT INTO versions VALUES ('pg13', '13.2-3',  'amd', 0, '20210211','', 'LIBC-2
 INSERT INTO versions VALUES ('pg13', '13.2-2',  'amd', 0, '20210211','', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg13', '13.2-1',  'amd', 0, '20210211','', 'LIBC-2.17', '');
 
-INSERT INTO releases VALUES ('pg14', 1, 'pg', 'PostgreSQL', '', 'test', 
-  '<font size=-1>New in <a href=https://www.postgresql.org/docs/14/release-14.html>v14</a>
-  </font>&nbsp;<font size =-2>24-Sep-2021</sup></font>', 
+INSERT INTO releases VALUES ('pg14', 4, 'pg', 'PostgreSQL', '', 'test', '',
   1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pg14', '14beta1-1',  'amd', 1, '20210520','', 'LIBC-2.17', '');
 
