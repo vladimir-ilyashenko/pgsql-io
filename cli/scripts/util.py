@@ -1051,15 +1051,12 @@ def get_pgpass_file():
       os.mkdir(pw_dir)
     pw_file = pw_dir + "\pgpass.conf"
   else:
-    try:
-      pw_file = os.getenv("HOME") + "/.pgpass"
-    except:
-      home = get_unix_user_home()
-      if home is not None:
-        pw_file = home + "/.pgpass"
-      else:
-        message("No valid HOME for user %s" % get_user(), "error")
-        return(None)
+    home = get_unix_user_home()
+    if home is not None:
+      pw_file = home + "/.pgpass"
+    else:
+      message("No valid HOME for user %s" % get_user(), "error")
+      return(None)
 
   return(pw_file)
 
