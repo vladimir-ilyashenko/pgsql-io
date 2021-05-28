@@ -362,10 +362,7 @@ INSERT INTO versions VALUES ('pglogical-pg13', '2.3.3-1',  'amd', 0, '20201005',
 INSERT INTO projects VALUES ('postgis', 2, 1, 'hub', 3, 'http://postgis.net/source',
   'postgis', 1, 'postgis.png', 'Spatial Extensions', 'http://postgis.net');
 INSERT INTO releases VALUES ('postgis-pg13', 3, 'postgis', 'PostGIS', '', 'prod', '', 1, 'GPLv2', '', '');
-INSERT INTO versions VALUES ('postgis-pg13', '3.1.1-1', 'amd', 1, '20210128', 'pg13', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.1.1/NEWS');
-INSERT INTO versions VALUES ('postgis-pg13', '3.1.0-1', 'amd', 0, '20201210', 'pg13', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.1.0/NEWS');
-INSERT INTO versions VALUES ('postgis-pg13', '3.0.3-1', 'amd', 0, '20201119', 'pg13', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.0.3/NEWS');
-INSERT INTO versions VALUES ('postgis-pg13', '3.0.2-1', 'amd', 0, '20200815', 'pg13', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.0.2/NEWS');
+INSERT INTO versions VALUES ('postgis-pg13', '3.1.2-1', 'amd', 1, '20210521', 'pg13', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.1.2/NEWS');
 
 INSERT INTO projects VALUES ('omnidb', 9, 8000, '', 1, 'https://omnidb.org',
   'omnidb', 0, 'omnidb.png', 'OmniDB', 'https://omnidb.org');

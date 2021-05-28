@@ -45,7 +45,7 @@ adminV=5.1
 omniV=2.17.0
 
 audit13V=1.5.0-1
-postgisV=3.1.1-1
+postgisV=3.1.2-1
 
 tsqlV=3.0-1
 pljavaV=1.6.2-1

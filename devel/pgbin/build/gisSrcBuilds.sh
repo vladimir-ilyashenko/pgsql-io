@@ -55,12 +55,13 @@ function buildProto {
 
 function buildProtoC {
   cd /opt/gis-tools
-  VER=1.3.1
+  VER=1.3.3
   rm -rf protobuf-c*
   rm -f v$VER*
   wget https://github.com/protobuf-c/protobuf-c/archive/refs/tags/v$VER.tar.gz
   tar -xf v$VER.tar.gz
   cd protobuf-c-$VER
+  export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
   ./autogen.sh
   ./configure
   sudo make -j8
