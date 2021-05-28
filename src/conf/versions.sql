@@ -354,7 +354,9 @@ INSERT INTO versions VALUES ('timescaledb-pg13', '2.1.0-1',  'amd', 0, '20210222
 INSERT INTO projects VALUES ('pglogical', 2, 0, 'hub', 2, 'https://github.com/2ndQuadrant/pglogical/releases',
   'pglogical', 1, 'spock.png', 'Logical Replication', 'https://github.com/2ndQuadrant/pglogical');
 INSERT INTO releases VALUES ('pglogical-pg13', 2, 'pglogical', 'pgLogical', '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pglogical-pg13', '2.3.3-1',  'amd', 1, '20201005', 'pg13', '',
+INSERT INTO versions VALUES ('pglogical-pg13', '2.3.4-1',  'amd', 1, '20210503', 'pg13', '',
+  'https://github.com/2ndQuadrant/pglogical/releases/tag/REL2_3_4');
+INSERT INTO versions VALUES ('pglogical-pg13', '2.3.3-1',  'amd', 0, '20201005', 'pg13', '',
   'https://github.com/2ndQuadrant/pglogical/releases/tag/REL2_3_3');
 
 INSERT INTO projects VALUES ('postgis', 2, 1, 'hub', 3, 'http://postgis.net/source',

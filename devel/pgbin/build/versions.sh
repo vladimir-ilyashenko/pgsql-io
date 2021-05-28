@@ -172,7 +172,7 @@ spockFullV=3.1.1
 spockShortV=
 spockBuildV=1
 
-pgLogicalFullV=2.3.3
+pgLogicalFullV=2.3.4
 pgLogicalShortV=
 pgLogicalBuildV=1
 
