@@ -161,7 +161,7 @@ INSERT INTO versions VALUES ('debezium', '1.2.5', '', 0, '20200924', '', '', '')
 INSERT INTO projects VALUES ('kafka', 10, 9092, 'zookeeper', 2, 'https://kafka.apache.org/downloads',
   'Kafka', 0, 'kafka.png', 'Streaming Platform', 'https://kafka.apache.org');
 INSERT INTO releases VALUES ('kafka', 0, 'kafka', 'Kafka', '', 'test', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('kafka', '2.8.0', '', 1, '20210502', '', '', 'https://downloads.apache.org/kafka/2.8.0/RELEASE_NOTES.html');
+INSERT INTO versions VALUES ('kafka', '2.7.1', '', 1, '20210510', '', '', 'https://downloads.apache.org/kafka/2.7.1/RELEASE_NOTES.html');
 INSERT INTO versions VALUES ('kafka', '2.7.0', '', 0, '20201221', '', '', 'https://downloads.apache.org/kafka/2.7.0/RELEASE_NOTES.html');
 
 INSERT INTO projects VALUES ('redis', 10, 6379, 'hub', 2, 'https://github.com/redis/redis/releases',
@@ -412,7 +412,7 @@ INSERT INTO versions VALUES ('bouncer', '1.13.0-1', 'amd', 0, '20200427', '', ''
 
 INSERT INTO projects VALUES ('patroni',  2, 0, 'haproxy', 4, 'https://github.com/zalando/patroni/releases',
   'patroni', 0, 'patroni.png', 'Postgres HA Template', 'https://github.com/zalando/patroni');
-INSERT INTO releases VALUES ('patroni', 1, 'patroni', 'Patroni', '', 'test', '', 1, 'POSTGRES', '', '');
+INSERT INTO releases VALUES ('patroni', 1, 'patroni', 'Patroni', '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('patroni', '2.0.2', '', 1, '20210222', '', '', 'https://github.com/zalando/patroni/releases/tag/v2.0.2');
 INSERT INTO versions VALUES ('patroni', '2.0.1', '', 0, '20201001', '', '', 'https://github.com/zalando/patroni/releases/tag/v2.0.1');
 INSERT INTO versions VALUES ('patroni', '2.0.0', '', 0, '20200902', '', '', 'https://github.com/zalando/patroni/releases/tag/v2.0.0');
