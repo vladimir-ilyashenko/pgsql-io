@@ -157,7 +157,6 @@ INSERT INTO projects VALUES ('debezium',  5, 8080, 'kafka', 3, 'https://debezium
 INSERT INTO releases VALUES ('debezium', 0, 'debezium', 'Debezium', '', 'test', '', 1, 'Apache', '', '');
 INSERT INTO versions VALUES ('debezium', '1.5.2', '', 1, '20210528', '', '', '');
 INSERT INTO versions VALUES ('debezium', '1.5.0', '', 0, '20210408', '', '', '');
-INSERT INTO versions VALUES ('debezium', '1.2.5', '', 0, '20200924', '', '', '');
 
 INSERT INTO projects VALUES ('kafka', 10, 9092, 'zookeeper', 2, 'https://kafka.apache.org/downloads',
   'Kafka', 0, 'kafka.png', 'Streaming Platform', 'https://kafka.apache.org');
