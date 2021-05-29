@@ -155,7 +155,8 @@ INSERT INTO versions VALUES ('pg14', '14beta1-1',  'amd', 1, '20210520','', 'LIB
 INSERT INTO projects VALUES ('debezium',  5, 8080, 'kafka', 3, 'https://debezium.io/releases/1.5/',
   'Debezium', 0, 'debezium.png', 'Stream DB Changes', 'https://debezium.io');
 INSERT INTO releases VALUES ('debezium', 0, 'debezium', 'Debezium', '', 'test', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('debezium', '1.5.0', '', 1, '20210408', '', '', '');
+INSERT INTO versions VALUES ('debezium', '1.5.2', '', 1, '20210528', '', '', '');
+INSERT INTO versions VALUES ('debezium', '1.5.0', '', 0, '20210408', '', '', '');
 INSERT INTO versions VALUES ('debezium', '1.2.5', '', 0, '20200924', '', '', '');
 
 INSERT INTO projects VALUES ('kafka', 10, 9092, 'zookeeper', 2, 'https://kafka.apache.org/downloads',

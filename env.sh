@@ -38,7 +38,7 @@ waitsV=1.1.3-1
 
 zooV=3.7.0
 kfkV=2.7.1
-dbzV=1.5.0
+dbzV=1.5.2
 redisV=6
 
 adminV=5.1
