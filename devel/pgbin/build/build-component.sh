@@ -60,7 +60,7 @@ function prepComponentBuildDir {
 	cp $PGHOME/lib/libssl.so* $buildLocation/lib/
 	cp $PGHOME/lib/libpgport.a $buildLocation/lib/
 	cp $PGHOME/lib/libpgcommon.a $buildLocation/lib/
-	cp $PGHOME/lib/libcrypt*.so* $buildLocation/lib/
+	#cp $PGHOME/lib/libcrypt*.so* $buildLocation/lib/
         cp $PGHOME/lib/postgresql/plpgsql.so $buildLocation/lib/postgresql/
 }
 
@@ -128,13 +128,13 @@ function updateSharedLibs {
         fi
 
         cd $buildLocation/lib
-        for file in `ls -d $suffix 2>/dev/null` ; do
+        for file in `ls -d *so*  2>/dev/null` ; do
                 chrpath -r "\${ORIGIN}/../lib" "$file" >> $baseDir/$workDir/logs/libPath.log 2>&1
         done
 
         if [[ -d "$buildLocation/lib/postgresql" ]]; then
                 cd $buildLocation/lib/postgresql
-		for file in `ls -d $suffix 2>/dev/null` ; do
+		for file in `ls -d *so*  2>/dev/null` ; do
 			ls -sh $file
              		chrpath -r "\${ORIGIN}/../../lib" "$file" >> $baseDir/$workDir/logs/libPath.log 2>&1
 		done
@@ -145,12 +145,10 @@ function updateSharedLibs {
         if [ "$comp" == "mysqlfdw" ]; then
 		cp -Pv $lib64/mysql/libmysqlclient.* $shared_lib/.
 	elif [ "$comp" == "postgis" ]; then
-		cp -Pv $lib64/libgeos*.so*         $shared_lib/.
-		cp -Pv $lib64/libprotobuf-c.so.*   $shared_lib/.
-		cp -Pv $lib64/libproj.so.*         $shared_lib/.
-		cp -Pv $lib64/libjson-c*           $shared_lib/.
-		cp -Pv /usr/local/lib/libgeos*.so* $shared_lib/.
-		cp -Pv /usr/local/lib/libgdal*.so* $shared_lib/.
+		cp -P /usr/local/lib/libgeos*.so*  $shared_lib/.
+		cp -P /usr/local/lib/libgdal*.so*  $shared_lib/.
+		cp -P /usr/local/lib/libproto*.so* $shared_lib/.
+		cp -P /usr/local/lib/libproj*.so*  $shared_lib/.
         fi
 
 }
@@ -273,6 +271,12 @@ function configureComp {
         config="ccmake -DCMAKE_INSTALL_PREFIX=$buildLocation --config cfg ."
         echo "#   $config"
         $config > $make_log 2>&1
+        rc=$?
+    fi
+
+    if [ "$comp" == "postgis" ]; then
+        echo "# configure postgis..."
+        ./configure --without-protobuf LDFLAGS="$LDFLAGS -Wl,-rpath,$sharedLibs" > $make_log 2>&1
         rc=$?
     fi
 

@@ -3,6 +3,8 @@ function test13 {
   ./io install pg13; 
   ./io start pg13 -y -d demo;
 
+  ./io install postgis-pg$1       -d demo
+
   ./io install multicorn-pg$1     -d demo
   ./io install esfdw-pg$1         -d demo
 
@@ -31,11 +33,6 @@ function test13 {
   ./io install pglogical-pg$1     -d demo
   ./io install bulkload-pg$1      -d demo
   ./io install anon-pg$1          -d demo
-
-  #./io install postgis-pg$1       -d demo
-
-  #./io install ddlx-pg$1          -d demo
-
 }
 
 function test12 {
