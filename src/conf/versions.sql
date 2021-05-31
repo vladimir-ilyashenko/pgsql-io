@@ -371,7 +371,8 @@ INSERT INTO versions VALUES ('omnidb', '2.17.0', '', 1, '20191205', '', '', '');
 INSERT INTO projects VALUES ('pgadmin', 9, 80, '', 1, 'https://pgadmin.org',
   'pgadmin', 0, 'pgadmin.png', 'PG Admin', 'https://pgadmin.org');
 INSERT INTO releases VALUES ('pgadmin', 0, 'pgadmin', 'pgAdmin 4', '', 'test', '', 1, '', '', '');
-INSERT INTO versions VALUES ('pgadmin', '5.2', '', 1, '20210422', '', '', '');
+INSERT INTO versions VALUES ('pgadmin', '5.3', '', 1, '20210420', '', '', '');
+INSERT INTO versions VALUES ('pgadmin', '5.2', '', 0, '20210422', '', '', '');
 INSERT INTO versions VALUES ('pgadmin', '5.1', '', 0, '20210325', '', '', '');
 
 INSERT INTO projects VALUES ('bulkload', 4, 0, 'hub', 5, 'https://github.com/ossc-db/pg_bulkload/releases',
