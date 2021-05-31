@@ -3,56 +3,58 @@ function test13 {
   ./io install pg13; 
   ./io start pg13 -y -d demo;
 
-  ./io install fixeddecimal-pg$1  -d demo
-  ./io install wal2json-pg$1      -d demo
+  ./io install fixeddecimal-pg13  -d demo
+  ./io install wal2json-pg13      -d demo
 
-  ./io install archivist-pg$1     -d demo
-  ./io install qualstats-pg$1     -d demo
-  ./io install statkcache-pg$1    -d demo
-  ./io install waitsampling-pg$1  -d demo
-  ./io install hypopg-pg$1        -d demo
+  ./io install archivist-pg13     -d demo
+  ./io install qualstats-pg13     -d demo
+  ./io install statkcache-pg13    -d demo
+  ./io install waitsampling-pg13  -d demo
+  ./io install hypopg-pg13        -d demo
 
-  ./io install mysqlfdw-pg$1      -d demo
-  ./io install redisfdw-pg$1      -d demo
+  ./io install mysqlfdw-pg13      -d demo
+  ./io install redisfdw-pg13      -d demo
 
-  ./io install multicorn-pg$1     -d demo
-  ./io install esfdw-pg$1         -d demo
+  ./io install multicorn-pg13     -d demo
+  ./io install esfdw-pg13         -d demo
 
-  ./io install timescaledb-pg$1   -d demo
+  ./io install timescaledb-pg13   -d demo
 
   if [ "$1" == "fdw" ]; then
-    ./io install hivefdw-pg$1       -d demo
-    ./io install tdsfdw-pg$1        -d demo
+    ./io install hivefdw-pg13       -d demo
+    ./io install tdsfdw-pg13        -d demo
     if [ ! `arch` == "aarch64" ]; then
-      ./io install oraclefdw-pg$1   -d demo
-      ##./io install cassandra_fdw-pg$1 -d demo
+      ./io install oraclefdw-pg13   -d demo
+      ##./io install cassandra_fdw-pg13 -d demo
     fi
   fi
 
-  ./io install hypopg-pg$1        -d demo
-  ./io install partman-pg$1       -d demo
-  ./io install audit-pg$1         -d demo
+  ./io install hypopg-pg13        -d demo
+  ./io install partman-pg13       -d demo
+  ./io install audit-pg13         -d demo
 
-  ./io install cron-pg$1
-  ./io install plprofiler-pg$1    -d demo
-  ./io install repack-pg$1        -d demo
-  ./io install orafce-pg$1        -d demo
+  ./io install cron-pg13
+  ./io install plprofiler-pg13    -d demo
+  ./io install repack-pg13        -d demo
+  ./io install orafce-pg13        -d demo
 
-  ./io install pglogical-pg$1     -d demo
-  ./io install bulkload-pg$1      -d demo
-  ./io install anon-pg$1          -d demo
+  ./io install pglogical-pg13     -d demo
+  ./io install bulkload-pg13      -d demo
+  ./io install anon-pg13          -d demo
 
-  ./io install postgis-pg$1       -d demo
+  ./io install postgis-pg13       -d demo
 
-  ./io install citus-pg$1   -d demo
+  ./io install citus-pg13   -d demo
 }
 
 function test12 {
   ./io install pg12; 
   ./io start pg12 -y -d demo;
 
-  ./io install debugger-pg$1      -d demo
-  ./io install http-pg$1          -d demo
+  ./io install postgis-pg12       -d demo
+
+  ./io install debugger-pg12      -d demo
+  ./io install http-pg12          -d demo
 }
 
 cd ../..

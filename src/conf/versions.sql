@@ -360,7 +360,9 @@ INSERT INTO versions VALUES ('pglogical-pg13', '2.3.3-1',  'amd', 0, '20201005',
 
 INSERT INTO projects VALUES ('postgis', 2, 1, 'hub', 3, 'http://postgis.net/source',
   'postgis', 1, 'postgis.png', 'Spatial Extensions', 'http://postgis.net');
+INSERT INTO releases VALUES ('postgis-pg12', 3, 'postgis', 'PostGIS', '', 'prod', '', 1, 'GPLv2', '', '');
 INSERT INTO releases VALUES ('postgis-pg13', 3, 'postgis', 'PostGIS', '', 'prod', '', 1, 'GPLv2', '', '');
+INSERT INTO versions VALUES ('postgis-pg12', '3.1.2-1', 'amd', 1, '20210521', 'pg12', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.1.2/NEWS');
 INSERT INTO versions VALUES ('postgis-pg13', '3.1.2-1', 'amd', 1, '20210521', 'pg13', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.1.2/NEWS');
 
 INSERT INTO projects VALUES ('omnidb', 9, 8000, '', 1, 'https://omnidb.org',
@@ -443,7 +445,7 @@ INSERT INTO versions VALUES ('psqlodbc', '13.00-1', 'amd', 0, '20201119', '', ''
 
 INSERT INTO projects VALUES ('http', 3, 0, 'hub', 6, 'https://github.com/pramsey/pgsql-http/releases', 'http',  1, 'http.png', 'Invoke Web Services', 'https://github.com/pramsey/pgsql-http');
 INSERT INTO releases VALUES ('http-pg12', 13, 'http', 'HTTP Client', '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('http-pg12', '1.3.1-1', 'amd', 0, '20191225', 'pg12', '', '');
+INSERT INTO versions VALUES ('http-pg12', '1.3.1-1', 'amd', 1, '20191225', 'pg12', '', '');
 
 INSERT INTO projects VALUES ('ddlx',      7, 0, 'hub', 0, 'https://github.com/lacanoid/pgddl/releases', 'ddlx',  1, 'ddlx.png', 'DDL Extractor', 'https://github.com/lacanoid/pgddl#ddl-extractor-functions--for-postgresql');
 INSERT INTO releases VALUES ('ddlx-pg13', 2, 'ddlx', 'DDLeXtact', '', 'prod','',  0, 'POSTGRES', '', '');

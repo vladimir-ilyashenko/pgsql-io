@@ -471,7 +471,10 @@ initPG () {
     initC "waitsampling-pg$pgM" "waitsampling" "$waitsV" "$outPlat" "postgres/waitsampling" "" "" "nil"
   fi
 
-  #initC "cassandra" "cassandra" "$cstarV" "" "cassandra" "" "" "nil"
+  initC "badger"    "badger"    "$badgerV" "" "postgres/badger" "" "" "nil"
+  initC "ora2pg"    "ora2pg"    "$ora2pgV" "" "postgres/ora2pg" "" "" "nil"
+  initC "bouncer"   "bouncer"   "$bouncerV" "$outPlat" "postgres/bouncer" "" "" "nil"
+  initC "backrest"  "backrest"  "$backrestV" "$outPlat" "postgres/backrest" "" "" "nil"
 
   ### Not supported (for testing only) ####################################
   initC "pgadmin"   "pgadmin"   "$adminV" "" "postgres/pgadmin" "" "" "Y"
@@ -481,14 +484,12 @@ initPG () {
   initC "debezium"  "debezium"  "$dbzV"   "" "debezium"         "" "" "Y"
   initC "redis"     "redis"     "$redisV" "" "redis"            "" "" "Y"
   initC "patroni"   "patroni"   "$patroniV" "" "postgres/patroni" "" "" "nil"
-  initC "badger"    "badger"    "$badgerV" "" "postgres/badger" "" "" "nil"
-  initC "ora2pg"    "ora2pg"    "$ora2pgV" "" "postgres/ora2pg" "" "" "nil"
-  initC "bouncer"   "bouncer"   "$bouncerV" "$outPlat" "postgres/bouncer" "" "" "nil"
-  initC "backrest"  "backrest"  "$backrestV" "$outPlat" "postgres/backrest" "" "" "nil"
+  #initC "cassandra" "cassandra" "$cstarV" "" "cassandra" "" "" "nil"
 
   if [ "$pgM" == "12" ]; then 
-
+    initC "postgis-pg$pgM" "postgis" "$postgisV" "$outPlat" "postgres/postgis" "" "" "nil"
     initC "pldebugger-pg$pgM" "pldebugger" "$debuggerV" "$outPlat" "postgres/pldebugger" "" "" "nil"
+    initC "http-pg$pgM" "http" "$httpV" "$outPlat" "postgres/http" "" "" "nil"
 
     #if [ "$outPlat" == "amd" ]; then
       #initC "cassandrafdw-pg$pgM" "cassandrafdw" "$cstarfdwV" "$outPlat" "postgres/cassandrafdw" "" "" "nil"
@@ -498,9 +499,6 @@ initPG () {
     #fi
 
     #initC "cassandra" "cassandra" "$cstarV" "" "cassandra" "" "" "nil"
-
-
-    #initC "http-pg$pgM" "http" "$httpV" "$outPlat" "postgres/http" "" "" "nil"
   fi
 }
 
