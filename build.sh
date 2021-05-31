@@ -475,6 +475,7 @@ initPG () {
   initC "ora2pg"    "ora2pg"    "$ora2pgV" "" "postgres/ora2pg" "" "" "nil"
   initC "bouncer"   "bouncer"   "$bouncerV" "$outPlat" "postgres/bouncer" "" "" "nil"
   initC "backrest"  "backrest"  "$backrestV" "$outPlat" "postgres/backrest" "" "" "nil"
+  initC "instantclient" "instantclient" "$inclV" "$outPlat" "instantclient" "" "" "nil"
 
   ### Not supported (for testing only) ####################################
   initC "pgadmin"   "pgadmin"   "$adminV" "" "postgres/pgadmin" "" "" "Y"

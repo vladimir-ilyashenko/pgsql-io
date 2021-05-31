@@ -17,7 +17,12 @@ pgtopV=3.7.0-1
 proctabV=0.0.8.1-1
 citusV=10.0.3-1
 multicornV=1.4.1-1
+
+oraclefdwV=2.3.0-1
+inclV=21.1
 orafceV=3.15.1-1
+ora2pgV=21.1
+
 fdV=1.1.0-1
 httpV=1.3.1-1
 anonV=0.8.1-1
@@ -56,13 +61,11 @@ cronV=1.3.1-1
 redisfdwV=1.13-1
 mysqlfdwV=2.6.0-1
 mongofdwV=5.2.8-1
-oraclefdwV=2.3.0-1
 tdsfdwV=2.0.2-1
 cstarfdwV=3.1.5-1
 hivefdwV=4.0-1
 hadoopV=2.10.0
 badgerV=11.5
-ora2pgV=21.1
 patroniV=2.0.2
 
 HUB="$PWD"

@@ -248,6 +248,11 @@ INSERT INTO projects VALUES ('oracle', 10, 1521, 'hub', 0, 'https://www.oracle.c
 INSERT INTO releases VALUES ('oracle', 2, 'oracle', 'Oracle', '', 'test','', 0, 'ORACLE', '', '');
 INSERT INTO versions VALUES ('oracle', '19c', 'amd', 1, '20200801', '', '', '');
 
+INSERT INTO projects VALUES ('instantclient', 10, 1521, 'hub', 0, 'https://www.instantclient.com/database/technologies/instantclient-database-software-downloads.html#19c', 
+  'instantclient', 0, 'instantclient.png', 'Oracle Instant Client', 'https://www.instantclient.com/database/technologies');
+INSERT INTO releases VALUES ('instantclient', 2, 'instantclient', 'Instant Client', '', 'test','', 0, 'ORACLE', '', '');
+INSERT INTO versions VALUES ('instantclient', '21.1', 'amd', 1, '20200801', '', '', '');
+
 -- ##
 INSERT INTO projects VALUES ('orafce', 5, 0, 'hub', 0, 'https://github.com/orafce/orafce/releases',
   'orafce', 1, 'larry.png', 'Ora Built-in Packages', 'https://github.com/orafce/orafce#orafce---oracles-compatibility-functions-and-packages');
