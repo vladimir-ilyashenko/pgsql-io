@@ -5,6 +5,9 @@ function test13 {
 
   ./io install postgis-pg$1       -d demo
 
+  ./io install mysqlfdw-pg$1      -d demo
+  ./io install redisfdw-pg$1      -d demo
+
   ./io install multicorn-pg$1     -d demo
   ./io install esfdw-pg$1         -d demo
 
@@ -14,7 +17,6 @@ function test13 {
   if [ "$1" == "fdw" ]; then
     ./io install hivefdw-pg$1       -d demo
     ./io install tdsfdw-pg$1        -d demo
-    ./io install mysqlfdw-pg$1      -d demo
     if [ ! `arch` == "aarch64" ]; then
       ./io install oraclefdw-pg$1   -d demo
       ##./io install cassandra_fdw-pg$1 -d demo
