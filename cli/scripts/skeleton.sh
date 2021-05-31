@@ -3,7 +3,11 @@ function test13 {
   ./io install pg13; 
   ./io start pg13 -y -d demo;
 
-  ./io install postgis-pg$1       -d demo
+  ./io install archivist-pg$1     -d demo
+  ./io install qualstats-pg$1     -d demo
+  ./io install statkcache-pg$1    -d demo
+  ./io install waitsampling-pg$1  -d demo
+  ./io install hypopg-pg$1        -d demo
 
   ./io install mysqlfdw-pg$1      -d demo
   ./io install redisfdw-pg$1      -d demo
@@ -35,6 +39,8 @@ function test13 {
   ./io install pglogical-pg$1     -d demo
   ./io install bulkload-pg$1      -d demo
   ./io install anon-pg$1          -d demo
+
+  ./io install postgis-pg$1       -d demo
 }
 
 function test12 {
