@@ -49,36 +49,22 @@ cp -Pv $lib64/libsmime*            $shared_lib/.
 cp -Pv $lib64/libplds4*            $shared_lib/.
 cp -Pv $lib64/libplc4*             $shared_lib/.
 cp -Pv $lib64/libpcre.so.*         $shared_lib/.
-#cp -Pv $lib64/libpcre2-8*          $shared_lib/.
 cp -Pv $lib64/libfreebl3.so        $shared_lib/.
 cp -Pv $lib64/libcap*              $shared_lib/.
 cp -Pv $lib64/libaudit*            $shared_lib/.
-cp -Pv $lib64/libcares*            $shared_lib/.
 cp -Pv $lib64/libresolv-2*         $shared_lib/.
 cp -Pv $lib64/libresolv.so.2       $shared_lib/.
 cp -Pv $lib64/liblzma.so.*         $shared_lib/.
 cp -Pv $lib64/libcom_err.so.*      $shared_lib/.
 cp -Pv $lib64/libkeyutils.so.*     $shared_lib/.
 cp -Pv $lib64/libreadline.so.*     $shared_lib/.
+cp -Pv $lib64/libjson-c*           $shared_lib/.
 
-# redisfdw (hiredis seems small enough to include by default)
+# redisfdw (small enough lib to include by default)
 cp -Pv $lib64/libhiredis.so.0.12   $shared_lib/.
 
-# postgis
-#cp -Pv $lib64/libgeos*.so*         $shared_lib/.
-#cp -Pv $lib64/libprotobuf-c.so.*   $shared_lib/.
-#cp -Pv $lib64/libproj.so.*         $shared_lib/.
-cp -Pv $lib64/libjson-c*           $shared_lib/.
-#cp -Pv /usr/local/lib/libgeos*.so* $shared_lib/.
-#cp -Pv /usr/local/lib/libgdal*.so* $shared_lib/.
-
-#cp -Pv $lib64/mysql/libmysqlclient.* $shared_lib/.
-
-#if [ "$isEL8" == "no" ]; then
-#  cp -Pv /usr/local/lib/* $shared_lib/.
-#  # pg_agent
-#  cp -Pv $lib64/libicu*so.*          $shared_lib/.
-#fi
+# bouncer (small enough lib to include by default)
+cp -Pv /lib64/libcares*            $shared_lib/.
 
 # oracle_fdw
 #oraclient=/opt/oracleinstantclient/instantclient_19_8

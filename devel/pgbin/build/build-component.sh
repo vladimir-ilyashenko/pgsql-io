@@ -119,38 +119,39 @@ function updateSharedLibs {
           suffix="*so*"
         fi
 
+        libPathLog=$baseDir/$workDir/logs/libPath.log
+
         if [[ -d $buildLocation/bin ]]; then
           cd $buildLocation/bin
           for file in `ls -d *` ; do
-            echo "# chrpath $file"
-	        chrpath -r "\${ORIGIN}/../lib" "$file" >> $baseDir/$workDir/logs/libPath.log 2>&1
+            chrpath -r "\${ORIGIN}/../lib" "$file" >> $libPathLog 2>&1
       	  done
         fi
 
         cd $buildLocation/lib
         for file in `ls -d *so*  2>/dev/null` ; do
-                chrpath -r "\${ORIGIN}/../lib" "$file" >> $baseDir/$workDir/logs/libPath.log 2>&1
+          chrpath -r "\${ORIGIN}/../lib" "$file" >> $libPathLog 2>&1
         done
 
         if [[ -d "$buildLocation/lib/postgresql" ]]; then
-                cd $buildLocation/lib/postgresql
-		for file in `ls -d *so*  2>/dev/null` ; do
-			ls -sh $file
-             		chrpath -r "\${ORIGIN}/../../lib" "$file" >> $baseDir/$workDir/logs/libPath.log 2>&1
-		done
+          cd $buildLocation/lib/postgresql
+          for file in `ls -d *so*  2>/dev/null` ; do
+            chrpath -r "\${ORIGIN}/../../lib" "$file" >> $libPathLog 2>&1
+          done
         fi
+
+        cat $libPathLog
 
 	lib64=/usr/lib64
 	shared_lib=$buildLocation/lib
         if [ "$comp" == "mysqlfdw" ]; then
-		cp -Pv $lib64/mysql/libmysqlclient.* $shared_lib/.
+          cp -Pv $lib64/mysql/libmysqlclient.* $shared_lib/.
 	elif [ "$comp" == "postgis" ]; then
-		cp -P /usr/local/lib/libgeos*.so*  $shared_lib/.
-		cp -P /usr/local/lib/libgdal*.so*  $shared_lib/.
-		cp -P /usr/local/lib/libproto*.so* $shared_lib/.
-		cp -P /usr/local/lib/libproj*.so*  $shared_lib/.
+          cp -Pv /usr/local/lib/libgeos*.so*  $shared_lib/.
+          cp -Pv /usr/local/lib/libgdal*.so*  $shared_lib/.
+          cp -Pv /usr/local/lib/libproto*.so* $shared_lib/.
+          cp -Pv /usr/local/lib/libproj*.so*  $shared_lib/.
         fi
-
 }
 
 
