@@ -3,6 +3,9 @@ function test13 {
   ./io install pg13; 
   ./io start pg13 -y -d demo;
 
+  ./io install fixeddecimal-pg$1  -d demo
+  ./io install wal2json-pg$1      -d demo
+
   ./io install archivist-pg$1     -d demo
   ./io install qualstats-pg$1     -d demo
   ./io install statkcache-pg$1    -d demo
@@ -15,7 +18,6 @@ function test13 {
   ./io install multicorn-pg$1     -d demo
   ./io install esfdw-pg$1         -d demo
 
-  ./io install citus-pg$1   -d demo
   ./io install timescaledb-pg$1   -d demo
 
   if [ "$1" == "fdw" ]; then
@@ -41,6 +43,8 @@ function test13 {
   ./io install anon-pg$1          -d demo
 
   ./io install postgis-pg$1       -d demo
+
+  ./io install citus-pg$1   -d demo
 }
 
 function test12 {
