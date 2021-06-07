@@ -20,7 +20,7 @@ odbcFullV=13.01
 odbcShortV=
 odbcBuildV=1
 
-backrestFullV=2.33
+backrestFullV=2.34
 backrestShortV=
 backrestBuildV=1
 
@@ -52,7 +52,7 @@ httpFullV=1.3.1
 httpShortV=
 httpBuildV=1
 
-hypopgFullV=1.2.0
+hypopgFullV=1.3.0
 hypopgShortV=
 hypopgBuildV=1
 
@@ -164,7 +164,7 @@ pgTSQLFullV=3.0
 pgTSQLShortV=
 pgTSQLBuildV=1
 
-bulkloadFullV=3.1.17
+bulkloadFullV=3.1.18
 bulkloadShortV=
 bulkloadBuildV=1
 
@@ -192,7 +192,7 @@ statkFullV=2.2.0
 statkShortV=
 statkBuildV=1
 
-qstatFullV=2.0.2
+qstatFullV=2.0.3
 qstatShortV=
 qstatBuildV=1
 
