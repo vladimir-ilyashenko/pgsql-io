@@ -157,7 +157,7 @@ INSERT INTO releases VALUES ('debezium', 0, 'debezium', 'Debezium', '', 'test', 
 INSERT INTO versions VALUES ('debezium', '1.5.2', '', 1, '20210528', '', '', '');
 INSERT INTO versions VALUES ('debezium', '1.5.0', '', 0, '20210408', '', '', '');
 
-INSERT INTO projects VALUES ('kafka', 10, 9092, 'zookeeper', 2, 'https://kafka.apache.org/downloads',
+INSERT INTO projects VALUES ('kafka', 10, 9092, 'zookeeper', 1, 'https://kafka.apache.org/downloads',
   'Kafka', 0, 'kafka.png', 'Streaming Platform', 'https://kafka.apache.org');
 INSERT INTO releases VALUES ('kafka', 0, 'kafka', 'Kafka', '', 'test', '', 1, 'Apache', '', '');
 INSERT INTO versions VALUES ('kafka', '2.7.1', '', 1, '20210510', '', '', 'https://downloads.apache.org/kafka/2.7.1/RELEASE_NOTES.html');
@@ -170,7 +170,7 @@ INSERT INTO versions VALUES ('redis', '6', '',   1, '20210503', '', '', '');
 
 INSERT INTO projects VALUES ('zookeeper', 10, 2181, 'hub', 1, 'https://zookeeper.apache.org/releases.html#releasenotes',
   'zookeeper', 0, 'zookeeper.png', 'Distributed Key-Store for HA', 'https://zookeeper.apache.org');
-INSERT INTO releases VALUES ('zookeeper', 5, 'zookeeper', 'Zookeeper', '', 'test', '', 1, 'Apache', '', '');
+INSERT INTO releases VALUES ('zookeeper', 3, 'zookeeper', 'Zookeeper', '', 'test', '', 1, 'Apache', '', '');
 INSERT INTO versions VALUES ('zookeeper', '3.7.0', '',  1, '20210327', '', '',
   'https://zookeeper.apache.org/doc/r3.7.0/releasenotes.html');
 INSERT INTO versions VALUES ('zookeeper', '3.6.2', '',  0, '20200909', '', '',
@@ -245,12 +245,12 @@ INSERT INTO versions VALUES ('oraclefdw-pg13','2.3.0-1', 'amd', 1, '20200924', '
 
 INSERT INTO projects VALUES ('oracle', 10, 1521, 'hub', 0, 'https://www.oracle.com/database/technologies/oracle-database-software-downloads.html#19c', 
   'oracle', 0, 'oracle.png', 'Oracle Database', 'https://www.oracle.com/database/technologies');
-INSERT INTO releases VALUES ('oracle', 2, 'oracle', 'Oracle', '', 'test','', 0, 'ORACLE', '', '');
+INSERT INTO releases VALUES ('oracle', 10, 'oracle', 'Oracle', '', 'test','', 0, 'ORACLE', '', '');
 INSERT INTO versions VALUES ('oracle', '19c', 'amd', 1, '20200801', '', '', '');
 
 INSERT INTO projects VALUES ('instantclient', 10, 1521, 'hub', 0, 'https://www.instantclient.com/database/technologies/instantclient-database-software-downloads.html#19c', 
-  'instantclient', 0, 'instantclient.png', 'Oracle Instant Client', 'https://www.instantclient.com/database/technologies');
-INSERT INTO releases VALUES ('instantclient', 2, 'instantclient', 'Instant Client', '', 'test','', 0, 'ORACLE', '', '');
+  'instantclient', 0, 'instantclient.png', 'Oracle Instant Clients & SQLPlus', 'https://www.instantclient.com/database/technologies');
+INSERT INTO releases VALUES ('instantclient',11, 'instantclient', 'Oracle Instant Client', '', 'test','', 0, 'ORACLE', '', '');
 INSERT INTO versions VALUES ('instantclient', '21.1', 'amd', 1, '20200801', '', '', '');
 
 -- ##
