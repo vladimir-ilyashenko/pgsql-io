@@ -314,9 +314,9 @@ INSERT INTO versions VALUES ('plprofiler-pg13', '4.1-1', 'amd', 1, '20190823', '
 INSERT INTO projects VALUES ('backrest', 2, 0, 'hub', 0, 'https://github.com/pgbackrest/pgbackrest/releases',
   'backrest', 0, 'backrest.png', 'Backup & Restore', 'https://pgbackrest.org');
 INSERT INTO releases VALUES ('backrest', 9, 'backrest', 'pgBackRest', '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('backrest', '2.33-1', 'amd', 1, '20210405', '', '', 'https://pgbackrest.org/release.html#2.33');
+INSERT INTO versions VALUES ('backrest', '2.34-1', 'amd', 1, '20210607', '', '', 'https://pgbackrest.org/release.html#2.34');
+INSERT INTO versions VALUES ('backrest', '2.33-1', 'amd', 0, '20210405', '', '', 'https://pgbackrest.org/release.html#2.33');
 INSERT INTO versions VALUES ('backrest', '2.32-1', 'amd', 0, '20210208', '', '', 'https://pgbackrest.org/release.html#2.32');
-INSERT INTO versions VALUES ('backrest', '2.31-1', 'amd', 0, '20201208', '', '', '');
 
 INSERT INTO projects VALUES ('audit', 2, 0, 'hub', 0, 'https://github.com/pgaudit/pgaudit/releases',
   'audit', 1, 'audit.png', 'Audit Logging', 'https://github.com/pgaudit/pgaudit');
@@ -385,7 +385,8 @@ INSERT INTO versions VALUES ('pgadmin', '5.1', '', 0, '20210325', '', '', '');
 INSERT INTO projects VALUES ('bulkload', 4, 0, 'hub', 5, 'https://github.com/ossc-db/pg_bulkload/releases',
   'bulkload', 1, 'bulkload.png', 'High Speed Data Loading', 'https://github.com/ossc-db/pg_bulkload');
 INSERT INTO releases VALUES ('bulkload-pg13', 6, 'bulkload', 'pgBulkLoad',  '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('bulkload-pg13', '3.1.17-1', 'amd', 1, '20210205', 'pg13', '', '');
+INSERT INTO versions VALUES ('bulkload-pg13', '3.1.18-1', 'amd', 1, '20210601', 'pg13', '', '');
+INSERT INTO versions VALUES ('bulkload-pg13', '3.1.17-1', 'amd', 0, '20210205', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('repack', 4, 0, 'hub', 5, 'https://github.com/reorg/pg_repack/releases',
   'repack', 1, 'repack.png', 'Remove Table/Index Bloat' , 'https://github.com/reorg/pg_repack');
@@ -402,7 +403,8 @@ INSERT INTO versions VALUES ('partman-pg13', '4.4.1-1',  'amd', 0, '20201223', '
 INSERT INTO projects VALUES ('hypopg', 4, 0, 'hub', 8, 'https://github.com/HypoPG/hypopg/releases',
   'hypopg', 1, 'whatif.png', 'Hypothetical Indexes', 'https://hypopg.readthedocs.io/en/latest/');
 INSERT INTO releases VALUES ('hypopg-pg13', 99, 'hypopg', 'HypoPG', '', 'prod','',  1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('hypopg-pg13', '1.2.0-1',  'amd', 1, '20210226', 'pg13', '', '');
+INSERT INTO versions VALUES ('hypopg-pg13', '1.3.0-1',  'amd', 1, '20210604', 'pg13', '', '');
+INSERT INTO versions VALUES ('hypopg-pg13', '1.2.0-1',  'amd', 0, '20210226', 'pg13', '', '');
 INSERT INTO versions VALUES ('hypopg-pg13', '1.1.4-1',  'amd', 0, '20200711', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('badger', 4, 0, 'hub', 6, 'https://github.com/darold/pgbadger/releases',
@@ -467,7 +469,8 @@ INSERT INTO versions VALUES ('archivist-pg13', '4.1.2-1', 'amd', 1, '20201220', 
 INSERT INTO projects VALUES ('qualstats', 4, 0, 'powa', 2, 'https://github.com/powa-team/pg_qualstats/releases',
   'qualstats', 1, 'qualstats.png', 'WHERE Clause Stats', 'https://github.com/powa-team/pg_qualstats');
 INSERT INTO releases VALUES ('qualstats-pg13', 98, 'qualstats', 'QualStats', '', 'test','',  1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('qualstats-pg13', '2.0.2-1', 'amd', 1, '20200523', 'pg13', '', '');
+INSERT INTO versions VALUES ('qualstats-pg13', '2.0.3-1', 'amd', 1, '20210604', 'pg13', '', '');
+INSERT INTO versions VALUES ('qualstats-pg13', '2.0.2-1', 'amd', 0, '20200523', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('statkcache', 4, 0, 'powa', 3, 'https://github.com/powa-team/pg_stat_kcache/releases',
   'statkcache', 1, 'statkcache.png', 'Filesystem Stats', 'https://github.com/powa-team/pg_stat_kcache');
