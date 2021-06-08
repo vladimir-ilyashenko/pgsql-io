@@ -147,7 +147,9 @@ INSERT INTO versions VALUES ('pg13', '13.2-3',  'amd', 0, '20210211','', 'LIBC-2
 INSERT INTO versions VALUES ('pg13', '13.2-2',  'amd', 0, '20210211','', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg13', '13.2-1',  'amd', 0, '20210211','', 'LIBC-2.17', '');
 
-INSERT INTO releases VALUES ('pg14', 4, 'pg', 'PostgreSQL', '', 'test', '',
+INSERT INTO releases VALUES ('pg14', 4, 'pg', 'PostgreSQL', '', 'test', 
+  '<font size=-1>New in <a href=https://www.postgresql.org/about/news/postgresql-14-beta-1-released-2213/>v14</a>
+  </font>&nbsp;<font size =-2>20-May-2021</sup></font>',
   1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pg14', '14beta1-1',  'amd', 1, '20210520','', 'LIBC-2.17', '');
 
@@ -378,7 +380,7 @@ INSERT INTO versions VALUES ('omnidb', '2.17.0', '', 1, '20191205', '', '', '');
 INSERT INTO projects VALUES ('pgadmin', 9, 80, '', 1, 'https://pgadmin.org',
   'pgadmin', 0, 'pgadmin.png', 'PG Admin', 'https://pgadmin.org');
 INSERT INTO releases VALUES ('pgadmin', 0, 'pgadmin', 'pgAdmin 4', '', 'test', '', 1, '', '', '');
-INSERT INTO versions VALUES ('pgadmin', '5.3', '', 1, '20210420', '', '', '');
+INSERT INTO versions VALUES ('pgadmin', '5.3', '', 1, '20210520', '', '', '');
 INSERT INTO versions VALUES ('pgadmin', '5.2', '', 0, '20210422', '', '', '');
 INSERT INTO versions VALUES ('pgadmin', '5.1', '', 0, '20210325', '', '', '');
 
