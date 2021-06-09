@@ -45,6 +45,7 @@ zooV=3.7.0
 kfkV=2.7.1
 dbzV=1.5.2
 redisV=6.2
+mariaV=10.6
 
 adminV=5.1
 omniV=2.17.0

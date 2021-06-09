@@ -484,6 +484,7 @@ initPG () {
   initC "kafka"     "kafka"     "$kfkV"   "" "kafka"            "" "" "Y"
   initC "debezium"  "debezium"  "$dbzV"   "" "debezium"         "" "" "Y"
   initC "redis"     "redis"     "$redisV" "" "redis"            "" "" "Y"
+  initC "mariadb"   "mariadb"   "$mariaV" "" "mariadb"          "" "" "Y"
   initC "patroni"   "patroni"   "$patroniV" "" "postgres/patroni" "" "" "nil"
   #initC "cassandra" "cassandra" "$cstarV" "" "cassandra" "" "" "nil"
 

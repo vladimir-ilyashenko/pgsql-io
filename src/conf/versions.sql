@@ -170,6 +170,11 @@ INSERT INTO projects VALUES ('redis', 10, 6379, 'hub', 2, 'https://github.com/re
 INSERT INTO releases VALUES ('redis', 0, 'redis', 'Redis 6.2.4', '', 'test', '', 1, 'BSD', '', '');
 INSERT INTO versions VALUES ('redis', '6.2', '',   1, '20210601', '', 'DEB', '');
 
+INSERT INTO projects VALUES ('mariadb', 10, 3306, 'hub', 2, 'https://github.com/mariadb/server/releases',
+  'MariaDB', 0, 'mariadb.png', 'MySQL Replacement', 'https://mariadb.com');
+INSERT INTO releases VALUES ('mariadb', 0, 'mariadb', 'MariaDB 10.6.1', '', 'test', '', 1, 'GPL', '', '');
+INSERT INTO versions VALUES ('mariadb', '10.6', '',   1, '20210521', '', 'DEB', '');
+
 INSERT INTO projects VALUES ('zookeeper', 10, 2181, 'hub', 1, 'https://zookeeper.apache.org/releases.html#releasenotes',
   'zookeeper', 0, 'zookeeper.png', 'Distributed Key-Store for HA', 'https://zookeeper.apache.org');
 INSERT INTO releases VALUES ('zookeeper', 3, 'zookeeper', 'Zookeeper', '', 'test', '', 1, 'Apache', '', '');
