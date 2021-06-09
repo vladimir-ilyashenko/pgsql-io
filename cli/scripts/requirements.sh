@@ -119,6 +119,20 @@ isAMD64 () {
 }
 
 
+isDEB () {
+  apt --version > /dev/null 2>&1
+  rc=$?
+  if [ $rc == "0" ]; then
+    echoX '#       DEB - OK'
+    return
+  fi
+
+  echoX 'ERROR: only supported on DEBIAN/UBUNTU'
+  exit 1
+}
+
+
+
 ########################################
 #              MAINLINE                #
 ########################################
@@ -130,6 +144,8 @@ do
   if [ "${req:0:2}" == "EL" ]; then
     ver=${req:2:1}
     isEL $ver 
+  elif [ "$req" == "DEB" ]; then
+    isDEB
   elif [ "$req" == "AMD64" ]; then
     isAMD64
   elif [ "$req" == "PERL" ]; then
