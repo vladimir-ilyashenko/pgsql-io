@@ -257,8 +257,8 @@ INSERT INTO versions VALUES ('oracle', '19c', 'amd', 1, '20200801', '', '', '');
 
 INSERT INTO projects VALUES ('instantclient', 10, 1521, 'hub', 0, 'https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html', 
   'instantclient', 0, 'instantclient.png', 'Oracle Instant Clients & SQLPlus', 'https://www.oracle.com/database/technologies/instant-client.html');
-INSERT INTO releases VALUES ('instantclient',11, 'instantclient', 'Oracle Instant Client', '', 'test','', 0, 'ORACLE', '', '');
-INSERT INTO versions VALUES ('instantclient', '21.1', 'amd', 1, '20200801', '', '', '');
+INSERT INTO releases VALUES ('instantclient', 11, 'instantclient', 'Oracle Instant Client', '', 'test','', 0, 'ORACLE', '', '');
+INSERT INTO versions VALUES ('instantclient', '21.1', 'amd', 1, '20210317', '', '', '');
 
 -- ##
 INSERT INTO projects VALUES ('orafce', 5, 0, 'hub', 0, 'https://github.com/orafce/orafce/releases',
