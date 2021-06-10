@@ -1,19 +1,32 @@
 cd "$(dirname "$(readlink -f "$0")")"
 
-if [ `arch` == 'aarch64' ]; then
-  echo 'ERROR: Oracle XE only runs on AMD64 Architecture'
-  exit 1
+pre_url=https://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64/getPackage
+pre_rpm=oracle-database-preinstall-18c-1.0-1.el7.x86_64.rpm
+
+url=https://download.oracle.com/otn-pub/otn_software/db-express/
+rpm=oracle-database-xe-18c-1.0-1.x86_64.rpm
+
+sudo yum install -y net-tools bind-utils compat-libcap1 compat-libstdc++-33 ksh
+sudo yum install -y libaio-devel nfs-utils psmisc smartmontools sysstat 
+sudo yum install -y xorg-x11-utils xorg-x11-xauth
+
+rm -f oracle-database*
+
+wget $pre_url/$pre_rpm
+rc=$?
+if [ ! "$rc" == "0" ]; then
+  echo "Goodbye!"
+  exit $rc
 fi
+sudo rpm -ivh $pre_rpm
 
-sudo ./el8.sh
+wget $url/$rpm
+rc=$?
+if [ ! "$rc" == "0" ]; then
+  echo "Goodbye!"
+  exit $rc
+fi
+sudo rpm -ivh $rpm
 
-sudo yum install -y oracle-database-preinstall-*.rpm
-
-sudo yum install -y oracle-database-xe-*.rpm
-
-echo ''
-echo '# now run:  ./io config oracle_xe'
-
-exit 0
-
+rm -f oracle-database*
 
