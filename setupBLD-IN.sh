@@ -9,5 +9,5 @@ cp -p $IO/devel/pgbin/build/*.sh .
 
 cd $IN
 cp $IO/devel/util/in/pull-s3.sh .
-./pull-s3.sh
+./pull-s3.sh prod
 chmod 755 *.sh
