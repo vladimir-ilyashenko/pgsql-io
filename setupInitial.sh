@@ -22,8 +22,8 @@ if [ `uname` == 'Linux' ]; then
     cat /etc/os-release | grep el8
     rc=$?
     if [ "$rc" == "0" ]; then
-      echo ## RHEL 8
-      yum="dnf -y install --nobest"
+      echo ## EL 8
+      yum="dnf -y install"
       sudo $yum epel-release
       sudo $yum wget python3 python3-devel
       sudo $yum java-11-openjdk-devel maven ant
@@ -34,13 +34,10 @@ if [ `uname` == 'Linux' ]; then
         pam-devel openldap-devel boost-devel unixODBC-devel
       sudo $yum curl-devel chrpath clang-devel llvm-devel \
         cmake libxml2-devel mysql-devel
-      sudo $yum readline-devel libuuid-devel
+      sudo $yum readline-devel 
       sudo $yum python2 python2-devel
       cd /usr/bin
       sudo ln -fs python2 python
-      sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
-      sudo $yum install uuid-devel
-      ## optional below
       sudo $yum mongo-c-driver-devel freetds-devel proj-devel
     else
       ## CentOS 7 (used for stable & ...)  
@@ -103,6 +100,8 @@ rc=$?
 if [ ! "$rc" == "0" ]; then
   cat bash_profile >> $bf
 fi
+
+sudo alternatives --config java
 
 echo ""
 echo "Goodbye!"
