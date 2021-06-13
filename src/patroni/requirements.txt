@@ -1,0 +1,12 @@
+urllib3
+PyYAML
+six
+python-etcd
+prettytable
+python-dateutil
+pysyncobj
+psutil
+ydiff
+psycopg2-binary
+python-etcd
+haproxyadmin
