@@ -429,9 +429,7 @@ INSERT INTO versions VALUES ('bouncer', '1.13.0-1', 'amd', 0, '20200427', '', ''
 INSERT INTO projects VALUES ('patroni',  2, 0, 'haproxy', 4, 'https://github.com/zalando/patroni/releases',
   'patroni', 0, 'patroni.png', 'Postgres HA Template', 'https://github.com/zalando/patroni');
 INSERT INTO releases VALUES ('patroni', 1, 'patroni', 'Patroni', '', 'test', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('patroni', '2.0.2', '', 1, '20210222', '', 'DEB', 'https://github.com/zalando/patroni/releases/tag/v2.0.2');
-INSERT INTO versions VALUES ('patroni', '2.0.1', '', 0, '20201001', '', 'DEB', 'https://github.com/zalando/patroni/releases/tag/v2.0.1');
-INSERT INTO versions VALUES ('patroni', '2.0.0', '', 0, '20200902', '', 'DEB', 'https://github.com/zalando/patroni/releases/tag/v2.0.0');
+INSERT INTO versions VALUES ('patroni', '2.0.2', '', 1, '20210222', '', 'DEB PYTHON3', 'https://github.com/zalando/patroni/releases/tag/v2.0.2');
 
 INSERT INTO projects VALUES ('pgjdbc', 7, 0, 'hub', 1, 'https://jdbc.postgresql.org', 'jdbc', 0, 'java.png', 'JDBC Driver', 'https://jdbc.postgresql.org');
 INSERT INTO releases VALUES ('pgjdbc', 7, 'jdbc', 'JDBC', '', 'bring-own', '', 1, 'POSTGRES', '', '');

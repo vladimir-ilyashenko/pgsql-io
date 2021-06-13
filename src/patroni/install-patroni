@@ -1,0 +1,6 @@
+
+
+wget https://github.com/zalando/patroni/archive/refs/tags/v2.0.2.tar.gz
+
+tar -xvf v2.0.2.tar.gz
+
