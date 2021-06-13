@@ -35,6 +35,7 @@ if [ `uname` == 'Linux' ]; then
       sudo $yum curl-devel chrpath clang-devel llvm-devel \
         cmake libxml2-devel mysql-devel
       sudo $yum readline-devel 
+      sudo $yum *ossp-uuid*
       sudo $yum python2 python2-devel
       cd /usr/bin
       sudo ln -fs python2 python
