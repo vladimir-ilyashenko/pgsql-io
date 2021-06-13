@@ -417,7 +417,7 @@ INSERT INTO versions VALUES ('hypopg-pg13', '1.1.4-1',  'amd', 0, '20200711', 'p
 INSERT INTO projects VALUES ('badger', 4, 0, 'hub', 6, 'https://github.com/darold/pgbadger/releases',
   'badger', 0, 'badger.png', 'Performance Reporting', 'https://pgbadger.darold.net');
 INSERT INTO releases VALUES ('badger', 101, 'badger','pgBadger','', 'test', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('badger', '11.5', '', 2, '20210218', '', '', '');
+INSERT INTO versions VALUES ('badger', '11.5', '', 1, '20210218', '', '', '');
 
 INSERT INTO projects VALUES ('bouncer',  4, 0, 'hub', 3, 'http://pgbouncer.org',
   'bouncer',  0, 'bouncer.png', 'Lightweight Connection Pooler', 'http://pgbouncer.org');
