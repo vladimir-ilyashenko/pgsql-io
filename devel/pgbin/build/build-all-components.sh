@@ -28,14 +28,10 @@ if [ ! "$pgV"  == "11" ] && [ ! "$pgV"  == "12" ] && [ ! "$pgV"  == "13" ]; then
 fi
 
 
-## WIP across platforms ###########################
+## WIP ############################################
 
 if [ "$1" == "parquets3fdw" ]; then
   build parquets3fdw $parquetFullV $2 parquets3fdw
-fi
-
-if [ "$1" == "psqlodbc" ]; then
-  build psqlodbc $odbcFullV $2 psqlodbc
 fi
 
 if [ "$1" == "agent" ]; then
@@ -54,33 +50,45 @@ if [ "$1" == "pgtsql" ]; then
   build pgtsql $pgTSQLFullV $2 tsql
 fi
 
-## prod ready across platforms #######################
+if [ "$1" == "pgtop" ]; then
+  build pgtop $pgtopFullV $2 pgtop
+fi
 
-if [ "$1" == "archivist" ]; then
+if [ "$1" == "pldebugger" ]; then
+  build pldebugger $debugFullV $2 pldebugger
+fi
+
+## PROD ##############################################
+
+if [ "$1" == "psqlodbc" ] || [ "$1" == "all" ]; then
+  build psqlodbc $odbcFullV $2 psqlodbc
+fi
+
+if [ "$1" == "archivist" ] || [ "$1" == "all" ]; then
   build archivist $archivFullV $2 archivist
 fi
 
-if [ "$1" == "statkcache" ]; then
+if [ "$1" == "statkcache" ] || [ "$1" == "all" ]; then
   build statkcache $statkFullV $2 statkcache
 fi
 
-if [ "$1" == "qualstats" ]; then
+if [ "$1" == "qualstats" ] || [ "$1" == "all" ]; then
   build qualstats $qstatFullV $2 qualstats
 fi
 
-if [ "$1" == "waitsampling" ]; then
+if [ "$1" == "waitsampling" ] || [ "$1" == "all" ]; then
   build waitsampling $waitsFullV $2 waitsampling
 fi
 
-if [ "$1" == "hintplan" ]; then
+if [ "$1" == "hintplan" ] || [ "$1" == "all" ]; then
   build hintplan $hintplanFullV $2 hintplan
 fi
 
-if [ "$1" == "wal2json" ]; then
+if [ "$1" == "wal2json" ]  || [ "$1" == "all" ]; then
   build wal2json $wal2jsonFullV $2 wal2json
 fi
 
-if [ "$1" == "mongofdw" ]; then
+if [ "$1" == "mongofdw" ] || [ "$1" == "all" ]; then
   build mongofdw $mongofdwFullV $2 mongofdw
 fi
 
@@ -98,10 +106,6 @@ fi
 
 if [ "$1" == "cron" ] || [ "$1" == "all" ]; then
   build cron $cronFullV $2 cron
-fi
-
-if [ "$1" == "pldebugger" ] || [ "$1" == "all" ]; then
-  build pldebugger $debugFullV $2 pldebugger
 fi
 
 if [ "$1" == "hivefdw" ] || [ "$1" == "all" ]; then
@@ -170,10 +174,6 @@ fi
 
 if [ "$1" == "proctab" ] || [ "$1" == "all" ]; then
   build proctab $proctabFullV $2 proctab
-fi
-
-if [ "$1" == "pgtop" ] || [ "$1" == "all" ]; then
-  build pgtop $pgtopFullV $2 pgtop
 fi
 
 if [ "$1" == "bouncer" ] || [ "$1" == "all" ]; then

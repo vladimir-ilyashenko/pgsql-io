@@ -40,6 +40,8 @@ if [ `uname` == 'Linux' ]; then
       cd /usr/bin
       sudo ln -fs python2 python
       sudo $yum mongo-c-driver-devel freetds-devel proj-devel
+      sudo $yum lz4-devel libzstd-devel geos-devel
+      sudo $yum hiredis-devel mysql-devel
     else
       ## CentOS 7 (used for stable & ...)  
       sudo yum -y install -y epel-release python-pip
