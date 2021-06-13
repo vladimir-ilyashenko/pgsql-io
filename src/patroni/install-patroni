@@ -1,6 +1,13 @@
+#!/bin/bash
+cd "$(dirname "$0")"
 
+echo " "
+echo "## INSTALL PATRONI ##############################################"
+source getPKMG.sh
 
-wget https://github.com/zalando/patroni/archive/refs/tags/v2.0.2.tar.gz
+## DEB #########################################################
+sudo apt update -y
+sudo apt install -y etcd haproxy
 
-tar -xvf v2.0.2.tar.gz
+pip3 install -r requirements.txt
 

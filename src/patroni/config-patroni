@@ -1,5 +1,0 @@
-
-sudo yum install -y etcd haproxy
-
-pip3 install -r requirements.txt
-

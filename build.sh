@@ -471,9 +471,9 @@ initPG () {
     initC "waitsampling-pg$pgM" "waitsampling" "$waitsV" "$outPlat" "postgres/waitsampling" "" "" "nil"
   fi
 
-  cat /etc/os-release | grep el7 > /dev/null 2>&1
+  cat /etc/os-release | grep el8 > /dev/null 2>&1
   rc=$?
-  if [ "$rc" == "0" ]; then
+  if [ "$rc" == "1" ]; then
     ### Not supported (for testing only) ####################################
     initC "badger"    "badger"    "$badgerV" "" "postgres/badger" "" "" "nil"
     initC "ora2pg"    "ora2pg"    "$ora2pgV" "" "postgres/ora2pg" "" "" "nil"
