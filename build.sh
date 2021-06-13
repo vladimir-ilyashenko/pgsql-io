@@ -471,22 +471,25 @@ initPG () {
     initC "waitsampling-pg$pgM" "waitsampling" "$waitsV" "$outPlat" "postgres/waitsampling" "" "" "nil"
   fi
 
-  initC "badger"    "badger"    "$badgerV" "" "postgres/badger" "" "" "nil"
-  initC "ora2pg"    "ora2pg"    "$ora2pgV" "" "postgres/ora2pg" "" "" "nil"
-  initC "bouncer"   "bouncer"   "$bouncerV" "$outPlat" "postgres/bouncer" "" "" "nil"
-  initC "backrest"  "backrest"  "$backrestV" "$outPlat" "postgres/backrest" "" "" "nil"
-  initC "instantclient" "instantclient" "$inclV" "$outPlat" "instantclient" "" "" "nil"
-
-  ### Not supported (for testing only) ####################################
-  initC "pgadmin"   "pgadmin"   "$adminV" "" "postgres/pgadmin" "" "" "Y"
-  initC "omnidb"    "omnidb"    "$omniV"  "" "postgres/omnidb"  "" "" "Y"
-  initC "zookeeper" "zookeeper" "$zooV"   "" "zookeeper"        "" "" "Y"
-  initC "kafka"     "kafka"     "$kfkV"   "" "kafka"            "" "" "Y"
-  initC "debezium"  "debezium"  "$dbzV"   "" "debezium"         "" "" "Y"
-  initC "redis"     "redis"     "$redisV" "" "redis"            "" "" "Y"
-  initC "mariadb"   "mariadb"   "$mariaV" "" "mariadb"          "" "" "Y"
-  initC "patroni"   "patroni"   "$patroniV" "" "postgres/patroni" "" "" "nil"
-  #initC "cassandra" "cassandra" "$cstarV" "" "cassandra" "" "" "nil"
+  cat /etc/os-release | grep el7 > /dev/null 2>&1
+  rc=$?
+  if [ "$rc" == "0" ]; then
+    ### Not supported (for testing only) ####################################
+    initC "badger"    "badger"    "$badgerV" "" "postgres/badger" "" "" "nil"
+    initC "ora2pg"    "ora2pg"    "$ora2pgV" "" "postgres/ora2pg" "" "" "nil"
+    initC "bouncer"   "bouncer"   "$bouncerV" "$outPlat" "postgres/bouncer" "" "" "nil"
+    initC "backrest"  "backrest"  "$backrestV" "$outPlat" "postgres/backrest" "" "" "nil"
+    initC "instantclient" "instantclient" "$inclV" "$outPlat" "instantclient" "" "" "nil"
+    initC "pgadmin"   "pgadmin"   "$adminV" "" "postgres/pgadmin" "" "" "Y"
+    initC "omnidb"    "omnidb"    "$omniV"  "" "postgres/omnidb"  "" "" "Y"
+    initC "zookeeper" "zookeeper" "$zooV"   "" "zookeeper"        "" "" "Y"
+    initC "kafka"     "kafka"     "$kfkV"   "" "kafka"            "" "" "Y"
+    initC "debezium"  "debezium"  "$dbzV"   "" "debezium"         "" "" "Y"
+    initC "redis"     "redis"     "$redisV" "" "redis"            "" "" "Y"
+    initC "mariadb"   "mariadb"   "$mariaV" "" "mariadb"          "" "" "Y"
+    initC "patroni"   "patroni"   "$patroniV" "" "postgres/patroni" "" "" "nil"
+    #initC "cassandra" "cassandra" "$cstarV" "" "cassandra" "" "" "nil"
+  fi
 
   if [ "$pgM" == "12" ]; then 
     initC "postgis-pg$pgM" "postgis" "$postgisV" "$outPlat" "postgres/postgis" "" "" "nil"
