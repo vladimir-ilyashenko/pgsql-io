@@ -102,7 +102,7 @@ INSERT INTO categories VALUES (9,  87, 'Management & Monitoring', 'Manage');
 -- ## HUB ################################
 INSERT INTO projects VALUES ('hub',0, 0, 'hub', 0, 'https://github.com/pgsql-io/pgsql-io','',0,'','','');
 INSERT INTO releases VALUES ('hub', 1, 'hub', '', '', 'hidden', '', 1, '', '', '');
-INSERT INTO versions VALUES ('hub', '6.52', '',  1, '20210620', '', '', '');
+INSERT INTO versions VALUES ('hub', '6.52', '',  1, '20210614', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.51', '',  0, '20210613', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.50', '',  0, '20210601', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.49', '',  0, '20210528', '', '', '');
@@ -319,7 +319,7 @@ INSERT INTO versions VALUES ('plprofiler-pg13', '4.1-1', 'amd', 1, '20190823', '
 INSERT INTO projects VALUES ('backrest', 2, 0, 'hub', 0, 'https://github.com/pgbackrest/pgbackrest/releases',
   'backrest', 0, 'backrest.png', 'Backup & Restore', 'https://pgbackrest.org');
 INSERT INTO releases VALUES ('backrest', 9, 'backrest', 'pgBackRest', '', 'included', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('backrest', '2.34-1', 'amd', 1, '20210607', '', '', 'https://pgbackrest.org/release.html#2.34');
+INSERT INTO versions VALUES ('backrest', '2.34', 'amd', 1, '20210607', '', '', 'https://pgbackrest.org/release.html#2.34');
 
 INSERT INTO projects VALUES ('audit', 2, 0, 'hub', 0, 'https://github.com/pgaudit/pgaudit/releases',
   'audit', 1, 'audit.png', 'Audit Logging', 'https://github.com/pgaudit/pgaudit');
@@ -418,7 +418,7 @@ INSERT INTO versions VALUES ('badger', '11.5', '', 1, '20210218', '', '', '');
 INSERT INTO projects VALUES ('bouncer',  4, 0, 'hub', 3, 'http://pgbouncer.org',
   'bouncer',  0, 'bouncer.png', 'Lightweight Connection Pooler', 'http://pgbouncer.org');
 INSERT INTO releases VALUES ('bouncer', 1, 'bouncer',  'pgBouncer', '', 'included', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('bouncer', '1.15.0-3', 'amd', 1, '20210614', '', '', '');
+INSERT INTO versions VALUES ('bouncer', '1.15.0', 'amd', 1, '20210614', '', '', '');
 
 INSERT INTO projects VALUES ('patroni',  2, 0, 'haproxy', 4, 'https://github.com/zalando/patroni/releases',
   'patroni', 0, 'patroni.png', 'Postgres HA Template', 'https://github.com/zalando/patroni');

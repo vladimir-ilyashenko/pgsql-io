@@ -11,12 +11,14 @@ P11=11.12-2
 w2jV=2.3-1
 esfdwV=0.11.1
 odbcV=13.01-1
-backrestV=2.34-1
-bouncerV=1.15.0-3
 pgtopV=3.7.0-1
 proctabV=0.0.8.1-1
 citusV=10.0.3-1
 multicornV=1.4.1-1
+
+## included in postgres binaries
+##backrestV=2.34-1
+##bouncerV=1.15.0-3
 
 oraclefdwV=2.3.0-1
 inclV=21.1

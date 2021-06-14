@@ -477,8 +477,6 @@ initPG () {
     ### Not supported (for testing only) ####################################
     initC "badger"    "badger"    "$badgerV" "" "postgres/badger" "" "" "nil"
     initC "ora2pg"    "ora2pg"    "$ora2pgV" "" "postgres/ora2pg" "" "" "nil"
-    initC "bouncer"   "bouncer"   "$bouncerV" "$outPlat" "postgres/bouncer" "" "" "nil"
-    initC "backrest"  "backrest"  "$backrestV" "$outPlat" "postgres/backrest" "" "" "nil"
     initC "instantclient" "instantclient" "$inclV" "$outPlat" "instantclient" "" "" "nil"
     initC "pgadmin"   "pgadmin"   "$adminV" "" "postgres/pgadmin" "" "" "Y"
     initC "omnidb"    "omnidb"    "$omniV"  "" "postgres/omnidb"  "" "" "Y"
@@ -489,6 +487,8 @@ initPG () {
     initC "mariadb"   "mariadb"   "$mariaV" "" "mariadb"          "" "" "Y"
     initC "patroni"   "patroni"   "$patroniV" "" "postgres/patroni" "" "" "nil"
     #initC "cassandra" "cassandra" "$cstarV" "" "cassandra" "" "" "nil"
+    #initC "backrest"  "backrest"  "$backrestV" "$outPlat" "postgres/backrest" "" "" "nil"
+    #initC "bouncer"   "bouncer"   "$bouncerV" "$outPlat" "postgres/bouncer" "" "" "nil"
   fi
 
   if [ "$pgM" == "12" ]; then 
