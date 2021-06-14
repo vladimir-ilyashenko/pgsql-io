@@ -15,12 +15,12 @@ function runPgBin {
   pBldV=$3
   ##echo "#   BldV = $pBldV"
 
-  bncrSrc=$SRC/pgbouncer-$bouncerV.tar.gz
+  bncrSrc=$SRC/bouncer-$bouncerFullV.tar.gz
   odbcSrc=$SRC/psqlodbc-$odbcV.tar.gz
-  bkrstSrc=$SRC/backrest-$backrestV.tar.gz
+  bkrstSrc=$SRC/backrest-$backrestFullV.tar.gz
   agentSrc=$SRC/agent-$agentV.tar.gz
  
-  cmd="./build-pgbin.sh -a $pOutDir -t $pPgSrc -n $pBldV "
+  cmd="./build-pgbin.sh -a $pOutDir -t $pPgSrc -n $pBldV -b $bncrSrc -k $bkrstSrc"
 
   cmd="$cmd $optional"
   $cmd

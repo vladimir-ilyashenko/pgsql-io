@@ -244,10 +244,8 @@ function configureComp {
     if [ "$comp" == "backrest" ]; then
         echo "# configure backrest..."
         export LD_LIBRARY_PATH=$buildLocation/lib
-        export LDFLAGS="$LDFLAGS -Wl,-rpath,'$sharedLibs' -L$sharedLibs"
-        export CPPFLAGS="$CPPFLAGS -I$includePath"
         cd src
-        ./configure --prefix=$buildLocation >> $make_log 2>&1 
+        ./configure --prefix=$buildLocation LDFLAGS="$LDFLAGS -Wl,-rpath,$sharedLibs" >> $make_log 2>&1 
         rc=$?
     fi
 
@@ -265,7 +263,7 @@ function configureComp {
         opt="--prefix=$buildLocation --disable-rpath --with-cares --with-pam"
         opt="$opt --with-libevent=$sharedLibs/../ --with-openssl=$sharedLibs/../"
         echo "#    $opt"
-        ./configure $opt LDFLAGS="$LDFLAGS -Wl,-rpath,$sharedLibs" > $make_log 2>&1
+        ./configure $opt LDFLAGS="$LDFLAGS -Wl,-rpath,$sharedLibs/lib" > $make_log 2>&1
         rc=$?
     fi
 

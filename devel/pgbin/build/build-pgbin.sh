@@ -30,9 +30,9 @@ pgLLVM=""
 sourceTarPassed=0
 archiveLocationPassed=0
 buildVersionPassed=0
-buildBouncer=0
+buildBouncer=1
 buildODBC=0
-buildBackrest=0
+buildBackrest=1
 
 scriptName=`basename $0`
 

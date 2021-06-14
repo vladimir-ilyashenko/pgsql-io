@@ -3,16 +3,16 @@ bundle=pgsql
 api=io
 hubV=6.52
 
-P14=14beta1-1
-P13=13.3-1
-P12=12.7-1
-P11=11.12-1
+P14=14beta1-2
+P13=13.3-2
+P12=12.7-2
+P11=11.12-2
 
 w2jV=2.3-1
 esfdwV=0.11.1
 odbcV=13.01-1
 backrestV=2.34-1
-bouncerV=1.15.0-1
+bouncerV=1.15.0-3
 pgtopV=3.7.0-1
 proctabV=0.0.8.1-1
 citusV=10.0.3-1

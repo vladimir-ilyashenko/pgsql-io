@@ -126,32 +126,30 @@ INSERT INTO versions VALUES ('pg10', '10.16-1', 'amd', 0, '20210211', '', 'LIBC-
 
 INSERT INTO releases VALUES ('pg11', 3, 'pg', 'PostgreSQL', '', 'prod', 
   '<font size=-1>New in <a href=https://www.postgresql.org/docs/11/release-11.html>v11</a></font>&nbsp;<font size=-2>08-Oct-2018</font>', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg11', '11.12-1', 'amd', 1, '20210513', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg11', '11.12-2', 'amd', 1, '20210513', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg11', '11.12-1', 'amd', 0, '20210513', '', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg11', '11.11-3', 'amd', 0, '20210211', '', 'LIBC-2.17', '');
-INSERT INTO versions VALUES ('pg11', '11.11-2', 'amd', 0, '20210211', '', 'LIBC-2.17', '');
-INSERT INTO versions VALUES ('pg11', '11.11-1', 'amd', 0, '20210211', '', 'LIBC-2.17', '');
 
 INSERT INTO releases VALUES ('pg12', 2, 'pg', 'PostgreSQL', '', 'prod', 
   '<font size=-1>New in <a href=https://www.postgresql.org/docs/12/release-12.html>v12</a></font>&nbsp;<font size=-2>03-Oct-2019</font>', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg12', '12.7-1', 'amd', 1, '20210513', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg12', '12.7-2', 'amd', 1, '20210513', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg12', '12.7-1', 'amd', 0, '20210513', '', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg12', '12.6-3', 'amd', 0, '20210211', '', 'LIBC-2.17', '');
-INSERT INTO versions VALUES ('pg12', '12.6-2', 'amd', 0, '20210211', '', 'LIBC-2.17', '');
-INSERT INTO versions VALUES ('pg12', '12.6-1', 'amd', 0, '20210211', '', 'LIBC-2.17', '');
 
 INSERT INTO releases VALUES ('pg13', 1, 'pg', 'PostgreSQL', '', 'prod', 
   '<font size=-1>New in <a href=https://www.postgresql.org/docs/13/release-13.html>v13</a>
   </font>&nbsp;<font size =-2>24-Sep-2020</sup></font>', 
   1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg13', '13.3-1',  'amd', 1, '20210513','', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg13', '13.3-2',  'amd', 1, '20210513','', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg13', '13.3-1',  'amd', 0, '20210513','', 'LIBC-2.17', '');
 INSERT INTO versions VALUES ('pg13', '13.2-3',  'amd', 0, '20210211','', 'LIBC-2.17', '');
-INSERT INTO versions VALUES ('pg13', '13.2-2',  'amd', 0, '20210211','', 'LIBC-2.17', '');
-INSERT INTO versions VALUES ('pg13', '13.2-1',  'amd', 0, '20210211','', 'LIBC-2.17', '');
 
 INSERT INTO releases VALUES ('pg14', 4, 'pg', 'PostgreSQL', '', 'test', 
   '<font size=-1>New in <a href=https://www.postgresql.org/about/news/postgresql-14-beta-1-released-2213/>v14</a>
   </font>&nbsp;<font size =-2>20-May-2021</sup></font>',
   1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg14', '14beta1-1',  'amd', 1, '20210520','', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg14', '14beta1-2',  'amd', 1, '20210520','', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg14', '14beta1-1',  'amd', 0, '20210520','', 'LIBC-2.17', '');
 
 INSERT INTO projects VALUES ('debezium',  5, 8080, 'kafka', 3, 'https://debezium.io/releases/1.5/',
   'Debezium', 0, 'debezium.png', 'Stream DB Changes', 'https://debezium.io');
@@ -320,10 +318,8 @@ INSERT INTO versions VALUES ('plprofiler-pg13', '4.1-1', 'amd', 1, '20190823', '
 
 INSERT INTO projects VALUES ('backrest', 2, 0, 'hub', 0, 'https://github.com/pgbackrest/pgbackrest/releases',
   'backrest', 0, 'backrest.png', 'Backup & Restore', 'https://pgbackrest.org');
-INSERT INTO releases VALUES ('backrest', 9, 'backrest', 'pgBackRest', '', 'test', '', 1, 'POSTGRES', '', '');
+INSERT INTO releases VALUES ('backrest', 9, 'backrest', 'pgBackRest', '', 'included', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('backrest', '2.34-1', 'amd', 1, '20210607', '', '', 'https://pgbackrest.org/release.html#2.34');
-INSERT INTO versions VALUES ('backrest', '2.33-1', 'amd', 0, '20210405', '', '', 'https://pgbackrest.org/release.html#2.33');
-INSERT INTO versions VALUES ('backrest', '2.32-1', 'amd', 0, '20210208', '', '', 'https://pgbackrest.org/release.html#2.32');
 
 INSERT INTO projects VALUES ('audit', 2, 0, 'hub', 0, 'https://github.com/pgaudit/pgaudit/releases',
   'audit', 1, 'audit.png', 'Audit Logging', 'https://github.com/pgaudit/pgaudit');
@@ -421,10 +417,8 @@ INSERT INTO versions VALUES ('badger', '11.5', '', 1, '20210218', '', '', '');
 
 INSERT INTO projects VALUES ('bouncer',  4, 0, 'hub', 3, 'http://pgbouncer.org',
   'bouncer',  0, 'bouncer.png', 'Lightweight Connection Pooler', 'http://pgbouncer.org');
-INSERT INTO releases VALUES ('bouncer', 1, 'bouncer',  'pgBouncer', '', 'test', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('bouncer', '1.15.0-1', 'amd', 1, '20201119', '', '', '');
-INSERT INTO versions VALUES ('bouncer', '1.14.0-1', 'amd', 0, '20200611', '', '', '');
-INSERT INTO versions VALUES ('bouncer', '1.13.0-1', 'amd', 0, '20200427', '', '', '');
+INSERT INTO releases VALUES ('bouncer', 1, 'bouncer',  'pgBouncer', '', 'included', '', 1, 'POSTGRES', '', '');
+INSERT INTO versions VALUES ('bouncer', '1.15.0-3', 'amd', 1, '20210614', '', '', '');
 
 INSERT INTO projects VALUES ('patroni',  2, 0, 'haproxy', 4, 'https://github.com/zalando/patroni/releases',
   'patroni', 0, 'patroni.png', 'Postgres HA Template', 'https://github.com/zalando/patroni');
