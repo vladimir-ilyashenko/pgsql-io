@@ -26,7 +26,7 @@ backrestBuildV=1
 
 bouncerFullV=1.15.0
 bouncerShortV=
-bouncerBuildV=2
+bouncerBuildV=3
 
 multicornFullV=1.4.1
 multicornShortV=

@@ -244,6 +244,8 @@ function configureComp {
     if [ "$comp" == "backrest" ]; then
         echo "# configure backrest..."
         export LD_LIBRARY_PATH=$buildLocation/lib
+        export LDFLAGS="$LDFLAGS -Wl,-rpath,'$sharedLibs' -L$sharedLibs"
+        export CPPFLAGS="$CPPFLAGS -I$includePath"
         cd src
         ./configure --prefix=$buildLocation >> $make_log 2>&1 
         rc=$?
