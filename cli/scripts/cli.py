@@ -1676,7 +1676,11 @@ try:
         msg = '[{"status":"error","msg":"' + msg + '"}]'
       util.exit_message(msg, return_code)
 
+    if meta.get_stage(p_comp) == "included":
+      util.exit_message("this component is already included in our postgres binaries", 0)
+
     util.message("\n########### Installing " + p_comp + " ###############")
+
     deplist = get_depend_list(p_comp_list)
     component_installed = False
     dependent_components = []

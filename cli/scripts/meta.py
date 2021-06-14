@@ -13,6 +13,20 @@ import datetime
 import mistune
 
 
+def get_stage(p_comp):
+  try:
+    c = con.cursor()
+    sql = "SELECT stage FROM releases WHERE component = ?"
+    c.execute(sql, [p_comp])
+    data = c.fetchone()
+    if data:
+      return(str(data[0]))
+  except Exception as e:
+    fatal_error(e, sql, "meta.check_pre_reqs()")
+
+  return("")
+
+
 def check_pre_reqs(p_comp, p_ver):
   # scrub the platform off the end of the version
   scrub_ver = p_ver.replace('-amd', '')

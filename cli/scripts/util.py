@@ -65,7 +65,6 @@ def get_random_password(p_length=12):
     passwd.append(random.choice(passwd_chars))
   return(''.join(passwd))
 
-
 def get_1st_ip():
   ips = getoutput("hostname --all-ip-addresses")
   ipl = ips.split()
