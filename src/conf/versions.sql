@@ -378,6 +378,11 @@ INSERT INTO projects VALUES ('omnidb', 9, 8000, '', 1, 'https://omnidb.org',
 INSERT INTO releases VALUES ('omnidb', 0, 'omnidb', 'OmniDB', '', 'test', '', 1, '', '', '');
 INSERT INTO versions VALUES ('omnidb', '2.17.0', '', 1, '20191205', '', '', '');
 
+INSERT INTO projects VALUES ('microk8s', 9, 80, '', 1, 'https://microk8s.io',
+  'microk8s', 0, 'microk8s.png', 'MicroK8s', 'https://microk8s.io');
+INSERT INTO releases VALUES ('microk8s', 0, 'microk8s', 'MicroK8s', '', 'test', '', 1, '', '', '');
+INSERT INTO versions VALUES ('microk8s', '1.2x', '', 1, '20210520', '', '', '');
+
 INSERT INTO projects VALUES ('pgadmin', 9, 80, '', 1, 'https://pgadmin.org',
   'pgadmin', 0, 'pgadmin.png', 'PG Admin', 'https://pgadmin.org');
 INSERT INTO releases VALUES ('pgadmin', 0, 'pgadmin', 'pgAdmin 4', '', 'test', '', 1, '', '', '');
