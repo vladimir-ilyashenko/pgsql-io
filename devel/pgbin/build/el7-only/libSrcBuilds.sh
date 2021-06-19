@@ -12,7 +12,7 @@ sudo make install
 # recent CMAKE needed for timescaledb
 cd ~
 VE=3.19
-VER=$VE.2
+VER=$VE.8
 wget https://cmake.org/files/v$VE/cmake-$VER.tar.gz
 tar -xvzf cmake-$VER.tar.gz
 cd cmake-$VER
@@ -28,7 +28,7 @@ tar -xvzf apache-maven-$VER-bin.tar.gz
 
 # recent ANT for BenchmarkSQL Builds
 cd ~
-VER=1.10.9
+VER=1.10.10
 wget http://mirror.cc.columbia.edu/pub/software/apache//ant/binaries/apache-ant-$VER-bin.tar.gz
 tar -xvzf apache-ant-$VER-bin.tar.gz
 

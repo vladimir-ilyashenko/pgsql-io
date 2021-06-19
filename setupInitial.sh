@@ -55,8 +55,8 @@ if [ `uname` == 'Linux' ]; then
       sudo yum -y install clang llvm5.0 centos-release-scl-rh
       sudo yum -y install llvm-toolset-7-llvm devtoolset-7 llvm-toolset-7-clang
       sudo yum -y install python3 python3-devel
-      sudo yum -y install lz4-devel libzstd-devel
-      sudo yum -y install hiredis-devel mysql-devel
+      sudo yum -y install lz4-devel libzstd-devel json-c*
+      sudo yum -y install hiredis-devel mysql-devel cmake3 mongo-c-driver*
     fi
   fi
 fi
