@@ -154,7 +154,8 @@ INSERT INTO versions VALUES ('pg14', '14beta1-1',  'amd', 0, '20210520','', 'LIB
 INSERT INTO projects VALUES ('debezium',  5, 8080, 'kafka', 3, 'https://debezium.io/releases/1.5/',
   'Debezium', 0, 'debezium.png', 'Stream DB Changes', 'https://debezium.io');
 INSERT INTO releases VALUES ('debezium', 0, 'debezium', 'Debezium', '', 'test', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('debezium', '1.5.2', '', 1, '20210528', '', '', '');
+INSERT INTO versions VALUES ('debezium', '1.5.3', '', 1, '20210617', '', '', '');
+INSERT INTO versions VALUES ('debezium', '1.5.2', '', 0, '20210528', '', '', '');
 INSERT INTO versions VALUES ('debezium', '1.5.0', '', 0, '20210408', '', '', '');
 
 INSERT INTO projects VALUES ('kafka', 10, 9092, 'zookeeper', 1, 'https://kafka.apache.org/downloads',
@@ -170,8 +171,8 @@ INSERT INTO versions VALUES ('redis', '6.2', '',   1, '20210601', '', 'DEB', '')
 
 INSERT INTO projects VALUES ('mariadb', 10, 3306, 'hub', 2, 'https://github.com/mariadb/server/releases',
   'MariaDB', 0, 'mariadb.png', 'MySQL Replacement', 'https://mariadb.com');
-INSERT INTO releases VALUES ('mariadb', 0, 'mariadb', 'MariaDB 10.6.1', '', 'test', '', 1, 'GPL', '', '');
-INSERT INTO versions VALUES ('mariadb', '10.6', '',   1, '20210521', '', 'DEB', '');
+INSERT INTO releases VALUES ('mariadb', 0, 'mariadb', 'MariaDB 10.6.2', '', 'test', '', 1, 'GPL', '', '');
+INSERT INTO versions VALUES ('mariadb', '10.6', '',   1, '20210617', '', 'DEB', '');
 
 INSERT INTO projects VALUES ('zookeeper', 10, 2181, 'hub', 1, 'https://zookeeper.apache.org/releases.html#releasenotes',
   'zookeeper', 0, 'zookeeper.png', 'Distributed Key-Store for HA', 'https://zookeeper.apache.org');
@@ -194,7 +195,8 @@ INSERT INTO versions VALUES ('wal2json-pg13', '2.3-1', 'amd', 1, '20200809', 'pg
 INSERT INTO projects VALUES ('mongofdw', 5, 0, 'hub', 0, 'https://github.com/EnterpriseDB/mongo_fdw/releases', 
   'mongofdw', 1, 'mongodb.png', 'MongoDB Queries from PG', 'https://github.com/EnterpriseDB/mongo_fdw#mongo_fdw');
 INSERT INTO releases VALUES ('mongofdw-pg13',  3, 'mongofdw', 'MongoFDW', '', 'prod', '', 1, 'AGPLv3', '', '');
-INSERT INTO versions VALUES ('mongofdw-pg13', '5.2.8-1', 'amd', 1, '20201027', 'pg13', '', '');
+INSERT INTO versions VALUES ('mongofdw-pg13', '5.2.9-1', 'amd', 1, '20210614', 'pg13', '', '');
+INSERT INTO versions VALUES ('mongofdw-pg13', '5.2.8-1', 'amd', 0, '20201027', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('hivefdw', 5, 0, 'hub', 0, 'https://github.com/pgsql-io/hive_fdw/releases', 
   'hivefdw', 1, 'hive.png', 'Big Data Queries from PG', 'https://github.com/pgsql-io/hive_fdw#hive_fdw');
@@ -386,7 +388,8 @@ INSERT INTO versions VALUES ('microk8s', '1.2x', '', 1, '20210520', '', '', '');
 INSERT INTO projects VALUES ('pgadmin', 9, 80, '', 1, 'https://pgadmin.org',
   'pgadmin', 0, 'pgadmin.png', 'PG Admin', 'https://pgadmin.org');
 INSERT INTO releases VALUES ('pgadmin', 0, 'pgadmin', 'pgAdmin 4', '', 'test', '', 1, '', '', '');
-INSERT INTO versions VALUES ('pgadmin', '5.3', '', 1, '20210520', '', '', '');
+INSERT INTO versions VALUES ('pgadmin', '5.4', '', 1, '20210617', '', '', '');
+INSERT INTO versions VALUES ('pgadmin', '5.3', '', 0, '20210520', '', '', '');
 INSERT INTO versions VALUES ('pgadmin', '5.2', '', 0, '20210422', '', '', '');
 INSERT INTO versions VALUES ('pgadmin', '5.1', '', 0, '20210325', '', '', '');
 

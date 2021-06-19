@@ -45,11 +45,11 @@ waitsV=1.1.3-1
 
 zooV=3.7.0
 kfkV=2.7.1
-dbzV=1.5.2
+dbzV=1.5.3
 redisV=6.2
 mariaV=10.6
 
-adminV=5.1
+adminV=5.4
 omniV=2.17.0
 
 audit13V=1.5.0-1
@@ -63,7 +63,7 @@ cronV=1.3.1-1
 
 redisfdwV=1.13-1
 mysqlfdwV=2.6.0-1
-mongofdwV=5.2.8-1
+mongofdwV=5.2.9-1
 tdsfdwV=2.0.2-1
 cstarfdwV=3.1.5-1
 hivefdwV=4.0-1
