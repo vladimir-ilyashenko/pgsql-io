@@ -3,6 +3,7 @@ v10=10.16
 v11=11.11
 v12=12.6
 v13=13.2
+v14=14beta1
 
 fatalError () {
   echo "FATAL ERROR!  $1"
@@ -88,8 +89,11 @@ elif [ "$1" == "12" ]; then
 elif [ "$1" == "13" ]; then
   #options="--with-llvm"
   downBuild $v13
+elif [ "$1" == "14" ]; then
+  #options="--with-llvm"
+  downBuild $v14
 else
-  echo "ERROR: Incorrect PG version.  Must be between 10 and 13"
+  echo "ERROR: Incorrect PG version.  Must be between 10 and 14"
   exit 1
 fi
  
