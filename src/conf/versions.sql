@@ -377,17 +377,17 @@ INSERT INTO versions VALUES ('postgis-pg13', '3.1.2-1', 'amd', 1, '20210521', 'p
 
 INSERT INTO projects VALUES ('omnidb', 9, 8000, '', 1, 'https://omnidb.org',
   'omnidb', 0, 'omnidb.png', 'OmniDB', 'https://omnidb.org');
-INSERT INTO releases VALUES ('omnidb', 0, 'omnidb', 'OmniDB', '', 'test', '', 1, '', '', '');
+INSERT INTO releases VALUES ('omnidb', 3, 'omnidb', 'OmniDB', '', 'test', '', 1, '', '', '');
 INSERT INTO versions VALUES ('omnidb', '2.17.0', '', 1, '20191205', '', '', '');
 
-INSERT INTO projects VALUES ('microk8s', 9, 80, '', 1, 'https://microk8s.io',
-  'microk8s', 0, 'microk8s.png', 'MicroK8s', 'https://microk8s.io');
-INSERT INTO releases VALUES ('microk8s', 0, 'microk8s', 'MicroK8s', '', 'test', '', 1, '', '', '');
-INSERT INTO versions VALUES ('microk8s', '1.2x', '', 1, '20210520', '', '', '');
+INSERT INTO projects VALUES ('microk8s', 9, 80, '', 1, 'https://github.com/ubuntu/microk8s/releases',
+  'microk8s', 0, 'microk8s.png', 'K8s & OpenEBS', 'https://microk8s.io');
+INSERT INTO releases VALUES ('microk8s', 1, 'microk8s', 'Kubernetes', '', 'test', '', 1, '', '', '');
+INSERT INTO versions VALUES ('microk8s', '1.21', '', 1, '20210409', '', '', '');
 
 INSERT INTO projects VALUES ('pgadmin', 9, 80, '', 1, 'https://pgadmin.org',
   'pgadmin', 0, 'pgadmin.png', 'PG Admin', 'https://pgadmin.org');
-INSERT INTO releases VALUES ('pgadmin', 0, 'pgadmin', 'pgAdmin 4', '', 'test', '', 1, '', '', '');
+INSERT INTO releases VALUES ('pgadmin', 2, 'pgadmin', 'pgAdmin 4', '', 'test', '', 1, '', '', '');
 INSERT INTO versions VALUES ('pgadmin', '5.4', '', 1, '20210617', '', '', '');
 INSERT INTO versions VALUES ('pgadmin', '5.3', '', 0, '20210520', '', '', '');
 INSERT INTO versions VALUES ('pgadmin', '5.2', '', 0, '20210422', '', '', '');
