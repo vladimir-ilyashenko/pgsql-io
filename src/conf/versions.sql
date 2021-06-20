@@ -203,10 +203,10 @@ INSERT INTO projects VALUES ('hivefdw', 5, 0, 'hub', 0, 'https://github.com/pgsq
 INSERT INTO releases VALUES ('hivefdw-pg13', 14, 'hivefdw', 'HiveFDW', '', 'test', '', 1, 'AGPLv3', '', '');
 INSERT INTO versions VALUES ('hivefdw-pg13', '4.0-1', 'amd', 1, '20200927', 'pg13', '', '');
 
-INSERT INTO projects VALUES ('redisfdw', 5, 0, 'hub', 0, 'https://github.com/pgsql-io/redis_fdw/releases', 
-  'redisfdw', 1, 'redis.png', 'Access Redis', 'https://github.com/pgsql-io/redis_fdw');
-INSERT INTO releases VALUES ('redisfdw-pg13',  4, 'redisfdw', 'RedisFDW',  '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('redisfdw-pg13', '1.13-1', 'amd', 1, '20200608', 'pg13', '', '');
+INSERT INTO projects VALUES ('pgredis', 5, 0, 'hub', 0, 'https://github.com/pgsql-io/pg_redis/releases', 
+  'pgredis', 1, 'redis.png', 'Access Redis', 'https://github.com/pgsql-io/pg_redis');
+INSERT INTO releases VALUES ('pgredis-pg14',  4, 'pgredis', 'PgRedis',  '', 'test', '', 1, 'POSTGRES', '', '');
+INSERT INTO versions VALUES ('pgredis-pg14', '2.0-1', 'amd', 1, '20210620', 'pg14', '', '');
 
 INSERT INTO projects VALUES ('mysqlfdw', 5, 0, 'hub', 0, 'https://github.com/EnterpriseDB/mysql_fdw/releases', 
   'mysqlfdw', 1, 'mysql.png', 'Access MySQL, Percona & MariaDB', 'https://github.com/EnterpriseDb/mysql_fdw');

@@ -220,7 +220,7 @@ initDir () {
   copy-pgXX "audit"   
   copy-pgXX "postgis"   
   copy-pgXX "mysqlfdw"  
-  copy-pgXX "redisfdw"  
+  copy-pgXX "pgredis"  
   copy-pgXX "mongofdw"  
   copy-pgXX "wal2json"  
   copy-pgXX "oraclefdw"  
@@ -443,7 +443,6 @@ initPG () {
       initC "esfdw-pg$pgM" "esfdw" "$esfdwV" "$outPlat" "postgres/esfdw" "" "" "nil"
     fi
     initC "audit-pg$pgM" "audit" "$audit13V" "$outPlat" "postgres/audit" "" "" "nil"
-    initC "redisfdw-pg$pgM" "redisfdw" "$redisfdwV" "$outPlat" "postgres/redisfdw" "" "" "nil"
     initC "mysqlfdw-pg$pgM" "mysqlfdw" "$mysqlfdwV" "$outPlat" "postgres/mysqlfdw" "" "" "nil"
     initC "wal2json-pg$pgM" "wal2json" "$w2jV" "$outPlat" "postgres/wal2json" "" "" "nil"
     initC "mongofdw-pg$pgM" "mongofdw" "$mongofdwV" "$outPlat" "postgres/mongofdw" "" "" "nil"
@@ -469,6 +468,10 @@ initPG () {
     initC "qualstats-pg$pgM" "qualstats" "$qstatV" "$outPlat" "postgres/qualstats" "" "" "nil"
     initC "statkcache-pg$pgM" "statkcache" "$statkV" "$outPlat" "postgres/statkcache" "" "" "nil"
     initC "waitsampling-pg$pgM" "waitsampling" "$waitsV" "$outPlat" "postgres/waitsampling" "" "" "nil"
+  fi
+
+  if [ "$pgM" == "14" ]; then 
+    initC "pgredis-pg$pgM" "pgredis" "$pgredisV" "$outPlat" "postgres/pgredis" "" "" "nil"
   fi
 
   cat /etc/os-release | grep el8 > /dev/null 2>&1
