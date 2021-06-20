@@ -92,9 +92,9 @@ mysqlfdwFullV=2.6.0
 mysqlfdwShortV=
 mysqlfdwBuildV=1
 
-redisfdwFullV=1.13
-redisfdwShortV=
-redisfdwBuildV=1
+pgredisFullV=2.0
+pgredisShortV=
+pgredisBuildV=1
 
 hivefdwFullV=4.0
 hivefdwShortV=

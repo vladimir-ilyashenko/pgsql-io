@@ -22,8 +22,8 @@ copyBin="$3"
 if [ "$copyBin" == "" ]; then
   copyBin="--no-copy-bin"
 fi
-if [ ! "$pgV"  == "11" ] && [ ! "$pgV"  == "12" ] && [ ! "$pgV"  == "13" ]; then
-  echo  "ERROR: second parm must be 11, 12 or 13"
+if [ ! "$pgV"  == "11" ] && [ ! "$pgV"  == "12" ]  && [ ! "$pgV"  == "13" ] && [ ! "$pgV"  == "14" ]; then
+  echo  "ERROR: second parm must be 11, 12, 13 or 14"
   exit 1
 fi
 
@@ -56,6 +56,10 @@ fi
 
 if [ "$1" == "pldebugger" ]; then
   build pldebugger $debugFullV $2 pldebugger
+fi
+
+if [ "$1" == "pgredis" ]; then
+  build pgredis $pgredisFullV $2 pgredis
 fi
 
 ## PROD ##############################################
@@ -182,10 +186,6 @@ fi
 
 if [ "$1" == "mysqlfdw" ] || [ "$1" == "all" ]; then
   build mysqlfdw $mysqlfdwFullV $2 mysqlfdw
-fi
-
-if [ "$1" == "redisfdw" ] || [ "$1" == "all" ]; then
-  build redisfdw $redisfdwFullV $2 redisfdw
 fi
 
 if [ "$1" == "oraclefdw" ] || [ "$1" == "all" ]; then
