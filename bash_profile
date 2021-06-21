@@ -21,8 +21,9 @@ export HIST=$DEV/history
 export IO=$DEV/pgsql-io
 export SRC=$IN/sources
 export BLD=/opt/pgbin-build/pgbin/bin
-export HTML=$IO/web/static
 
+export HTML=$IO/web/static
+export IMG=$HTML/html/img
 export DEVEL=$IO/devel
 export PG=$DEVEL/pg
 export CLI=$IO/cli/scripts
