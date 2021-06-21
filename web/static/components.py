@@ -1,6 +1,12 @@
 import sqlite3, sys, pgsql
 
+WIDTH = 900 
+
 NUM_COLS = 3
+COL_SIZE = WIDTH / NUM_COLS
+
+PG_NUM_COLS = 4
+PG_COL_SIZE = WIDTH / PG_NUM_COLS
 
 #ALL_PLATFORMS = "arm, amd"
 ALL_PLATFORMS = "amd"
@@ -10,8 +16,6 @@ isSHOW_DESCRIPTION = "Y"
 HEADING_SIZE = "+1"
 
 BR = "<br>"
-WIDTH = 900 
-COL_SIZE = 300
 FONT_SIZE = 3
 IMG_SIZE = 35
 BORDER=0
@@ -69,13 +73,11 @@ def get_columns(d):
   
 
   platform = str(d[9])
-  if (platform == ""):
-    if pre_reqs > "":
-      platform = "[" + pre_reqs + "]"
-    else:
-      platform = "[" + ALL_PLATFORMS + "]"
+  if pre_reqs > "":
+    ##platform = "[" + pre_reqs + "]"
+    platform = ""
   else:
-    platform = "[" + platform + "]"
+    platform = ""
 
   rel_date = str(d[10])
   rel_yy = rel_date[2:4]
@@ -114,11 +116,8 @@ def get_columns(d):
   if stage in ("prod", "included", "bring-own"):
     stage = ""
   else:
-    #if stage == "soon":
-    #  stage = "Soon!"
-    #  rel_date = "19700101"
-    #else:
-    stage = "--" + stage
+    if stage == "beta":
+      stage = "BETA!"
     stage = "<font color=red>" + stage + "</font>"
 
   proj_desc = str(d[12])
@@ -163,23 +162,29 @@ def print_row_detail(pCol, pBR):
   if rel_desc > '':
     proj_desc = rel_desc
 
-  print("  <td width=" + str(IMG_SIZE) + ">&nbsp;<img src=img/" + image_file + \
-    " height=" + str(IMG_SIZE) + " width=" + str(IMG_SIZE) + " /></td>")
-
   if component[0:3] in ("pg9", "pg1"):
-    rel_name = "PostgreSQL"
+    print("  <td></td>")
+    rel_name = ""
     plat_desc = "<font size=-1>" + platd + "</font><br>" + proj_desc
   else:
+    print("  <td width=" + str(IMG_SIZE) + ">&nbsp;<img src=img/" + image_file + \
+      " height=" + str(IMG_SIZE) + " width=" + str(IMG_SIZE) + " /></td>")
     if project_url > "":
       rel_name = "<a href=" + project_url + ">" + release_name + "</a>"
     else:
       rel_name = project_url + release_name
     plat_desc = platd + "<br><i>" + proj_desc + "</i>"
 
-  print("  <td width=" +str( COL_SIZE) + "><font size=" + str(FONT_SIZE) + \
-    ">" + rel_name + "&nbsp;&nbsp;<a href=" + source_url + ">v" + version + \
-    "</a>&nbsp;<font color=red size=-1><sup>" + \
-    rel_date_display +"</sup></font>" + plat_desc + "</td>")
+  if rel_name == "":
+    print("  <td width=" +str( COL_SIZE) + "><font size=" + str(FONT_SIZE) + \
+      ">" + "<a href=" + source_url + ">v" + version + \
+      "</a>&nbsp;<font color=red size=-1><sup>" + \
+      rel_date_display +"</sup></font>" + plat_desc + "</td>")
+  else:
+    print("  <td width=" +str( COL_SIZE) + "><font size=" + str(FONT_SIZE) + \
+      ">" + rel_name + "&nbsp;&nbsp;<a href=" + source_url + ">v" + version + \
+      "</a>&nbsp;<font color=red size=-1><sup>" + \
+      rel_date_display +"</sup></font>" + plat_desc + "</td>")
 
   if pCol == NUM_COLS:
     print("</tr>")

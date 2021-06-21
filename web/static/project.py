@@ -1,4 +1,4 @@
-
+import sqlite3, sys, os
 
 def page_hdr (proj, descrip, homepage):
   print(f"<h2>{proj} <font size=-1>{descrip} ({homepage})</h2>")
@@ -18,7 +18,14 @@ def table_bottom ():
   print("</table>")
 
 
-## MAINLINE ###################
+
+
+##################################################################
+#   MAINLINE
+##################################################################
+con = sqlite3.connect("local.db")
+c = con.cursor()
+
 page_hdr("pgredis", "Blah, Blah...", "<a href=http://pgsql.io/pgredis>PgRedis</a>")
 table_top("Release History", 1)
 table_rows("1.2.3", "28Mar66", "<a href=https://notes.io>Notes</a>")
