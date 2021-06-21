@@ -92,12 +92,13 @@ CREATE VIEW v_versions AS
 
 INSERT INTO categories VALUES (0,   0, 'Hidden', 'NotShown');
 INSERT INTO categories VALUES (1,  10, 'Rock-Solid Postgres', 'PostgreSQL');
-INSERT INTO categories VALUES (10, 96, 'Foreign Datastores', 'ForeignData');
+INSERT INTO categories VALUES (10, 96, 'Foreign Datastores', 'Foreign');
 INSERT INTO categories VALUES (2,  60, 'Advanced Applications', 'Applications');
+INSERT INTO categories VALUES (6,  30, 'Featured Applications', 'Featured');
 INSERT INTO categories VALUES (4,  65, 'Optimization & Analysis', 'Optimization');
 INSERT INTO categories VALUES (5,  70, 'Data Integration', 'Integration');
-INSERT INTO categories VALUES (3,  80, 'Database Developers', 'DB-Devs');
-INSERT INTO categories VALUES (9,  87, 'Management & Monitoring', 'Manage');
+INSERT INTO categories VALUES (3,  80, 'Database Developers', 'Developers');
+INSERT INTO categories VALUES (9,  87, 'Management & Monitoring', 'Manage/Monitor');
 
 -- ## HUB ################################
 INSERT INTO projects VALUES ('hub',0, 0, 'hub', 0, 'https://github.com/pgsql-io/pgsql-io','',0,'','','');
@@ -164,7 +165,7 @@ INSERT INTO releases VALUES ('kafka', 0, 'kafka', 'Kafka', '', 'test', '', 1, 'A
 INSERT INTO versions VALUES ('kafka', '2.7.1', '', 1, '20210510', '', '', 'https://downloads.apache.org/kafka/2.7.1/RELEASE_NOTES.html');
 INSERT INTO versions VALUES ('kafka', '2.7.0', '', 0, '20201221', '', '', 'https://downloads.apache.org/kafka/2.7.0/RELEASE_NOTES.html');
 
-INSERT INTO projects VALUES ('redis', 10, 6379, 'hub', 2, 'https://github.com/redis/redis/releases',
+INSERT INTO projects VALUES ('redis', 6, 6379, 'hub', 2, 'https://github.com/redis/redis/releases',
   'Redis', 0, 'redis.png', 'Hi-Speed Cache', 'https://redis.io');
 INSERT INTO releases VALUES ('redis', 0, 'redis', 'Redis 6.2.4', '', 'test', '', 1, 'BSD', '', '');
 INSERT INTO versions VALUES ('redis', '6.2', '',   1, '20210601', '', 'DEB', '');
@@ -203,9 +204,9 @@ INSERT INTO projects VALUES ('hivefdw', 5, 0, 'hub', 0, 'https://github.com/pgsq
 INSERT INTO releases VALUES ('hivefdw-pg13', 14, 'hivefdw', 'HiveFDW', '', 'test', '', 1, 'AGPLv3', '', '');
 INSERT INTO versions VALUES ('hivefdw-pg13', '4.0-1', 'amd', 1, '20200927', 'pg13', '', '');
 
-INSERT INTO projects VALUES ('pgredis', 5, 0, 'hub', 0, 'https://github.com/pgsql-io/pg_redis/releases', 
+INSERT INTO projects VALUES ('pgredis', 6, 0, 'hub', 0, 'https://github.com/pgsql-io/pg_redis/releases', 
   'pgredis', 1, 'redis.png', 'Access Redis', 'https://github.com/pgsql-io/pg_redis');
-INSERT INTO releases VALUES ('pgredis-pg14',  4, 'pgredis', 'PgRedis',  '', 'test', '', 1, 'POSTGRES', '', '');
+INSERT INTO releases VALUES ('pgredis-pg14',  2, 'pgredis', 'PgRedis',  '', 'test', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pgredis-pg14', '2.0-1', 'amd', 1, '20210620', 'pg14', '', '');
 
 INSERT INTO projects VALUES ('mysqlfdw', 5, 0, 'hub', 0, 'https://github.com/EnterpriseDB/mysql_fdw/releases', 
@@ -380,9 +381,9 @@ INSERT INTO projects VALUES ('omnidb', 9, 8000, '', 1, 'https://omnidb.org',
 INSERT INTO releases VALUES ('omnidb', 3, 'omnidb', 'OmniDB', '', 'test', '', 1, '', '', '');
 INSERT INTO versions VALUES ('omnidb', '2.17.0', '', 1, '20191205', '', '', '');
 
-INSERT INTO projects VALUES ('microk8s', 9, 80, '', 1, 'https://github.com/ubuntu/microk8s/releases',
+INSERT INTO projects VALUES ('microk8s', 6, 80, '', 1, 'https://github.com/ubuntu/microk8s/releases',
   'microk8s', 0, 'microk8s.png', 'K8s & OpenEBS', 'https://microk8s.io');
-INSERT INTO releases VALUES ('microk8s', 1, 'microk8s', 'Kubernetes', '', 'test', '', 1, '', '', '');
+INSERT INTO releases VALUES ('microk8s', 3, 'microk8s', 'Kubernetes', '', 'test', '', 1, '', '', '');
 INSERT INTO versions VALUES ('microk8s', '1.21', '', 1, '20210409', '', '', '');
 
 INSERT INTO projects VALUES ('pgadmin', 9, 80, '', 1, 'https://pgadmin.org',
