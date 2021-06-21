@@ -19,7 +19,7 @@ def table_bottom ():
 
 
 ## MAINLINE ###################
-page_hdr("MyProject", "Blah, Blah...", "<a href=http://pgsql.io>pgsql.io</a>")
+page_hdr("pgredis", "Blah, Blah...", "<a href=http://pgsql.io/pgredis>PgRedis</a>")
 table_top("Release History", 1)
 table_rows("1.2.3", "28Mar66", "<a href=https://notes.io>Notes</a>")
 table_rows("1.2.2", "28Mar65", "")
