@@ -109,13 +109,13 @@ def get_columns(d):
     rel_day = rel_day[1]
 
   stage = ""
-  stage = str(d[11])
-  if stage in ("prod", "included", "bring-own"):
-    stage = ""
-  else:
-    if stage == "beta":
-      stage = "BETA!"
-    stage = "<font color=red>" + stage + "</font>"
+  ##stage = str(d[11])
+  ##if stage in ("prod", "included", "bring-own"):
+  ##  stage = ""
+  ##else:
+  ##  if stage == "beta":
+  ##    stage = "BETA!"
+  ##  stage = "<font color=red>" + stage + "</font>"
 
   proj_desc = str(d[12])
   rel_desc  = str(d[13])
@@ -166,7 +166,8 @@ def print_row_detail(pCol):
   if component[0:3] in ("pg9", "pg1"):
     col_size = PG_COL_SIZE
     rel_name = ""
-    plat_desc = "<font size=-1>" + platd + "</font><br>" + proj_desc
+    ##plat_desc = "<font size=-1>" + platd + "</font><br>" + proj_desc
+    plat_desc = proj_desc
   else:
     col_size = COL_SIZE
     print("  <td width=" + str(IMG_SIZE) + ">&nbsp;<img src=img/" + image_file + \
@@ -175,18 +176,19 @@ def print_row_detail(pCol):
       rel_name = "<a href=" + project_url + ">" + release_name + "</a>"
     else:
       rel_name = project_url + release_name
-    plat_desc = platd + "<br><i>" + proj_desc + "</i>"
+    ##plat_desc = platd + "<i>" + proj_desc + "</i>"
+    plat_desc = "<i>" + proj_desc + "</i>"
 
   if rel_name == "":
     print("  <td width=" + str(col_size) + "><font size=" + str(FONT_SIZE) + \
       ">" + "<a href=" + source_url + ">v" + version + \
       "</a>&nbsp;<font color=red size=-1><sup>" + \
-      rel_date_display +"</sup></font>" + plat_desc + "</td>")
+      rel_date_display +"</sup></font><br>" + plat_desc + "</td>")
   else:
     print("  <td width=" +str( COL_SIZE) + "><font size=" + str(FONT_SIZE) + \
       ">" + rel_name + "&nbsp;&nbsp;<a href=" + source_url + ">v" + version + \
       "</a>&nbsp;<font color=red size=-1><sup>" + \
-      rel_date_display +"</sup></font>" + plat_desc + "</td>")
+      rel_date_display +"</sup></font><br>" + plat_desc + "</td>")
 
   if component[0:3] in ("pg9", "pg1"):
     col_kount = PG_NUM_COLS

@@ -192,7 +192,7 @@ INSERT INTO releases VALUES ('wal2json-pg13',  3, 'wal2json', 'wal2json', '', 'p
 INSERT INTO versions VALUES ('wal2json-pg13', '2.3-1', 'amd', 1, '20200809', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('mongofdw', 5, 0, 'hub', 0, 'https://github.com/EnterpriseDB/mongo_fdw/releases', 
-  'mongofdw', 1, 'mongodb.png', 'MongoDB Queries from PG', 'https://github.com/EnterpriseDB/mongo_fdw#mongo_fdw');
+  'mongofdw', 1, 'mongodb.png', 'MongoDB from PG', 'https://github.com/EnterpriseDB/mongo_fdw#mongo_fdw');
 INSERT INTO releases VALUES ('mongofdw-pg13',  3, 'mongofdw', 'MongoFDW', '', 'prod', '', 1, 'AGPLv3', '', '');
 INSERT INTO versions VALUES ('mongofdw-pg13', '5.2.9-1', 'amd', 1, '20210614', 'pg13', '', '');
 INSERT INTO versions VALUES ('mongofdw-pg13', '5.2.8-1', 'amd', 0, '20201027', 'pg13', '', '');
@@ -208,7 +208,7 @@ INSERT INTO releases VALUES ('pgredis-pg14',  2, 'pgredis', 'PgRedis',  '', 'tes
 INSERT INTO versions VALUES ('pgredis-pg14', '2.0-1', 'amd', 1, '20210620', 'pg14', '', '');
 
 INSERT INTO projects VALUES ('mysqlfdw', 5, 0, 'hub', 0, 'https://github.com/EnterpriseDB/mysql_fdw/releases', 
-  'mysqlfdw', 1, 'mysql.png', 'Access MySQL, Percona & MariaDB', 'https://github.com/EnterpriseDb/mysql_fdw');
+  'mysqlfdw', 1, 'mysql.png', 'MySQL & MariaDB from PG', 'https://github.com/EnterpriseDb/mysql_fdw');
 INSERT INTO releases VALUES ('mysqlfdw-pg13',  4, 'mysqlfdw', 'MySQL FDW',  '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('mysqlfdw-pg13', '2.6.0-1', 'amd', 1, '20210502', 'pg13', '', '');
 INSERT INTO versions VALUES ('mysqlfdw-pg13', '2.5.5-1', 'amd', 0, '20201021', 'pg13', '', '');
@@ -230,7 +230,7 @@ INSERT INTO releases VALUES ('pgtop-pg12', 8, 'pgtop', 'pgTop', '', 'prod', '', 
 INSERT INTO versions VALUES ('pgtop-pg12', '4.0.0-1', 'amd',  0, '20201008', 'pg12', '', '');
 
 INSERT INTO projects VALUES ('esfdw', 5, 0, 'multicorn', 1, 'https://github.com/matthewfranglen/postgres-elasticsearch-fdw/releases',
-  'esfdw', 1, 'esfdw.png', 'Elastic Search from PG', 'https://github.com/matthewfranglen/postgres-elasticsearch-fdw#postgresql-elastic-search-foreign-data-wrapper');
+  'esfdw', 1, 'esfdw.png', 'ElasticSearch from PG', 'https://github.com/matthewfranglen/postgres-elasticsearch-fdw#postgresql-elastic-search-foreign-data-wrapper');
 INSERT INTO releases VALUES ('esfdw-pg13',  3, 'esfdw', 'ElasticSearchFDW', '', 'prod', '', 1, 'MIT', '', '');
 INSERT INTO versions VALUES ('esfdw-pg13', '0.11.1', 'amd',  1, '20210409', 'pg13', '', '');
 
