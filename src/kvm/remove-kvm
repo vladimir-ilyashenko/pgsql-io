@@ -1,6 +1,0 @@
-
-sudo yum remove -y libvirt libvirt-devel libvirt-client
-python3 -m pip uninstall -y libvirt-python
-
-exit 0
-
