@@ -18,7 +18,7 @@ _atrk_opts = { atrk_acct:"D/nDv1DlQy20Y8", domain:"pgsql.io",dynamic: true};
 
   print('<table border=0 bgcolor=black cellpadding=0 width=' + str(pWidth) + '>\n' +
         '  <tr> \n' + \
-        '    <td><img src=img/pgsql-banner6.png /></td> \n' + \
+        '    <td><img src=img/banner_x.png /></td> \n' + \
         '  </tr>\n' + \
         '</table>\n\n')
 

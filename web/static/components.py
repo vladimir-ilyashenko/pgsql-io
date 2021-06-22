@@ -138,12 +138,12 @@ def print_row_header():
     cat_desc + "</font></b></td></tr>")
 
 
-def print_row_detail(pCol, pBR):
+def print_row_detail(pCol):
   global proj_desc, rel_desc, component
 
   platd = ""
   if isSHOW_COMP_PLAT == "Y":
-    platd = BR + component + " " + platform + " " + stage
+    platd = component + " " + platform + " " + stage
 
   if str(rel_yy) < "20":
     rel_yy_display = "-" + rel_yy
@@ -193,7 +193,6 @@ def print_row_detail(pCol, pBR):
   else:
     col_kount = NUM_COLS
 
-  print(f"DEBUG: pCol={pCol} col_kount={col_kount}")
   if pCol == col_kount:
     print("</tr>")
     if isEXTRA_SPACING == "Y":
@@ -263,13 +262,10 @@ for d in data:
     print_row_header()
     col = 1
 
-  print(f"DEBUG: col={col}")
   if col == 1:
     print("<tr>")
 
-  print(f"DEBUG: before print_row_detail()")
-  print_row_detail(col, BR)
-  print("DEBUG: after  print_row_detail()")
+  print_row_detail(col)
 
   if col == NUM_COLS:
     col = 1
@@ -281,7 +277,7 @@ for d in data:
 
 #last row
 get_columns(d)
-print_row_detail(col, BR)
+print_row_detail(col)
 
 print_bottom()
 sys.exit(0)
