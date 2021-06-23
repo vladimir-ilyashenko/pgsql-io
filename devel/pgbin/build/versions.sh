@@ -1,7 +1,7 @@
 #!/bin/bash
 
-pg14V="14beta1"
-pg14BuildV=2
+pg14V="14beta2"
+pg14BuildV=1
 
 pg13V="13.3"
 pg13BuildV=2

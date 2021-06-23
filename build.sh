@@ -318,7 +318,7 @@ finalizeOutput () {
   writeCompRow "hub"  "hub" "$hubV" "" "0" "Enabled" "nil"
   checkCmd "cp -r $SRC/hub ."
   checkCmd "mkdir -p hub/scripts"
-  checkCmd "cp -r $IO/backups ."
+  ##checkCmd "cp -r $IO/backups ."
   checkCmd "cp -r $CLI/* hub/scripts/."
   checkCmd "cp -r $CLI/../doc hub/."
   checkCmd "cp $CLI/../README.md  hub/doc/."
@@ -435,7 +435,7 @@ initPG () {
     return
   fi
 
-  if [ "$pgM" == "13" ]; then 
+  if [ "$pgM" == "13" ] && [ "$isEL8" == "False" ]; then 
     if [ "$outPlat" == "amd" ]; then
       initC "pljava-pg$pgM" "pljava" "$pljavaV" "$outPlat" "postgres/pljava" "" "" "nil"
       initC "oraclefdw-pg$pgM" "oraclefdw" "$oraclefdwV" "$outPlat" "postgres/oraclefdw" "" "" "nil"
@@ -470,13 +470,12 @@ initPG () {
     initC "waitsampling-pg$pgM" "waitsampling" "$waitsV" "$outPlat" "postgres/waitsampling" "" "" "nil"
   fi
 
-  if [ "$pgM" == "14" ]; then 
-    initC "pgredis-pg$pgM" "pgredis" "$pgredisV" "$outPlat" "postgres/pgredis" "" "" "nil"
+  if [ "$pgM" == "14" ] && [ "$isEL8" == "True" ]; then 
+    echo "skipping pgredis"
+    ## initC "pgredis-pg$pgM" "pgredis" "$pgredisV" "$outPlat" "postgres/pgredis" "" "" "nil"
   fi
 
-  cat /etc/os-release | grep el8 > /dev/null 2>&1
-  rc=$?
-  if [ "$rc" == "1" ]; then
+  if [ "$isEL8" == "False" ]; then
     ### Not supported (for testing only) ####################################
     initC "badger"    "badger"    "$badgerV" "" "postgres/badger" "" "" "nil"
     initC "ora2pg"    "ora2pg"    "$ora2pgV" "" "postgres/ora2pg" "" "" "nil"
@@ -531,6 +530,14 @@ setupOutdir () {
 ###############################    MAINLINE   #########################################
 osName=`uname`
 verSQL="versions.sql"
+cat /etc/os-release | grep el8 > /dev/null 2>&1
+rc=$?
+if [ "$rc" == "0" ]; then
+  isEL8="True"
+else
+  isEL8="False"
+fi
+##echo "isEL8=$isEL8"
 
 
 ## process command line paramaters #######
