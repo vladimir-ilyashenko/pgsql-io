@@ -179,6 +179,8 @@ def print_row_detail(pCol):
     ##plat_desc = platd + "<i>" + proj_desc + "</i>"
     plat_desc = "<i>" + proj_desc + "</i>"
 
+  ##print(f"DEBUG col_size={col_size}")
+
   if rel_name == "":
     print("  <td width=" + str(col_size) + "><font size=" + str(FONT_SIZE) + \
       ">" + "<a href=" + source_url + ">v" + version + \
@@ -195,16 +197,18 @@ def print_row_detail(pCol):
   else:
     col_kount = NUM_COLS
 
+  ##print(f"DEBUG pCol={pCol}, col_kount={col_kount}")
   if pCol == col_kount:
     print("</tr>")
     if isEXTRA_SPACING == "Y":
       print("<tr><td>&nbsp;</td></tr>")
-   
     
     if col_kount != 1:
       print("<tr><td>&nbsp;</td></tr>")
 
-  return
+    return(1)
+
+  return(pCol + 1)
 
 
 ##################################################################
@@ -267,12 +271,12 @@ for d in data:
   if col == 1:
     print("<tr>")
 
-  print_row_detail(col)
+  col = print_row_detail(col)
 
-  if col == NUM_COLS:
-    col = 1
-  else:
-    col = col + 1
+#  if col == NUM_COLS:
+#    col = 1
+#  else:
+#    col = col + 1
 
   old_cat_desc = cat_desc
   old_d = d
