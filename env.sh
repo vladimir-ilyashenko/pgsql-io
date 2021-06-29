@@ -19,7 +19,7 @@ multicornV=1.4.1-1
 oraclefdwV=2.3.0-1
 inclV=21.1
 orafceV=3.15.1-1
-ora2pgV=21.1
+ora2pgV=22.0
 
 fdV=1.1.0-1
 httpV=1.3.1-1

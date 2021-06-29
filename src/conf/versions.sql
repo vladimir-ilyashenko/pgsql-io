@@ -230,12 +230,8 @@ INSERT INTO versions VALUES ('esfdw-pg13', '0.11.1', 'amd',  1, '20210409', 'pg1
 INSERT INTO projects VALUES ('ora2pg', 5, 0, 'hub', 0, 'https://github.com/darold/ora2pg/releases',
   'ora2pg', 0, 'ora2pg.png', 'Migrate from Oracle to PG', 'https://ora2pg.darold.net');
 INSERT INTO releases VALUES ('ora2pg', 2, 'ora2pg', 'Oracle to PG', '', 'test', '', 1, 'GPLv2', '', '');
-INSERT INTO versions VALUES ('ora2pg', '21.1', '', 1, '20210401', '', 'GCC PERL',
-  'https://github.com/darold/ora2pg/releases/tag/v21.1');
-INSERT INTO versions VALUES ('ora2pg', '21.0', '', 0, '20201012', '', 'GCC PERL',
-  'https://github.com/darold/ora2pg/releases/tag/v21.0');
-INSERT INTO versions VALUES ('ora2pg', '20.0', '', 0, '20200829', '', 'GCC PERL',
-  'https://github.com/darold/ora2pg/releases/tag/v20.0');
+INSERT INTO versions VALUES ('ora2pg', '22.0', '', 1, '20210626', '', 'GCC PERL',
+  'https://github.com/darold/ora2pg/releases/tag/v22.0');
 
 INSERT INTO projects VALUES ('oraclefdw', 5, 0, 'hub', 0, 'https://github.com/laurenz/oracle_fdw/releases',
   'oraclefdw', 1, 'oracle_fdw.png', 'Oracle from PG', 'https://github.com/laurenz/oracle_fdw');
