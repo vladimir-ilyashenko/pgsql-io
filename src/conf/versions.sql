@@ -402,7 +402,8 @@ INSERT INTO versions VALUES ('partman-pg13', '4.4.1-1',  'amd', 0, '20201223', '
 INSERT INTO projects VALUES ('hypopg', 4, 0, 'hub', 8, 'https://github.com/HypoPG/hypopg/releases',
   'hypopg', 1, 'whatif.png', 'Hypothetical Indexes', 'https://hypopg.readthedocs.io/en/latest/');
 INSERT INTO releases VALUES ('hypopg-pg13', 99, 'hypopg', 'HypoPG', '', 'prod','',  1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('hypopg-pg13', '1.3.0-1',  'amd', 1, '20210604', 'pg13', '', '');
+INSERT INTO versions VALUES ('hypopg-pg13', '1.3.1-1',  'amd', 1, '20210622', 'pg13', '', '');
+INSERT INTO versions VALUES ('hypopg-pg13', '1.3.0-1',  'amd', 0, '20210604', 'pg13', '', '');
 INSERT INTO versions VALUES ('hypopg-pg13', '1.2.0-1',  'amd', 0, '20210226', 'pg13', '', '');
 INSERT INTO versions VALUES ('hypopg-pg13', '1.1.4-1',  'amd', 0, '20200711', 'pg13', '', '');
 

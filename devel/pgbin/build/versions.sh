@@ -52,7 +52,7 @@ httpFullV=1.3.1
 httpShortV=
 httpBuildV=1
 
-hypopgFullV=1.3.0
+hypopgFullV=1.3.1
 hypopgShortV=
 hypopgBuildV=1
 
@@ -100,7 +100,7 @@ hivefdwFullV=4.0
 hivefdwShortV=
 hivefdwBuildV=1
 
-mongofdwFullV=5.2.8
+mongofdwFullV=5.2.9
 mongofdwShortV=
 mongofdwBuildV=1
 
