@@ -15,6 +15,7 @@ pgtopV=3.7.0-1
 proctabV=0.0.8.1-1
 citusV=10.0.3-1
 multicornV=1.4.1-1
+hivefdwV=4.0-1
 
 oraclefdwV=2.3.0-1
 inclV=21.1
