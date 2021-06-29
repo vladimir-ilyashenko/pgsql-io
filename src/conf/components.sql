@@ -11,9 +11,9 @@ INSERT INTO settings VALUES ('GLOBAL', 'REPO', 'https://pgsql-io.s3.amazonaws.co
 
 DROP TABLE IF EXISTS hosts;
 CREATE TABLE hosts (
-  host_id            INTEGER PRIMARY KEY,
-  host               TEXT NOT NULL,
-  name               TEXT UNIQUE,
+  host_id            INTEGER   PRIMARY KEY,
+  host               TEXT      NOT NULL,
+  name               TEXT,
   last_update_utc    DATETIME,
   unique_id          TEXT
 );
