@@ -5,7 +5,7 @@ WIDTH = 900
 NUM_COLS = 3
 COL_SIZE = round(WIDTH / NUM_COLS)
 
-PG_NUM_COLS = 4
+PG_NUM_COLS = 7
 PG_COL_SIZE = round(WIDTH / PG_NUM_COLS)
 
 #ALL_PLATFORMS = "arm, amd"
@@ -127,10 +127,12 @@ def get_columns(d):
 
 def print_row_header():
   print("")
+  empty_row = "<tr><td>&nbsp;</td></tr>"
   if isEXTRA_SPACING == "Y":
-    print("<tr><td>&nbsp;</td></tr>")
+    print(empty_row)
 
   if cat_desc == "Featured Applications":
+    print(empty_row)
     print("</tr></table>\n")
     print_top()
 
@@ -166,8 +168,10 @@ def print_row_detail(pCol):
   if component[0:3] in ("pg9", "pg1"):
     col_size = PG_COL_SIZE
     rel_name = ""
-    ##plat_desc = "<font size=-1>" + platd + "</font><br>" + proj_desc
     plat_desc = proj_desc
+    if pCol == 1:
+      print("<td width=65>&nbsp;&nbsp;<img width=50 height=50 src=img/postgresql.png /></td>")
+      pCol = 2
   else:
     col_size = COL_SIZE
     print("  <td width=" + str(IMG_SIZE) + ">&nbsp;<img src=img/" + image_file + \
@@ -176,10 +180,7 @@ def print_row_detail(pCol):
       rel_name = "<a href=" + project_url + ">" + release_name + "</a>"
     else:
       rel_name = project_url + release_name
-    ##plat_desc = platd + "<i>" + proj_desc + "</i>"
     plat_desc = "<i>" + proj_desc + "</i>"
-
-  ##print(f"DEBUG col_size={col_size}")
 
   if rel_name == "":
     print("  <td width=" + str(col_size) + "><font size=" + str(FONT_SIZE) + \

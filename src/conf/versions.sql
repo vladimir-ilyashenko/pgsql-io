@@ -114,31 +114,31 @@ INSERT INTO projects VALUES ('pg', 1, 5432, 'hub', 1, 'https://postgresql.org/do
  'postgres', 0, 'postgresql.png', 'Best RDBMS', 'https://postgresql.org');
 
 INSERT INTO releases VALUES ('pg95', 7, 'pg', 'PostgreSQL', '', 'prod', 
-  '<font size=-1>New in <a href=https://www.postgresql.org/docs/release/9.5.0/>2016</a></font>&nbsp;<font size=-2></font>', 1, 'POSTGRES', '', '');
+  '<font size=-1>New in <a href=https://www.postgresql.org/docs/release/9.5.0/>2015</a></font>', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pg95', '9.5.26-1', 'amd', 0, '20210211', '', 'LIBC-2.17', '');
 
 INSERT INTO releases VALUES ('pg96', 6, 'pg', 'PostgreSQL', '', 'prod', 
-  '<font size=-1>New in <a href=https://www.postgresql.org/docs/release/9.6.0/>2017</a></font>&nbsp;<font size=-2></font>', 1, 'POSTGRES', '', '');
+  '<font size=-1>New in <a href=https://www.postgresql.org/docs/release/9.6.0/>2016</a></font>', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pg96', '9.6.21-1', 'amd', 0, '20210211', '', 'LIBC-2.17', '');
 
 INSERT INTO releases VALUES ('pg10', 5, 'pg', 'PostgreSQL', '', 'prod', 
-  '<font size=-1>New in <a href=https://www.postgresql.org/docs/10/release-10.html>2017</a></font>&nbsp;<font size=-2>05-Oct-2017</font>', 1, 'POSTGRES', '', '');
+  '<font size=-1>New in <a href=https://www.postgresql.org/docs/10/release-10.html>2017</a></font>', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pg10', '10.16-1', 'amd', 0, '20210211', '', 'LIBC-2.17', '');
 
-INSERT INTO releases VALUES ('pg11', 3, 'pg', 'PostgreSQL', '', 'prod', 
-  '<font size=-1>New in <a href=https://www.postgresql.org/docs/11/release-11.html>2018</a></font>&nbsp;<font size=-2></font>', 1, 'POSTGRES', '', '');
+INSERT INTO releases VALUES ('pg11', 4, 'pg', 'PostgreSQL', '', 'prod', 
+  '<font size=-1>New in <a href=https://www.postgresql.org/docs/11/release-11.html>2018</a></font>', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pg11', '11.12-2', 'amd', 1, '20210513', '', 'LIBC-2.17', '');
 
-INSERT INTO releases VALUES ('pg12', 2, 'pg', 'PostgreSQL', '', 'prod', 
-  '<font size=-1>New in <a href=https://www.postgresql.org/docs/12/release-12.html>2019</a></font>&nbsp;<font size=-2></font>', 1, 'POSTGRES', '', '');
+INSERT INTO releases VALUES ('pg12', 3, 'pg', 'PostgreSQL', '', 'prod', 
+  '<font size=-1>New in <a href=https://www.postgresql.org/docs/12/release-12.html>2019</a></font>', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pg12', '12.7-2', 'amd', 1, '20210513', '', 'LIBC-2.17', '');
 
-INSERT INTO releases VALUES ('pg13', 1, 'pg', '', '', 'prod', 
+INSERT INTO releases VALUES ('pg13', 2, 'pg', '', '', 'prod', 
   '<font size=-1>New in <a href=https://www.postgresql.org/docs/13/release-13.html>2020</a></font>', 
   1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pg13', '13.3-2',  'amd', 1, '20210513','', 'LIBC-2.17', '');
 
-INSERT INTO releases VALUES ('pg14', 4, 'pg', '', '', 'beta', 
+INSERT INTO releases VALUES ('pg14', 1, 'pg', '', '', 'beta', 
   '<font size=-1>New in <a href=https://www.postgresql.org/about/news/postgresql-14-beta-2-released-2249/>2021</a></font>',
   1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pg14', '14beta2-1',  'amd', 1, '20210624','', 'LIBC-2.28', '');
