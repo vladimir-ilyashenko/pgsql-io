@@ -15,7 +15,7 @@ Steps to build a build environment on CentOS 7/8 on AMD or ARM
          + buildBoost.sh
          + buildProtobuf.sh
          + buildProtobufc.sh
-       in amd-only:
-         + installOracleInstantClient.sh
-         + installCppDriver.sh
+
+       + installOracleInstantClient.sh
+       + installCppDriver.sh
        sharedLibs.sh
