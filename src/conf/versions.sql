@@ -371,7 +371,7 @@ INSERT INTO versions VALUES ('omnidb', '2.17.0', '', 1, '20191205', '', '', '');
 INSERT INTO projects VALUES ('microk8s', 6, 80, '', 1, 'https://github.com/ubuntu/microk8s/releases',
   'microk8s', 0, 'microk8s.png', 'K8s & OpenEBS', 'https://microk8s.io');
 INSERT INTO releases VALUES ('microk8s', 3, 'microk8s', 'Kubernetes', '', 'test', '', 1, '', '', '');
-INSERT INTO versions VALUES ('microk8s', '1.21', '', 1, '20210409', '', '', '');
+INSERT INTO versions VALUES ('microk8s', '1.21', '', 1, '20210409', '', 'DEB', '');
 
 INSERT INTO projects VALUES ('pgadmin', 9, 80, '', 1, 'https://pgadmin.org',
   'pgadmin', 0, 'pgadmin.png', 'PG Admin', 'https://pgadmin.org');
