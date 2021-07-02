@@ -1,0 +1,8 @@
+
+
+sudo snap install microk8s --classic
+
+sudo enable iscisd
+
+sudo microk8s enable dns dashboard helm3 openebs
+
