@@ -1,0 +1,14 @@
+
+
+echo "## Installing kubernetes (microk8s) ##"
+
+set -x
+
+sudo snap install microk8s --classic
+
+sudo systemctl enable iscsisd
+
+sudo microk8s enable dns dashboard helm3 openebs prometheus metrics-server
+
+sudo microk8s status --wait-ready
+
