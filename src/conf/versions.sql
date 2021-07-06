@@ -156,7 +156,7 @@ INSERT INTO releases VALUES ('kafka', 0, 'kafka', 'Kafka', '', 'test', '', 1, 'A
 INSERT INTO versions VALUES ('kafka', '2.7.1', '', 1, '20210510', '', '', 'https://downloads.apache.org/kafka/2.7.1/RELEASE_NOTES.html');
 INSERT INTO versions VALUES ('kafka', '2.7.0', '', 0, '20201221', '', '', 'https://downloads.apache.org/kafka/2.7.0/RELEASE_NOTES.html');
 
-INSERT INTO projects VALUES ('redis', 6, 6379, 'hub', 2, 'https://github.com/redis/redis/releases',
+INSERT INTO projects VALUES ('redis', 10, 6379, 'hub', 2, 'https://github.com/redis/redis/releases',
   'Redis', 0, 'redis.png', 'Hi-Speed Cache', 'https://redis.io');
 INSERT INTO releases VALUES ('redis', 0, 'redis', 'Redis 6.2.4', '', 'test', '', 1, 'BSD', '', '');
 INSERT INTO versions VALUES ('redis', '6.2', '',   1, '20210601', '', 'DEB', '');
@@ -196,7 +196,7 @@ INSERT INTO releases VALUES ('hivefdw-pg13', 14, 'hivefdw', 'HiveFDW', '', 'test
 INSERT INTO versions VALUES ('hivefdw-pg13', '4.0-1', 'amd', 1, '20200927', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('pgredis', 6, 0, 'hub', 0, 'https://github.com/pgsql-io/pg_redis/releases', 
-  'pgredis', 1, 'redis.png', 'Access Redis', 'https://github.com/pgsql-io/pg_redis');
+  'pgredis', 1, 'redis.png', 'Leverage Redis as a Hi-speed cache', 'https://github.com/pgsql-io/pg_redis');
 INSERT INTO releases VALUES ('pgredis-pg14',  2, 'pgredis', 'PgRedis',  '', 'test', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pgredis-pg14', '2.0-1', 'amd', 1, '20210620', 'pg14', '', '');
 
@@ -368,8 +368,10 @@ INSERT INTO projects VALUES ('omnidb', 9, 8000, '', 1, 'https://omnidb.org',
 INSERT INTO releases VALUES ('omnidb', 3, 'omnidb', 'OmniDB', '', 'test', '', 1, '', '', '');
 INSERT INTO versions VALUES ('omnidb', '2.17.0', '', 1, '20191205', '', '', '');
 
-INSERT INTO projects VALUES ('kubernetes', 6, 80, '', 1, 'https://github.com/ubuntu/kubernetes/releases',
-  'kubernetes', 0, 'kubernetes.png', 'Kubernetes', 'https://kubernetes.io');
+INSERT INTO projects VALUES ('kubernetes', 6, 80, '', 1, 'https://github.com/ubuntu/microk8s/releases',
+  'kubernetes', 0, 'kubernetes.png', 
+  'Self-healing high availability clusters using the <a href=https://microk8s.io>MicroK8s</a> distribution.  Perfect for micro clouds and edge computing', 
+  'https://k8s.io');
 INSERT INTO releases VALUES ('kubernetes', 3, 'kubernetes', 'Kubernetes', '', 'test', '', 1, '', '', '');
 INSERT INTO versions VALUES ('kubernetes', '1.21', '', 1, '20210409', '', 'DEB', '');
 
