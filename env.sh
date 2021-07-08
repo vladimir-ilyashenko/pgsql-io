@@ -44,7 +44,7 @@ waitsV=1.1.3-1
 
 zooV=3.7.0
 kfkV=2.7.1
-dbzV=1.5.4
+dbzV=1.6.0
 redisV=6.2
 mariaV=10.6x
 

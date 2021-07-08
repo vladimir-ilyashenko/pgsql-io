@@ -143,13 +143,10 @@ INSERT INTO releases VALUES ('pg14', 1, 'pg', '', '', 'beta',
   1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pg14', '14beta2-1',  'amd', 1, '20210624','', 'LIBC-2.28', '');
 
-INSERT INTO projects VALUES ('debezium',  5, 8080, 'kafka', 3, 'https://debezium.io/releases/1.5/',
+INSERT INTO projects VALUES ('debezium',  5, 8080, 'kafka', 3, 'https://debezium.io/releases/1.6/',
   'Debezium', 0, 'debezium.png', 'Stream DB Changes', 'https://debezium.io');
 INSERT INTO releases VALUES ('debezium', 0, 'debezium', 'Debezium', '', 'test', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('debezium', '1.5.4', '', 1, '20210701', '', '', '');
-INSERT INTO versions VALUES ('debezium', '1.5.3', '', 0, '20210617', '', '', '');
-INSERT INTO versions VALUES ('debezium', '1.5.2', '', 0, '20210528', '', '', '');
-INSERT INTO versions VALUES ('debezium', '1.5.0', '', 0, '20210408', '', '', '');
+INSERT INTO versions VALUES ('debezium', '1.6.0', '', 1, '20210630', '', '', '');
 
 INSERT INTO projects VALUES ('kafka', 10, 9092, 'zookeeper', 1, 'https://kafka.apache.org/downloads',
   'Kafka', 0, 'kafka.png', 'Streaming Platform', 'https://kafka.apache.org');
