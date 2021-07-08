@@ -14,8 +14,6 @@ sudo systemctl restart open-iscsi iscsid
 sudo systemctl enable open-iscsi iscsid
 sudo systemctl --no-pager -l status open-iscsi iscsid
 
-exit 1
-
 sudo snap install microk8s --classic --channel=$channel/stable
 rc=$?
 if [ ! "$rc" == "0" ]; then
