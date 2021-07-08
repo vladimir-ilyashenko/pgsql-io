@@ -164,8 +164,8 @@ INSERT INTO versions VALUES ('redis', '6.2', '',   1, '20210601', '', 'DEB', '')
 
 INSERT INTO projects VALUES ('mariadb', 10, 3306, 'hub', 2, 'https://github.com/mariadb/server/releases',
   'MariaDB', 0, 'mariadb.png', 'MySQL Replacement', 'https://mariadb.com');
-INSERT INTO releases VALUES ('mariadb', 0, 'mariadb', 'MariaDB 10.6.2', '', 'test', '', 1, 'GPL', '', '');
-INSERT INTO versions VALUES ('mariadb', '10.6x', '',   1, '20210617', '', '', '');
+INSERT INTO releases VALUES ('mariadb', 0, 'mariadb', 'MariaDB 10.6.3', '', 'test', '', 1, 'GPL', '', '');
+INSERT INTO versions VALUES ('mariadb', '10.6x', '',   1, '20210705', '', '', '');
 
 INSERT INTO projects VALUES ('zookeeper', 10, 2181, 'hub', 1, 'https://zookeeper.apache.org/releases.html#releasenotes',
   'zookeeper', 0, 'zookeeper.png', 'Distributed Key-Store for HA', 'https://zookeeper.apache.org');
