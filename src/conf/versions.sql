@@ -242,7 +242,7 @@ INSERT INTO versions VALUES ('oraclefdw-pg13','2.3.0-1', 'amd', 1, '20200924', '
 INSERT INTO projects VALUES ('oracle', 10, 1521, 'hub', 0, 'https://www.oracle.com/database/technologies/oracle-database-software-downloads.html#19c', 
   'oracle', 0, 'oracle.png', 'Oracle Database', 'https://www.oracle.com/database/technologies');
 INSERT INTO releases VALUES ('oracle', 10, 'oracle', 'Oracle', '', 'test','', 0, 'ORACLE', '', '');
-INSERT INTO versions VALUES ('oracle', '19c', 'amd', 1, '20200801', '', '', '');
+INSERT INTO versions VALUES ('oracle', '19.3c', 'amd', 1, '20210501', '', '', '');
 
 INSERT INTO projects VALUES ('instantclient', 10, 1521, 'hub', 0, 'https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html', 
   'instantclient', 0, 'instantclient.png', 'Oracle Instant Clients & SQLPlus', 'https://www.oracle.com/database/technologies/instant-client.html');
