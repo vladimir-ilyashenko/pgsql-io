@@ -2,11 +2,31 @@
 cd "$(dirname "$0")"
 
 echo " "
-echo "## INSTALL SQLSVR ###############################################"
+echo "## INSTALL SQLSVR FOR LINUX #####################################"
 source getPKMG.sh
 
+set -x
+
+if [ "$PKMG" == "apt" ]; then
+  wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+
+  sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/20.04/mssql-server-2019.list)"
+
+  sudo apt-get update
+  sudo apt-get install -y curl
+  sudo apt-get install -y mssql-server
+
+  sudo /opt/mssql/bin/mssql-conf setup
+
+  sudo systemctl status mssql-server --no-pager
+
+  sudo apt-get install mssql-tools unixodbc-dev
+
+  exit 0
+fi
 
 
+## RHEL 8 ##########################################
 sudo yum install python2
 sudo yum install compat-openssl10
 echo 
