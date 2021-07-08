@@ -146,7 +146,8 @@ INSERT INTO versions VALUES ('pg14', '14beta2-1',  'amd', 1, '20210624','', 'LIB
 INSERT INTO projects VALUES ('debezium',  5, 8080, 'kafka', 3, 'https://debezium.io/releases/1.5/',
   'Debezium', 0, 'debezium.png', 'Stream DB Changes', 'https://debezium.io');
 INSERT INTO releases VALUES ('debezium', 0, 'debezium', 'Debezium', '', 'test', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('debezium', '1.5.3', '', 1, '20210617', '', '', '');
+INSERT INTO versions VALUES ('debezium', '1.5.4', '', 1, '20210701', '', '', '');
+INSERT INTO versions VALUES ('debezium', '1.5.3', '', 0, '20210617', '', '', '');
 INSERT INTO versions VALUES ('debezium', '1.5.2', '', 0, '20210528', '', '', '');
 INSERT INTO versions VALUES ('debezium', '1.5.0', '', 0, '20210408', '', '', '');
 
@@ -320,7 +321,8 @@ INSERT INTO versions VALUES ('audit-pg13', '1.5.0-1', 'amd', 1, '20200921', 'pg1
 INSERT INTO projects VALUES ('anon', 2, 0, 'ddlx', 1, 'https://gitlab.com/dalibo/postgresql_anonymizer/-/tags',
   'anon', 1, 'anon.png', 'Anonymization & Masking', 'https://gitlab.com/dalibo/postgresql_anonymizer/blob/master/README.md');
 INSERT INTO releases VALUES ('anon-pg13', 11, 'anon', 'Anonymizer', '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('anon-pg13', '0.8.1-1', 'amd', 1, '20210210', 'pg13', '', '');
+INSERT INTO versions VALUES ('anon-pg13', '0.9.0-1', 'amd', 1, '20210703', 'pg13', '', '');
+INSERT INTO versions VALUES ('anon-pg13', '0.8.1-1', 'amd', 0, '20210210', 'pg13', '', '');
 INSERT INTO versions VALUES ('anon-pg13', '0.7.1-1', 'amd', 0, '20200929', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('citus', 2, 0, 'hub',0, 'https://github.com/citusdata/citus/releases',
@@ -337,7 +339,9 @@ INSERT INTO versions VALUES ('cron-pg13', '1.3.0-1', 'amd', 0, '20201006', 'pg13
 INSERT INTO projects VALUES ('timescaledb', 2, 0, 'hub', 1, 'https://github.com/timescale/timescaledb/releases',
    'timescaledb', 1, 'timescaledb.png', 'Time Series Data', 'https://github.com/timescale/timescaledb/#timescaledb');
 INSERT INTO releases VALUES ('timescaledb-pg13',  1, 'timescaledb', 'TimescaleDB', '', 'prod', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('timescaledb-pg13', '2.3.0-1',  'amd', 1, '20210525', 'pg13', '',
+INSERT INTO versions VALUES ('timescaledb-pg13', '2.3.1-1',  'amd', 1, '20210707', 'pg13', '',
+  'https://github.com/timescale/timescaledb/releases/tag/2.3.1');
+INSERT INTO versions VALUES ('timescaledb-pg13', '2.3.0-1',  'amd', 0, '20210525', 'pg13', '',
   'https://github.com/timescale/timescaledb/releases/tag/2.3.0');
 INSERT INTO versions VALUES ('timescaledb-pg13', '2.2.1-1',  'amd', 0, '20210505', 'pg13', '',
   'https://github.com/timescale/timescaledb/releases/tag/2.2.1');
@@ -360,8 +364,10 @@ INSERT INTO projects VALUES ('postgis', 2, 1, 'hub', 3, 'http://postgis.net/sour
   'postgis', 1, 'postgis.png', 'Spatial Extensions', 'http://postgis.net');
 INSERT INTO releases VALUES ('postgis-pg12', 3, 'postgis', 'PostGIS', '', 'prod', '', 1, 'GPLv2', '', '');
 INSERT INTO releases VALUES ('postgis-pg13', 3, 'postgis', 'PostGIS', '', 'prod', '', 1, 'GPLv2', '', '');
-INSERT INTO versions VALUES ('postgis-pg12', '3.1.2-1', 'amd', 1, '20210521', 'pg12', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.1.2/NEWS');
-INSERT INTO versions VALUES ('postgis-pg13', '3.1.2-1', 'amd', 1, '20210521', 'pg13', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.1.2/NEWS');
+INSERT INTO versions VALUES ('postgis-pg12', '3.1.3-1', 'amd', 1, '20210702', 'pg12', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.1.3/NEWS');
+INSERT INTO versions VALUES ('postgis-pg12', '3.1.2-1', 'amd', 0, '20210521', 'pg12', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.1.2/NEWS');
+INSERT INTO versions VALUES ('postgis-pg13', '3.1.3-1', 'amd', 1, '20210702', 'pg13', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.1.3/NEWS');
+INSERT INTO versions VALUES ('postgis-pg13', '3.1.2-1', 'amd', 0, '20210521', 'pg13', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.1.2/NEWS');
 
 INSERT INTO projects VALUES ('omnidb', 9, 8000, '', 1, 'https://omnidb.org',
   'omnidb', 0, 'omnidb.png', 'OmniDB', 'https://omnidb.org');
@@ -370,7 +376,7 @@ INSERT INTO versions VALUES ('omnidb', '2.17.0', '', 1, '20191205', '', '', '');
 
 INSERT INTO projects VALUES ('kubernetes', 6, 80, '', 1, 'https://github.com/ubuntu/microk8s/releases',
   'kubernetes', 0, 'kubernetes.png', 
-  'Self-healing high availability clusters using the <a href=https://microk8s.io>MicroK8s</a> distribution.  Perfect for micro clouds and edge computing', 
+  'Self-healing high availability clusters using the <a href=https://microk8s.io>MicroK8s</a> distribution', 
   'https://k8s.io');
 INSERT INTO releases VALUES ('kubernetes', 3, 'kubernetes', 'Kubernetes', '', 'test', '', 1, '', '', '');
 INSERT INTO versions VALUES ('kubernetes', '1.21', '', 1, '20210409', '', 'DEB', '');

@@ -56,7 +56,7 @@ hypopgFullV=1.3.1
 hypopgShortV=
 hypopgBuildV=1
 
-postgisFullV=3.1.2
+postgisFullV=3.1.3
 postgisShortV=
 postgisBuildV=1
 
@@ -132,7 +132,7 @@ fdFullV=1.1.0
 fdShortV=
 fdBuildV=1
 
-anonFullV=0.8.1
+anonFullV=0.9.0
 anonShortV=
 anonBuildV=1
 
@@ -204,7 +204,7 @@ hintplanFullV=1.3.7
 hintplanShortV=
 hintplanBuildV=1
 
-timescaledbFullV=2.3.0
+timescaledbFullV=2.3.1
 timescaledbShortV=
 timescaledbBuildV=1
 

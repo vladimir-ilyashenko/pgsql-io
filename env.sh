@@ -26,10 +26,10 @@ ora2pgV=22.0
 
 fdV=1.1.0-1
 httpV=1.3.1-1
-anonV=0.8.1-1
+anonV=0.9.0-1
 ddlxV=0.17-1
 hypoV=1.3.1-1
-timescaleV=2.3.0-1
+timescaleV=2.3.1-1
 logicalV=2.3.4-1
 profV=4.1-1
 bulkloadV=3.1.18-1
@@ -44,7 +44,7 @@ waitsV=1.1.3-1
 
 zooV=3.7.0
 kfkV=2.7.1
-dbzV=1.5.3
+dbzV=1.5.4
 redisV=6.2
 mariaV=10.6x
 
@@ -52,7 +52,7 @@ adminV=5.4
 omniV=2.17.0
 
 audit13V=1.5.0-1
-postgisV=3.1.2-1
+postgisV=3.1.3-1
 
 tsqlV=3.0-1
 pljavaV=1.6.2-1
