@@ -1,11 +1,11 @@
-cd "$(dirname "$(readlink -f "$0")")"
+#!/bin/bash
+cd "$(dirname "$0")"
 
-# set -x
+echo " "
+echo "## INSTALL SQLSVR ###############################################"
+source getPKMG.sh
 
-if [ `arch` == 'aarch64' ]; then
-  echo 'ERROR: SQL Server for Linux on runs on AMD64 Architecture'
-  exit 1
-fi
+
 
 sudo yum install python2
 sudo yum install compat-openssl10

@@ -1,6 +1,10 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
+echo " "
+echo "## INSTALL MONGODB ##############################################"
+source getPKMG.sh
+
 VER=$1
 ver=`echo $VER | cut -c1-3`
 
