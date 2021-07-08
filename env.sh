@@ -66,7 +66,7 @@ mongofdwV=5.2.9-1
 tdsfdwV=2.0.2-1
 cstarfdwV=3.1.5-1
 badgerV=11.5
-patroniV=2.0.2
+patroniV=2.1.0
 
 HUB="$PWD"
 SRC="$HUB/src"
