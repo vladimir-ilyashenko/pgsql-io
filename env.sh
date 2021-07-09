@@ -47,6 +47,7 @@ kfkV=2.7.1
 dbzV=1.6.0
 redisV=6.2
 mariaV=10.6x
+sqlsvrV=2019
 
 adminV=5.4
 omniV=2.17.0
