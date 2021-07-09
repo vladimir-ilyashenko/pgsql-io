@@ -157,7 +157,7 @@ INSERT INTO versions VALUES ('kafka', '2.7.0', '', 0, '20201221', '', '', 'https
 INSERT INTO projects VALUES ('redis', 10, 6379, 'hub', 2, 'https://github.com/redis/redis/releases',
   'Redis', 0, 'redis.png', 'Hi-Speed Cache', 'https://redis.io');
 INSERT INTO releases VALUES ('redis', 0, 'redis', 'Redis 6.2.4', '', 'test', '', 1, 'BSD', '', '');
-INSERT INTO versions VALUES ('redis', '6.2', '',   1, '20210601', '', 'DEB', '');
+INSERT INTO versions VALUES ('redis', '6.2', '',   1, '20210601', '', 'UBU20', '');
 
 INSERT INTO projects VALUES ('mariadb', 10, 3306, 'hub', 2, 'https://github.com/mariadb/server/releases',
   'MariaDB', 0, 'mariadb.png', 'MySQL Replacement', 'https://mariadb.com');
@@ -376,7 +376,7 @@ INSERT INTO projects VALUES ('kubernetes', 6, 80, '', 1, 'https://github.com/ubu
   'Self-healing high availability clusters using the <a href=https://microk8s.io>MicroK8s</a> distribution', 
   'https://k8s.io');
 INSERT INTO releases VALUES ('kubernetes', 3, 'kubernetes', 'Kubernetes', '', 'test', '', 1, '', '', '');
-INSERT INTO versions VALUES ('kubernetes', '1.21', '', 1, '20210409', '', 'DEB', '');
+INSERT INTO versions VALUES ('kubernetes', '1.21', '', 1, '20210409', '', 'UBU20', '');
 
 INSERT INTO projects VALUES ('pgadmin', 9, 80, '', 1, 'https://pgadmin.org',
   'pgadmin', 0, 'pgadmin.png', 'PG Admin', 'https://pgadmin.org');
@@ -425,8 +425,8 @@ INSERT INTO versions VALUES ('bouncer', '1.15.0', 'amd', 1, '20210614', '', '', 
 INSERT INTO projects VALUES ('patroni',  2, 0, 'haproxy', 4, 'https://github.com/zalando/patroni/releases',
   'patroni', 0, 'patroni.png', 'Postgres HA Template', 'https://github.com/zalando/patroni');
 INSERT INTO releases VALUES ('patroni', 1, 'patroni', 'Patroni', '', 'test', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('patroni', '2.1.0', '', 1, '20210706', '', 'DEB PYTHON3', 'https://github.com/zalando/patroni/releases/tag/v2.1.0');
-INSERT INTO versions VALUES ('patroni', '2.0.2', '', 0, '20210222', '', 'DEB PYTHON3', 'https://github.com/zalando/patroni/releases/tag/v2.0.2');
+INSERT INTO versions VALUES ('patroni', '2.1.0', '', 1, '20210706', '', 'UBU20 PYTHON3', 'https://github.com/zalando/patroni/releases/tag/v2.1.0');
+INSERT INTO versions VALUES ('patroni', '2.0.2', '', 0, '20210222', '', 'UBU20 PYTHON3', 'https://github.com/zalando/patroni/releases/tag/v2.0.2');
 
 INSERT INTO projects VALUES ('pgjdbc', 7, 0, 'hub', 1, 'https://jdbc.postgresql.org', 'jdbc', 0, 'java.png', 'JDBC Driver', 'https://jdbc.postgresql.org');
 INSERT INTO releases VALUES ('pgjdbc', 7, 'jdbc', 'JDBC', '', 'bring-own', '', 1, 'POSTGRES', '', '');
