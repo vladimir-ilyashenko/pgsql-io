@@ -120,18 +120,20 @@ isAMD64 () {
 }
 
 
-isDEB () {
-  apt --version > /dev/null 2>&1
+isUBU () {
+  ver="$1.04"
+  cat /etc/os-release | grep VERSION_ID | grep $ver > /dev/null
   rc=$?
   if [ $rc == "0" ]; then
-    echoX '#       DEB - OK'
+    echoX "#       UBU$1 - OK"
     return
   fi
 
-  echoX 'ERROR: only supported on DEBIAN/UBUNTU'
+  echoX "ERROR: only supported on Ubuntu $ver"
   exit 1
-}
 
+
+}
 
 
 ########################################
@@ -145,8 +147,9 @@ do
   if [ "${req:0:2}" == "EL" ]; then
     ver=${req:2:1}
     isEL $ver 
-  elif [ "$req" == "DEB" ]; then
-    isDEB
+  elif [ "${req:0:3}" == "UBU" ]; then
+    ver=${req:3:2}
+    isUBU $ver
   elif [ "$req" == "AMD64" ]; then
     isAMD64
   elif [ "$req" == "PERL" ]; then
