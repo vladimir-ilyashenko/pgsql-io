@@ -1,50 +1,35 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
+ubuV=20.04
+apt="sudo apt-get"
+
+url=https://packages.microsoft.com
+sa_passwd='password'
+product='developer'
+
 echo " "
 echo "## INSTALL SQLSVR FOR LINUX #####################################"
 source getPKMG.sh
 
 set -x
 
-if [ "$PKMG" == "apt" ]; then
-  wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+$apt install -y curl wget
 
-  sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/20.04/mssql-server-2019.list)"
+wget -qO- $url/keys/microsoft.asc | sudo apt-key add -
 
-  sudo apt-get update
-  sudo apt-get install -y curl
-  sudo apt-get install -y mssql-server
+sudo add-apt-repository "$(wget -qO- $url/config/ubuntu/$ubuV/mssql-server-2019.list)"
+$apt update
+$apt install -y mssql-server
 
-  sudo /opt/mssql/bin/mssql-conf setup
+sudo MSSQL_SA_PASSWORD=$sa_passwd  MSSQL_PID=$product \
+  /opt/mssql/bin/mssql-conf -n setup accept-eula
 
-  sudo systemctl status mssql-server --no-pager
+sudo systemctl status mssql-server --no-pager
 
-  sudo apt-get install mssql-tools unixodbc-dev
-
-  exit 0
-fi
-
-
-## RHEL 8 ##########################################
-sudo yum install python2
-sudo yum install compat-openssl10
-echo 
-echo Configure python2 as the default interpreter 
-sudo alternatives --config python
-
-sudo curl -o /etc/yum.repos.d/mssql-server.repo https://packages.microsoft.com/config/rhel/8/mssql-server-2019.repo
-sudo yum install -y mssql-server
-
-sudo curl -o /etc/yum.repos.d/msprod.repo https://packages.microsoft.com/config/rhel/8/prod.repo
-sudo yum remove unixODBC-utf16 unixODBC-utf16-devel
-sudo yum install -y mssql-tools unixODBC-devel
-echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
-source ~/.bashrc
-
-echo ""
-echo "# now run:   ./io config sqlsvr"
+curl $url/config/ubuntu/$ubuV/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list
+$apt update
+sudo ACCEPT_EULA=y apt-get install -y mssql-tools
 
 exit 0
-
 
