@@ -164,7 +164,7 @@ INSERT INTO projects VALUES ('mariadb', 10, 3306, 'hub', 2, 'https://github.com/
 INSERT INTO releases VALUES ('mariadb', 0, 'mariadb', 'MariaDB 10.6.3', '', 'test', '', 1, 'GPL', '', '');
 INSERT INTO versions VALUES ('mariadb', '10.6x', '',   1, '20210705', '', '', '');
 
-INSERT INTO projects VALUES ('sqlsvr', 10, 3306, 'hub', 2, 'https://github.com/sqlsvr/server/releases',
+INSERT INTO projects VALUES ('sqlsvr', 10, 1433, 'hub', 2, 'https://github.com/sqlsvr/server/releases',
   'MS SQL Server', 0, 'sqlsvr.png', 'SQl Server for Linux', 'https://sqlsvr.com');
 INSERT INTO releases VALUES ('sqlsvr', 0, 'sqlsvr', 'SQL Server 2019 CU 11', '', 'test', '', 1, '', '', '');
 INSERT INTO versions VALUES ('sqlsvr', '2019', '',   1, '20210701', '', 'UBU20', '');
