@@ -1,8 +1,8 @@
 
+set -x
+
 sudo apt-get autoremove -y mssql-*
 
 sudo rm -f /etc/apt/sources.list.d/msprod*
 
-echo ''
-echo 'Use the below command yourself to remove your data files:'
-echo '  sudo rm -rf /var/opt/mssql/'
+sudo rm -rf /var/opt/mssql
