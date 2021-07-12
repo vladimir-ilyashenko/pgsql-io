@@ -1,1 +1,4 @@
-sudo yum remove -y mongodb-org-server
+sudo systemctl stop mongod
+sudo apt-get autoremove -y mongodb-org*
+
+sudo rm -f /etc/apt/sources.list.d/mongodb-org*
