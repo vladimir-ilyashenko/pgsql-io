@@ -25,7 +25,6 @@ orafceV=3.15.1-1
 ora2pgV=22.0
 
 fdV=1.1.0-1
-httpV=1.3.1-1
 anonV=0.9.0-1
 ddlxV=0.17-1
 hypoV=1.3.1-1

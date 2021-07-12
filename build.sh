@@ -206,7 +206,6 @@ initDir () {
   copy-pgXX "pglogical"
   copy-pgXX "timescaledb"
   copy-pgXX "anon"
-  copy-pgXX "http"
   copy-pgXX "cassandrafdw"
   copy-pgXX "hivefdw"
   copy-pgXX "plprofiler"
@@ -500,7 +499,6 @@ initPG () {
   if [ "$pgM" == "12" ]; then 
     initC "postgis-pg$pgM" "postgis" "$postgisV" "$outPlat" "postgres/postgis" "" "" "nil"
     initC "pldebugger-pg$pgM" "pldebugger" "$debuggerV" "$outPlat" "postgres/pldebugger" "" "" "nil"
-    initC "http-pg$pgM" "http" "$httpV" "$outPlat" "postgres/http" "" "" "nil"
 
     #if [ "$outPlat" == "amd" ]; then
       #initC "cassandrafdw-pg$pgM" "cassandrafdw" "$cstarfdwV" "$outPlat" "postgres/cassandrafdw" "" "" "nil"
