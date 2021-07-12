@@ -171,6 +171,13 @@ INSERT INTO projects VALUES ('sqlsvr', 10, 1433, 'hub', 2,
 INSERT INTO releases VALUES ('sqlsvr', 0, 'sqlsvr', 'SQL Server 2019.11', '', 'test', '', 1, '', '', '');
 INSERT INTO versions VALUES ('sqlsvr', '2019', '',   1, '20210610', '', 'UBU20', '');
 
+INSERT INTO projects VALUES ('mongodb', 10, 1433, 'hub', 2, 
+  'https://www.mongodb.com/download-center/community/releases',
+  'MongoDB', 0, 'mongodb.png', 'MongoDB Server',
+  'https://docs.mongodb.com/v5.0/release-notes/4.4/');
+INSERT INTO releases VALUES ('mongodb', 0, 'mongodb', 'MongoDB 4.4.6', '', 'test', '', 1, '', '', '');
+INSERT INTO versions VALUES ('mongodb', '4.4', '',   1, '20210510', '', 'UBU20', '');
+
 INSERT INTO projects VALUES ('zookeeper', 10, 2181, 'hub', 1, 'https://zookeeper.apache.org/releases.html#releasenotes',
   'zookeeper', 0, 'zookeeper.png', 'Distributed Key-Store for HA', 'https://zookeeper.apache.org');
 INSERT INTO releases VALUES ('zookeeper', 3, 'zookeeper', 'Zookeeper', '', 'test', '', 1, 'Apache', '', '');
