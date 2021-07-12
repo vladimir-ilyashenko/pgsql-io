@@ -490,6 +490,7 @@ initPG () {
     initC "mariadb"   "mariadb"   "$mariaV" "" "mariadb"          "" "" "Y"
     initC "sqlsvr"    "sqlsvr"    "$sqlsvrV" "" "sqlsvr"          "" "" "Y"
     initC "mongodb"   "mongodb"   "$mongoV"  "" "mongodb"         "" "" "Y"
+    initC "elasticsearch" "elasticsearch"   "$esV"  "" "elk/elasticsearch" "" "" "Y"
     initC "patroni"   "patroni"   "$patroniV" "" "postgres/patroni" "" "" "nil"
     #initC "cassandra" "cassandra" "$cstarV" "" "cassandra" "" "" "nil"
     #initC "backrest"  "backrest"  "$backrestV" "$outPlat" "postgres/backrest" "" "" "nil"

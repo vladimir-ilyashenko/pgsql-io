@@ -48,6 +48,7 @@ redisV=6.2
 mariaV=10.6x
 sqlsvrV=2019
 mongoV=4.4
+esV=7.x
 
 adminV=5.4
 omniV=2.17.0
