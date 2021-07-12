@@ -255,9 +255,9 @@ INSERT INTO projects VALUES ('oracle', 10, 1521, 'hub', 0, 'https://www.oracle.c
 INSERT INTO releases VALUES ('oracle', 10, 'oracle', 'Oracle', '', 'test','', 0, 'ORACLE', '', '');
 INSERT INTO versions VALUES ('oracle', '19.3c', 'amd', 1, '20210501', '', '', '');
 
-INSERT INTO projects VALUES ('instantclient', 10, 1521, 'hub', 0, 'https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html', 
-  'instantclient', 0, 'instantclient.png', 'Oracle Instant Clients & SQLPlus', 'https://www.oracle.com/database/technologies/instant-client.html');
-INSERT INTO releases VALUES ('instantclient', 11, 'instantclient', 'Oracle Instant Client', '', 'test','', 0, 'ORACLE', '', '');
+INSERT INTO projects VALUES ('instantclient',  5, 1521, 'hub', 0, 'https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html', 
+  'instantclient', 0, 'instantclient.png', 'Oracle Instant Client & SQLPlus', 'https://www.oracle.com/database/technologies/instant-client.html');
+INSERT INTO releases VALUES ('instantclient', 2, 'instantclient', 'Instant Client', '', 'test','', 0, 'ORACLE', '', '');
 INSERT INTO versions VALUES ('instantclient', '21.1', 'amd', 1, '20210317', '', '', '');
 
 -- ##
@@ -468,7 +468,7 @@ INSERT INTO versions VALUES ('psqlodbc', '13.00-1', 'amd', 0, '20201119', '', ''
 
 INSERT INTO projects VALUES ('http', 3, 0, 'hub', 6, 'https://github.com/pramsey/pgsql-http/releases', 'http',  1, 'http.png', 'Invoke Web Services', 'https://github.com/pramsey/pgsql-http');
 INSERT INTO releases VALUES ('http-pg12', 13, 'http', 'HTTP Client', '', 'prod', '', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('http-pg12', '1.3.1-1', 'amd', 1, '20191225', 'pg12', '', '');
+INSERT INTO versions VALUES ('http-pg12', '1.3.1-1', 'amd', 0, '20191225', 'pg12', '', '');
 
 INSERT INTO projects VALUES ('ddlx',      7, 0, 'hub', 0, 'https://github.com/lacanoid/pgddl/releases', 'ddlx',  1, 'ddlx.png', 'DDL Extractor', 'https://github.com/lacanoid/pgddl#ddl-extractor-functions--for-postgresql');
 INSERT INTO releases VALUES ('ddlx-pg13', 2, 'ddlx', 'DDLeXtact', '', 'prod','',  0, 'POSTGRES', '', '');
