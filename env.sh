@@ -48,6 +48,7 @@ dbzV=1.6.0
 redisV=6.2
 mariaV=10.6x
 sqlsvrV=2019
+mongoV=4.4
 
 adminV=5.4
 omniV=2.17.0
