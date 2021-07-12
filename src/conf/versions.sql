@@ -175,7 +175,7 @@ INSERT INTO projects VALUES ('mongodb', 10, 1433, 'hub', 2,
   'https://www.mongodb.com/download-center/community/releases',
   'MongoDB', 0, 'mongodb.png', 'MongoDB Server',
   'https://docs.mongodb.com/v5.0/release-notes/4.4/');
-INSERT INTO releases VALUES ('mongodb', 0, 'mongodb', 'MongoDB 4.4.6', '', 'test', '', 1, '', '', '');
+INSERT INTO releases VALUES ('mongodb', 0, 'mongodb', 'MongoDB 4.4.6', '', 'test', '', 1, 'SSPL', '', '');
 INSERT INTO versions VALUES ('mongodb', '4.4', '',   1, '20210510', '', 'UBU20', '');
 
 INSERT INTO projects VALUES ('zookeeper', 10, 2181, 'hub', 1, 'https://zookeeper.apache.org/releases.html#releasenotes',
