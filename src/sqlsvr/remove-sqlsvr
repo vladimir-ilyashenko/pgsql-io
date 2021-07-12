@@ -1,12 +1,7 @@
-apt="sudo apt-get"
-url="https://packages.microsoft.com"
-ubuV=20.04
 
-$apt autoremove -y mssql-tools
+sudo apt-get autoremove -y mssql-*
 
-$apt autoremove -y mssql-server
-
-sudo add-apt-repository -r "$(wget -qO- $url/config/ubuntu/$ubuV/mssql-server-2019.list)"
+sudo rm -f /etc/apt/sources.list.d/msprod*
 
 echo ''
 echo 'Use the below command yourself to remove your data files:'
