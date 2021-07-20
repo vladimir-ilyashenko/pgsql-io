@@ -92,9 +92,10 @@ CREATE VIEW v_versions AS
 
 INSERT INTO categories VALUES (0,   0, 'Hidden', 'NotShown');
 INSERT INTO categories VALUES (1,  10, 'Rock-Solid PostgreSQL', 'Postgres');
+INSERT INTO categories VALUES (11, 95, 'Hybrid & Multi-Cloud', 'Cloud');
 INSERT INTO categories VALUES (10, 96, 'Foreign Datastores', 'Foreign');
-INSERT INTO categories VALUES (2,  60, 'Advanced Applications', 'Applications');
-INSERT INTO categories VALUES (6,  30, 'Featured Applications', 'Featured');
+INSERT INTO categories VALUES (2,  60, 'Advanced Postgres Apps', 'Applications');
+INSERT INTO categories VALUES (6,  30, 'Oracle Compatibility & Migration', 'Compatibility');
 INSERT INTO categories VALUES (4,  65, 'Optimization & Analysis', 'Optimization');
 INSERT INTO categories VALUES (5,  70, 'Data Integration', 'Integration');
 INSERT INTO categories VALUES (3,  80, 'Database Developers', 'Developers');
@@ -214,7 +215,7 @@ INSERT INTO projects VALUES ('hivefdw', 5, 0, 'hub', 0, 'https://github.com/pgsq
 INSERT INTO releases VALUES ('hivefdw-pg13', 14, 'hivefdw', 'HiveFDW', '', 'test', '', 1, 'AGPLv3', '', '');
 INSERT INTO versions VALUES ('hivefdw-pg13', '4.0-1', 'amd', 1, '20200927', 'pg13', '', '');
 
-INSERT INTO projects VALUES ('pgredis', 6, 0, 'hub', 0, 'https://github.com/pgsql-io/pg_redis/releases', 
+INSERT INTO projects VALUES ('pgredis', 5, 0, 'hub', 0, 'https://github.com/pgsql-io/pg_redis/releases', 
   'pgredis', 1, 'redis.png', 'Leverage Redis as a Hi-speed cache', 'https://github.com/pgsql-io/pg_redis');
 INSERT INTO releases VALUES ('pgredis-pg14',  2, 'pgredis', 'PgRedis',  '', 'test', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pgredis-pg14', '2.0-1', 'amd', 1, '20210620', 'pg14', '', '');
@@ -246,13 +247,13 @@ INSERT INTO projects VALUES ('esfdw', 5, 0, 'multicorn', 1, 'https://github.com/
 INSERT INTO releases VALUES ('esfdw-pg13',  3, 'esfdw', 'ElasticSearchFDW', '', 'prod', '', 1, 'MIT', '', '');
 INSERT INTO versions VALUES ('esfdw-pg13', '0.11.1', 'amd',  1, '20210409', 'pg13', '', '');
 
-INSERT INTO projects VALUES ('ora2pg', 5, 0, 'hub', 0, 'https://github.com/darold/ora2pg/releases',
+INSERT INTO projects VALUES ('ora2pg', 6, 0, 'hub', 0, 'https://github.com/darold/ora2pg/releases',
   'ora2pg', 0, 'ora2pg.png', 'Migrate from Oracle to PG', 'https://ora2pg.darold.net');
 INSERT INTO releases VALUES ('ora2pg', 2, 'ora2pg', 'Oracle to PG', '', 'test', '', 1, 'GPLv2', '', '');
 INSERT INTO versions VALUES ('ora2pg', '22.0', '', 1, '20210626', '', 'GCC PERL',
   'https://github.com/darold/ora2pg/releases/tag/v22.0');
 
-INSERT INTO projects VALUES ('oraclefdw', 5, 0, 'hub', 0, 'https://github.com/laurenz/oracle_fdw/releases',
+INSERT INTO projects VALUES ('oraclefdw', 6, 0, 'hub', 0, 'https://github.com/laurenz/oracle_fdw/releases',
   'oraclefdw', 1, 'oracle_fdw.png', 'Oracle from PG', 'https://github.com/laurenz/oracle_fdw');
 INSERT INTO releases VALUES ('oraclefdw-pg13', 2, 'oraclefdw', 'OracleFDW', '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('oraclefdw-pg13','2.3.0-1', 'amd', 1, '20200924', 'pg13', '', 'https://github.com/laurenz/oracle_fdw/releases/tag/ORACLE_FDW_2_3_0');
@@ -262,22 +263,22 @@ INSERT INTO projects VALUES ('oracle', 10, 1521, 'hub', 0, 'https://www.oracle.c
 INSERT INTO releases VALUES ('oracle', 10, 'oracle', 'Oracle', '', 'test','', 0, 'ORACLE', '', '');
 INSERT INTO versions VALUES ('oracle', '19.3c', 'amd', 1, '20210501', '', '', '');
 
-INSERT INTO projects VALUES ('instantclient',  5, 1521, 'hub', 0, 'https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html', 
+INSERT INTO projects VALUES ('instantclient', 6, 1521, 'hub', 0, 'https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html', 
   'instantclient', 0, 'instantclient.png', 'Oracle Instant Client & SQLPlus', 'https://www.oracle.com/database/technologies/instant-client.html');
 INSERT INTO releases VALUES ('instantclient', 2, 'instantclient', 'Instant Client', '', 'test','', 0, 'ORACLE', '', '');
 INSERT INTO versions VALUES ('instantclient', '21.1', 'amd', 1, '20210317', '', '', '');
 
-INSERT INTO projects VALUES ('pgosql', 5, 0, 'hub', 0, 'https://github.com/pgsql-io/pgosql/releases',
+INSERT INTO projects VALUES ('pgosql', 6, 0, 'hub', 0, 'https://github.com/pgsql-io/pgosql/releases',
   'pgosql', 1, 'pgosql.png', 'PL/SQL<sup>&reg;</sup> Compatibility', 'https://github.com/pgsql-io/pgosql');
-INSERT INTO releases VALUES ('pgosql-pg14', 2, 'pgosql', 'pgOSQL', '', 'test', '', 1, 'SSPL', '', '');
+INSERT INTO releases VALUES ('pgosql-pg14', 99, 'pgosql', 'pgOSQL', '', 'test', '', 1, 'SSPL', '', '');
 INSERT INTO versions VALUES ('pgosql-pg14', '0.1',  'amd', 1, '20210720', 'pg14', '', '');
 
-INSERT INTO projects VALUES ('plusql', 5, 0, 'hub', 0, 'https://github.com/pgsql-io/plusql2/releases',
+INSERT INTO projects VALUES ('plusql', 6, 1, 'hub', 0, 'https://github.com/pgsql-io/plusql2/releases',
   'plusql', 1, 'plusql.png', 'SQL*PLUS<sup>&reg;</sup> Compatible CLI', 'https://github.com/pgsql-io/plusql2');
-INSERT INTO releases VALUES ('plusql-pg14', 2, 'plusql', 'PlusQL', '', 'test', '', 1, 'SSPL', '', '');
-INSERT INTO versions VALUES ('plusql-pg14', '0.1',  'amd', 1, '20210720', 'pg14', '', '');
+INSERT INTO releases VALUES ('plusql', 99, 'plusql', 'PlusQL', '', 'test', '', 0, 'SSPL', '', '');
+INSERT INTO versions VALUES ('plusql', '0.1',  'amd', 1, '20210720', '', '', '');
 
-INSERT INTO projects VALUES ('orafce', 5, 0, 'hub', 0, 'https://github.com/orafce/orafce/releases',
+INSERT INTO projects VALUES ('orafce', 6, 0, 'hub', 0, 'https://github.com/orafce/orafce/releases',
   'orafce', 1, 'larry.png', 'Ora Built-in Packages', 'https://github.com/orafce/orafce#orafce---oracles-compatibility-functions-and-packages');
 INSERT INTO releases VALUES ('orafce-pg13', 2, 'orafce', 'OraFCE', '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('orafce-pg13', '3.15.1-1',  'amd', 1, '20210506', 'pg13', '', '');
@@ -401,9 +402,9 @@ INSERT INTO projects VALUES ('omnidb', 9, 8000, '', 1, 'https://omnidb.org',
 INSERT INTO releases VALUES ('omnidb', 3, 'omnidb', 'OmniDB', '', 'test', '', 1, '', '', '');
 INSERT INTO versions VALUES ('omnidb', '2.17.0', '', 1, '20191205', '', '', '');
 
-INSERT INTO projects VALUES ('kubernetes', 6, 80, '', 1, 'https://github.com/ubuntu/microk8s/releases',
+INSERT INTO projects VALUES ('kubernetes', 11, 80, '', 1, 'https://github.com/ubuntu/microk8s/releases',
   'kubernetes', 0, 'kubernetes.png', 
-  'Self-healing high availability clusters using the <a href=https://microk8s.io>MicroK8s</a> distribution', 
+  'HA clusters using <a href=https://microk8s.io>MicroK8s</a>', 
   'https://k8s.io');
 INSERT INTO releases VALUES ('kubernetes', 3, 'kubernetes', 'Kubernetes', '', 'test', '', 1, '', '', '');
 INSERT INTO versions VALUES ('kubernetes', '1.21', '', 1, '20210409', '', 'UBU20', '');

@@ -1,11 +1,11 @@
 import sqlite3, sys, pgsql
 
-WIDTH = 900 
+WIDTH = 1000
 
-NUM_COLS = 3
+NUM_COLS = 4
 COL_SIZE = round(WIDTH / NUM_COLS)
 
-PG_NUM_COLS = 7
+PG_NUM_COLS = 8
 PG_COL_SIZE = round(WIDTH / PG_NUM_COLS)
 
 #ALL_PLATFORMS = "arm, amd"
@@ -131,7 +131,7 @@ def print_row_header():
   if isEXTRA_SPACING == "Y":
     print(empty_row)
 
-  if cat_desc == "Featured Applications":
+  if cat_desc.startswith("Oracle"):
     print(empty_row)
     print("</tr></table>\n")
     print_top()
