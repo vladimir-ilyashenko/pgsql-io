@@ -120,11 +120,11 @@ INSERT INTO versions VALUES ('pg95', '9.5.26-1', 'amd', 0, '20210211', '', 'LIBC
 
 INSERT INTO releases VALUES ('pg96', 6, 'pg', 'PostgreSQL', '', 'prod', 
   '<font size=-1>New in <a href=https://www.postgresql.org/docs/release/9.6.0/>2016</a></font>', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg96', '9.6.21-1', 'amd', 0, '20210211', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg96', '9.6.21-1', 'amd', 1, '20210211', '', 'LIBC-2.17', '');
 
 INSERT INTO releases VALUES ('pg10', 5, 'pg', 'PostgreSQL', '', 'prod', 
   '<font size=-1>New in <a href=https://www.postgresql.org/docs/10/release-10.html>2017</a></font>', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg10', '10.16-1', 'amd', 0, '20210211', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg10', '10.16-1', 'amd', 1, '20210211', '', 'LIBC-2.17', '');
 
 INSERT INTO releases VALUES ('pg11', 4, 'pg', 'PostgreSQL', '', 'prod', 
   '<font size=-1>New in <a href=https://www.postgresql.org/docs/11/release-11.html>2018</a></font>', 1, 'POSTGRES', '', '');
@@ -167,10 +167,10 @@ INSERT INTO versions VALUES ('mariadb', '10.6x', '',   1, '20210705', '', '', ''
 
 INSERT INTO projects VALUES ('sqlsvr', 10, 1433, 'hub', 2, 
   'https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-release-notes-2019?view=sql-server-ver15#release-history',
-  'MS SQL Server', 0, 'sqlsvr.png', 'SQL Server for Linux 2019',
+  'MS SQL Server', 0, 'sqlsvr.png', 'Microsoft SQL Server 2019',
   'https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-overview?view=sql-server-ver15');
-INSERT INTO releases VALUES ('sqlsvr', 0, 'sqlsvr', 'SQL Server 2019.11', '', 'test', '', 1, '', '', '');
-INSERT INTO versions VALUES ('sqlsvr', '2019', '',   1, '20210610', '', 'UBU20', '');
+INSERT INTO releases VALUES ('sqlsvr', 0, 'sqlsvr', 'SQL Svr 15', '', 'test', '', 1, '', '', '');
+INSERT INTO versions VALUES ('sqlsvr', '15.0.4138', '',   1, '20210610', '', 'UBU20', '');
 
 INSERT INTO projects VALUES ('mongodb', 10, 27017, 'hub', 2, 
   'https://www.mongodb.com/download-center/community/releases',
