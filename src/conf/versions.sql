@@ -120,11 +120,11 @@ INSERT INTO versions VALUES ('pg95', '9.5.26-1', 'amd', 0, '20210211', '', 'LIBC
 
 INSERT INTO releases VALUES ('pg96', 6, 'pg', 'PostgreSQL', '', 'prod', 
   '<font size=-1>New in <a href=https://www.postgresql.org/docs/release/9.6.0/>2016</a></font>', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg96', '9.6.21-1', 'amd', 1, '20210211', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg96', '9.6.22-1', 'amd', 1, '20210513', '', 'LIBC-2.17', '');
 
 INSERT INTO releases VALUES ('pg10', 5, 'pg', 'PostgreSQL', '', 'prod', 
   '<font size=-1>New in <a href=https://www.postgresql.org/docs/10/release-10.html>2017</a></font>', 1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg10', '10.16-1', 'amd', 1, '20210211', '', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg10', '10.17-1', 'amd', 1, '20210513', '', 'LIBC-2.17', '');
 
 INSERT INTO releases VALUES ('pg11', 4, 'pg', 'PostgreSQL', '', 'prod', 
   '<font size=-1>New in <a href=https://www.postgresql.org/docs/11/release-11.html>2018</a></font>', 1, 'POSTGRES', '', '');

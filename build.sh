@@ -401,7 +401,11 @@ initC () {
 
 
 initPG () {
-  if [ "$pgM" == "11" ]; then
+  if [ "$pgM" == "96" ]; then
+    pgV=$P96
+  elif [ "$pgM" == "10" ]; then
+    pgV=$P10
+  elif [ "$pgM" == "11" ]; then
     pgV=$P11
   elif [ "$pgM" == "12" ]; then
     pgV=$P12
