@@ -52,7 +52,7 @@ sqlsvrV=2019
 mongoV=4.4
 esV=7.x
 
-adminV=5.4
+adminV=5.5
 omniV=2.17.0
 
 audit13V=1.5.0-1

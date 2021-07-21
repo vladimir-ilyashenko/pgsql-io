@@ -414,7 +414,8 @@ INSERT INTO versions VALUES ('kubernetes', '1.21', '', 1, '20210409', '', 'UBU20
 INSERT INTO projects VALUES ('pgadmin', 9, 80, '', 1, 'https://pgadmin.org',
   'pgadmin', 0, 'pgadmin.png', 'PG Admin', 'https://pgadmin.org');
 INSERT INTO releases VALUES ('pgadmin', 2, 'pgadmin', 'pgAdmin 4', '', 'test', '', 1, '', '', '');
-INSERT INTO versions VALUES ('pgadmin', '5.4', '', 1, '20210617', '', '', '');
+INSERT INTO versions VALUES ('pgadmin', '5.5', '', 1, '20210715', '', '', '');
+INSERT INTO versions VALUES ('pgadmin', '5.4', '', 0, '20210617', '', '', '');
 INSERT INTO versions VALUES ('pgadmin', '5.3', '', 0, '20210520', '', '', '');
 INSERT INTO versions VALUES ('pgadmin', '5.2', '', 0, '20210422', '', '', '');
 INSERT INTO versions VALUES ('pgadmin', '5.1', '', 0, '20210325', '', '', '');
