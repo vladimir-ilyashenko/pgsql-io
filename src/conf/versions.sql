@@ -175,16 +175,16 @@ INSERT INTO versions VALUES ('sqlsvr', '15.0.4138', '',   1, '20210610', '', 'UB
 INSERT INTO projects VALUES ('mongodb', 10, 27017, 'hub', 2, 
   'https://www.mongodb.com/download-center/community/releases',
   'MongoDB', 0, 'mongodb.png', 'Document Database',
-  'https://docs.mongodb.com/v5.0/release-notes/4.4/');
-INSERT INTO releases VALUES ('mongodb', 0, 'mongodb', 'MongoDB 4.4.6', '', 'test', '', 1, 'SSPL', '', '');
-INSERT INTO versions VALUES ('mongodb', '4.4', '',   1, '20210510', '', 'UBU20', '');
+  'https://docs.mongodb.com/v5.0/release-notes/5.0/');
+INSERT INTO releases VALUES ('mongodb', 0, 'mongodb', 'MongoDB 5.0', '', 'test', '', 1, 'SSPL', '', '');
+INSERT INTO versions VALUES ('mongodb', '5.0', '',   1, '20210713', '', 'UBU20', '');
 
 INSERT INTO projects VALUES ('elasticsearch', 10, 9200, 'hub', 2, 
   'https://www.elastic.co/downloads/elasticsearch',
   'Elasticsearch', 0, 'elasticsearch.png', 'Search and Analytics Engine',
   'https://www.elastic.co/elasticsearch/');
-INSERT INTO releases VALUES ('elasticsearch', 0, 'elasticsearch', 'ElasticSearch 7.13.3', '', 'test', '', 1, 'SSPL', '', '');
-INSERT INTO versions VALUES ('elasticsearch', '7.x', '',   1, '20210707', '', 'UBU20', '');
+INSERT INTO releases VALUES ('elasticsearch', 0, 'elasticsearch', 'ElasticSearch 7.13.4', '', 'test', '', 1, 'SSPL', '', '');
+INSERT INTO versions VALUES ('elasticsearch', '7.x', '',   1, '20210720', '', 'UBU20', '');
 
 INSERT INTO projects VALUES ('zookeeper', 10, 2181, 'hub', 1, 'https://zookeeper.apache.org/releases.html#releasenotes',
   'zookeeper', 0, 'zookeeper.png', 'Distributed Key-Store for HA', 'https://zookeeper.apache.org');
