@@ -454,8 +454,8 @@ INSERT INTO versions VALUES ('badger', '11.5', '', 1, '20210218', '', '', '');
 
 INSERT INTO projects VALUES ('pool2',  4, 0, 'hub', 3, 'http://github.com/pgpool/pgpool2/releases',
   'pool2',  0, 'pgpool2.png', 'Clustering Tool', 'http://pgpool.net');
-INSERT INTO releases VALUES ('pool2', 1, 'pool2',  'pgPool2', '', 'included', '', 1, 'BSD', '', '');
-INSERT INTO versions VALUES ('pool2', '4.2.3', 'amd', 1, '20210519', '', '', '');
+INSERT INTO releases VALUES ('pool2', 1, 'pool2',  'pgPool2', '', 'test', '', 1, 'BSD', '', '');
+INSERT INTO versions VALUES ('pool2', '4.2.3', 'amd', 1, '20210519', '', 'EL8', '');
 
 INSERT INTO projects VALUES ('bouncer',  4, 0, 'hub', 3, 'http://pgbouncer.org',
   'bouncer',  0, 'bouncer.png', 'Lightweight Connection Pooler', 'http://pgbouncer.org');

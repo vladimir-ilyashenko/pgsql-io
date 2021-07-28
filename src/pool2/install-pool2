@@ -2,20 +2,14 @@
 cd "$(dirname "$0")"
 
 echo " "
-echo "## INSTALL POOL2 ##########################################"
+echo "## INSTALL PGPOOL2 #######################################"
 source getPKMG.sh
 
-apt_repo=http://apt.postgresql.org/pub/repos/apt
+minor_ver=4.2.3
+major_ver=4.2
 
+repo=https://www.pgpool.net/yum/rpms/$major_ver/redhat/rhel-8-x86_64
+rpm=pgpool-II-pg13-$minor_ver-1pgdg.rhel8.x86_64.rpm
 
-if [ "$PKMG" == "yum" ]; then
-  echo "not supported on EL"
-  exit 1
-else
-  sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
-  wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-  sudo apt-get update
+sudo yum install -y $repo/$rpm
 
-  sudo apt install -y  pgpool2
-  sudo systemctl restart pgpool2
-fi
