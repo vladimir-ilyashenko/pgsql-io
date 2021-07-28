@@ -1,11 +1,11 @@
 import sqlite3, sys, pgsql
 
-WIDTH = 900 
+WIDTH = 1000
 
-NUM_COLS = 3
+NUM_COLS = 4
 COL_SIZE = round(WIDTH / NUM_COLS)
 
-PG_NUM_COLS = 7
+PG_NUM_COLS = 8
 PG_COL_SIZE = round(WIDTH / PG_NUM_COLS)
 
 #ALL_PLATFORMS = "arm, amd"
@@ -16,7 +16,7 @@ isSHOW_DESCRIPTION = "Y"
 HEADING_SIZE = "+1"
 
 FONT_SIZE = 3
-IMG_SIZE = 35
+IMG_SIZE = 30
 BORDER=0
 
 # condensed format
@@ -127,12 +127,12 @@ def get_columns(d):
 
 def print_row_header():
   print("")
-  empty_row = "<tr><td>&nbsp;</td></tr>"
-  if isEXTRA_SPACING == "Y":
-    print(empty_row)
+  ##empty_row = "<tr><td>&nbsp;</td></tr>"
+  ##if isEXTRA_SPACING == "Y":
+  ##  print(empty_row)
 
-  if cat_desc == "Featured Applications":
-    print(empty_row)
+  if cat_desc.startswith("Oracle"):
+    ##print(empty_row)
     print("</tr></table>\n")
     print_top()
 
@@ -192,6 +192,7 @@ def print_row_detail(pCol):
       ">" + rel_name + "&nbsp;&nbsp;<a href=" + source_url + ">v" + version + \
       "</a>&nbsp;<font color=red size=-1><sup>" + \
       rel_date_display +"</sup></font><br>" + plat_desc + "</td>")
+  print("")
 
   if component[0:3] in ("pg9", "pg1"):
     col_kount = PG_NUM_COLS
@@ -201,8 +202,8 @@ def print_row_detail(pCol):
   ##print(f"DEBUG pCol={pCol}, col_kount={col_kount}")
   if pCol == col_kount:
     print("</tr>")
-    if isEXTRA_SPACING == "Y":
-      print("<tr><td>&nbsp;</td></tr>")
+    ##if isEXTRA_SPACING == "Y":
+    ##  print("<tr><td>&nbsp;</td></tr>")
     
     if col_kount != 1:
       print("<tr><td>&nbsp;</td></tr>")

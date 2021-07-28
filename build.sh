@@ -206,7 +206,6 @@ initDir () {
   copy-pgXX "pglogical"
   copy-pgXX "timescaledb"
   copy-pgXX "anon"
-  copy-pgXX "http"
   copy-pgXX "cassandrafdw"
   copy-pgXX "hivefdw"
   copy-pgXX "plprofiler"
@@ -402,7 +401,11 @@ initC () {
 
 
 initPG () {
-  if [ "$pgM" == "11" ]; then
+  if [ "$pgM" == "96" ]; then
+    pgV=$P96
+  elif [ "$pgM" == "10" ]; then
+    pgV=$P10
+  elif [ "$pgM" == "11" ]; then
     pgV=$P11
   elif [ "$pgM" == "12" ]; then
     pgV=$P12
@@ -487,8 +490,11 @@ initPG () {
     initC "kafka"     "kafka"     "$kfkV"   "" "kafka"            "" "" "Y"
     initC "debezium"  "debezium"  "$dbzV"   "" "debezium"         "" "" "Y"
     initC "redis"     "redis"     "$redisV" "" "redis"            "" "" "Y"
-    initC "kubernetes"  "kubernetes"  "$k8sV"   "" "kubernetes"         "" "" "Y"
+    initC "kubernetes" "kubernetes" "$k8sV" "" "kubernetes"       "" "" "Y"
     initC "mariadb"   "mariadb"   "$mariaV" "" "mariadb"          "" "" "Y"
+    initC "sqlsvr"    "sqlsvr"    "$sqlsvrV" "" "sqlsvr"          "" "" "Y"
+    initC "mongodb"   "mongodb"   "$mongoV"  "" "mongodb"         "" "" "Y"
+    initC "elasticsearch" "elasticsearch"   "$esV"  "" "elk/elasticsearch" "" "" "Y"
     initC "patroni"   "patroni"   "$patroniV" "" "postgres/patroni" "" "" "nil"
     #initC "cassandra" "cassandra" "$cstarV" "" "cassandra" "" "" "nil"
     #initC "backrest"  "backrest"  "$backrestV" "$outPlat" "postgres/backrest" "" "" "nil"
@@ -498,7 +504,6 @@ initPG () {
   if [ "$pgM" == "12" ]; then 
     initC "postgis-pg$pgM" "postgis" "$postgisV" "$outPlat" "postgres/postgis" "" "" "nil"
     initC "pldebugger-pg$pgM" "pldebugger" "$debuggerV" "$outPlat" "postgres/pldebugger" "" "" "nil"
-    initC "http-pg$pgM" "http" "$httpV" "$outPlat" "postgres/http" "" "" "nil"
 
     #if [ "$outPlat" == "amd" ]; then
       #initC "cassandrafdw-pg$pgM" "cassandrafdw" "$cstarfdwV" "$outPlat" "postgres/cassandrafdw" "" "" "nil"

@@ -12,6 +12,12 @@ pg12BuildV=2
 pg11V="11.12"
 pg11BuildV=2
 
+pg10V="10.17"
+pg10BuildV=1
+
+pg96V="9.6.22"
+pg96BuildV=1
+
 wal2jsonFullV=2.3
 wal2jsonShortV=
 wal2jsonBuildV=1
@@ -36,7 +42,7 @@ agentFullV=4.0.0
 agentShortV=
 agentBuildV=1
 
-citusFullV=10.0.3
+citusFullV=10.1.0
 citusShortV=
 citusBuildV=1
 

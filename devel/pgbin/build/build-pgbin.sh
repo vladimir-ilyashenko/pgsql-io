@@ -94,6 +94,12 @@ function checkPostgres {
 		elif [[ "${pgSrcV/rc}" =~ ^11.* ]]; then
 			pgShortV="11"
 			pgLLVM="--with--llvm"
+		elif [[ "${pgSrcV/rc}" =~ ^10.* ]]; then
+			pgShortV="10"
+			pgLLVM=""
+		elif [[ "${pgSrcV/rc}" =~ ^9.6.* ]]; then
+			pgShortV="96"
+			pgLLVM=""
 		else
 			echo "ERROR: Could not determine Postgres Version for '$pgSrcV'"
 			exit 1

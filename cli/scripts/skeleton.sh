@@ -54,7 +54,6 @@ function test12 {
   ./io install postgis-pg12       -d demo
 
   ./io install debugger-pg12      -d demo
-  ./io install http-pg12          -d demo
 }
 
 cd ../..

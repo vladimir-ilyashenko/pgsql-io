@@ -32,7 +32,8 @@ We fully embrace core PostgreSQL and it's rich community based eco-system of
 enterprise-class extensions.
 <p>
 For releases through pg13, we support EL7+ as well as Ubuntu 16.04+.  Starting
-with pg14, we support EL8 & Ubuntu 20.04+.
+with pg14, we only support EL8 (Redhat/Rocky/CentOS) & Ubuntu 20.04+.  We are built with
+optimized and secure static binaries that also run on several other Linux flavors (your mileage may vary).
 \
 """
   print("  <tr><td colspan=2><h2>Introduction</h2></td></tr>")

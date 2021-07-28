@@ -7,25 +7,24 @@ P14=14beta2-1
 P13=13.3-2
 P12=12.7-2
 P11=11.12-2
+P10=10.17-1
+P96=9.6.22-1
 
 k8sV=1.21
 
 w2jV=2.3-1
 esfdwV=0.11.1
 odbcV=13.01-1
-pgtopV=3.7.0-1
-proctabV=0.0.8.1-1
-citusV=10.0.3-1
+citusV=10.1.0-1
 multicornV=1.4.1-1
 hivefdwV=4.0-1
 
 oraclefdwV=2.3.0-1
 inclV=21.1
 orafceV=3.15.1-1
-ora2pgV=22.0
+ora2pgV=22.1
 
 fdV=1.1.0-1
-httpV=1.3.1-1
 anonV=0.9.0-1
 ddlxV=0.17-1
 hypoV=1.3.1-1
@@ -47,8 +46,11 @@ kfkV=2.7.1
 dbzV=1.6.0
 redisV=6.2
 mariaV=10.6x
+sqlsvrV=2019
+mongoV=5.0
+esV=7.x
 
-adminV=5.4
+adminV=5.5
 omniV=2.17.0
 
 audit13V=1.5.0-1

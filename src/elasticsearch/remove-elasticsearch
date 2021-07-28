@@ -1,3 +1,8 @@
-sudo yum remove -y elasticsearch
+set -x
+
+sudo apt-get autoremove -y elasticsearch
+
+sudo rm -f /etc/apt/sources.list.d/elastic*
+
 sudo rm -rf /var/lib/elasticsearch
 sudo rm -rf /var/log/elasticsearch
