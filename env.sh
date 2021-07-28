@@ -15,9 +15,7 @@ k8sV=1.21
 w2jV=2.3-1
 esfdwV=0.11.1
 odbcV=13.01-1
-pgtopV=3.7.0-1
-proctabV=0.0.8.1-1
-citusV=10.0.3-1
+citusV=10.1.0-1
 multicornV=1.4.1-1
 hivefdwV=4.0-1
 
