@@ -92,7 +92,7 @@ CREATE VIEW v_versions AS
 
 INSERT INTO categories VALUES (0,   0, 'Hidden', 'NotShown');
 INSERT INTO categories VALUES (1,  10, 'Rock-Solid PostgreSQL', 'Postgres');
-INSERT INTO categories VALUES (11, 95, 'Hybrid & Multi-Cloud', 'Cloud');
+INSERT INTO categories VALUES (11, 20, 'Clustering', 'Cloud');
 INSERT INTO categories VALUES (10, 96, 'Foreign Datastores', 'Foreign');
 INSERT INTO categories VALUES (2,  60, 'Advanced Postgres Apps', 'Applications');
 INSERT INTO categories VALUES (6,  30, 'Oracle Compatibility & Migration', 'Compatibility');
@@ -147,7 +147,7 @@ INSERT INTO versions VALUES ('pg14', '14beta2-1',  'amd', 1, '20210624','', 'LIB
 INSERT INTO projects VALUES ('debezium',  5, 8080, 'kafka', 3, 'https://debezium.io/releases/1.6/',
   'Debezium', 0, 'debezium.png', 'Stream DB Changes', 'https://debezium.io');
 INSERT INTO releases VALUES ('debezium', 0, 'debezium', 'Debezium', '', 'test', '', 1, 'Apache', '', '');
-INSERT INTO versions VALUES ('debezium', '1.6.0', '', 1, '20210630', '', '', '');
+INSERT INTO versions VALUES ('debezium', '1.6.1', '', 1, '20210723', '', '', '');
 
 INSERT INTO projects VALUES ('kafka', 10, 9092, 'zookeeper', 1, 'https://kafka.apache.org/downloads',
   'Kafka', 0, 'kafka.png', 'Streaming Platform', 'https://kafka.apache.org');
@@ -177,7 +177,8 @@ INSERT INTO projects VALUES ('mongodb', 10, 27017, 'hub', 2,
   'MongoDB', 0, 'mongodb.png', 'Document Database',
   'https://docs.mongodb.com/v5.0/release-notes/5.0/');
 INSERT INTO releases VALUES ('mongodb', 0, 'mongodb', 'MongoDB 5.0', '', 'test', '', 1, 'SSPL', '', '');
-INSERT INTO versions VALUES ('mongodb', '5.0', '',   1, '20210713', '', 'UBU20', '');
+INSERT INTO versions VALUES ('mongodb', '5.0.1', '',   1, '20210722', '', 'UBU20', '');
+INSERT INTO versions VALUES ('mongodb', '5.0',   '',   0, '20210713', '', 'UBU20', '');
 
 INSERT INTO projects VALUES ('elasticsearch', 10, 9200, 'hub', 2, 
   'https://www.elastic.co/downloads/elasticsearch',
@@ -361,7 +362,7 @@ INSERT INTO releases VALUES ('citus-pg13',  5, 'citus', 'Citus', '', 'test', '',
 INSERT INTO versions VALUES ('citus-pg13', '10.1.0-1', 'amd', 1, '20210716', 'pg13', '', 'https://github.com/citusdata/citus/releases/tag/v10.1.0');
 INSERT INTO versions VALUES ('citus-pg13', '10.0.3-1', 'amd', 0, '20210315', 'pg13', '', 'https://github.com/citusdata/citus/releases/tag/v10.0.3');
 
-INSERT INTO projects VALUES ('cron', 4, 0, 'hub',0, 'https://github.com/citusdata/pg_cron/releases',
+INSERT INTO projects VALUES ('cron', 9, 0, 'hub',0, 'https://github.com/citusdata/pg_cron/releases',
   'cron', 1, 'cron.png', 'Scheduler as Background Worker', 'https://github.com/citusdata/pg_cron');
 INSERT INTO releases VALUES ('cron-pg13', 10, 'cron', 'pgCron', '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('cron-pg13', '1.3.1-1', 'amd', 1, '20210330', 'pg13', '', '');
@@ -407,7 +408,7 @@ INSERT INTO versions VALUES ('omnidb', '2.17.0', '', 1, '20191205', '', '', '');
 
 INSERT INTO projects VALUES ('kubernetes', 11, 80, '', 1, 'https://github.com/ubuntu/microk8s/releases',
   'kubernetes', 0, 'kubernetes.png', 
-  'HA clusters using <a href=https://microk8s.io>MicroK8s</a>', 
+  'Scale & Manage Containers', 
   'https://k8s.io');
 INSERT INTO releases VALUES ('kubernetes', 3, 'kubernetes', 'Kubernetes', '', 'test', '', 1, '', '', '');
 INSERT INTO versions VALUES ('kubernetes', '1.21', '', 1, '20210409', '', 'UBU20', '');
@@ -452,18 +453,18 @@ INSERT INTO projects VALUES ('badger', 4, 0, 'hub', 6, 'https://github.com/darol
 INSERT INTO releases VALUES ('badger', 101, 'badger','pgBadger','', 'test', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('badger', '11.5', '', 1, '20210218', '', '', '');
 
-INSERT INTO projects VALUES ('pool2',  4, 0, 'hub', 3, 'http://github.com/pgpool/pgpool2/releases',
-  'pool2',  0, 'pgpool2.png', 'Clustering Tool', 'http://pgpool.net');
+INSERT INTO projects VALUES ('pool2', 11, 0, 'hub', 3, 'http://github.com/pgpool/pgpool2/releases',
+  'pool2',  0, 'pgpool2.png', 'Load Balancing & Query Cache', 'http://pgpool.net');
 INSERT INTO releases VALUES ('pool2', 1, 'pool2',  'pgPool2', '', 'test', '', 1, 'BSD', '', '');
 INSERT INTO versions VALUES ('pool2', '4.2.3', 'amd', 1, '20210519', '', 'EL8', '');
 
-INSERT INTO projects VALUES ('bouncer',  4, 0, 'hub', 3, 'http://pgbouncer.org',
-  'bouncer',  0, 'bouncer.png', 'Lightweight Connection Pooler', 'http://pgbouncer.org');
+INSERT INTO projects VALUES ('bouncer', 11, 0, 'hub', 3, 'http://pgbouncer.org',
+  'bouncer',  0, 'bouncer.png', 'Connection Pooler', 'http://pgbouncer.org');
 INSERT INTO releases VALUES ('bouncer', 1, 'bouncer',  'pgBouncer', '', 'included', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('bouncer', '1.15.0', 'amd', 1, '20210614', '', '', '');
 
-INSERT INTO projects VALUES ('patroni',  2, 0, 'haproxy', 4, 'https://github.com/zalando/patroni/releases',
-  'patroni', 0, 'patroni.png', 'Postgres HA Template', 'https://github.com/zalando/patroni');
+INSERT INTO projects VALUES ('patroni', 11, 0, 'haproxy', 4, 'https://github.com/zalando/patroni/releases',
+  'patroni', 0, 'patroni.png', 'HA Template', 'https://github.com/zalando/patroni');
 INSERT INTO releases VALUES ('patroni', 1, 'patroni', 'Patroni', '', 'test', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('patroni', '2.1.0', '', 1, '20210706', '', 'UBU20 PYTHON3', 'https://github.com/zalando/patroni/releases/tag/v2.1.0');
 INSERT INTO versions VALUES ('patroni', '2.0.2', '', 0, '20210222', '', 'UBU20 PYTHON3', 'https://github.com/zalando/patroni/releases/tag/v2.0.2');
@@ -498,7 +499,7 @@ INSERT INTO versions VALUES ('ddlx-pg13', '0.17-1', 'amd', 1, '20200911', 'pg13'
 
 INSERT INTO projects VALUES ('wa',      4, 0, 'hub', 1, 'https://github.com/powa-team/powa/releases', 'powa',  1, 'powa.png', 'Analyzer', 'https://powa.readthedocs.io/en/latest/components/index.html');
 INSERT INTO releases VALUES ('wa-pg13', 97, 'wa', 'Analyzer', '', 'test','', '', 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('wa-pg13', '2.1-1', 'amd', 1, '20210508', 'pg13', '', '');
+INSERT INTO versions VALUES ('wa-pg13', '2.1-1', 'amd', 0, '20210508', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('archivist',      4, 0, 'hub', 1, 'https://github.com/powa-team/powa/releases', 'archivist',  1, 'archivist.png', 'Archive Workloads', ' https://powa.readthedocs.io/en/latest/components/powa-archivist/index.html');
 INSERT INTO releases VALUES ('archivist-pg13', 97, 'archivist', 'Archivist', '', 'test','',  0, 'POSTGRES', '', '');
@@ -520,10 +521,10 @@ INSERT INTO projects VALUES ('waitsampling', 4, 0, 'powa', 4, 'https://github.co
 INSERT INTO releases VALUES ('waitsampling-pg13', 98, 'waitsampling', 'WaitSampling', '', 'test','',  1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('waitsampling-pg13', '1.1.3-1', 'amd', 0, '20210127', 'pg13', '', '');
 
-INSERT INTO projects VALUES ('statmonitor', 4, 0, 'powa', 4, 'https://github.com/postgrespro/pg_wait_sampling/releases',
-  'statmonitor', 1, 'percona.png', 'Stats for Wait Events', 'https://github.com/postgrespro/pg_wait_sampling');
+INSERT INTO projects VALUES ('statmonitor', 4, 0, 'powa', 4, 'https://github.com/percona/pg_stat_monitor/releases',
+  'statmonitor', 1, 'percona.png', 'Query Performance Monitoring', 'https://github.com/percona/pg_stat_monitor');
 INSERT INTO releases VALUES ('statmonitor-pg13', 98, 'statmonitor', 'pgStatMonitor', '', 'test','',  1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('statmonitor-pg13', '1.1.3-1', 'amd', 1, '20210127', 'pg13', '', '');
+INSERT INTO versions VALUES ('statmonitor-pg13', '0.9.1-1', 'amd', 1, '20210414', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('multicorn', 5, 0, 'hub', 0, 'https://github.com/pgsql-io/Multicorn/',
   'multicorn', 1, 'multicorn.png', 'Python FDW Library', 'http://multicorn.org');

@@ -127,12 +127,8 @@ def get_columns(d):
 
 def print_row_header():
   print("")
-  ##empty_row = "<tr><td>&nbsp;</td></tr>"
-  ##if isEXTRA_SPACING == "Y":
-  ##  print(empty_row)
 
-  if cat_desc.startswith("Oracle"):
-    ##print(empty_row)
+  if cat_desc.startswith("Clustering"):
     print("</tr></table>\n")
     print_top()
 
