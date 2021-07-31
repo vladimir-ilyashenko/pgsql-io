@@ -502,23 +502,28 @@ INSERT INTO versions VALUES ('wa-pg13', '2.1-1', 'amd', 1, '20210508', 'pg13', '
 
 INSERT INTO projects VALUES ('archivist',      4, 0, 'hub', 1, 'https://github.com/powa-team/powa/releases', 'archivist',  1, 'archivist.png', 'Archive Workloads', ' https://powa.readthedocs.io/en/latest/components/powa-archivist/index.html');
 INSERT INTO releases VALUES ('archivist-pg13', 97, 'archivist', 'Archivist', '', 'test','',  0, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('archivist-pg13', '4.1.2-1', 'amd', 1, '20201220', 'pg13', '', '');
+INSERT INTO versions VALUES ('archivist-pg13', '4.1.2-1', 'amd', 0, '20201220', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('qualstats', 4, 0, 'powa', 2, 'https://github.com/powa-team/pg_qualstats/releases',
   'qualstats', 1, 'qualstats.png', 'WHERE Clause Stats', 'https://github.com/powa-team/pg_qualstats');
 INSERT INTO releases VALUES ('qualstats-pg13', 98, 'qualstats', 'QualStats', '', 'test','',  1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('qualstats-pg13', '2.0.3-1', 'amd', 1, '20210604', 'pg13', '', '');
+INSERT INTO versions VALUES ('qualstats-pg13', '2.0.3-1', 'amd', 0, '20210604', 'pg13', '', '');
 INSERT INTO versions VALUES ('qualstats-pg13', '2.0.2-1', 'amd', 0, '20200523', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('statkcache', 4, 0, 'powa', 3, 'https://github.com/powa-team/pg_stat_kcache/releases',
   'statkcache', 1, 'statkcache.png', 'Filesystem Stats', 'https://github.com/powa-team/pg_stat_kcache');
 INSERT INTO releases VALUES ('statkcache-pg13', 98, 'statkcache', 'StatKcache', '', 'test','',  1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('statkcache-pg13', '2.2.0-1', 'amd', 1, '20201210', 'pg13', '', '');
+INSERT INTO versions VALUES ('statkcache-pg13', '2.2.0-1', 'amd', 0, '20201210', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('waitsampling', 4, 0, 'powa', 4, 'https://github.com/postgrespro/pg_wait_sampling/releases',
   'waitsampling', 1, 'waitsampling.png', 'Stats for Wait Events', 'https://github.com/postgrespro/pg_wait_sampling');
 INSERT INTO releases VALUES ('waitsampling-pg13', 98, 'waitsampling', 'WaitSampling', '', 'test','',  1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('waitsampling-pg13', '1.1.3-1', 'amd', 1, '20210127', 'pg13', '', '');
+INSERT INTO versions VALUES ('waitsampling-pg13', '1.1.3-1', 'amd', 0, '20210127', 'pg13', '', '');
+
+INSERT INTO projects VALUES ('statmonitor', 4, 0, 'powa', 4, 'https://github.com/postgrespro/pg_wait_sampling/releases',
+  'statmonitor', 1, 'percona.png', 'Stats for Wait Events', 'https://github.com/postgrespro/pg_wait_sampling');
+INSERT INTO releases VALUES ('statmonitor-pg13', 98, 'statmonitor', 'pgStatMonitor', '', 'test','',  1, 'POSTGRES', '', '');
+INSERT INTO versions VALUES ('statmonitor-pg13', '1.1.3-1', 'amd', 1, '20210127', 'pg13', '', '');
 
 INSERT INTO projects VALUES ('multicorn', 5, 0, 'hub', 0, 'https://github.com/pgsql-io/Multicorn/',
   'multicorn', 1, 'multicorn.png', 'Python FDW Library', 'http://multicorn.org');
