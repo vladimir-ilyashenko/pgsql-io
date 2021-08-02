@@ -271,8 +271,8 @@ INSERT INTO projects VALUES ('instantclient', 6, 1521, 'hub', 0, 'https://www.or
 INSERT INTO releases VALUES ('instantclient', 2, 'instantclient', 'Instant Client', '', 'test','', 0, 'ORACLE', '', '');
 INSERT INTO versions VALUES ('instantclient', '21.1', 'amd', 1, '20210317', '', '', '');
 
-INSERT INTO projects VALUES ('pgosql', 6, 0, 'hub', 0, 'https://github.com/pgsql-io/pgosql/releases',
-  'pgosql', 1, 'pgosql.png', 'PL/SQL<sup>&reg;</sup> Compatibility', 'https://github.com/pgsql-io/pgosql');
+INSERT INTO projects VALUES ('pgosql', 6, 0, 'hub', 0, 'https://pgsql.io/pgosql',
+  'pgosql', 1, 'pgosql.png', 'PL/SQL<sup>&reg;</sup> Compatibility', 'https://pgsql.io/pgosql');
 INSERT INTO releases VALUES ('pgosql-pg14', 99, 'pgosql', 'pgOSQL', '', 'test', '', 1, 'SSPL', '', '');
 INSERT INTO versions VALUES ('pgosql-pg14', '0.1',  'amd', 1, '20210720', 'pg14', '', '');
 
