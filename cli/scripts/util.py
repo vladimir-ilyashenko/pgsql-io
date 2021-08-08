@@ -4,7 +4,7 @@
 
 from __future__ import print_function, division
 
-MY_VERSION = "6.52"
+MY_VERSION = "6.53"
 
 from subprocess import Popen, PIPE, STDOUT
 from datetime import datetime, timedelta
@@ -1077,7 +1077,7 @@ def set_con(p_args, p_pwd):
     remember_pgpassword(p_pwd, port, host, db, user)
     return
 
-  message(f"Svc '{arg[0]}' not supported.  Must be 'postgres'", "error")
+  message("Svc '" + str(arg[0]) + "' not supported.  Must be 'postgres'", "error")
   return
 
 
@@ -1096,7 +1096,7 @@ def get_con(p_args):
 
     return
 
-  message(f"Svc '{arg[0]}' not supported.  Must be 'postgres'", "error")
+  message("Svc '" + str(arg[0]) + "' not supported.  Must be 'postgres'", "error")
   return
 
 
