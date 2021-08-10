@@ -58,6 +58,11 @@ elif [ "$majorV" == "13" ]; then
 elif [ "$majorV" == "14" ]; then
   pgV=$pg14V
   pgBuildV=$pg14BuildV
+elif [ "$majorV" == "o14" ]; then
+  export PGOSQL="True"
+  pgV=$pgo14V
+  pgBuildV=$pgo14BuildV
+  pgSrc=$SRC/pgosql
 fi
 
 if [ "$majorV" == "all" ]; then
@@ -66,7 +71,7 @@ if [ "$majorV" == "all" ]; then
   runPgBin "$binBld" "$pgSrc-$pg11V.tar.gz" "$pg11BuildV"
   runPgBin "$binBld" "$pgSrc-$pg12V.tar.gz" "$pg12BuildV"
   runPgBin "$binBld" "$pgSrc-$pg13V.tar.gz" "$pg13BuildV"
-  runPgBin "$binBld" "$pgSrc-$pg14V.tar.gz" "$pg14BuildV"
+  ## runPgBin "$binBld" "$pgSrc-$pg14V.tar.gz" "$pg14BuildV"
 else
   runPgBin "$binBld" "$pgSrc-$pgV.tar.gz" "$pgBuildV"
 fi

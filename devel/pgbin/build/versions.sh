@@ -1,21 +1,24 @@
 #!/bin/bash
 
-pg14V="14beta2"
+pgo14V="14beta2a"
+pgo14BuildV=1
+
+pg14V="14beta3"
 pg14BuildV=1
 
-pg13V="13.3"
-pg13BuildV=2
+pg13V="13.4"
+pg13BuildV=1
 
-pg12V="12.7"
-pg12BuildV=2
+pg12V="12.8"
+pg12BuildV=1
 
-pg11V="11.12"
-pg11BuildV=2
+pg11V="11.13"
+pg11BuildV=1
 
-pg10V="10.17"
+pg10V="10.18"
 pg10BuildV=1
 
-pg96V="9.6.22"
+pg96V="9.6.23"
 pg96BuildV=1
 
 wal2jsonFullV=2.3
@@ -30,7 +33,9 @@ backrestFullV=2.34
 backrestShortV=
 backrestBuildV=1
 
-bouncerFullV=1.15.0
+pool2FullV=4.2.3
+
+bouncerFullV=1.16.0
 bouncerShortV=
 bouncerBuildV=3
 
