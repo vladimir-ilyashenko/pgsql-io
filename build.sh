@@ -501,7 +501,7 @@ initPG () {
     #initC "bouncer"   "bouncer"   "$bouncerV" "$outPlat" "postgres/bouncer" "" "" "nil"
   fi
 
-  if [ "$pgM" == "12" ]; then 
+  if [ "$pgM" == "12" ]  && [ "$isEL8" == "False" ]; then 
     initC "postgis-pg$pgM" "postgis" "$postgisV" "$outPlat" "postgres/postgis" "" "" "nil"
     initC "pldebugger-pg$pgM" "pldebugger" "$debuggerV" "$outPlat" "postgres/pldebugger" "" "" "nil"
 
