@@ -158,35 +158,36 @@ INSERT INTO versions VALUES ('kafka', '2.7.0', '', 0, '20201221', '', '', 'https
 
 INSERT INTO projects VALUES ('redis', 10, 6379, 'hub', 2, 'https://github.com/redis/redis/releases',
   'Redis', 0, 'redis.png', 'Hi-Speed Cache', 'https://redis.io');
-INSERT INTO releases VALUES ('redis', 0, 'redis', 'Redis 6.2.4', '', 'test', '', 1, 'BSD', '', '');
-INSERT INTO versions VALUES ('redis', '6.2', '',   1, '20210601', '', 'UBU20', '');
+INSERT INTO releases VALUES ('redis', 0, 'redis', 'Redis 6.2.5', '', 'test', '', 1, 'BSD', '', '');
+INSERT INTO versions VALUES ('redis', '6.2', '',   1, '20210721', '', 'UBU20', '');
 
 INSERT INTO projects VALUES ('mariadb', 10, 3306, 'hub', 2, 'https://github.com/mariadb/server/releases',
   'MariaDB', 0, 'mariadb.png', 'MySQL Replacement', 'https://mariadb.com');
-INSERT INTO releases VALUES ('mariadb', 0, 'mariadb', 'MariaDB 10.6.3', '', 'test', '', 1, 'GPL', '', '');
-INSERT INTO versions VALUES ('mariadb', '10.6x', '',   1, '20210705', '', '', '');
+INSERT INTO releases VALUES ('mariadb', 0, 'mariadb', 'MariaDB 10.6.4', '', 'test', '', 1, 'GPL', '', '');
+INSERT INTO versions VALUES ('mariadb', '10.6x', '',   1, '20210805', '', '', '');
 
 INSERT INTO projects VALUES ('sqlsvr', 10, 1433, 'hub', 2, 
   'https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-release-notes-2019?view=sql-server-ver15#release-history',
   'MS SQL Server', 0, 'sqlsvr.png', 'Microsoft SQL Server 2019',
   'https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-overview?view=sql-server-ver15');
 INSERT INTO releases VALUES ('sqlsvr', 0, 'sqlsvr', 'SQL Svr 15', '', 'test', '', 1, '', '', '');
-INSERT INTO versions VALUES ('sqlsvr', '15.0.4138', '',   1, '20210610', '', 'UBU20', '');
+INSERT INTO versions VALUES ('sqlsvr', '15.0.4153', '',   1, '20210804', '', 'UBU20', '');
 
 INSERT INTO projects VALUES ('mongodb', 10, 27017, 'hub', 2, 
-  'https://www.mongodb.com/download-center/community/releases',
+  'https://docs.mongodb.com/v5.0/release-notes/5.0/',
   'MongoDB', 0, 'mongodb.png', 'Document Database',
   'https://docs.mongodb.com/v5.0/release-notes/5.0/');
 INSERT INTO releases VALUES ('mongodb', 0, 'mongodb', 'MongoDB 5.0', '', 'test', '', 1, 'SSPL', '', '');
-INSERT INTO versions VALUES ('mongodb', '5.0.1', '',   1, '20210722', '', 'UBU20', '');
+INSERT INTO versions VALUES ('mongodb', '5.0.2', '',   1, '20210804', '', 'UBU20', '');
+INSERT INTO versions VALUES ('mongodb', '5.0.1', '',   0, '20210722', '', 'UBU20', '');
 INSERT INTO versions VALUES ('mongodb', '5.0',   '',   0, '20210713', '', 'UBU20', '');
 
 INSERT INTO projects VALUES ('elasticsearch', 10, 9200, 'hub', 2, 
   'https://www.elastic.co/downloads/elasticsearch',
   'Elasticsearch', 0, 'elasticsearch.png', 'Search and Analytics Engine',
   'https://www.elastic.co/elasticsearch/');
-INSERT INTO releases VALUES ('elasticsearch', 0, 'elasticsearch', 'ElasticSearch 7.13.4', '', 'test', '', 1, 'SSPL', '', '');
-INSERT INTO versions VALUES ('elasticsearch', '7.x', '',   1, '20210720', '', 'UBU20', '');
+INSERT INTO releases VALUES ('elasticsearch', 0, 'elasticsearch', 'ElasticSearch 7.14.0', '', 'test', '', 1, 'SSPL', '', '');
+INSERT INTO versions VALUES ('elasticsearch', '7.x', '',   1, '20210803', '', 'UBU20', '');
 
 INSERT INTO projects VALUES ('zookeeper', 10, 2181, 'hub', 1, 'https://zookeeper.apache.org/releases.html#releasenotes',
   'zookeeper', 0, 'zookeeper.png', 'Distributed Key-Store for HA', 'https://zookeeper.apache.org');
