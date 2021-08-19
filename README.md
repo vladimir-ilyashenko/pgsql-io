@@ -1,6 +1,6 @@
 # PGSQL-IO
 
-Steps to build a build environment on CentOS 7/8 on AMD or ARM
+Steps to build a build environment on CentOS 7/8 on AMD
 
 ## 1.) run ./setupInitial.sh to configure OS environment
 
