@@ -110,7 +110,7 @@ INSERT INTO versions VALUES ('hub', '6.51', '',  0, '20210613', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.50', '',  0, '20210601', '', '', '');
 
 -- ##
-INSERT INTO projects VALUES ('pg', 1, 5432, 'hub', 1, 'https://postgresql.org/download',
+INSERT INTO projects VALUES ('pg', 1, 5432, 'hub', 1, 'https://github.com/postgres/postgres/releases',
  'postgres', 0, 'postgresql.png', 'Best RDBMS', 'https://postgresql.org');
 
 INSERT INTO releases VALUES ('pg96', 6, 'pg', 'PostgreSQL', '', 'prod', 
@@ -140,7 +140,7 @@ INSERT INTO versions VALUES ('pg13', '13.4-1',  'amd', 1, '20210812','', 'LIBC-2
 INSERT INTO versions VALUES ('pg13', '13.3-2',  'amd', 0, '20210513','', 'LIBC-2.17', '');
 
 INSERT INTO releases VALUES ('pg14', 1, 'pg', '', '', 'beta', 
-  '<font size=-1>New in <a href=https://www.postgresql.org/about/news/postgresql-14-beta3-released/>2021</a></font>',
+  '<font size=-1>New in <a href=https://www.postgresql.org/docs/14/release-14.html>2021</a></font>',
   1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pg14', '14beta3-1',  'amd', 1, '20210812','', 'LIBC-2.28', '');
 INSERT INTO versions VALUES ('pg14', '14beta2-1',  'amd', 0, '20210624','', 'LIBC-2.28', '');
@@ -415,7 +415,8 @@ INSERT INTO projects VALUES ('kubernetes', 11, 80, '', 1, 'https://github.com/ub
   'Scale & Manage Containers', 
   'https://k8s.io');
 INSERT INTO releases VALUES ('kubernetes', 3, 'kubernetes', 'Kubernetes', '', 'test', '', 1, '', '', '');
-INSERT INTO versions VALUES ('kubernetes', '1.21', '', 1, '20210409', '', 'UBU20', '');
+INSERT INTO versions VALUES ('kubernetes', '1.22', '', 1, '20210809', '', 'UBU20', '');
+INSERT INTO versions VALUES ('kubernetes', '1.21', '', 0, '20210409', '', 'UBU20', '');
 
 INSERT INTO projects VALUES ('pgadmin', 9, 80, '', 1, 'https://pgadmin.org',
   'pgadmin', 0, 'pgadmin.png', 'PG Admin', 'https://pgadmin.org');
@@ -460,7 +461,8 @@ INSERT INTO versions VALUES ('badger', '11.5', '', 1, '20210218', '', '', '');
 INSERT INTO projects VALUES ('pool2', 11, 0, 'hub', 3, 'http://github.com/pgpool/pgpool2/releases',
   'pool2',  0, 'pgpool2.png', 'Load Balancing & Query Cache', 'http://pgpool.net');
 INSERT INTO releases VALUES ('pool2', 1, 'pool2',  'pgPool2', '', 'test', '', 1, 'BSD', '', '');
-INSERT INTO versions VALUES ('pool2', '4.2.3', 'amd', 1, '20210519', '', 'EL8', '');
+INSERT INTO versions VALUES ('pool2', '4.2.4', 'amd', 1, '20210802', '', 'EL8', '');
+INSERT INTO versions VALUES ('pool2', '4.2.3', 'amd', 0, '20210519', '', 'EL8', '');
 
 INSERT INTO projects VALUES ('bouncer', 11, 0, 'hub', 3, 'http://pgbouncer.org',
   'bouncer',  0, 'bouncer.png', 'Connection Pooler', 'http://pgbouncer.org');
