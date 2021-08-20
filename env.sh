@@ -1,7 +1,7 @@
 
 bundle=pgsql
 api=io
-hubV=6.53
+hubV=6.54
 
 P14=14beta3-1
 P13=13.4-1
@@ -10,7 +10,7 @@ P11=11.13-1
 P10=10.18-1
 P96=9.6.23-1
 
-k8sV=1.21
+k8sV=1.22
 
 w2jV=2.3-1
 esfdwV=0.11.1
@@ -43,7 +43,7 @@ waitsV=1.1.3-1
 
 zooV=3.7.0
 kfkV=2.7.1
-dbzV=1.6.0
+dbzV=1.6.1
 redisV=6.2
 mariaV=10.6x
 sqlsvrV=2019
@@ -68,7 +68,7 @@ mongofdwV=5.2.9-1
 tdsfdwV=2.0.2-1
 cstarfdwV=3.1.5-1
 badgerV=11.5
-patroniV=2.1.0
+patroniV=2.1.1
 
 HUB="$PWD"
 SRC="$HUB/src"
