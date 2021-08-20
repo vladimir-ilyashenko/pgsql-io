@@ -104,7 +104,8 @@ INSERT INTO categories VALUES (9,  87, 'Management & Monitoring', 'Manage/Monito
 -- ## HUB ################################
 INSERT INTO projects VALUES ('hub',0, 0, 'hub', 0, 'https://github.com/pgsql-io/pgsql-io','',0,'','','');
 INSERT INTO releases VALUES ('hub', 1, 'hub', '', '', 'hidden', '', 1, '', '', '');
-INSERT INTO versions VALUES ('hub', '6.53', '',  1, '20210812', '', '', '');
+INSERT INTO versions VALUES ('hub', '6.54', '',  1, '20210831', '', '', '');
+INSERT INTO versions VALUES ('hub', '6.53', '',  0, '20210812', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.52', '',  0, '20210614', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.51', '',  0, '20210613', '', '', '');
 INSERT INTO versions VALUES ('hub', '6.50', '',  0, '20210601', '', '', '');
@@ -145,12 +146,12 @@ INSERT INTO releases VALUES ('pg14', 1, 'pg', '', '', 'beta',
 INSERT INTO versions VALUES ('pg14', '14beta3-1',  'amd', 1, '20210812','', 'LIBC-2.28', '');
 INSERT INTO versions VALUES ('pg14', '14beta2-1',  'amd', 0, '20210624','', 'LIBC-2.28', '');
 
-INSERT INTO projects VALUES ('debezium',  5, 8080, 'kafka', 3, 'https://debezium.io/releases/1.6/',
+INSERT INTO projects VALUES ('debezium',  5, 8080, '', 3, 'https://debezium.io/releases/1.6/',
   'Debezium', 0, 'debezium.png', 'Stream DB Changes', 'https://debezium.io');
 INSERT INTO releases VALUES ('debezium', 0, 'debezium', 'Debezium', '', 'test', '', 1, 'Apache', '', '');
 INSERT INTO versions VALUES ('debezium', '1.6.1', '', 1, '20210723', '', '', '');
 
-INSERT INTO projects VALUES ('kafka', 10, 9092, 'zookeeper', 1, 'https://kafka.apache.org/downloads',
+INSERT INTO projects VALUES ('kafka', 10, 9092, '', 1, 'https://kafka.apache.org/downloads',
   'Kafka', 0, 'kafka.png', 'Streaming Platform', 'https://kafka.apache.org');
 INSERT INTO releases VALUES ('kafka', 0, 'kafka', 'Kafka', '', 'test', '', 1, 'Apache', '', '');
 INSERT INTO versions VALUES ('kafka', '2.7.1', '', 1, '20210510', '', '', 'https://downloads.apache.org/kafka/2.7.1/RELEASE_NOTES.html');
