@@ -20,6 +20,6 @@ os.system("cp " + datadir + "/pg_hba.conf " + datadir + "/pg_hba.conf.orig")
 thisdir = os.path.dirname(os.path.realpath(__file__))
 os.system("cp " + thisdir + "/pg_hba.conf.replication " + datadir + "/pg_hba.conf")
 
-##util.create_extension("pgXX", "wal2json", True)
+util.restart_postgres("pgXX")
 
 

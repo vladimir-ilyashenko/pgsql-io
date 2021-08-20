@@ -336,6 +336,14 @@ def validate_checksum(p_file_name, p_checksum_file_name):
     return check_sum_match
 
 
+def restart_postgres(p_pg):
+  print("")
+  run_cmd (p_pg + os.sep + "stop-" + p_pg + ".py", False )
+  time.sleep(3)
+  run_cmd (p_pg + os.sep + "start-" + p_pg + ".py", False )
+  time.sleep(4)
+
+
 def create_extension(p_pg, p_ext, p_reboot=False, p_extension="", p_cascade=False):
   if p_ext > " ":
     rc = change_pgconf_keyval(p_pg, "shared_preload_libraries", p_ext)
@@ -344,11 +352,7 @@ def create_extension(p_pg, p_ext, p_reboot=False, p_extension="", p_cascade=Fals
       sys.exit(1)
 
   if p_reboot:
-    print("")
-    run_cmd (p_pg + os.sep + "stop-" + p_pg + ".py", False )
-    time.sleep(3)
-    run_cmd (p_pg + os.sep + "start-" + p_pg + ".py", False )
-    time.sleep(4)
+    restart_postgres(p_pg)
 
   print("")
   if p_extension == "":
