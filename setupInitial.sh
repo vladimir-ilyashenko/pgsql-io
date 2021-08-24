@@ -33,7 +33,7 @@ if [ `uname` == 'Linux' ]; then
         perl-ExtUtils-Embed sqlite-devel tcl-devel \
         pam-devel openldap-devel boost-devel unixODBC-devel
       sudo $yum curl-devel chrpath clang-devel llvm-devel \
-        cmake libxml2-devel mysql-devel
+        cmake libxml2-devel mysql-devel protobuf-c-devel
       sudo $yum readline-devel 
       sudo $yum *ossp-uuid*
       sudo $yum python2 python2-devel
@@ -42,7 +42,7 @@ if [ `uname` == 'Linux' ]; then
       sudo $yum mongo-c-driver-devel freetds-devel proj-devel
       sudo $yum lz4-devel libzstd-devel
       sudo $yum geos-devel gdal-devel
-      sudo $yum hiredis-devel mysql-devel
+      sudo $yum hiredis-devel
     else
       ## CentOS 7 (used for stable & ...)  
       sudo yum remove git
