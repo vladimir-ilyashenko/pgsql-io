@@ -204,12 +204,12 @@ INSERT INTO releases VALUES ('cassandrafdw-pg12', 12, 'cassandrafdw', 'Cassandra
 INSERT INTO versions VALUES ('cassandrafdw-pg12', '3.1.5-1', 'amd', 0, '20191230', 'pg12', '', '');
 
 INSERT INTO projects VALUES ('decoderbuf', 5, 0, 'hub', 0, 'https://github.com/debezium/postgres-decoderbufs', 
-  'decoderbuf', 1, 'protobuf.png', 'Fast logical decoding via protobuf', 'https://github.com/debezium/postgres-decoderbufs');
+  'decoderbuf', 1, 'protobuf.png', 'Logical decoding via ProtoBuf', 'https://github.com/debezium/postgres-decoderbufs');
 INSERT INTO releases VALUES ('decoderbuf-pg14',  3, 'decoderbuf', 'decoderbuf', '', 'prod', '', 1, 'MIT', '', '');
 INSERT INTO versions VALUES ('decoderbuf-pg14', '1.3.1-1', 'amd', 1, '20201112', 'pg14', '', '');
 
 INSERT INTO projects VALUES ('wal2json', 5, 0, 'hub', 0, 'https://github.com/eulerto/wal2json/releases', 
-  'wal2json', 1, 'wal2json.png', 'Output plugin for logical decoding', 'https://github.com/eulerto/wal2json#introduction');
+  'wal2json', 1, 'wal2json.png', 'Logical decoding via JSON ', 'https://github.com/eulerto/wal2json#introduction');
 INSERT INTO releases VALUES ('wal2json-pg13',  3, 'wal2json', 'wal2json', '', 'prod', '', 1, 'BSD', '', '');
 INSERT INTO versions VALUES ('wal2json-pg13', '2.3-1', 'amd', 1, '20200809', 'pg13', '', '');
 
