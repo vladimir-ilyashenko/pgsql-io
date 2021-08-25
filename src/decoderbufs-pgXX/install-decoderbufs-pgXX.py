@@ -20,7 +20,7 @@ os.system("cp " + datadir + "/pg_hba.conf " + datadir + "/pg_hba.conf.orig")
 thisdir = os.path.dirname(os.path.realpath(__file__))
 os.system("cp " + thisdir + "/pg_hba.conf.replication " + datadir + "/pg_hba.conf")
 
-util.change_pgconf_keyval("pgXX", "shared_preload_libraries", "wal2json")
+util.change_pgconf_keyval("pgXX", "shared_preload_libraries", "decoderbufs")
 util.restart_postgres("pgXX")
 
 

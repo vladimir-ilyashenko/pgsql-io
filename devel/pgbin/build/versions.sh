@@ -21,6 +21,10 @@ pg10BuildV=1
 pg96V="9.6.23"
 pg96BuildV=1
 
+decoderbufsFullV=1.3.1
+decoderbufsShortV=
+decoderbufsBuildV=1
+
 wal2jsonFullV=2.3
 wal2jsonShortV=
 wal2jsonBuildV=1

@@ -41,9 +41,11 @@ qstatV=2.0.3-1
 statkV=2.2.0-1
 waitsV=1.1.3-1
 
+dbzV=1.6.1
+decbufsV=1.3.1-1
+
 zooV=3.7.0
 kfkV=2.7.1
-dbzV=1.6.1
 redisV=6.2
 mariaV=10.6x
 sqlsvrV=2019

@@ -26,7 +26,9 @@ function getPGVersion {
 	fi
 	pgFullVersion=`$pgBin/bin/pg_config --version | awk '{print $2}'`
 
-        if [[ "${pgFullVersion/rc}" =~ 13.* ]]; then
+        if [[ "${pgFullVersion/rc}" =~ 14beta* ]]; then
+                pgShortVersion="14"
+        elif [[ "${pgFullVersion/rc}" =~ 13.* ]]; then
                 pgShortVersion="13"
         elif [[ "${pgFullVersion/rc}" =~ 12.* ]]; then
                 pgShortVersion="12"
@@ -651,6 +653,7 @@ while true; do
     --build-tdsfdw ) buildTDSFDW=true; Source=$2; shift; shift ;;
     --build-mongofdw ) buildMongoFDW=true Source=$2; shift; shift ;;
     --build-wal2json ) buildWal2json=true Source=$2; shift; shift ;;
+    --build-decoderbufs ) buildDecoderBufs=true Source=$2; shift; shift ;;
     --build-mysqlfdw ) buildMySQLFDW=true; Source=$2; shift; shift ;;
     --build-pgredis ) buildPgRedis=true; Source=$2; shift; shift ;;
     --build-oraclefdw ) buildOracleFDW=true; Source=$2; shift; shift ;;
@@ -722,6 +725,10 @@ fi
 
 if [[ $buildMongoFDW == "true" ]]; then
 	buildComp mongofdw "$mongofdwShortV" "$mongofdwFullV" "$mongofdwBuildV" "$Source"
+fi
+
+if [[ $buildDecoderBufs == "true" ]]; then
+	buildComp decoderbufs "$decoderbufsShortV" "$decoderbufsFullV" "$decoderbufsBuildV" "$Source"
 fi
 
 if [[ $buildWal2json == "true" ]]; then

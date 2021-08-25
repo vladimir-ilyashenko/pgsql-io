@@ -223,6 +223,7 @@ initDir () {
   copy-pgXX "kubernetes" 
   copy-pgXX "mongofdw"  
   copy-pgXX "wal2json"  
+  copy-pgXX "decoderbufs"  
   copy-pgXX "oraclefdw"  
   copy-pgXX "tdsfdw"  
   copy-pgXX "cron"
@@ -475,7 +476,7 @@ initPG () {
   fi
 
   if [ "$pgM" == "14" ] && [ "$isEL8" == "True" ]; then 
-    echo "skipping pgredis"
+    initC "decoderbufs-pg$pgM" "decoderbufs" "$decbufsV" "$outPlat" "postgres/decoderbufs" "" "" "nil"
     ## initC "pgredis-pg$pgM" "pgredis" "$pgredisV" "$outPlat" "postgres/pgredis" "" "" "nil"
   fi
 

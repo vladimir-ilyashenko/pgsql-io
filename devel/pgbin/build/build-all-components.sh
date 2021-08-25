@@ -88,6 +88,10 @@ if [ "$1" == "hintplan" ] || [ "$1" == "all" ]; then
   build hintplan $hintplanFullV $2 hintplan
 fi
 
+if [ "$1" == "decoderbufs" ]  || [ "$1" == "all" ]; then
+  build decoderbufs $decoderbufsFullV $2 decoderbufs
+fi
+
 if [ "$1" == "wal2json" ]  || [ "$1" == "all" ]; then
   build wal2json $wal2jsonFullV $2 wal2json
 fi
