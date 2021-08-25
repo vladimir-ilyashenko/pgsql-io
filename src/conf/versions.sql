@@ -92,10 +92,10 @@ CREATE VIEW v_versions AS
 
 INSERT INTO categories VALUES (0,   0, 'Hidden', 'NotShown');
 INSERT INTO categories VALUES (1,  10, 'Rock-Solid PostgreSQL', 'Postgres');
-INSERT INTO categories VALUES (11, 20, 'Clustering', 'Cloud');
-INSERT INTO categories VALUES (10, 96, 'Foreign Datastores', 'Foreign');
+INSERT INTO categories VALUES (11, 15, 'Clustering', 'Cloud');
+INSERT INTO categories VALUES (10, 20, 'Change Data Capture', 'CDC');
 INSERT INTO categories VALUES (2,  60, 'Advanced Postgres Apps', 'Applications');
-INSERT INTO categories VALUES (6,  30, 'Oracle Compatibility & Migration', 'Compatibility');
+INSERT INTO categories VALUES (6,  30, 'Oracle Migration & Integrationn', 'OracleIntegration');
 INSERT INTO categories VALUES (4,  65, 'Optimization & Analysis', 'Optimization');
 INSERT INTO categories VALUES (5,  70, 'Data Integration', 'Integration');
 INSERT INTO categories VALUES (3,  80, 'Database Developers', 'Developers');
@@ -146,7 +146,7 @@ INSERT INTO releases VALUES ('pg14', 1, 'pg', '', '', 'beta',
 INSERT INTO versions VALUES ('pg14', '14beta3-1',  'amd', 1, '20210812','', 'LIBC-2.28', '');
 INSERT INTO versions VALUES ('pg14', '14beta2-1',  'amd', 0, '20210624','', 'LIBC-2.28', '');
 
-INSERT INTO projects VALUES ('debezium',  5, 8080, '', 3, 'https://debezium.io/releases/1.6/',
+INSERT INTO projects VALUES ('debezium', 10, 8080, '', 3, 'https://debezium.io/releases/1.6/',
   'Debezium', 0, 'debezium.png', 'Stream DB Changes', 'https://debezium.io');
 INSERT INTO releases VALUES ('debezium', 0, 'debezium', 'Debezium', '', 'test', '', 1, 'Apache', '', '');
 INSERT INTO versions VALUES ('debezium', '1.6.1', '', 1, '20210723', '', '', '');
@@ -162,19 +162,19 @@ INSERT INTO projects VALUES ('redis', 10, 6379, 'hub', 2, 'https://github.com/re
 INSERT INTO releases VALUES ('redis', 0, 'redis', 'Redis 6.2.5', '', 'test', '', 1, 'BSD', '', '');
 INSERT INTO versions VALUES ('redis', '6.2', '',   0, '20210721', '', 'UBU20', '');
 
-INSERT INTO projects VALUES ('mariadb', 10, 3306, 'hub', 2, 'https://github.com/mariadb/server/releases',
+INSERT INTO projects VALUES ('mariadb',  5, 3306, 'hub', 2, 'https://github.com/mariadb/server/releases',
   'MariaDB', 0, 'mariadb.png', 'MySQL Replacement', 'https://mariadb.com');
 INSERT INTO releases VALUES ('mariadb', 0, 'mariadb', 'MariaDB 10.6.4', '', 'test', '', 1, 'GPL', '', '');
 INSERT INTO versions VALUES ('mariadb', '10.6x', '',   1, '20210805', '', '', '');
 
-INSERT INTO projects VALUES ('sqlsvr', 10, 1433, 'hub', 2, 
+INSERT INTO projects VALUES ('sqlsvr',  5, 1433, 'hub', 2, 
   'https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-release-notes-2019?view=sql-server-ver15#release-history',
   'MS SQL Server', 0, 'sqlsvr.png', 'Microsoft SQL Server 2019',
   'https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-overview?view=sql-server-ver15');
 INSERT INTO releases VALUES ('sqlsvr', 0, 'sqlsvr', 'SQL Svr 15', '', 'test', '', 1, '', '', '');
 INSERT INTO versions VALUES ('sqlsvr', '15.0.4153', '',   1, '20210804', '', 'UBU20', '');
 
-INSERT INTO projects VALUES ('mongodb', 10, 27017, 'hub', 2, 
+INSERT INTO projects VALUES ('mongodb',  5, 27017, 'hub', 2, 
   'https://docs.mongodb.com/v5.0/release-notes/5.0/',
   'MongoDB', 0, 'mongodb.png', 'Document Database',
   'https://docs.mongodb.com/v5.0/release-notes/5.0/');
@@ -183,14 +183,14 @@ INSERT INTO versions VALUES ('mongodb', '5.0.2', '',   1, '20210804', '', 'UBU20
 INSERT INTO versions VALUES ('mongodb', '5.0.1', '',   0, '20210722', '', 'UBU20', '');
 INSERT INTO versions VALUES ('mongodb', '5.0',   '',   0, '20210713', '', 'UBU20', '');
 
-INSERT INTO projects VALUES ('elasticsearch', 10, 9200, 'hub', 2, 
+INSERT INTO projects VALUES ('elasticsearch',  5, 9200, 'hub', 2, 
   'https://www.elastic.co/downloads/elasticsearch',
   'Elasticsearch', 0, 'elasticsearch.png', 'Search and Analytics Engine',
   'https://www.elastic.co/elasticsearch/');
 INSERT INTO releases VALUES ('elasticsearch', 0, 'elasticsearch', 'ElasticSearch 7.14.0', '', 'test', '', 1, 'SSPL', '', '');
 INSERT INTO versions VALUES ('elasticsearch', '7.x', '',   0, '20210803', '', 'UBU20', '');
 
-INSERT INTO projects VALUES ('zookeeper', 10, 2181, 'hub', 1, 'https://zookeeper.apache.org/releases.html#releasenotes',
+INSERT INTO projects VALUES ('zookeeper',  5, 2181, 'hub', 1, 'https://zookeeper.apache.org/releases.html#releasenotes',
   'zookeeper', 0, 'zookeeper.png', 'Distributed Key-Store for HA', 'https://zookeeper.apache.org');
 INSERT INTO releases VALUES ('zookeeper', 3, 'zookeeper', 'Zookeeper', '', 'test', '', 1, 'Apache', '', '');
 INSERT INTO versions VALUES ('zookeeper', '3.7.0', '',  0, '20210327', '', '',
@@ -203,12 +203,12 @@ INSERT INTO projects VALUES ('cassandrafdw', 5, 0, 'hub', 0, 'https://github.com
 INSERT INTO releases VALUES ('cassandrafdw-pg12', 12, 'cassandrafdw', 'CassandraFDW','','test', '', 1, 'AGPLv3', '', '');
 INSERT INTO versions VALUES ('cassandrafdw-pg12', '3.1.5-1', 'amd', 0, '20191230', 'pg12', '', '');
 
-INSERT INTO projects VALUES ('decoderbufs', 5, 0, 'hub', 0, 'https://github.com/debezium/postgres-decoderbufs', 
+INSERT INTO projects VALUES ('decoderbufs', 10, 0, 'hub', 0, 'https://github.com/debezium/postgres-decoderbufs', 
   'decoderbufs', 1, 'protobuf.png', 'Logical decoding via ProtoBuf', 'https://github.com/debezium/postgres-decoderbufs');
 INSERT INTO releases VALUES ('decoderbufs-pg14',  3, 'decoderbufs', 'decoderbufs', '', 'prod', '', 1, 'MIT', '', '');
 INSERT INTO versions VALUES ('decoderbufs-pg14', '1.3.1-1', 'amd', 1, '20201112', 'pg14', '', '');
 
-INSERT INTO projects VALUES ('wal2json', 5, 0, 'hub', 0, 'https://github.com/eulerto/wal2json/releases', 
+INSERT INTO projects VALUES ('wal2json', 10, 0, 'hub', 0, 'https://github.com/eulerto/wal2json/releases', 
   'wal2json', 1, 'wal2json.png', 'Logical decoding via JSON ', 'https://github.com/eulerto/wal2json#introduction');
 INSERT INTO releases VALUES ('wal2json-pg13',  3, 'wal2json', 'wal2json', '', 'prod', '', 1, 'BSD', '', '');
 INSERT INTO versions VALUES ('wal2json-pg13', '2.3-1', 'amd', 1, '20200809', 'pg13', '', '');
@@ -269,7 +269,7 @@ INSERT INTO projects VALUES ('oraclefdw', 6, 0, 'hub', 0, 'https://github.com/la
 INSERT INTO releases VALUES ('oraclefdw-pg13', 2, 'oraclefdw', 'OracleFDW', '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('oraclefdw-pg13','2.3.0-1', 'amd', 1, '20200924', 'pg13', '', 'https://github.com/laurenz/oracle_fdw/releases/tag/ORACLE_FDW_2_3_0');
 
-INSERT INTO projects VALUES ('oracle', 10, 1521, 'hub', 0, 'https://www.oracle.com/database/technologies/oracle-database-software-downloads.html#19c', 
+INSERT INTO projects VALUES ('oracle',  5, 1521, 'hub', 0, 'https://www.oracle.com/database/technologies/oracle-database-software-downloads.html#19c', 
   'oracle', 0, 'oracle.png', 'Oracle Database', 'https://www.oracle.com/database/technologies');
 INSERT INTO releases VALUES ('oracle', 10, 'oracle', 'Oracle', '', 'test','', 0, 'ORACLE', '', '');
 INSERT INTO versions VALUES ('oracle', '19.3c', 'amd', 1, '20210501', '', '', '');
@@ -282,12 +282,12 @@ INSERT INTO versions VALUES ('instantclient', '21.1', 'amd', 0, '20210317', '', 
 INSERT INTO projects VALUES ('pgosql', 6, 0, 'hub', 0, 'https://pgsql.io/pgosql',
   'pgosql', 1, 'pgosql.png', 'PL/SQL<sup>&reg;</sup> Compatibility', 'https://pgsql.io/pgosql');
 INSERT INTO releases VALUES ('pgosql-pg14', 99, 'pgosql', 'pgOSQL', '', 'test', '', 1, 'SSPL', '', '');
-INSERT INTO versions VALUES ('pgosql-pg14', '0.1',  'amd', 1, '20210720', 'pg14', '', '');
+INSERT INTO versions VALUES ('pgosql-pg14', '0.1',  'amd', 0, '20210720', 'pg14', '', '');
 
 INSERT INTO projects VALUES ('plusql', 6, 1, 'hub', 0, 'https://github.com/pgsql-io/plusql2/releases',
   'plusql', 1, 'plusql.png', 'SQL*PLUS<sup>&reg;</sup> Compatible CLI', 'https://github.com/pgsql-io/plusql2');
 INSERT INTO releases VALUES ('plusql', 99, 'plusql', 'PlusQL', '', 'test', '', 0, 'SSPL', '', '');
-INSERT INTO versions VALUES ('plusql', '0.1',  'amd', 1, '20210720', '', '', '');
+INSERT INTO versions VALUES ('plusql', '0.1',  'amd', 0, '20210720', '', '', '');
 
 INSERT INTO projects VALUES ('orafce', 6, 0, 'hub', 0, 'https://github.com/orafce/orafce/releases',
   'orafce', 1, 'larry.png', 'Ora Built-in Packages', 'https://github.com/orafce/orafce#orafce---oracles-compatibility-functions-and-packages');
@@ -296,7 +296,7 @@ INSERT INTO versions VALUES ('orafce-pg13', '3.15.1-1',  'amd', 1, '20210506', '
 INSERT INTO versions VALUES ('orafce-pg13', '3.15.0-1',  'amd', 0, '20210311', 'pg13', '', '');
 INSERT INTO versions VALUES ('orafce-pg13', '3.14.0-1',  'amd', 0, '20201222', 'pg13', '', '');
 
-INSERT INTO projects VALUES ('fixeddecimal', 5, 0, 'hub', 0, 'https://github.com/pgsql-io/fixeddecimal/releases',
+INSERT INTO projects VALUES ('fixeddecimal', 6, 0, 'hub', 0, 'https://github.com/pgsql-io/fixeddecimal/releases',
   'fixeddecimal', 1, 'fixeddecimal.png', 'Much faster than NUMERIC', 'https://github.com/pgsql-io/fixeddecimal');
 INSERT INTO releases VALUES ('fixeddecimal-pg13', 90, 'fixeddecimal', 'FixedDecimal', '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('fixeddecimal-pg13', '1.1.0-1',  'amd', 1, '20201119', 'pg13', '', '');
@@ -392,7 +392,7 @@ INSERT INTO versions VALUES ('timescaledb-pg13', '2.1.1-1',  'amd', 0, '20210329
 INSERT INTO versions VALUES ('timescaledb-pg13', '2.1.0-1',  'amd', 0, '20210222', 'pg13', '',
   'https://github.com/timescale/timescaledb/releases/tag/2.1.0');
 
-INSERT INTO projects VALUES ('pglogical', 2, 0, 'hub', 2, 'https://github.com/2ndQuadrant/pglogical/releases',
+INSERT INTO projects VALUES ('pglogical', 10, 0, 'hub', 2, 'https://github.com/2ndQuadrant/pglogical/releases',
   'pglogical', 1, 'spock.png', 'Logical Replication', 'https://github.com/2ndQuadrant/pglogical');
 INSERT INTO releases VALUES ('pglogical-pg13', 2, 'pglogical', 'pgLogical', '', 'prod', '', 1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pglogical-pg13', '2.4.0-1',  'amd', 1, '20210816', 'pg13', '',
