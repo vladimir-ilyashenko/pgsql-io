@@ -131,6 +131,8 @@ def print_row_header():
   if cat_desc.startswith("Clustering"):
     print("</tr></table>\n")
     print_top()
+  else:
+    print("<tr><td>&nbsp;</td></tr>")
 
   print("<tr><td colspan=4><br><b><font size=" + HEADING_SIZE + ">" + \
     cat_desc + "</font></b></td></tr>")
@@ -201,8 +203,8 @@ def print_row_detail(pCol):
     ##if isEXTRA_SPACING == "Y":
     ##  print("<tr><td>&nbsp;</td></tr>")
     
-    if col_kount != 1:
-      print("<tr><td>&nbsp;</td></tr>")
+    ##if col_kount != 1:
+    ##  print("<tr><td>&nbsp;</td></tr>")
 
     return(1)
 
