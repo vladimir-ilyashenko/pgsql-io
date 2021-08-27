@@ -480,16 +480,17 @@ initPG () {
     initC "decoderbufs-pg$pgM" "decoderbufs" "$decbufsV" "$outPlat" "postgres/decoderbufs" "" "" "nil"
   fi
 
-  if [ "$isEL8" == "False" ]; then
+  if [ "$isEL8" == "True" ]; then
+    initC "zookeeper" "zookeeper" "$zooV"   "" "zookeeper"        "" "" "Y"
+    initC "kafka"     "kafka"     "$kfkV"   "" "kafka"            "" "" "Y"
+    initC "debezium"  "debezium"  "$dbzV"   "" "debezium"         "" "" "Y"
+  else
     ### Not supported (for testing only) ####################################
     initC "badger"    "badger"    "$badgerV" "" "postgres/badger" "" "" "nil"
     initC "ora2pg"    "ora2pg"    "$ora2pgV" "" "postgres/ora2pg" "" "" "nil"
     initC "instantclient" "instantclient" "$inclV" "$outPlat" "instantclient" "" "" "nil"
     initC "pgadmin"   "pgadmin"   "$adminV" "" "postgres/pgadmin" "" "" "Y"
     initC "omnidb"    "omnidb"    "$omniV"  "" "postgres/omnidb"  "" "" "Y"
-    initC "zookeeper" "zookeeper" "$zooV"   "" "zookeeper"        "" "" "Y"
-    initC "kafka"     "kafka"     "$kfkV"   "" "kafka"            "" "" "Y"
-    initC "debezium"  "debezium"  "$dbzV"   "" "debezium"         "" "" "Y"
     initC "redis"     "redis"     "$redisV" "" "redis"            "" "" "Y"
     initC "kubernetes" "kubernetes" "$k8sV" "" "kubernetes"       "" "" "Y"
     initC "mariadb"   "mariadb"   "$mariaV" "" "mariadb"          "" "" "Y"
