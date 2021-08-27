@@ -148,6 +148,8 @@ function updateSharedLibs {
 	shared_lib=$buildLocation/lib
         if [ "$comp" == "mysqlfdw" ]; then
           cp -Pv $lib64/mysql/libmysqlclient.* $shared_lib/.
+	elif [ "$comp" == "decoderbufs" ]; then
+          cp -Pv $lib64/libproto*.so* $shared_lib/.
 	elif [ "$comp" == "postgis" ]; then
           cp -Pv $lib64/libgeos*.so*  $shared_lib/.
           cp -Pv $lib64/libgdal*.so*  $shared_lib/.

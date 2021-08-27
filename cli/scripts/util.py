@@ -2744,6 +2744,14 @@ def validate_distutils_click(isFatal=True):
 
 
 def copy_extension_files(ext_comp, parent_comp,upgrade=None):
+  ## always overlay these files ##
+  PARENT_DIR = os.path.join(MY_HOME, parent_comp)
+  COMP_DIR = os.path.join(MY_HOME, ext_comp)
+
+  cmd = "cp -r " + COMP_DIR + "/. " + PARENT_DIR
+  os.system(cmd)
+  return True
+  ## leaving the old code for now below ####
 
   validate_distutils_click()
   from distutils.dir_util import copy_tree
