@@ -146,7 +146,7 @@ INSERT INTO versions VALUES ('pg14', '14beta3-2',  'amd', 1, '20210812','', 'LIB
 INSERT INTO versions VALUES ('pg14', '14beta3-1',  'amd', 0, '20210812','', 'LIBC-2.28', '');
 INSERT INTO versions VALUES ('pg14', '14beta2-1',  'amd', 0, '20210624','', 'LIBC-2.28', '');
 
-INSERT INTO projects VALUES ('debezium', 10, 8080, '', 3, 'https://debezium.io/releases/1.6/',
+INSERT INTO projects VALUES ('debezium', 10, 8083, '', 3, 'https://debezium.io/releases/1.6/',
   'Debezium', 0, 'debezium.png', 'Stream DB Changes', 'https://debezium.io');
 INSERT INTO releases VALUES ('debezium', 0, 'debezium', 'Debezium', '', 'test', '', 1, 'Apache', '', '');
 INSERT INTO versions VALUES ('debezium', '1.6.1', '', 1, '20210723', '', '', '');

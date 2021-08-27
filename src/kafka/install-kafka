@@ -36,3 +36,5 @@ rm -rf $kafkaF
 sudo systemctl daemon-reload
 sudo systemctl start kafka
 
+/usr/local/kafka/bin/kafka-topics.sh --create --zookeeper 0.0.0.0:2181 --topic my-connect-configs --replication-factor 1 --partitions 10
+
