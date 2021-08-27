@@ -137,13 +137,13 @@ INSERT INTO versions VALUES ('pg12', '12.7-2', 'amd', 0, '20210513', '', 'LIBC-2
 INSERT INTO releases VALUES ('pg13', 2, 'pg', '', '', 'prod', 
   '<font size=-1>New in <a href=https://www.postgresql.org/docs/13/release-13.html>2020</a></font>', 
   1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg13', '13.4-1',  'amd', 1, '20210812','', 'LIBC-2.17', '');
-INSERT INTO versions VALUES ('pg13', '13.3-2',  'amd', 0, '20210513','', 'LIBC-2.17', '');
+INSERT INTO versions VALUES ('pg13', '13.4-2',  'amd', 1, '20210812','', 'LIBC-2.28', '');
 
 INSERT INTO releases VALUES ('pg14', 1, 'pg', '', '', 'beta', 
   '<font size=-1>New in <a href=https://www.postgresql.org/docs/14/release-14.html>2021</a></font>',
   1, 'POSTGRES', '', '');
-INSERT INTO versions VALUES ('pg14', '14beta3-1',  'amd', 1, '20210812','', 'LIBC-2.28', '');
+INSERT INTO versions VALUES ('pg14', '14beta3-2',  'amd', 1, '20210812','', 'LIBC-2.28', '');
+INSERT INTO versions VALUES ('pg14', '14beta3-1',  'amd', 0, '20210812','', 'LIBC-2.28', '');
 INSERT INTO versions VALUES ('pg14', '14beta2-1',  'amd', 0, '20210624','', 'LIBC-2.28', '');
 
 INSERT INTO projects VALUES ('debezium', 10, 8080, '', 3, 'https://debezium.io/releases/1.6/',
@@ -205,13 +205,17 @@ INSERT INTO versions VALUES ('cassandrafdw-pg12', '3.1.5-1', 'amd', 0, '20191230
 
 INSERT INTO projects VALUES ('decoderbufs', 10, 0, 'hub', 0, 'https://github.com/debezium/postgres-decoderbufs', 
   'decoderbufs', 1, 'protobuf.png', 'Logical decoding via ProtoBuf', 'https://github.com/debezium/postgres-decoderbufs');
+INSERT INTO releases VALUES ('decoderbufs-pg13',  3, 'decoderbufs', 'decoderbufs', '', 'prod', '', 1, 'MIT', '', '');
 INSERT INTO releases VALUES ('decoderbufs-pg14',  3, 'decoderbufs', 'decoderbufs', '', 'prod', '', 1, 'MIT', '', '');
+INSERT INTO versions VALUES ('decoderbufs-pg13', '1.3.1-1', 'amd', 1, '20201112', 'pg13', '', '');
 INSERT INTO versions VALUES ('decoderbufs-pg14', '1.3.1-1', 'amd', 1, '20201112', 'pg14', '', '');
 
 INSERT INTO projects VALUES ('wal2json', 10, 0, 'hub', 0, 'https://github.com/eulerto/wal2json/releases', 
   'wal2json', 1, 'wal2json.png', 'Logical decoding via JSON ', 'https://github.com/eulerto/wal2json#introduction');
 INSERT INTO releases VALUES ('wal2json-pg13',  3, 'wal2json', 'wal2json', '', 'prod', '', 1, 'BSD', '', '');
+INSERT INTO releases VALUES ('wal2json-pg14',  3, 'wal2json', 'wal2json', '', 'prod', '', 1, 'BSD', '', '');
 INSERT INTO versions VALUES ('wal2json-pg13', '2.3-1', 'amd', 1, '20200809', 'pg13', '', '');
+INSERT INTO versions VALUES ('wal2json-pg14', '2.3-1', 'amd', 1, '20200809', 'pg14', '', '');
 
 INSERT INTO projects VALUES ('mongofdw', 5, 0, 'hub', 0, 'https://github.com/EnterpriseDB/mongo_fdw/releases', 
   'mongofdw', 1, 'mongodb.png', 'MongoDB from PG', 'https://github.com/EnterpriseDB/mongo_fdw#mongo_fdw');
@@ -404,12 +408,10 @@ INSERT INTO versions VALUES ('pglogical-pg13', '2.3.3-1',  'amd', 0, '20201005',
 
 INSERT INTO projects VALUES ('postgis', 2, 1, 'hub', 3, 'http://postgis.net/source',
   'postgis', 1, 'postgis.png', 'Spatial Extensions', 'http://postgis.net');
-INSERT INTO releases VALUES ('postgis-pg12', 3, 'postgis', 'PostGIS', '', 'prod', '', 1, 'GPLv2', '', '');
 INSERT INTO releases VALUES ('postgis-pg13', 3, 'postgis', 'PostGIS', '', 'prod', '', 1, 'GPLv2', '', '');
-INSERT INTO versions VALUES ('postgis-pg12', '3.1.3-1', 'amd', 1, '20210702', 'pg12', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.1.3/NEWS');
-INSERT INTO versions VALUES ('postgis-pg12', '3.1.2-1', 'amd', 0, '20210521', 'pg12', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.1.2/NEWS');
+INSERT INTO releases VALUES ('postgis-pg14', 3, 'postgis', 'PostGIS', '', 'prod', '', 1, 'GPLv2', '', '');
 INSERT INTO versions VALUES ('postgis-pg13', '3.1.3-1', 'amd', 1, '20210702', 'pg13', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.1.3/NEWS');
-INSERT INTO versions VALUES ('postgis-pg13', '3.1.2-1', 'amd', 0, '20210521', 'pg13', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.1.2/NEWS');
+INSERT INTO versions VALUES ('postgis-pg14', '3.1.3-1', 'amd', 1, '20210702', 'pg14', '', 'https://git.osgeo.org/gitea/postgis/postgis/raw/tag/3.1.3/NEWS');
 
 INSERT INTO projects VALUES ('omnidb', 9, 8000, '', 1, 'https://omnidb.org',
   'omnidb', 0, 'omnidb.png', 'OmniDB', 'https://omnidb.org');

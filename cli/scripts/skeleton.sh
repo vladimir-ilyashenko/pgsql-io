@@ -1,10 +1,20 @@
 
+function testCore {
+  pgV=pg$1
+  ./io install $pgV; 
+  ./io start $pgV -y -d demo;
+
+  ./io install decoderbufs-$pgV    -d demo
+  ./io install wal2json-$pgV       -d demo
+  ./io install postgis-$pgV        -d demo
+}
+
+
 function test13 {
   ./io install pg13; 
   ./io start pg13 -y -d demo;
 
   ./io install fixeddecimal-pg13  -d demo
-  ./io install wal2json-pg13      -d demo
 
   ./io install archivist-pg13     -d demo
   ./io install qualstats-pg13     -d demo
@@ -42,7 +52,6 @@ function test13 {
   ./io install bulkload-pg13      -d demo
   ./io install anon-pg13          -d demo
 
-  ./io install postgis-pg13       -d demo
 
   ./io install citus-pg13   -d demo
 }
@@ -58,16 +67,16 @@ function test12 {
 
 cd ../..
 
-if [ "$1" == "12" ]; then
-  test12 $2
+#if [ "$1" == "12" ]; then
+#  test12 $2
+#  exit 0
+#fi
+
+if [ "$1" -ge "13" ]; then
+  testCore $1
   exit 0
 fi
 
-if [ "$1" == "13" ]; then
-  test13 $2
-  exit 0
-fi
-
-echo "ERROR: Invalid parm, must be '12' or '13'"
+echo "ERROR: Invalid parm, must be '13' or '14'"
 exit 1
 

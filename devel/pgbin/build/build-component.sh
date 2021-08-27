@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## set -x
+##set -x
 
 source ./versions.sh
 buildOS=$OS
@@ -149,10 +149,10 @@ function updateSharedLibs {
         if [ "$comp" == "mysqlfdw" ]; then
           cp -Pv $lib64/mysql/libmysqlclient.* $shared_lib/.
 	elif [ "$comp" == "postgis" ]; then
-          cp -Pv /usr/local/lib/libgeos*.so*  $shared_lib/.
-          cp -Pv /usr/local/lib/libgdal*.so*  $shared_lib/.
-          cp -Pv /usr/local/lib/libproto*.so* $shared_lib/.
-          cp -Pv /usr/local/lib/libproj*.so*  $shared_lib/.
+          cp -Pv $lib64/libgeos*.so*  $shared_lib/.
+          cp -Pv $lib64/libgdal*.so*  $shared_lib/.
+          cp -Pv $lib64/libproto*.so* $shared_lib/.
+          cp -Pv $lib64/libproj*.so*  $shared_lib/.
         fi
 }
 
@@ -279,7 +279,8 @@ function configureComp {
 
     if [ "$comp" == "postgis" ]; then
         echo "# configure postgis..."
-        ./configure --without-protobuf LDFLAGS="$LDFLAGS -Wl,-rpath,$sharedLibs" > $make_log 2>&1
+        ##./configure --without-protobuf LDFLAGS="$LDFLAGS -Wl,-rpath,$sharedLibs" > $make_log 2>&1
+        ./configure LDFLAGS="$LDFLAGS -Wl,-rpath,$sharedLibs" > $make_log 2>&1
         rc=$?
     fi
 
