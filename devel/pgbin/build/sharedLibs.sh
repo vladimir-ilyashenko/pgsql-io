@@ -61,7 +61,7 @@ cp -Pv $lib64/libreadline.so.*     $shared_lib/.
 cp -Pv $lib64/libjson-c*           $shared_lib/.
 
 # redisfdw (small enough lib to include by default)
-cp -Pv $lib64/libhiredis.so.0.12   $shared_lib/.
+cp -Pv $lib64/libhiredis*          $shared_lib/.
 
 # bouncer (small enough lib to include by default)
 cp -Pv /lib64/libcares*            $shared_lib/.

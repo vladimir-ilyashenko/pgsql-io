@@ -142,7 +142,7 @@ function updateSharedLibs {
           done
         fi
 
-        cat $libPathLog
+        ##cat $libPathLog
 
 	lib64=/usr/lib64
 	shared_lib=$buildLocation/lib
