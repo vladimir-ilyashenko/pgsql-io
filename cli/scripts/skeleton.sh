@@ -29,8 +29,8 @@ function test13 {
   ./io install timescaledb-pg13   -d demo
   ./io install audit-pg13         -d demo
   ./io install bulkload-pg13      -d demo
-  ./io install hintplan-pg13      -d demo
 
+  #./io install hintplan-pg13      -d demo
   #./io install archivist-pg13     -d demo
   #./io install qualstats-pg13     -d demo
   #./io install statkcache-pg13    -d demo
