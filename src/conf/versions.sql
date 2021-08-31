@@ -143,8 +143,6 @@ INSERT INTO releases VALUES ('pg14', 1, 'pg', '', '', 'beta',
   '<font size=-1>New in <a href=https://www.postgresql.org/docs/14/release-14.html>2021</a></font>',
   1, 'POSTGRES', '', '');
 INSERT INTO versions VALUES ('pg14', '14beta3-2',  'amd', 1, '20210812','', 'LIBC-2.28', '');
-INSERT INTO versions VALUES ('pg14', '14beta3-1',  'amd', 0, '20210812','', 'LIBC-2.28', '');
-INSERT INTO versions VALUES ('pg14', '14beta2-1',  'amd', 0, '20210624','', 'LIBC-2.28', '');
 
 INSERT INTO projects VALUES ('debezium', 10, 8083, '', 3, 'https://debezium.io/releases/1.6/',
   'Debezium', 0, 'debezium.png', 'Stream DB Changes', 'https://debezium.io');

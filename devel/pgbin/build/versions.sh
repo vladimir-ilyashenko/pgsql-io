@@ -4,10 +4,10 @@ pgo14V="14beta2a"
 pgo14BuildV=1
 
 pg14V="14beta3"
-pg14BuildV=1
+pg14BuildV=2
 
 pg13V="13.4"
-pg13BuildV=1
+pg13BuildV=2
 
 pg12V="12.8"
 pg12BuildV=1

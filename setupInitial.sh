@@ -34,7 +34,7 @@ if [ `uname` == 'Linux' ]; then
         pam-devel openldap-devel boost-devel unixODBC-devel
       sudo $yum curl-devel chrpath clang-devel llvm-devel \
         cmake libxml2-devel mysql-devel protobuf-c-devel
-      sudo $yum readline-devel 
+      sudo $yum libedit-devel 
       sudo $yum *ossp-uuid*
       sudo $yum python2 python2-devel
       cd /usr/bin

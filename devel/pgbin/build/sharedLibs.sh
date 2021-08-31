@@ -57,7 +57,6 @@ cp -Pv $lib64/libresolv.so.2       $shared_lib/.
 cp -Pv $lib64/liblzma.so.*         $shared_lib/.
 cp -Pv $lib64/libcom_err.so.*      $shared_lib/.
 cp -Pv $lib64/libkeyutils.so.*     $shared_lib/.
-cp -Pv $lib64/libreadline.so.*     $shared_lib/.
 cp -Pv $lib64/libjson-c*           $shared_lib/.
 
 # redisfdw (small enough lib to include by default)
