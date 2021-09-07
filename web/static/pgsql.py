@@ -27,13 +27,10 @@ _atrk_opts = { atrk_acct:"D/nDv1DlQy20Y8", domain:"pgsql.io",dynamic: true};
 
   string = \
 """\
-PGSQL is the PostgreSQL Community Distribution that is developer friendly and cross-platform.
-We fully embrace core PostgreSQL and it's rich community based eco-system of
-enterprise-class extensions.
-<p>
-For releases through pg13, we support EL7+ as well as Ubuntu 16.04+.  Starting
-with pg14, we only support EL8 (Redhat/Rocky/CentOS) & Ubuntu 20.04+.  We are built with
-optimized and secure static binaries that also run on several other Linux flavors (your mileage may vary).
+PGSQL is the most developer friendly PostgreSQL Community Distribution.
+We fully embrace core PostgreSQL and it's rich community based eco-system of enterprise-class extensions.
+We run in a sandboxed environment that is perfect for running in a container, on bare metal, or in the cloud environment of your choice. 
+Our optimized and secure static binaries run on EL8 (Redhat/Rocky/CentOS) & Ubuntu 20.04+.
 \
 """
   print("  <tr><td colspan=2><h2>Introduction</h2></td></tr>")
@@ -57,12 +54,6 @@ optimized and secure static binaries that also run on several other Linux flavor
 </table>
 </td></tr>
 
-<tr><td colspan=2>
-We run in a sandboxed environment that is perfect for running
-in a container, on bare metal, or in the cloud environment
-of your choice.
-
-<br>&nbsp;</td></tr>
 <tr><td width=240 align=right><b>Install as non-root user:</b></td>
   <td><input type='text' size=90 value =
 'python3 -c "$(curl -fsSL https://pgsql-io-download.s3.amazonaws.com/REPO/install.py)"' readonly='readonly' />

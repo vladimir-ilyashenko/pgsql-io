@@ -128,7 +128,7 @@ def get_columns(d):
 def print_row_header():
   print("")
 
-  if cat_desc.startswith("Clustering"):
+  if cat_desc.startswith("Streaming"):
     print("</tr></table>\n")
     print_top()
   else:
