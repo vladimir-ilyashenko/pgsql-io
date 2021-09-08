@@ -42,7 +42,6 @@ if [ `uname` == 'Linux' ]; then
       sudo $yum mongo-c-driver-devel freetds-devel proj-devel
       sudo $yum lz4-devel libzstd-devel
       sudo $yum geos-devel gdal-devel
-      sudo $yum hiredis-devel
     else
       ## CentOS 7 (used for stable & ...)  
       sudo yum remove git
