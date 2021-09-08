@@ -22,9 +22,10 @@ if [ `uname` == 'Linux' ]; then
     cat /etc/os-release | grep el8
     rc=$?
     if [ "$rc" == "0" ]; then
-      echo ## EL 8
+      echo "## EL 8 (used for pg13+)"
       yum="dnf -y install"
       sudo $yum epel-release
+      sudo dnf config-manager --set-enabled powertools
       sudo $yum wget python3 python3-devel
       sudo $yum java-11-openjdk-devel maven ant
       sudo dnf -y groupinstall 'development tools'
@@ -43,7 +44,7 @@ if [ `uname` == 'Linux' ]; then
       sudo $yum lz4-devel libzstd-devel
       sudo $yum geos-devel gdal-devel
     else
-      ## CentOS 7 (used for stable & ...)  
+      echo "## EL 7 (used for pg96 thru pg12)"
       sudo yum remove git
       sudo yum -y install https://packages.endpoint.com/rhel/7/os/x86_64/endpoint-repo-1.7-1.x86_64.rpm
       sudo yum install git
