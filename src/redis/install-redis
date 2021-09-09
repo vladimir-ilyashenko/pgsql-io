@@ -7,12 +7,8 @@ source getPKMG.sh
 
 
 if [ "$PKMG" == "yum" ]; then
-  echo "not supported"
+  echo "not supported on EL"
   exit 1
-  #sudo yum install -y epel-release
-  #sudo yum install -y redis
-  #sudo systemctl start redis
-  #sudo systemctl enable redis
 else
   sudo add-apt-repository -y ppa:redislabs/redis
   sudo apt-get -y update

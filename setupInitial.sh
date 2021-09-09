@@ -22,9 +22,10 @@ if [ `uname` == 'Linux' ]; then
     cat /etc/os-release | grep el8
     rc=$?
     if [ "$rc" == "0" ]; then
-      echo ## RHEL 8
-      yum="dnf -y install --nobest"
+      echo "## EL 8 (used for pg13+)"
+      yum="dnf -y install"
       sudo $yum epel-release
+      sudo dnf config-manager --set-enabled powertools
       sudo $yum wget python3 python3-devel
       sudo $yum java-11-openjdk-devel maven ant
       sudo dnf -y groupinstall 'development tools'
@@ -33,17 +34,21 @@ if [ `uname` == 'Linux' ]; then
         perl-ExtUtils-Embed sqlite-devel tcl-devel \
         pam-devel openldap-devel boost-devel unixODBC-devel
       sudo $yum curl-devel chrpath clang-devel llvm-devel \
-        cmake libxml2-devel mysql-devel
-      sudo $yum readline-devel libuuid-devel
+        cmake libxml2-devel mysql-devel protobuf-c-devel
+      sudo $yum libedit-devel 
+      sudo $yum *ossp-uuid*
       sudo $yum python2 python2-devel
       cd /usr/bin
       sudo ln -fs python2 python
-      sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
-      sudo $yum install uuid-devel
-      ## optional below
       sudo $yum mongo-c-driver-devel freetds-devel proj-devel
+      sudo $yum lz4-devel libzstd-devel
+      sudo $yum geos-devel gdal-devel
     else
-      ## CentOS 7 (used for stable & ...)  
+      echo "## EL 7 (used for pg96 thru pg12)"
+      sudo yum remove git
+      sudo yum -y install https://packages.endpoint.com/rhel/7/os/x86_64/endpoint-repo-1.7-1.x86_64.rpm
+      sudo yum install git
+
       sudo yum -y install -y epel-release python-pip
       sudo yum -y groupinstall 'development tools'
       sudo yum -y install bison-devel libedit-devel zlib-devel bzip2-devel \
@@ -54,8 +59,8 @@ if [ `uname` == 'Linux' ]; then
       sudo yum -y install clang llvm5.0 centos-release-scl-rh
       sudo yum -y install llvm-toolset-7-llvm devtoolset-7 llvm-toolset-7-clang
       sudo yum -y install python3 python3-devel
-      sudo yum -y install lz4-devel libzstd-devel
-      sudo yum -y install hiredis-devel mysql-devel
+      sudo yum -y install lz4-devel libzstd-devel json-c*
+      sudo yum -y install hiredis-devel mysql-devel cmake3 mongo-c-driver*
     fi
   fi
 fi
@@ -103,6 +108,8 @@ rc=$?
 if [ ! "$rc" == "0" ]; then
   cat bash_profile >> $bf
 fi
+
+sudo alternatives --config java
 
 echo ""
 echo "Goodbye!"

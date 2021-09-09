@@ -1,16 +1,29 @@
 #!/bin/bash
 
-pg14V="14beta1"
-pg14BuildV=1
+pgo14V="14beta2a"
+pgo14BuildV=1
 
-pg13V="13.3"
-pg13BuildV=1
+pg14V="14beta3"
+pg14BuildV=2
 
-pg12V="12.7"
+pg13V="13.4"
+pg13BuildV=2
+
+pg12V="12.8"
 pg12BuildV=1
 
-pg11V="11.12"
+pg11V="11.13"
 pg11BuildV=1
+
+pg10V="10.18"
+pg10BuildV=1
+
+pg96V="9.6.23"
+pg96BuildV=1
+
+decoderbufsFullV=1.3.1
+decoderbufsShortV=
+decoderbufsBuildV=1
 
 wal2jsonFullV=2.3
 wal2jsonShortV=
@@ -20,13 +33,15 @@ odbcFullV=13.01
 odbcShortV=
 odbcBuildV=1
 
-backrestFullV=2.33
+backrestFullV=2.34
 backrestShortV=
 backrestBuildV=1
 
-bouncerFullV=1.15.0
+pool2FullV=4.2.3
+
+bouncerFullV=1.16.0
 bouncerShortV=
-bouncerBuildV=2
+bouncerBuildV=3
 
 multicornFullV=1.4.1
 multicornShortV=
@@ -36,7 +51,7 @@ agentFullV=4.0.0
 agentShortV=
 agentBuildV=1
 
-citusFullV=10.0.3
+citusFullV=10.1.0
 citusShortV=
 citusBuildV=1
 
@@ -52,11 +67,11 @@ httpFullV=1.3.1
 httpShortV=
 httpBuildV=1
 
-hypopgFullV=1.2.0
+hypopgFullV=1.3.1
 hypopgShortV=
 hypopgBuildV=1
 
-postgisFullV=3.1.1
+postgisFullV=3.1.3
 postgisShortV=
 postgisBuildV=1
 
@@ -92,15 +107,15 @@ mysqlfdwFullV=2.6.0
 mysqlfdwShortV=
 mysqlfdwBuildV=1
 
-redisfdwFullV=1.13
-redisfdwShortV=
-redisfdwBuildV=1
+pgredisFullV=2.0
+pgredisShortV=
+pgredisBuildV=1
 
 hivefdwFullV=4.0
 hivefdwShortV=
 hivefdwBuildV=1
 
-mongofdwFullV=5.2.8
+mongofdwFullV=5.2.9
 mongofdwShortV=
 mongofdwBuildV=1
 
@@ -132,7 +147,7 @@ fdFullV=1.1.0
 fdShortV=
 fdBuildV=1
 
-anonFullV=0.8.1
+anonFullV=0.9.0
 anonShortV=
 anonBuildV=1
 
@@ -164,7 +179,7 @@ pgTSQLFullV=3.0
 pgTSQLShortV=
 pgTSQLBuildV=1
 
-bulkloadFullV=3.1.17
+bulkloadFullV=3.1.18
 bulkloadShortV=
 bulkloadBuildV=1
 
@@ -172,7 +187,7 @@ spockFullV=3.1.1
 spockShortV=
 spockBuildV=1
 
-pgLogicalFullV=2.3.3
+pgLogicalFullV=2.4.0
 pgLogicalShortV=
 pgLogicalBuildV=1
 
@@ -192,7 +207,7 @@ statkFullV=2.2.0
 statkShortV=
 statkBuildV=1
 
-qstatFullV=2.0.2
+qstatFullV=2.0.3
 qstatShortV=
 qstatBuildV=1
 
@@ -204,7 +219,7 @@ hintplanFullV=1.3.7
 hintplanShortV=
 hintplanBuildV=1
 
-timescaledbFullV=2.2.1
+timescaledbFullV=2.3.1
 timescaledbShortV=
 timescaledbBuildV=1
 

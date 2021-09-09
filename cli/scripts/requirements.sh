@@ -92,15 +92,16 @@ installGCC () {
 }
 
 
-## install PYTHON/PIP/GCC (if needed)
+## install PYTHON/PIP
 installPYTHON () {
   PYTHONx=PYTHON$1
 
-  sudo yum install -y python$1 python$1-devel python$1-pip
-
-  if [ "$1" == "3" ]; then
-    # for python3 lets upgrade to the latest pip version
-    pip3 install --quiet --user --upgrade pip
+  apt --version > /dev/null 2>&1
+  rc=$?
+  if [ $rc == "0" ]; then
+    sudo apt install -y python$1 python$1-pip
+  else
+    sudo yum install -y python$1 python$1-pip
   fi
 
   echoX "#   $PYTHONx - OK"
@@ -119,6 +120,22 @@ isAMD64 () {
 }
 
 
+isUBU () {
+  ver="$1.04"
+  cat /etc/os-release | grep VERSION_ID | grep $ver > /dev/null
+  rc=$?
+  if [ $rc == "0" ]; then
+    echoX "#       UBU$1 - OK"
+    return
+  fi
+
+  echoX "ERROR: only supported on Ubuntu $ver"
+  exit 1
+
+
+}
+
+
 ########################################
 #              MAINLINE                #
 ########################################
@@ -130,6 +147,9 @@ do
   if [ "${req:0:2}" == "EL" ]; then
     ver=${req:2:1}
     isEL $ver 
+  elif [ "${req:0:3}" == "UBU" ]; then
+    ver=${req:3:2}
+    isUBU $ver
   elif [ "$req" == "AMD64" ]; then
     isAMD64
   elif [ "$req" == "PERL" ]; then

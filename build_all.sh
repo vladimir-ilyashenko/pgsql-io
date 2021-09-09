@@ -8,7 +8,11 @@ if [ ! "$rc" == "0" ]; then
 fi;
 
 majorV="$1"
-if [ "$majorV" == "11" ]; then
+if [ "$majorV" == "96" ]; then
+  minorV=$P96
+elif [ "$majorV" == "10" ]; then
+  minorV=$P10
+elif [ "$majorV" == "11" ]; then
   minorV=$P11
 elif [ "$majorV" == "12" ]; then
   minorV=$P12
@@ -19,7 +23,7 @@ elif [ "$majorV" == "14" ]; then
 elif [ "$majorV" == "all" ]; then
   minorV=all
 else
-  echo "ERROR: pg must be 11, 12, 13, 14 or all"
+  echo "ERROR: pg must be 96, 10-14, or all"
   exit 1
 fi
 
@@ -40,6 +44,8 @@ buildALL () {
   echo "################## BUILD_ALL $bigV $fullV ###################"
 
   if [ "$bigV" == "all" ]; then
+    buildONE $outDir "96" $P96
+    buildONE $outDir "10" $P10
     buildONE $outDir "11" $P11
     buildONE $outDir "12" $P12
     buildONE $outDir "13" $P13

@@ -1,63 +1,77 @@
 
+function testCore {
+  pgV=pg$1
+
+  ./io install decoderbufs-$pgV   -d demo
+  ./io install wal2json-$pgV      -d demo
+  ./io install postgis-$pgV       -d demo
+  ./io install fixeddecimal-$pgV  -d demo
+  ./io install hypopg-$pgV        -d demo
+  ./io install partman-$pgV       -d demo
+  ./io install cron-$pgV
+  ./io install repack-$pgV        -d demo
+  ./io install orafce-$pgV        -d demo
+  ./io install pglogical-$pgV     -d demo
+  ./io install anon-$pgV          -d demo
+}
+
+
+function test14 {
+  ./io install pg14; 
+  ./io start pg14 -y -d demo;
+}
+
+
 function test13 {
   ./io install pg13; 
   ./io start pg13 -y -d demo;
 
-  ./io install multicorn-pg$1     -d demo
-  ./io install esfdw-pg$1         -d demo
+  ./io install timescaledb-pg13   -d demo
+  ./io install audit-pg13         -d demo
+  ./io install bulkload-pg13      -d demo
 
-  ./io install citus-pg$1   -d demo
-  ./io install timescaledb-pg$1   -d demo
+  #./io install hintplan-pg13      -d demo
+  #./io install archivist-pg13     -d demo
+  #./io install qualstats-pg13     -d demo
+  #./io install statkcache-pg13    -d demo
+  #./io install waitsampling-pg13  -d demo
+  #./io install hypopg-pg13        -d demo
 
-  if [ "$1" == "fdw" ]; then
-    ./io install hivefdw-pg$1       -d demo
-    ./io install tdsfdw-pg$1        -d demo
-    ./io install mysqlfdw-pg$1      -d demo
-    if [ ! `arch` == "aarch64" ]; then
-      ./io install oraclefdw-pg$1   -d demo
-      ##./io install cassandra_fdw-pg$1 -d demo
-    fi
-  fi
+  #./io install mysqlfdw-pg13      -d demo
+  #./io install redisfdw-pg13      -d demo
 
-  ./io install hypopg-pg$1        -d demo
-  ./io install partman-pg$1       -d demo
-  ./io install audit-pg$1         -d demo
+  #./io install multicorn-pg13     -d demo
+  #./io install esfdw-pg13         -d demo
 
-  ./io install cron-pg$1
-  ./io install plprofiler-pg$1    -d demo
-  ./io install repack-pg$1        -d demo
-  ./io install orafce-pg$1        -d demo
+  #if [ "$1" == "fdw" ]; then
+  #  ./io install hivefdw-pg13       -d demo
+  #  ./io install tdsfdw-pg13        -d demo
+  #  if [ ! `arch` == "aarch64" ]; then
+  #    ./io install oraclefdw-pg13   -d demo
+  #    ##./io install cassandra_fdw-pg13 -d demo
+  #  fi
+  #fi
 
-  ./io install pglogical-pg$1     -d demo
-  ./io install bulkload-pg$1      -d demo
-  ./io install anon-pg$1          -d demo
-
-  #./io install postgis-pg$1       -d demo
-
-  #./io install ddlx-pg$1          -d demo
-
+  #./io install plprofiler-pg13    -d demo
+  #./io install citus-pg13   -d demo
 }
 
-function test12 {
-  ./io install pg12; 
-  ./io start pg12 -y -d demo;
-
-  ./io install debugger-pg$1      -d demo
-  ./io install http-pg$1          -d demo
-}
 
 cd ../..
 
-if [ "$1" == "12" ]; then
-  test12 $2
-  exit 0
-fi
-
 if [ "$1" == "13" ]; then
-  test13 $2
+  test13
+fi
+
+if [ "$1" == "14" ]; then
+  test14
+fi
+
+if [ "$1" -ge "13" ]; then
+  testCore $1
   exit 0
 fi
 
-echo "ERROR: Invalid parm, must be '12' or '13'"
+echo "ERROR: Invalid parm, must be '13' or '14'"
 exit 1
 

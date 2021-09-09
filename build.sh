@@ -26,7 +26,7 @@ printUsageMessage () {
   echo "#-------------------------------------------------------------------#"
   echo "#               Copyright (c) 2020 PGSQL.IO                         #"
   echo "#-------------------------------------------------------------------#"
-  echo "# -p $P13  $P12  $P11  $P10"
+  echo "# -p $P14 $P13  $P12  $P11  $P10"
   echo "# -b hub-$hubV"
   echo "#--------------------------------------------------------------------------#"
   echo "# ./build.sh -X l64 -c $bundle -N $P11 -p 11"
@@ -206,7 +206,6 @@ initDir () {
   copy-pgXX "pglogical"
   copy-pgXX "timescaledb"
   copy-pgXX "anon"
-  copy-pgXX "http"
   copy-pgXX "cassandrafdw"
   copy-pgXX "hivefdw"
   copy-pgXX "plprofiler"
@@ -220,9 +219,11 @@ initDir () {
   copy-pgXX "audit"   
   copy-pgXX "postgis"   
   copy-pgXX "mysqlfdw"  
-  copy-pgXX "redisfdw"  
+  copy-pgXX "pgredis"  
+  copy-pgXX "kubernetes" 
   copy-pgXX "mongofdw"  
   copy-pgXX "wal2json"  
+  copy-pgXX "decoderbufs"  
   copy-pgXX "oraclefdw"  
   copy-pgXX "tdsfdw"  
   copy-pgXX "cron"
@@ -246,7 +247,7 @@ initDir () {
     mv $myNewDir/src.tar.gz $myNewDir/$pComponent-src.tar.gz
   fi
 
-  rm -f $myNewDir/*INSTALL*
+  ##rm -f $myNewDir/*INSTALL*
   rm -f $myNewDir/logs/*
 
   rm -rf $myNewDir/manual
@@ -318,7 +319,7 @@ finalizeOutput () {
   writeCompRow "hub"  "hub" "$hubV" "" "0" "Enabled" "nil"
   checkCmd "cp -r $SRC/hub ."
   checkCmd "mkdir -p hub/scripts"
-  checkCmd "cp -r $IO/backups ."
+  ##checkCmd "cp -r $IO/backups ."
   checkCmd "cp -r $CLI/* hub/scripts/."
   checkCmd "cp -r $CLI/../doc hub/."
   checkCmd "cp $CLI/../README.md  hub/doc/."
@@ -401,7 +402,11 @@ initC () {
 
 
 initPG () {
-  if [ "$pgM" == "11" ]; then
+  if [ "$pgM" == "96" ]; then
+    pgV=$P96
+  elif [ "$pgM" == "10" ]; then
+    pgV=$P10
+  elif [ "$pgM" == "11" ]; then
     pgV=$P11
   elif [ "$pgM" == "12" ]; then
     pgV=$P12
@@ -429,65 +434,80 @@ initPG () {
   writeSettRow "GLOBAL" "STAGE" "prod"
   writeSettRow "GLOBAL" "AUTOSTART" "off"
 
-  initC "psqlodbc" "psqlodbc" "$odbcV" "$outPlat" "postgres/psqlodbc" "" "" "nil"
 
   if [ "$outPlat" == "arm" ]; then
     return
   fi
 
   if [ "$pgM" == "13" ]; then 
-    if [ "$outPlat" == "amd" ]; then
-      initC "pljava-pg$pgM" "pljava" "$pljavaV" "$outPlat" "postgres/pljava" "" "" "nil"
-      initC "oraclefdw-pg$pgM" "oraclefdw" "$oraclefdwV" "$outPlat" "postgres/oraclefdw" "" "" "nil"
-      initC "tdsfdw-pg$pgM" "tdsfdw" "$tdsfdwV" "$outPlat" "postgres/tdsfdw" "" "" "nil"
-      initC "esfdw-pg$pgM" "esfdw" "$esfdwV" "$outPlat" "postgres/esfdw" "" "" "nil"
-    fi
+    initC "timescaledb-pg$pgM" "timescaledb" "$timescaleV"  "$outPlat" "postgres/timescale" "" "" "nil"
+    initC "bulkload-pg$pgM" "bulkload" "$bulkloadV" "$outPlat" "postgres/bulkload" "" "" "nil"
     initC "audit-pg$pgM" "audit" "$audit13V" "$outPlat" "postgres/audit" "" "" "nil"
-    initC "redisfdw-pg$pgM" "redisfdw" "$redisfdwV" "$outPlat" "postgres/redisfdw" "" "" "nil"
-    initC "mysqlfdw-pg$pgM" "mysqlfdw" "$mysqlfdwV" "$outPlat" "postgres/mysqlfdw" "" "" "nil"
+
+    #initC "psqlodbc" "psqlodbc" "$odbcV" "$outPlat" "postgres/psqlodbc" "" "" "nil"
+
+    #if [ "$outPlat" == "amd" ]; then
+    #  initC "pljava-pg$pgM" "pljava" "$pljavaV" "$outPlat" "postgres/pljava" "" "" "nil"
+    #  initC "oraclefdw-pg$pgM" "oraclefdw" "$oraclefdwV" "$outPlat" "postgres/oraclefdw" "" "" "nil"
+    #  initC "tdsfdw-pg$pgM" "tdsfdw" "$tdsfdwV" "$outPlat" "postgres/tdsfdw" "" "" "nil"
+    #  initC "esfdw-pg$pgM" "esfdw" "$esfdwV" "$outPlat" "postgres/esfdw" "" "" "nil"
+    #fi
+    #initC "mysqlfdw-pg$pgM" "mysqlfdw" "$mysqlfdwV" "$outPlat" "postgres/mysqlfdw" "" "" "nil"
+    #initC "mongofdw-pg$pgM" "mongofdw" "$mongofdwV" "$outPlat" "postgres/mongofdw" "" "" "nil"
+    #initC "hivefdw-pg$pgM" "hivefdw" "$hivefdwV" "$outPlat" "postgres/hivefdw" "" "" "nil"
+
+    #initC "plprofiler-pg$pgM" "plprofiler" "$profV" "$outPlat" "postgres/profiler" "" "" "nil"
+    #initC "citus-pg$pgM" "citus" "$citusV" "$outPlat" "postgres/citus" "" "" "nil"
+    #initC "ddlx-pg$pgM" "ddlx" "$ddlxV" "$outPlat" "postgres/ddlx" "" "" "nil"
+    #initC "multicorn-pg$pgM" "multicorn" "$multicornV" "$outPlat" "postgres/multicorn" "" "" "nil"
+
+    #initC "wa-pg$pgM" "wa" "$waV" "$outPlat" "postgres/wa" "" "" "nil"
+    #initC "archivist-pg$pgM" "archivist" "$archiV" "$outPlat" "postgres/archivist" "" "" "nil"
+    #initC "qualstats-pg$pgM" "qualstats" "$qstatV" "$outPlat" "postgres/qualstats" "" "" "nil"
+    #initC "statkcache-pg$pgM" "statkcache" "$statkV" "$outPlat" "postgres/statkcache" "" "" "nil"
+    #initC "waitsampling-pg$pgM" "waitsampling" "$waitsV" "$outPlat" "postgres/waitsampling" "" "" "nil"
+  fi
+
+  if [ "$pgM" -ge "13" ] && [ "$isEL8" == "True" ]; then 
+    initC "postgis-pg$pgM" "postgis" "$postgisV" "$outPlat" "postgres/postgis" "" "" "nil"
     initC "wal2json-pg$pgM" "wal2json" "$w2jV" "$outPlat" "postgres/wal2json" "" "" "nil"
-    initC "mongofdw-pg$pgM" "mongofdw" "$mongofdwV" "$outPlat" "postgres/mongofdw" "" "" "nil"
-    initC "hivefdw-pg$pgM" "hivefdw" "$hivefdwV" "$outPlat" "postgres/hivefdw" "" "" "nil"
+    initC "decoderbufs-pg$pgM" "decoderbufs" "$decbufsV" "$outPlat" "postgres/decoderbufs" "" "" "nil"
+
     initC "pglogical-pg$pgM" "pglogical" "$logicalV" "$outPlat" "postgres/logical" "" "" "nil"
     initC "repack-pg$pgM" "repack" "$repackV" "$outPlat" "postgres/repack" "" "" "nil"
     initC "anon-pg$pgM" "anon" "$anonV" "$outPlat" "postgres/anon" "" "" "nil"
     initC "hypopg-pg$pgM" "hypopg" "$hypoV" "$outPlat" "postgres/hypopg" "" "" "nil"
-    initC "plprofiler-pg$pgM" "plprofiler" "$profV" "$outPlat" "postgres/profiler" "" "" "nil"
     initC "cron-pg$pgM" "cron" "$cronV" "$outPlat" "postgres/cron" "" "" "nil"
-    #initC "postgis-pg$pgM" "postgis" "$postgisV" "$outPlat" "postgres/postgis" "" "" "nil"
-    initC "citus-pg$pgM" "citus" "$citusV" "$outPlat" "postgres/citus" "" "" "nil"
     initC "fixeddecimal-pg$pgM" "fixeddecimal" "$fdV" "$outPlat" "postgres/fixeddecimal" "" "" "nil"
     initC "partman-pg$pgM" "partman" "$partmanV" "$outPlat" "postgres/partman" "" "" "nil"
     initC "orafce-pg$pgM" "orafce" "$orafceV" "$outPlat" "postgres/orafce" "" "" "nil"
-    initC "ddlx-pg$pgM" "ddlx" "$ddlxV" "$outPlat" "postgres/ddlx" "" "" "nil"
-    initC "timescaledb-pg$pgM" "timescaledb" "$timescaleV"  "$outPlat" "postgres/timescale" "" "" "nil"
-    initC "bulkload-pg$pgM" "bulkload" "$bulkloadV" "$outPlat" "postgres/bulkload" "" "" "nil"
-    initC "multicorn-pg$pgM" "multicorn" "$multicornV" "$outPlat" "postgres/multicorn" "" "" "nil"
-
-    initC "wa-pg$pgM" "wa" "$waV" "$outPlat" "postgres/wa" "" "" "nil"
-    initC "archivist-pg$pgM" "archivist" "$archiV" "$outPlat" "postgres/archivist" "" "" "nil"
-    initC "qualstats-pg$pgM" "qualstats" "$qstatV" "$outPlat" "postgres/qualstats" "" "" "nil"
-    initC "statkcache-pg$pgM" "statkcache" "$statkV" "$outPlat" "postgres/statkcache" "" "" "nil"
-    initC "waitsampling-pg$pgM" "waitsampling" "$waitsV" "$outPlat" "postgres/waitsampling" "" "" "nil"
   fi
 
-  #initC "cassandra" "cassandra" "$cstarV" "" "cassandra" "" "" "nil"
+  if [ "$isEL8" == "True" ]; then
+    initC "zookeeper" "zookeeper" "$zooV"   "" "zookeeper"        "" "" "Y"
+    initC "kafka"     "kafka"     "$kfkV"   "" "kafka"            "" "" "Y"
+    initC "debezium"  "debezium"  "$dbzV"   "" "debezium"         "" "" "Y"
+  else
+    ### Not supported (for testing only) ####################################
+    initC "badger"    "badger"    "$badgerV" "" "postgres/badger" "" "" "nil"
+    initC "ora2pg"    "ora2pg"    "$ora2pgV" "" "postgres/ora2pg" "" "" "nil"
+    initC "instantclient" "instantclient" "$inclV" "$outPlat" "instantclient" "" "" "nil"
+    initC "pgadmin"   "pgadmin"   "$adminV" "" "postgres/pgadmin" "" "" "Y"
+    initC "omnidb"    "omnidb"    "$omniV"  "" "postgres/omnidb"  "" "" "Y"
+    initC "redis"     "redis"     "$redisV" "" "redis"            "" "" "Y"
+    initC "kubernetes" "kubernetes" "$k8sV" "" "kubernetes"       "" "" "Y"
+    initC "mariadb"   "mariadb"   "$mariaV" "" "mariadb"          "" "" "Y"
+    initC "sqlsvr"    "sqlsvr"    "$sqlsvrV" "" "sqlsvr"          "" "" "Y"
+    initC "mongodb"   "mongodb"   "$mongoV"  "" "mongodb"         "" "" "Y"
+    initC "elasticsearch" "elasticsearch"   "$esV"  "" "elk/elasticsearch" "" "" "Y"
+    initC "patroni"   "patroni"   "$patroniV" "" "postgres/patroni" "" "" "nil"
+    #initC "cassandra" "cassandra" "$cstarV" "" "cassandra" "" "" "nil"
+    #initC "backrest"  "backrest"  "$backrestV" "$outPlat" "postgres/backrest" "" "" "nil"
+    #initC "bouncer"   "bouncer"   "$bouncerV" "$outPlat" "postgres/bouncer" "" "" "nil"
+  fi
 
-  ### Not supported (for testing only) ####################################
-  initC "pgadmin"   "pgadmin"   "$adminV" "" "postgres/pgadmin" "" "" "Y"
-  initC "omnidb"    "omnidb"    "$omniV"  "" "postgres/omnidb"  "" "" "Y"
-  initC "zookeeper" "zookeeper" "$zooV"   "" "zookeeper"        "" "" "Y"
-  initC "kafka"     "kafka"     "$kfkV"   "" "kafka"            "" "" "Y"
-  initC "debezium"  "debezium"  "$dbzV"   "" "debezium"         "" "" "Y"
-  initC "redis"     "redis"     "$redisV" "" "redis"            "" "" "Y"
-  initC "patroni"   "patroni"   "$patroniV" "" "postgres/patroni" "" "" "nil"
-  initC "badger"    "badger"    "$badgerV" "" "postgres/badger" "" "" "nil"
-  initC "ora2pg"    "ora2pg"    "$ora2pgV" "" "postgres/ora2pg" "" "" "nil"
-  initC "bouncer"   "bouncer"   "$bouncerV" "$outPlat" "postgres/bouncer" "" "" "nil"
-  initC "backrest"  "backrest"  "$backrestV" "$outPlat" "postgres/backrest" "" "" "nil"
-
-  if [ "$pgM" == "12" ]; then 
-
+  if [ "$pgM" == "12" ]  && [ "$isEL8" == "False" ]; then 
+    initC "postgis-pg$pgM" "postgis" "$postgisV" "$outPlat" "postgres/postgis" "" "" "nil"
     initC "pldebugger-pg$pgM" "pldebugger" "$debuggerV" "$outPlat" "postgres/pldebugger" "" "" "nil"
 
     #if [ "$outPlat" == "amd" ]; then
@@ -498,9 +518,6 @@ initPG () {
     #fi
 
     #initC "cassandra" "cassandra" "$cstarV" "" "cassandra" "" "" "nil"
-
-
-    #initC "http-pg$pgM" "http" "$httpV" "$outPlat" "postgres/http" "" "" "nil"
   fi
 }
 
@@ -525,6 +542,14 @@ setupOutdir () {
 ###############################    MAINLINE   #########################################
 osName=`uname`
 verSQL="versions.sql"
+cat /etc/os-release | grep el8 > /dev/null 2>&1
+rc=$?
+if [ "$rc" == "0" ]; then
+  isEL8="True"
+else
+  isEL8="False"
+fi
+##echo "isEL8=$isEL8"
 
 
 ## process command line paramaters #######

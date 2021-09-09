@@ -22,20 +22,16 @@ copyBin="$3"
 if [ "$copyBin" == "" ]; then
   copyBin="--no-copy-bin"
 fi
-if [ ! "$pgV"  == "11" ] && [ ! "$pgV"  == "12" ] && [ ! "$pgV"  == "13" ]; then
-  echo  "ERROR: second parm must be 11, 12 or 13"
+if [ ! "$pgV"  == "11" ] && [ ! "$pgV"  == "12" ]  && [ ! "$pgV"  == "13" ] && [ ! "$pgV"  == "14" ]; then
+  echo  "ERROR: second parm must be 11, 12, 13 or 14"
   exit 1
 fi
 
 
-## WIP across platforms ###########################
+## WIP ############################################
 
 if [ "$1" == "parquets3fdw" ]; then
   build parquets3fdw $parquetFullV $2 parquets3fdw
-fi
-
-if [ "$1" == "psqlodbc" ]; then
-  build psqlodbc $odbcFullV $2 psqlodbc
 fi
 
 if [ "$1" == "agent" ]; then
@@ -54,7 +50,18 @@ if [ "$1" == "pgtsql" ]; then
   build pgtsql $pgTSQLFullV $2 tsql
 fi
 
-## prod ready across platforms #######################
+if [ "$1" == "pgtop" ]; then
+  build pgtop $pgtopFullV $2 pgtop
+fi
+
+if [ "$1" == "pldebugger" ]; then
+  build pldebugger $debugFullV $2 pldebugger
+fi
+
+if [ "$1" == "pgredis" ]; then
+  build pgredis $pgredisFullV $2 pgredis
+fi
+
 
 if [ "$1" == "archivist" ]; then
   build archivist $archivFullV $2 archivist
@@ -72,11 +79,17 @@ if [ "$1" == "waitsampling" ]; then
   build waitsampling $waitsFullV $2 waitsampling
 fi
 
-if [ "$1" == "hintplan" ]; then
+## PROD ##############################################
+
+if [ "$1" == "hintplan" ] || [ "$1" == "all" ]; then
   build hintplan $hintplanFullV $2 hintplan
 fi
 
-if [ "$1" == "wal2json" ]; then
+if [ "$1" == "decoderbufs" ]  || [ "$1" == "all" ]; then
+  build decoderbufs $decoderbufsFullV $2 decoderbufs
+fi
+
+if [ "$1" == "wal2json" ]  || [ "$1" == "all" ]; then
   build wal2json $wal2jsonFullV $2 wal2json
 fi
 
@@ -84,15 +97,15 @@ if [ "$1" == "mongofdw" ]; then
   build mongofdw $mongofdwFullV $2 mongofdw
 fi
 
-if [ "$1" == "backrest" ]  || [ "$1" == "all" ]; then
+if [ "$1" == "backrest" ]; then
   build backrest $backrestFullV $2 backrest
 fi
 
-if [ "$1" == "citus" ]  || [ "$1" == "all" ]; then
+if [ "$1" == "citus" ]; then
   build citus $citusFullV $2 citus
 fi
 
-if [ "$1" == "multicorn" ] || [ "$1" == "all" ]; then
+if [ "$1" == "multicorn" ]; then
   build multicorn $multicornFullV $2 multicorn 
 fi
 
@@ -100,15 +113,11 @@ if [ "$1" == "cron" ] || [ "$1" == "all" ]; then
   build cron $cronFullV $2 cron
 fi
 
-if [ "$1" == "pldebugger" ] || [ "$1" == "all" ]; then
-  build pldebugger $debugFullV $2 pldebugger
-fi
-
-if [ "$1" == "hivefdw" ] || [ "$1" == "all" ]; then
+if [ "$1" == "hivefdw" ]; then
   build hivefdw $hivefdwFullV $2 hivefdw
 fi
 
-if [ "$1" == "cassandrafdw" ] || [ "$1" == "all" ]; then
+if [ "$1" == "cassandrafdw" ]; then
   build cassandrafdw $cassFullV $2 cassandrafdw
 fi
 
@@ -144,7 +153,7 @@ if [ "$1" == "hypopg" ] || [ "$1" == "all" ]; then
   build hypopg $hypopgFullV $2 hypopg
 fi
 
-if [ "$1" == "plprofiler" ] || [ "$1" == "all" ]; then
+if [ "$1" == "plprofiler" ]; then
   build plprofiler $plProfilerFullVersion $2 profiler
 fi
 
@@ -160,39 +169,31 @@ if [ "$1" == "anon" ] || [ "$1" == "all" ]; then
   build anon $anonFullV $2 anon
 fi
 
-if [ "$1" == "ddlx" ] || [ "$1" == "all" ]; then
+if [ "$1" == "ddlx" ]; then
   build ddlx $ddlxFullV $2 ddlx
 fi
 
-if [ "$1" == "http" ] || [ "$1" == "all" ]; then
+if [ "$1" == "http" ]; then
   build http $httpFullV $2 http
 fi
 
-if [ "$1" == "proctab" ] || [ "$1" == "all" ]; then
+if [ "$1" == "proctab" ]; then
   build proctab $proctabFullV $2 proctab
 fi
 
-if [ "$1" == "pgtop" ] || [ "$1" == "all" ]; then
-  build pgtop $pgtopFullV $2 pgtop
-fi
-
-if [ "$1" == "bouncer" ] || [ "$1" == "all" ]; then
+if [ "$1" == "bouncer" ]; then
   build bouncer $bouncerFullV $2 bouncer
 fi
 
-if [ "$1" == "mysqlfdw" ] || [ "$1" == "all" ]; then
+if [ "$1" == "mysqlfdw" ]; then
   build mysqlfdw $mysqlfdwFullV $2 mysqlfdw
 fi
 
-if [ "$1" == "redisfdw" ] || [ "$1" == "all" ]; then
-  build redisfdw $redisfdwFullV $2 redisfdw
-fi
-
-if [ "$1" == "oraclefdw" ] || [ "$1" == "all" ]; then
+if [ "$1" == "oraclefdw" ]; then
   build oraclefdw $oraclefdwFullV $2 oraclefdw
 fi
 
-if [ "$1" == "tdsfdw" ] || [ "$1" == "all" ]; then
+if [ "$1" == "tdsfdw" ]; then
   build tdsfdw $tdsfdwFullV $2 tdsfdw
 fi
 

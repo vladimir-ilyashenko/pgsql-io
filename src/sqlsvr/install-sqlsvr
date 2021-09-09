@@ -1,30 +1,35 @@
-cd "$(dirname "$(readlink -f "$0")")"
+#!/bin/bash
+cd "$(dirname "$0")"
 
-# set -x
+ubuV=20.04
+apt="sudo apt-get"
 
-if [ `arch` == 'aarch64' ]; then
-  echo 'ERROR: SQL Server for Linux on runs on AMD64 Architecture'
-  exit 1
-fi
+url=https://packages.microsoft.com
+sa_passwd='password'
+product='developer'
 
-sudo yum install python2
-sudo yum install compat-openssl10
-echo 
-echo Configure python2 as the default interpreter 
-sudo alternatives --config python
+echo " "
+echo "## INSTALL SQLSVR FOR LINUX #####################################"
+source getPKMG.sh
 
-sudo curl -o /etc/yum.repos.d/mssql-server.repo https://packages.microsoft.com/config/rhel/8/mssql-server-2019.repo
-sudo yum install -y mssql-server
+set -x
 
-sudo curl -o /etc/yum.repos.d/msprod.repo https://packages.microsoft.com/config/rhel/8/prod.repo
-sudo yum remove unixODBC-utf16 unixODBC-utf16-devel
-sudo yum install -y mssql-tools unixODBC-devel
-echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
-source ~/.bashrc
+$apt install -y curl wget
 
-echo ""
-echo "# now run:   ./io config sqlsvr"
+wget -qO- $url/keys/microsoft.asc | sudo apt-key add -
+
+sudo add-apt-repository "$(wget -qO- $url/config/ubuntu/$ubuV/mssql-server-2019.list)"
+$apt update
+$apt install -y mssql-server
+
+sudo MSSQL_SA_PASSWORD=$sa_passwd  MSSQL_PID=$product \
+  /opt/mssql/bin/mssql-conf -n setup accept-eula
+
+sudo systemctl status mssql-server --no-pager
+
+curl $url/config/ubuntu/$ubuV/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list
+$apt update
+sudo ACCEPT_EULA=y apt-get install -y mssql-tools
 
 exit 0
-
 

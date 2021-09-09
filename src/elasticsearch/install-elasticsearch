@@ -1,9 +1,23 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
-sudo rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
+ver=7.x
+repo="https://artifacts.elastic.co/packages/$ver/apt stable main"
+list=/etc/apt/sources.list.d/elastic-$ver.list
 
-sudo cp elasticsearch.repo /etc/yum.repos.d/.
+echo " "
+echo "## INSTALL ELASTICSEARCH $ver #################################"
 
-sudo yum install -y elasticsearch
+set -x
+
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+echo "deb $repo" | sudo tee $list
+
+sudo apt-get update
+sudo apt-get install -y elasticsearch
+
+sudo systemctl daemon-reload
+sudo systemctl enable elasticsearch
+
+sudo systemctl status elasticsearch --no-pager
 

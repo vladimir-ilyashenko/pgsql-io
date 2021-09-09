@@ -33,18 +33,18 @@ rc = os.system(cmd)
 
 util.tune_postgresql_conf(pgver)
 
-MY_CMD = os.getenv('MY_CMD')
-MY_HOME = os.getenv('MY_HOME')
-install_cmd = MY_HOME + os.sep + MY_CMD + " install "
-
-if os.getenv("isJson"):
-  jflag = " --json"
-else:
-  jflag = ""
-
-os.system(install_cmd + "bouncer" + jflag)
-os.system(install_cmd + "backrest" + jflag)
-os.system(install_cmd + "patroni" + jflag)
+##MY_CMD = os.getenv('MY_CMD')
+##MY_HOME = os.getenv('MY_HOME')
+##install_cmd = MY_HOME + os.sep + MY_CMD + " install "
+##
+##if os.getenv("isJson"):
+##  jflag = " --json"
+##else:
+##  jflag = ""
+##
+##os.system(install_cmd + "bouncer" + jflag)
+##os.system(install_cmd + "backrest" + jflag)
+##os.system(install_cmd + "patroni" + jflag)
 
 util.message("\nStarting " + str(pgver) + " for first time")
 script = thisDir + os.sep + "start-" + pgver + ".py"

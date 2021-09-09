@@ -1,32 +1,27 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
-secureInstallation() {
-  mysql -e "UPDATE mysql.user SET Password=PASSWORD(‘{input_password_here}’) WHERE User=’root’;"
-  mysql -e "DELETE FROM mysql.user WHERE User=’root’ AND Host NOT IN (‘localhost’, ‘127.0.0.1’, ‘::1’);"
-  mysql -e "DELETE FROM mysql.user WHERE User=”;"
-  mysql -e "DROP DATABASE test;"
-  mysql -e "FLUSH PRIVILEGES;"
-}
-
 echo " "
 echo "## INSTALL MARIADB ##############################################"
 source getPKMG.sh
-if [ "$PKMG" == "yum" ]; then
-  sudo cp MariaDB.repo /etc/yum.repos.d/.
-  sudo yum install -y MariaDB-server
-  secureInstallation
-  return
+
+if [ "$PKMG" == "apt" ]; then
+  sudo apt update -y
+  sudo apt -y install software-properties-common
+  sudo apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
+  sudo add-apt-repository 'deb [arch=amd64] http://mariadb.mirror.globo.tech/repo/10.6/ubuntu focal main'
+  sudo apt update -y
+  sudo apt install -y mariadb-server mariadb-client
+else
+  sudo tee /etc/yum.repos.d/MariaDB.repo<<EOF
+[mariadb]
+name = MariaDB
+baseurl = http://yum.mariadb.org/10.6/centos7-amd64
+gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgcheck=1
+EOF
+  sudo yum update -y
+  sudo yum install -y MariaDB-server MariaDB-client MariaDB-devel
 fi
 
-
-## APT #########################################################
-sudo apt update -y
-sudo apt -y install software-properties-common
-sudo apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
-sudo add-apt-repository 'deb [arch=amd64] http://mariadb.mirror.globo.tech/repo/10.5/ubuntu focal main'
-sudo apt update -y
-sudo apt install -y mariadb-server mariadb-client
-secureInstallation
-
-return
+exit

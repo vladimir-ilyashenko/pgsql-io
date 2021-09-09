@@ -4,7 +4,7 @@
 
 from __future__ import print_function, division
 
-MY_VERSION = "6.48"
+MY_VERSION = "6.54"
 
 from subprocess import Popen, PIPE, STDOUT
 from datetime import datetime, timedelta
@@ -64,7 +64,6 @@ def get_random_password(p_length=12):
   for x in range(p_length):
     passwd.append(random.choice(passwd_chars))
   return(''.join(passwd))
-
 
 def get_1st_ip():
   ips = getoutput("hostname --all-ip-addresses")
@@ -337,6 +336,14 @@ def validate_checksum(p_file_name, p_checksum_file_name):
     return check_sum_match
 
 
+def restart_postgres(p_pg):
+  print("")
+  run_cmd (p_pg + os.sep + "stop-" + p_pg + ".py", False )
+  time.sleep(3)
+  run_cmd (p_pg + os.sep + "start-" + p_pg + ".py", False )
+  time.sleep(4)
+
+
 def create_extension(p_pg, p_ext, p_reboot=False, p_extension="", p_cascade=False):
   if p_ext > " ":
     rc = change_pgconf_keyval(p_pg, "shared_preload_libraries", p_ext)
@@ -345,11 +352,7 @@ def create_extension(p_pg, p_ext, p_reboot=False, p_extension="", p_cascade=Fals
       sys.exit(1)
 
   if p_reboot:
-    print("")
-    run_cmd (p_pg + os.sep + "stop-" + p_pg + ".py", False )
-    time.sleep(3)
-    run_cmd (p_pg + os.sep + "start-" + p_pg + ".py", False )
-    time.sleep(4)
+    restart_postgres(p_pg)
 
   print("")
   if p_extension == "":
@@ -1075,7 +1078,7 @@ def set_con(p_args, p_pwd):
     remember_pgpassword(p_pwd, port, host, db, user)
     return
 
-  message(f"Svc '{arg[0]}' not supported.  Must be 'postgres'", "error")
+  message("Svc '" + str(arg[0]) + "' not supported.  Must be 'postgres'", "error")
   return
 
 
@@ -1094,7 +1097,7 @@ def get_con(p_args):
 
     return
 
-  message(f"Svc '{arg[0]}' not supported.  Must be 'postgres'", "error")
+  message("Svc '" + str(arg[0]) + "' not supported.  Must be 'postgres'", "error")
   return
 
 
@@ -2738,6 +2741,14 @@ def validate_distutils_click(isFatal=True):
 
 
 def copy_extension_files(ext_comp, parent_comp,upgrade=None):
+  ## always overlay these files ##
+  PARENT_DIR = os.path.join(MY_HOME, parent_comp)
+  COMP_DIR = os.path.join(MY_HOME, ext_comp)
+
+  cmd = "cp -r " + COMP_DIR + "/. " + PARENT_DIR
+  os.system(cmd)
+  return True
+  ## leaving the old code for now below ####
 
   validate_distutils_click()
   from distutils.dir_util import copy_tree

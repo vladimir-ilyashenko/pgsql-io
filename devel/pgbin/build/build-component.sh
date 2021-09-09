@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## set -x
+##set -x
 
 source ./versions.sh
 buildOS=$OS
@@ -26,7 +26,9 @@ function getPGVersion {
 	fi
 	pgFullVersion=`$pgBin/bin/pg_config --version | awk '{print $2}'`
 
-        if [[ "${pgFullVersion/rc}" =~ 13.* ]]; then
+        if [[ "${pgFullVersion/rc}" =~ 14beta* ]]; then
+                pgShortVersion="14"
+        elif [[ "${pgFullVersion/rc}" =~ 13.* ]]; then
                 pgShortVersion="13"
         elif [[ "${pgFullVersion/rc}" =~ 12.* ]]; then
                 pgShortVersion="12"
@@ -60,7 +62,7 @@ function prepComponentBuildDir {
 	cp $PGHOME/lib/libssl.so* $buildLocation/lib/
 	cp $PGHOME/lib/libpgport.a $buildLocation/lib/
 	cp $PGHOME/lib/libpgcommon.a $buildLocation/lib/
-	cp $PGHOME/lib/libcrypt*.so* $buildLocation/lib/
+	#cp $PGHOME/lib/libcrypt*.so* $buildLocation/lib/
         cp $PGHOME/lib/postgresql/plpgsql.so $buildLocation/lib/postgresql/
 }
 
@@ -119,40 +121,41 @@ function updateSharedLibs {
           suffix="*so*"
         fi
 
+        libPathLog=$baseDir/$workDir/logs/libPath.log
+
         if [[ -d $buildLocation/bin ]]; then
           cd $buildLocation/bin
           for file in `ls -d *` ; do
-            echo "# chrpath $file"
-	        chrpath -r "\${ORIGIN}/../lib" "$file" >> $baseDir/$workDir/logs/libPath.log 2>&1
+            chrpath -r "\${ORIGIN}/../lib" "$file" >> $libPathLog 2>&1
       	  done
         fi
 
         cd $buildLocation/lib
-        for file in `ls -d $suffix 2>/dev/null` ; do
-                chrpath -r "\${ORIGIN}/../lib" "$file" >> $baseDir/$workDir/logs/libPath.log 2>&1
+        for file in `ls -d *so*  2>/dev/null` ; do
+          chrpath -r "\${ORIGIN}/../lib" "$file" >> $libPathLog 2>&1
         done
 
         if [[ -d "$buildLocation/lib/postgresql" ]]; then
-                cd $buildLocation/lib/postgresql
-		for file in `ls -d $suffix 2>/dev/null` ; do
-			ls -sh $file
-             		chrpath -r "\${ORIGIN}/../../lib" "$file" >> $baseDir/$workDir/logs/libPath.log 2>&1
-		done
+          cd $buildLocation/lib/postgresql
+          for file in `ls -d *so*  2>/dev/null` ; do
+            chrpath -r "\${ORIGIN}/../../lib" "$file" >> $libPathLog 2>&1
+          done
         fi
+
+        ##cat $libPathLog
 
 	lib64=/usr/lib64
 	shared_lib=$buildLocation/lib
         if [ "$comp" == "mysqlfdw" ]; then
-		cp -Pv $lib64/mysql/libmysqlclient.* $shared_lib/.
+          cp -Pv $lib64/mysql/libmysqlclient.* $shared_lib/.
+	elif [ "$comp" == "decoderbufs" ]; then
+          cp -Pv $lib64/libproto*.so* $shared_lib/.
 	elif [ "$comp" == "postgis" ]; then
-		cp -Pv $lib64/libgeos*.so*         $shared_lib/.
-		cp -Pv $lib64/libprotobuf-c.so.*   $shared_lib/.
-		cp -Pv $lib64/libproj.so.*         $shared_lib/.
-		cp -Pv $lib64/libjson-c*           $shared_lib/.
-		cp -Pv /usr/local/lib/libgeos*.so* $shared_lib/.
-		cp -Pv /usr/local/lib/libgdal*.so* $shared_lib/.
+          cp -Pv $lib64/libgeos*.so*  $shared_lib/.
+          cp -Pv $lib64/libgdal*.so*  $shared_lib/.
+          cp -Pv $lib64/libproto*.so* $shared_lib/.
+          cp -Pv $lib64/libproj*.so*  $shared_lib/.
         fi
-
 }
 
 
@@ -246,7 +249,7 @@ function configureComp {
         echo "# configure backrest..."
         export LD_LIBRARY_PATH=$buildLocation/lib
         cd src
-        ./configure --prefix=$buildLocation >> $make_log 2>&1 
+        ./configure --prefix=$buildLocation LDFLAGS="$LDFLAGS -Wl,-rpath,$sharedLibs" >> $make_log 2>&1 
         rc=$?
     fi
 
@@ -264,7 +267,7 @@ function configureComp {
         opt="--prefix=$buildLocation --disable-rpath --with-cares --with-pam"
         opt="$opt --with-libevent=$sharedLibs/../ --with-openssl=$sharedLibs/../"
         echo "#    $opt"
-        ./configure $opt LDFLAGS="$LDFLAGS -Wl,-rpath,$sharedLibs" > $make_log 2>&1
+        ./configure $opt LDFLAGS="$LDFLAGS -Wl,-rpath,$sharedLibs/lib" > $make_log 2>&1
         rc=$?
     fi
 
@@ -273,6 +276,13 @@ function configureComp {
         config="ccmake -DCMAKE_INSTALL_PREFIX=$buildLocation --config cfg ."
         echo "#   $config"
         $config > $make_log 2>&1
+        rc=$?
+    fi
+
+    if [ "$comp" == "postgis" ]; then
+        echo "# configure postgis..."
+        ##./configure --without-protobuf LDFLAGS="$LDFLAGS -Wl,-rpath,$sharedLibs" > $make_log 2>&1
+        ./configure LDFLAGS="$LDFLAGS -Wl,-rpath,$sharedLibs" > $make_log 2>&1
         rc=$?
     fi
 
@@ -623,7 +633,7 @@ function buildTimeScaleDBComponent {
         packageComponent $componentBundle
 }
 
-TEMP=`getopt -l no-tar, copy-bin,no-copy-bin,with-pgver:,with-pgbin:,build-hypopg:,build-postgis:,build-bouncer:,build-hvefdw:,build-cassandrafdw:,build-pgtsql:,build-tdsfdw:,build-mongofdw:,build-mysqlfdw:,build-redisfdw:,build-oraclefdw:,build-orafce:,build-audit:,build-set-user:,build-partman:,build-pldebugger:,build-plr:,build-pljava:,build-plv8:,build-plprofiler:,build-background:,build-bulkload:,build-backrest:,build-psqlodbc:,build-cstore-fdw:,build-parquets3fdw:,build-repack:,build-spock:,build-pglogical:,build-hintplan:,build-statkcache:,build-qualstats:,build-archivist:,build-waitsampling:,build-timescaledb:,build-cron:,build-multicorn:,build-pgmp:,build-fixeddecimal:,build-anon,build-ddlx:,build-http:,build-pgtop:,build-proctab:,build-agent:,build-citus:,build-number: -- "$@"`
+TEMP=`getopt -l no-tar, copy-bin,no-copy-bin,with-pgver:,with-pgbin:,build-hypopg:,build-postgis:,build-bouncer:,build-hvefdw:,build-cassandrafdw:,build-pgtsql:,build-tdsfdw:,build-mongofdw:,build-mysqlfdw:,build-pgredis:,build-oraclefdw:,build-orafce:,build-audit:,build-set-user:,build-partman:,build-pldebugger:,build-plr:,build-pljava:,build-plv8:,build-plprofiler:,build-background:,build-bulkload:,build-backrest:,build-psqlodbc:,build-cstore-fdw:,build-parquets3fdw:,build-repack:,build-spock:,build-pglogical:,build-hintplan:,build-statkcache:,build-qualstats:,build-archivist:,build-waitsampling:,build-timescaledb:,build-cron:,build-multicorn:,build-pgmp:,build-fixeddecimal:,build-anon,build-ddlx:,build-http:,build-pgtop:,build-proctab:,build-agent:,build-citus:,build-number: -- "$@"`
 
 if [ $? != 0 ] ; then
 	echo "Required parameters missing, Terminating..."
@@ -646,8 +656,9 @@ while true; do
     --build-tdsfdw ) buildTDSFDW=true; Source=$2; shift; shift ;;
     --build-mongofdw ) buildMongoFDW=true Source=$2; shift; shift ;;
     --build-wal2json ) buildWal2json=true Source=$2; shift; shift ;;
+    --build-decoderbufs ) buildDecoderBufs=true Source=$2; shift; shift ;;
     --build-mysqlfdw ) buildMySQLFDW=true; Source=$2; shift; shift ;;
-    --build-redisfdw ) buildRedisFDW=true; Source=$2; shift; shift ;;
+    --build-pgredis ) buildPgRedis=true; Source=$2; shift; shift ;;
     --build-oraclefdw ) buildOracleFDW=true; Source=$2; shift; shift ;;
     --build-orafce ) buildOrafce=true; Source=$2; shift; shift ;;
     --build-fixeddecimal ) buildFD=true; Source=$2; shift; shift ;;
@@ -719,6 +730,10 @@ if [[ $buildMongoFDW == "true" ]]; then
 	buildComp mongofdw "$mongofdwShortV" "$mongofdwFullV" "$mongofdwBuildV" "$Source"
 fi
 
+if [[ $buildDecoderBufs == "true" ]]; then
+	buildComp decoderbufs "$decoderbufsShortV" "$decoderbufsFullV" "$decoderbufsBuildV" "$Source"
+fi
+
 if [[ $buildWal2json == "true" ]]; then
 	buildComp wal2json "$wal2jsonShortV" "$wal2jsonFullV" "$wal2jsonBuildV" "$Source"
 fi
@@ -736,8 +751,8 @@ if [[ $buildMySQLFDW == "true" ]]; then
 	buildComp mysqlfdw "$mysqlfdwShortV" "$mysqlfdwFullV" "$mysqlfdwBuildV" "$Source"
 fi
 
-if [[ $buildRedisFDW == "true" ]]; then
-	buildComp redisfdw "$redisfdwShortV" "$redisfdwFullV" "$redisfdwBuildV" "$Source"
+if [[ $buildPgRedis == "true" ]]; then
+	buildComp pgredis "$pgredisShortV" "$pgredisFullV" "$pgredisBuildV" "$Source"
 fi
 
 if [[ $buildPostGIS ==  "true" ]]; then

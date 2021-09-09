@@ -1,5 +1,8 @@
 
-sudo yum remove mssql-server
-echo ''
-echo 'Use the below command yourself to remove your data files:'
-echo '  sudo rm -rf /var/opt/mssql/'
+set -x
+
+sudo apt-get autoremove -y mssql-*
+
+sudo rm -f /etc/apt/sources.list.d/msprod*
+
+sudo rm -rf /var/opt/mssql

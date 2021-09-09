@@ -1,5 +1,5 @@
 
-ver=1.3.1
+ver=1.2.1
 
 url=https://github.com/protobuf-c/protobuf-c/releases/download/v$ver
 dir=protobuf-c-$ver 

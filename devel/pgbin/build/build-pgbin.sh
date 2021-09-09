@@ -4,7 +4,7 @@
 #   psqlODBC, and pgBackrest
 #
 
-#set -x
+# set -x
 
 source versions.sh
 
@@ -30,9 +30,9 @@ pgLLVM=""
 sourceTarPassed=0
 archiveLocationPassed=0
 buildVersionPassed=0
-buildBouncer=0
+buildBouncer=1
 buildODBC=0
-buildBackrest=0
+buildBackrest=1
 
 scriptName=`basename $0`
 
@@ -84,19 +84,35 @@ function checkPostgres {
 		pgSrcV=`$pgSrcDir/configure --version | head -1 | awk '{print $3}'`
 		if [[ "${pgSrcV/rc}" =~ ^14beta* ]]; then
 			pgShortV="14"
+			bndlPrfx=pg14
 			pgLLVM="--with--llvm"
 		elif [[ "${pgSrcV/rc}" =~ ^13.* ]]; then
 			pgShortV="13"
+			bndlPrfx=pg13
 			pgLLVM="--with--llvm"
 		elif [[ "${pgSrcV/rc}" =~ ^12.* ]]; then
 			pgShortV="12"
+			bndlPrfx=pg12
 			pgLLVM="--with--llvm"
 		elif [[ "${pgSrcV/rc}" =~ ^11.* ]]; then
 			pgShortV="11"
+			bndlPrfx=pg11
 			pgLLVM="--with--llvm"
+		elif [[ "${pgSrcV/rc}" =~ ^10.* ]]; then
+			pgShortV="10"
+			bndlPrfx=pg10
+			pgLLVM=""
+		elif [[ "${pgSrcV/rc}" =~ ^9.6.* ]]; then
+			pgShortV="96"
+			bndlPrfx=pg96
+			pgLLVM=""
 		else
 			echo "ERROR: Could not determine Postgres Version for '$pgSrcV'"
 			exit 1
+		fi
+		
+		if [ "$PGOSQL" == "True" ]; then
+			bndlPrfx=pgosql$pgShortV
 		fi
 	fi
 }
@@ -159,11 +175,17 @@ function checkAgent {
 
 
 function buildPostgres {
-	echo "# buildPostgres()"	
+	if [ "$PGOSQL" == "True" ]; then
+		echo "# buildPGOSQL"
+	else
+		echo "# buildPOSTGRES"	
+	fi
 
 	cd $baseDir/$workDir/$pgSrcDir
 	mkdir -p $baseDir/$workDir/logs
-	buildLocation="$baseDir/$workDir/build/pg$pgShortV-$pgSrcV-$pgBldV-$OS"
+	#buildLocation="$baseDir/$workDir/build/pg$pgShortV-$pgSrcV-$pgBldV-$OS"
+	buildLocation="$baseDir/$workDir/build/$bndlPrfx-$pgSrcV-$pgBldV-$OS"
+	echo "# buildLocation = $buildLocation"
 
 	if [ `uname` == "Darwin" ]; then
 		#export LDFLAGS="$LDFLAGS -L/usr/local/opt/openssl/lib"
@@ -188,7 +210,7 @@ function buildPostgres {
         if [ "$arch" == "aarch64" ] && [ "$gcc_ver" == "10.2.0" ]; then
 		export CFLAGS="$CFLAGS -moutline-atomics"
         fi
-        echo "# gcc_ver = $gcc_ver,  arch = $arch, CFLAGS = $CFLAGS"
+        echo "# gcc_ver = $gcc_ver,  arch = $arch"
 
 	echo "#  @`date`  $conf"
 	configCmnd="./configure --prefix=$buildLocation $conf" 
@@ -233,6 +255,11 @@ function buildPostgres {
 
 	oldPath=$PATH
 	PATH="$PATH:$buildLocation/bin"
+
+	if [ "$PGOSQL" == "True" ]; then
+		echo "# skipping make docs"
+		return
+	fi
 
 	cd $baseDir/$workDir/$pgSrcDir/doc
 	echo "#  @`date`  make docs"
@@ -429,8 +456,12 @@ function createBundle {
 
 	cd $baseDir/$workDir/build
 
-	Tar="pg$pgShortV-$pgSrcV-$pgBldV-$OS"
-	Cmd="tar -cjf $Tar.tar.bz2 $Tar pg$pgShortV-$pgSrcV-$pgBldV-$OS" 
+	##Tar="pg$pgShortV-$pgSrcV-$pgBldV-$OS"
+	Tar="$bndlPrfx-$pgSrcV-$pgBldV-$OS"
+
+	##Cmd="tar -cjf $Tar.tar.bz2 $Tar pg$pgShortV-$pgSrcV-$pgBldV-$OS" 
+	Cmd="tar -cjf $Tar.tar.bz2 $Tar $bndlPrfx-$pgSrcV-$pgBldV-$OS" 
+
 	tar_log=$baseDir/$workDir/logs/tar.log
         $Cmd >> $tar_log 2>&1
 	if [[ $? -ne 0 ]]; then
@@ -450,7 +481,8 @@ function createBundle {
 	fi
 	tarFile="$archiveDir/$workDir/$Tar.tar.bz2"
 	if [ "$optional" == "-c" ]; then
-		cmd="cp -p $tarFile $IN/postgres/pg$pgShortV/."
+		##cmd="cp -p $tarFile $IN/postgres/pg$pgShortV/."
+		cmd="cp -p $tarFile $IN/postgres/$bndlPrfx/."
 		echo $cmd
 		$cmd
 	else

@@ -46,3 +46,9 @@ getConn oracle
 getConn sqlserver
 getConn mysql
 getConn mongodb
+
+sudo cp kafka-connect.service          /etc/systemd/system/.
+sudo cp connect-distributed.properties /usr/local/kafka/config/.
+
+sudo systemctl daemon-reload
+sudo systemctl start kafka-connect

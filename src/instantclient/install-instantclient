@@ -1,0 +1,30 @@
+#!/bin/bash
+cd "$(dirname "$0")"
+
+echo "########### INSTALL ORACLE INSTANT-CLIENT ##########"
+
+unzip="unzip -q"
+
+zip=*basic*.zip
+ls $zip  
+$unzip $zip
+
+zip=*jdbc*.zip
+ls $zip  
+$unzip $zip
+
+zip=*odbc*.zip
+ls $zip  
+$unzip $zip
+
+zip=*sdk*.zip
+ls $zip  
+$unzip $zip
+
+zip=*sqlplus*.zip
+ls $zip  
+$unzip $zip
+
+zip=*tools*.zip
+ls $zip  
+$unzip $zip

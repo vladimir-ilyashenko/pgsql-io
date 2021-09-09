@@ -18,7 +18,7 @@ _atrk_opts = { atrk_acct:"D/nDv1DlQy20Y8", domain:"pgsql.io",dynamic: true};
 
   print('<table border=0 bgcolor=black cellpadding=0 width=' + str(pWidth) + '>\n' +
         '  <tr> \n' + \
-        '    <td><img src=img/pgsql-banner6.png /></td> \n' + \
+        '    <td><img src=img/banner_x.png /></td> \n' + \
         '  </tr>\n' + \
         '</table>\n\n')
 
@@ -27,10 +27,10 @@ _atrk_opts = { atrk_acct:"D/nDv1DlQy20Y8", domain:"pgsql.io",dynamic: true};
 
   string = \
 """\
-PGSQL is the PostgreSQL Community Distribution that is developer friendly and cross-platform.
-We fully embrace core PostgreSQL and it's rich community based eco-system of
-enterprise-class extensions.
-We support CentOS 7 & 8 as well as Ubuntu 18.04 & 20.04 (including Ubuntu on Windows 10 Subsystem for Linux)
+PGSQL is the most developer friendly PostgreSQL Community Distribution.
+We fully embrace core PostgreSQL and it's rich community based eco-system of enterprise-class extensions.
+We run in a sandboxed environment that is perfect for running in a container, on bare metal, or in the cloud environment of your choice. 
+Our optimized and secure static binaries run on EL8 (Redhat/Rocky/CentOS) & Ubuntu 20.04+.
 \
 """
   print("  <tr><td colspan=2><h2>Introduction</h2></td></tr>")
@@ -54,12 +54,6 @@ We support CentOS 7 & 8 as well as Ubuntu 18.04 & 20.04 (including Ubuntu on Win
 </table>
 </td></tr>
 
-<tr><td colspan=2>
-We run in a sandboxed environment that is perfect for running
-in a container, on bare metal, or in the cloud environment
-of your choice.
-
-<br>&nbsp;</td></tr>
 <tr><td width=240 align=right><b>Install as non-root user:</b></td>
   <td><input type='text' size=90 value =
 'python3 -c "$(curl -fsSL https://pgsql-io-download.s3.amazonaws.com/REPO/install.py)"' readonly='readonly' />

@@ -1,6 +1,6 @@
 # PGSQL-IO
 
-Steps to build a build environment on CentOS 7/8 on AMD or ARM
+Create build environment on CentOS 7 (el7) or Rocky Linux 8 (el8)
 
 ## 1.) run ./setupInitial.sh to configure OS environment
 
@@ -15,7 +15,7 @@ Steps to build a build environment on CentOS 7/8 on AMD or ARM
          + buildBoost.sh
          + buildProtobuf.sh
          + buildProtobufc.sh
-       in amd-only:
-         + installOracleInstantClient.sh
-         + installCppDriver.sh
+
+       + installOracleInstantClient.sh
+       + installCppDriver.sh
        sharedLibs.sh

@@ -1,19 +1,22 @@
 import sqlite3, sys, pgsql
 
-NUM_COLS = 3
+WIDTH = 1000
 
-#ALL_PLATFORMS = "arm, amd"
-ALL_PLATFORMS = "amd"
+NUM_COLS = 4
+COL_SIZE = round(WIDTH / NUM_COLS)
+
+PG_NUM_COLS = 8
+PG_COL_SIZE = round(WIDTH / PG_NUM_COLS)
+
+ALL_PLATFORMS = "arm, amd"
+#ALL_PLATFORMS = "amd"
 isSHOW_COMP_PLAT = "Y"
 isEXTRA_SPACING = "N"
 isSHOW_DESCRIPTION = "Y"
 HEADING_SIZE = "+1"
 
-BR = "<br>"
-WIDTH = 900 
-COL_SIZE = 300
 FONT_SIZE = 3
-IMG_SIZE = 35
+IMG_SIZE = 30
 BORDER=0
 
 # condensed format
@@ -35,8 +38,6 @@ if NUM_COLS == 2:
 
 
 def print_top():
-  pgsql.print_header(WIDTH)
-  print("\n<p>")
   print('<table width=' + str(WIDTH) + ' border=' + str(BORDER) + ' bgcolor=whitesmoke cellpadding=1>')
 
  
@@ -69,13 +70,11 @@ def get_columns(d):
   
 
   platform = str(d[9])
-  if (platform == ""):
-    if pre_reqs > "":
-      platform = "[" + pre_reqs + "]"
-    else:
-      platform = "[" + ALL_PLATFORMS + "]"
+  if pre_reqs > "":
+    ##platform = "[" + pre_reqs + "]"
+    platform = ""
   else:
-    platform = "[" + platform + "]"
+    platform = ""
 
   rel_date = str(d[10])
   rel_yy = rel_date[2:4]
@@ -110,16 +109,13 @@ def get_columns(d):
     rel_day = rel_day[1]
 
   stage = ""
-  stage = str(d[11])
-  if stage in ("prod", "included", "bring-own"):
-    stage = ""
-  else:
-    #if stage == "soon":
-    #  stage = "Soon!"
-    #  rel_date = "19700101"
-    #else:
-    stage = "--" + stage
-    stage = "<font color=red>" + stage + "</font>"
+  ##stage = str(d[11])
+  ##if stage in ("prod", "included", "bring-own"):
+  ##  stage = ""
+  ##else:
+  ##  if stage == "beta":
+  ##    stage = "BETA!"
+  ##  stage = "<font color=red>" + stage + "</font>"
 
   proj_desc = str(d[12])
   rel_desc  = str(d[13])
@@ -129,21 +125,25 @@ def get_columns(d):
   rel_notes = str(d[18])
 
 
-def print_row_header(pBR):
-  if isEXTRA_SPACING == "Y":
+def print_row_header():
+  print("")
+
+  if cat_desc.startswith("Streaming"):
+    print("</tr></table>\n")
+    print_top()
+  else:
     print("<tr><td>&nbsp;</td></tr>")
 
-  print("<tr><td colspan=" + str(NUM_COLS * 2) + \
-    "><br><b><font size=" + HEADING_SIZE + ">" + \
+  print("<tr><td colspan=4><br><b><font size=" + HEADING_SIZE + ">" + \
     cat_desc + "</font></b></td></tr>")
 
 
-def print_row_detail(pCol, pBR):
+def print_row_detail(pCol):
   global proj_desc, rel_desc, component
 
   platd = ""
   if isSHOW_COMP_PLAT == "Y":
-    platd = BR + component + " " + platform + " " + stage
+    platd = component + " " + platform + " " + stage
 
   if str(rel_yy) < "20":
     rel_yy_display = "-" + rel_yy
@@ -163,34 +163,52 @@ def print_row_detail(pCol, pBR):
   if rel_desc > '':
     proj_desc = rel_desc
 
-  print("  <td width=" + str(IMG_SIZE) + ">&nbsp;<img src=img/" + image_file + \
-    " height=" + str(IMG_SIZE) + " width=" + str(IMG_SIZE) + " /></td>")
-
   if component[0:3] in ("pg9", "pg1"):
-    rel_name = "PostgreSQL"
-    plat_desc = "<font size=-1>" + platd + "</font><br>" + proj_desc
+    col_size = PG_COL_SIZE
+    rel_name = ""
+    plat_desc = proj_desc
+    if pCol == 1:
+      print("<td width=65>&nbsp;&nbsp;<img width=50 height=50 src=img/postgresql.png /></td>")
+      pCol = 2
   else:
+    col_size = COL_SIZE
+    print("  <td width=" + str(IMG_SIZE) + ">&nbsp;<img src=img/" + image_file + \
+      " height=" + str(IMG_SIZE) + " width=" + str(IMG_SIZE) + " /></td>")
     if project_url > "":
       rel_name = "<a href=" + project_url + ">" + release_name + "</a>"
     else:
       rel_name = project_url + release_name
-    plat_desc = platd + "<br><i>" + proj_desc + "</i>"
+    plat_desc = "<i>" + proj_desc + "</i>"
 
-  print("  <td width=" +str( COL_SIZE) + "><font size=" + str(FONT_SIZE) + \
-    ">" + rel_name + "&nbsp;&nbsp;<a href=" + source_url + ">v" + version + \
-    "</a>&nbsp;<font color=red size=-1><sup>" + \
-    rel_date_display +"</sup></font>" + plat_desc + "</td>")
+  if rel_name == "":
+    print("  <td width=" + str(col_size) + "><font size=" + str(FONT_SIZE) + \
+      ">" + "<a href=" + source_url + ">v" + version + \
+      "</a>&nbsp;<font color=red size=-1><sup>" + \
+      rel_date_display +"</sup></font><br>" + plat_desc + "</td>")
+  else:
+    print("  <td width=" +str( COL_SIZE) + "><font size=" + str(FONT_SIZE) + \
+      ">" + rel_name + "&nbsp;&nbsp;<a href=" + source_url + ">v" + version + \
+      "</a>&nbsp;<font color=red size=-1><sup>" + \
+      rel_date_display +"</sup></font><br>" + plat_desc + "</td>")
+  print("")
 
-  if pCol == NUM_COLS:
+  if component[0:3] in ("pg9", "pg1"):
+    col_kount = PG_NUM_COLS
+  else:
+    col_kount = NUM_COLS
+
+  ##print(f"DEBUG pCol={pCol}, col_kount={col_kount}")
+  if pCol == col_kount:
     print("</tr>")
-    if isEXTRA_SPACING == "Y":
-      print("<tr><td>&nbsp;</td></tr>")
-   
+    ##if isEXTRA_SPACING == "Y":
+    ##  print("<tr><td>&nbsp;</td></tr>")
     
-    if NUM_COLS != 1:
-      print("<tr><td>&nbsp;</td></tr>")
+    ##if col_kount != 1:
+    ##  print("<tr><td>&nbsp;</td></tr>")
 
-  return
+    return(1)
+
+  return(pCol + 1)
 
 
 ##################################################################
@@ -210,9 +228,12 @@ sql = "SELECT cat, cat_desc, image_file, component, project, release_name, \n" +
 c.execute(sql)
 data = c.fetchall()
 
+pgsql.print_header(WIDTH)
+print("\n<p>")
+print_top()
+
 i = 0
 old_cat_desc = ""
-print_top()
 col = 0
 skip_next = False
 
@@ -244,25 +265,25 @@ for d in data:
     component = component + "," + next_comp[-2:]
 
   if (old_cat_desc != cat_desc):
-    print_row_header(BR)
+    print_row_header()
     col = 1
 
   if col == 1:
     print("<tr>")
 
-  print_row_detail(col, BR)
+  col = print_row_detail(col)
 
-  if col == NUM_COLS:
-    col = 1
-  else:
-    col = col + 1
+#  if col == NUM_COLS:
+#    col = 1
+#  else:
+#    col = col + 1
 
   old_cat_desc = cat_desc
   old_d = d
 
 #last row
 get_columns(d)
-print_row_detail(col, BR)
+print_row_detail(col)
 
 print_bottom()
 sys.exit(0)

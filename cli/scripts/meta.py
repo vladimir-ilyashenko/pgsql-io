@@ -13,6 +13,20 @@ import datetime
 import mistune
 
 
+def get_stage(p_comp):
+  try:
+    c = con.cursor()
+    sql = "SELECT stage FROM releases WHERE component = ?"
+    c.execute(sql, [p_comp])
+    data = c.fetchone()
+    if data:
+      return(str(data[0]))
+  except Exception as e:
+    fatal_error(e, sql, "meta.check_pre_reqs()")
+
+  return("")
+
+
 def check_pre_reqs(p_comp, p_ver):
   # scrub the platform off the end of the version
   scrub_ver = p_ver.replace('-amd', '')
@@ -122,6 +136,10 @@ def wildcard_component(p_component):
   ## Trim slashes for dweeb convenience
   p_comp = p_component.replace("/", "")
 
+  comp = check_release(p_comp)
+  if comp > "":
+    return comp
+
   comp = check_release("%" + p_comp + "%")
   if comp > "":
     return comp
@@ -130,7 +148,7 @@ def wildcard_component(p_component):
   pg_ver = ""
   data = []
   sql = "SELECT component FROM components" + \
-        " WHERE component in ('pg95', 'pg96', 'pg10', 'pg11', 'pg12', 'pg13')"
+        " WHERE component in ('pg96', 'pg10', 'pg11', 'pg12', 'pg13', 'pg14')"
   try:
     c = con.cursor()
     c.execute(sql)
