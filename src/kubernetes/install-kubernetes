@@ -21,7 +21,7 @@ if [ ! "$rc" == "0" ]; then
   exit $rc
 fi
 
-sudo microk8s enable dns dashboard helm3 openebs 
+sudo microk8s enable dns dashboard helm3 openebs ingress
 
 # sudo microks enable prometheus fluentd host-access
 
